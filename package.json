@@ -1,0 +1,32 @@
+{
+  "name": "aperta-fons",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build"
+  },
+  "dependencies": {
+    "@popperjs/core": "^2.10.1",
+    "axios": "^0.21.4",
+    "bootstrap": "^5.1.1",
+    "core-js": "^3.6.5",
+    "date-fns": "^2.24.0",
+    "firebase": "^9.0.2",
+    "hover.css": "^2.3.2",
+    "jquery": "^3.6.0",
+    "particles.js": "^2.0.0",
+    "popper": "^1.0.1",
+    "vue": "^3.0.0",
+    "vue-anchor-router-link": "^0.8.5",
+    "vue-router": "^4.0.0-0",
+    "vuex": "^4.0.0-0"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-plugin-router": "~4.5.0",
+    "@vue/cli-plugin-vuex": "~4.5.0",
+    "@vue/cli-service": "~4.5.0",
+    "@vue/compiler-sfc": "^3.0.0"
+  }
+}
