@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Home from '../views/Home.vue'
+import LandingPage from "@/views/LandingPage.vue";
 import Auth from "@/views/Auth";
 import {projectAuth} from "@/firebase/config";
 import Dashboard from "@/views/Dashboard";
@@ -29,8 +29,8 @@ const requireNoAuth = (to, from, next) => {
 const routes = [
   {
     path: '/',
-    name: 'Home',
-    component: Home
+    name: 'LandingPage',
+    component: LandingPage
   },
   {
     path: '/auth',
