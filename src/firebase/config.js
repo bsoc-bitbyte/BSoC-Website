@@ -4,12 +4,13 @@ import 'firebase/auth'
 import 'firebase/storage'
 
 const firebaseConfig = {
-    apiKey: "AIzaSyDEq2tylwwCdLJgK2q8_yiDtUmMDEuWgo8",
-    authDomain: "aperta-fons-bf53f.firebaseapp.com",
-    projectId: "aperta-fons-bf53f",
-    storageBucket: "aperta-fons-bf53f.appspot.com",
-    messagingSenderId: "41948206133",
-    appId: "1:41948206133:web:4165b8287fa4de746e4d7c"
+  apiKey: "AIzaSyAiUtpvEBN8VYRWCEgmrNwMNkjW5p3IghU",
+  authDomain: "bsoc-23f7d.firebaseapp.com",
+  projectId: "bsoc-23f7d",
+  storageBucket: "bsoc-23f7d.appspot.com",
+  messagingSenderId: "342829170628",
+  appId: "1:342829170628:web:1c0dec609e854b169e2e91",
+  measurementId: "G-8FE62JB6CT"
 };
 
 firebase.initializeApp(firebaseConfig)
