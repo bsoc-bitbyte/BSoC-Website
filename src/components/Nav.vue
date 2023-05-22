@@ -1,14 +1,21 @@
 <template>
-  <div id="NavMenu">
-    <ul class="Nav">
-      <li><router-link to="/dashboard">Dashboard</router-link></li>
-      <li><a href="#home">Home</a></li>
-      <li><a href="#prize">Prizes</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#faq">FAQs</a></li>
-    </ul>
-  </div>
-  </template>
+  <nav class="navbar navbar-expand-lg text-white">
+    <div class="container-fluid">
+      <a class="navbar-brand text-white" href="#">Navbar</a>
+      <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+        aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav ">
+          <a class="nav-link active text-white" aria-current="page" href="#">Home</a>
+          <a class="nav-link text-white" href="#">Features</a>
+          <a class="nav-link text-white" href="#">Pricing</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+</template>
 
 <script>
 export default {
@@ -18,14 +25,10 @@ export default {
 </script>
 
 <style scoped>
-html, body {
-  overflow-x: hidden;
-  height: 100%;
-}
-body {
-  background: #fff;
-  padding: 0;
-  margin: 0;
-  font-family: 'Poppins', sans-serif;
+.navbar {
+  position: fixed;
+  width: 100vw;
+  background-color: #176885;
+  z-index: 10;
 }
 </style>
