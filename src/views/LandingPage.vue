@@ -5,7 +5,7 @@
       <p id="subH">A Month Long Open Source Challenge</p>
       <p id="text">Presented by The Programming Club, IIITDMJ</p>
       <div class="buttonContainer">
-        <router-link to="/" style="text-decoration: none; color: inherit;">
+        <router-link to="/home" style="text-decoration: none; color: inherit;">
           <button class="button hvr-grow">
             <img class="explore-svg" src="../assets/explore.png" alt="Explore More" />
             <p>Explore</p>
