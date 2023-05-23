@@ -11,7 +11,6 @@
   font-family: 'Stargaze';
   src: url('./assets/fonts/StargazeStencil.otf');
 }
-
 </style>
 <script>
 import PreLoader from "@/components/PreLoader";
