@@ -8,7 +8,7 @@
         <router-link to="/home" style="text-decoration: none; color: inherit;">
           <button class="button hvr-grow">
             <img class="explore-svg" src="../assets/explore.png" alt="Explore More" />
-            <p>Explore</p>
+             Explore
           </button>
         </router-link>
         <a href="#" style="text-decoration: none">
@@ -239,8 +239,10 @@ export default {
       //console.log(window.innerWidth);
     };
     //---
-
+    const getRenderDomByID = renderer.domElement
+    getRenderDomByID.setAttribute('id', 'three-js')
     document.body.appendChild(renderer.domElement);
+
 
     window.addEventListener('resize', onWindowResize, false);
     function onWindowResize() {
@@ -513,6 +515,10 @@ export default {
     // generateLines();
     init();
     animate();
-  }
-}
+
+  },
+  beforeUnmount(){
+    document.body.removeChild(document.getElementById('three-js'))
+
+  }}
 </script>
