@@ -1,8 +1,7 @@
 <template>
     <Nav></Nav>
+    
     <!--  About Section-->
-
-
     <div class="about-section" id="about">
         <div id="particles-js"></div>
         <div class="about">
