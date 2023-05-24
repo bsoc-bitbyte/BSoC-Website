@@ -230,6 +230,7 @@ canvas {
 export default {
   mounted() {
     // Three JS Template
+    const stopAnimation = false;  
     //----------------------------------------------------------------- BASIC parameters
     var renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setSize(window.innerWidth, window.innerHeight);
@@ -515,15 +516,21 @@ export default {
       camera.lookAt(city.position);
       renderer.render(scene, camera);
     }
+    if (stopAnimation){
+      return
+    }
 
     //----------------------------------------------------------------- START functions
     // generateLines();
     init();
     animate();
+    
 
   },
   beforeUnmount(){
-    document.body.removeChild(document.getElementById('three-js'))
+    document.body.removeChild(document.getElementById('three-js'));
+    this.stopAnimation = true;
+    
 
   }}
 </script>
