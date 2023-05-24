@@ -5,6 +5,8 @@ import { projectAuth } from "@/firebase/config";
 import Dashboard from "@/views/Dashboard";
 import SubmitPR from "@/views/SubmitPR";
 import Home from "@/views/Home";
+import Signup from "@/components/Signup";
+import Login from "@/components/Login";
 
 const requireAuth = (to, from, next) => {
   let user = projectAuth.currentUser;
@@ -52,6 +54,18 @@ const routes = [
     path: "/home",
     name: "Home",
     component: Home,
+    beforeEnter: requireNoAuth,
+  },
+  {
+    path: "/login",
+    name: "Login",
+    component: Login,
+    beforeEnter: requireNoAuth,
+  },
+  {
+    path: "/signUp",
+    name: "SignUp",
+    component: Signup,
     beforeEnter: requireNoAuth,
   },
 ];
