@@ -1,6 +1,7 @@
 <template>
   <div class="fixed-top">
     <div class="container home">
+    
       <p id="heading">BitByte Summer Of Code</p>
       <p id="subH">A Month Long Open Source Challenge</p>
       <p id="text">Presented by The Programming Club, IIITDMJ</p>
@@ -8,13 +9,14 @@
         <router-link to="/home" style="text-decoration: none; color: inherit;">
           <button class="button hvr-grow">
             <img class="explore-svg" src="../assets/explore.png" alt="Explore More" />
-            <p>Explore</p>
+             Explore
           </button>
         </router-link>
         <a href="#" style="text-decoration: none">
           <button class="button hvr-grow">
             <img src="../assets/discord.svg" alt="discord" />
-            <p>Discord</p>
+            <p>Discord_</p>
+            <span></span>
           </button>
         </a>
       </div>
@@ -44,15 +46,15 @@ canvas {
   justify-content: center;
   height: 100vh;
   width: 100vw;
-  color: #fff;
+  color: #FFFAFF;
 }
 
 #heading {
   margin: 0;
   font-family: "Stargaze", serif;
-  font-size: 10vh;
+  font-size: 9vh;
   line-height: 14vh;
-  color: #fff;
+  color: #FFFAFF;
   background: none;
   text-align: left;
 }
@@ -61,7 +63,7 @@ canvas {
   font-family: "Stargaze", sans-serif;
   font-size: 4.2vh;
   line-height: 5.2vh;
-  color: #fff;
+  color: #FFFAFF;
   font-weight: initial;
   text-align: left;
   margin: 2vh 0 0 0;
@@ -71,34 +73,35 @@ canvas {
   font-family: "Poppins", sans-serif;
   font-size: 2.3vh;
   line-height: 3.3vh;
-  color: #ffffff;
+  color: #FFFAFF;
   text-align: left;
   margin: 1.2vh 0 0 0;
 }
 
-.button {
-  background: #176885;
-  border-radius: 8px;
-  width: fit-content;
+.button, .button::after {
+
+  background:  linear-gradient(45deg , transparent 5% , #e2c836 5%  );
+  width: 15vw;
   margin-right: 5vw;
   font-size: 1.5vw;
   padding: 1vh 2.5vw;
-  color: #ffffff;
+  color: #FFFAFF;
   display: flex;
   font-family: "Poppins", sans-serif;
   text-align: center;
-  border: none;
-  outline: none;
   cursor: pointer;
-}
+  border: 0;
+  box-shadow: 1.6px 0px 0px #FF003C;
+  outline: transparent;
 
+
+}
 .buttonContainer button p {
   margin-bottom: 0;
 }
 
 .hvr-grow {
   transform: translateZ(0);
-  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
   backface-visibility: hidden;
   -moz-osx-font-smoothing: grayscale;
   transition-duration: 0.3s;
@@ -239,8 +242,11 @@ export default {
       //console.log(window.innerWidth);
     };
     //---
-
+    const getRenderDomByID = renderer.domElement
+    getRenderDomByID.setAttribute('id', 'three-js')
     document.body.appendChild(renderer.domElement);
+    console.log(renderer.domElement);
+
 
     window.addEventListener('resize', onWindowResize, false);
     function onWindowResize() {
@@ -261,15 +267,16 @@ export default {
     var createCarPos = true;
     var uSpeed = 0.001;
 
-    //----------------------------------------------------------------- FOG background
+    //------------------ ----------------------------------------------- FOG background
+    
 
-    var setcolor = 0x0A7185;
+    var setcolor = 0x6a0785
     //var setcolor = 0xF2F111;
     //var setcolor = 0xFF6347;
 
     scene.background = new THREE.Color(setcolor);
-    scene.fog = new THREE.Fog(setcolor, 10, 16);
-    //scene.fog = new THREE.FogExp2(setcolor, 0.05);
+    scene.fog = new THREE.Fog(setcolor, 30, 50);
+    scene.fog = new THREE.FogExp2(setcolor, 0.05);
     //----------------------------------------------------------------- RANDOM Function
     function mathRandom(num = 8) {
       var numValue = - Math.random() * num + Math.random() * num;
@@ -285,7 +292,7 @@ export default {
         setTintNum = true;
         var setColor = 0x000000;
       };
-      //setColor = 0x222222;
+      // setColor = 0x001;
       return setColor;
     };
 
@@ -300,8 +307,8 @@ export default {
           wireframe: false,
           //opacity:0.9,
           //transparent:true,
-          //roughness: 0.3,
-          //metalness: 1,
+          roughness: 0.6,
+          metalness: 0.5,
           shading: THREE.SmoothShading,
           //shading:THREE.FlatShading,
           side: THREE.DoubleSide
@@ -370,7 +377,7 @@ export default {
       pelement.rotation.x = -90 * Math.PI / 180;
       pelement.position.y = -0.001;
       pelement.receiveShadow = true;
-      //pelement.material.emissive.setHex(0xFFFFFF + Math.random() * 100000);
+      //pelement.material.emissive.setHex(0xFFFAFF + Math.random() * 100000);
 
       city.add(pelement);
     };
@@ -405,9 +412,9 @@ export default {
     window.addEventListener('touchmove', onDocumentTouchMove, false);
 
     //----------------------------------------------------------------- Lights
-    var ambientLight = new THREE.AmbientLight(0xFFFFFF, 4);
-    var lightFront = new THREE.SpotLight(0xFFFFFF, 20, 10);
-    var lightBack = new THREE.PointLight(0xFFFFFF, 0.5);
+    var ambientLight = new THREE.AmbientLight(0xFFFAFF, 4);
+    var lightFront = new THREE.SpotLight(0xFFFAFF, 20, 10);
+    var lightBack = new THREE.PointLight(0xFFFAFF, 0.5);
 
     var spotLightHelper = new THREE.SpotLightHelper(lightFront);
     //scene.add( spotLightHelper );
@@ -475,7 +482,7 @@ export default {
     //----------------------------------------------------------------- CAMERA position
 
     var cameraSet = function () {
-      createCars(0.1, 20, 0xFFFFFF);
+      createCars(0.1, 20, 0xFFFAFF);
       //TweenMax.to(camera.position, 1, {y:1+Math.random()*4, ease:Expo.easeInOut})
     };
 
@@ -513,6 +520,10 @@ export default {
     // generateLines();
     init();
     animate();
-  }
-}
+
+  },
+  beforeUnmount(){
+    document.body.removeChild(document.getElementById('three-js'))
+
+  }}
 </script>
