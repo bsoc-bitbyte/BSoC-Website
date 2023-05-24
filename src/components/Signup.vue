@@ -18,7 +18,7 @@
           <button class="button login__submit" v-else>
             <span class="button__text">Signing Up</span>
           </button>
-          <router-link to="/login" style="color: rgb(63, 2, 80);">Don’t have an account? Sign In instead</router-link>
+          <router-link class="route-link" to="/login">Don’t have an account? Sign In instead</router-link>
         </form>
         <div class="social-login">
           <h4>Sign Up via</h4>
@@ -131,7 +131,7 @@ export default {
   position: relative;
   height: 600px;
   width: 360px;
-  box-shadow: 0px 0px 24px white;
+  box-shadow: 0px 0px 24px black;
 }
 
 .screen__content {
@@ -160,7 +160,7 @@ export default {
 .screen__background__shape1 {
   height: 600px;
   width: 500px;
-  background: #FFF;
+  background: black;
   right: 160px;
   border-radius: 0 72px 0 0;
 }
@@ -206,11 +206,12 @@ export default {
 
 .login__input {
   border: none;
-  border-bottom: 2px solid #D1D1D4;
+  border-bottom: 2px solid #d1d1d4a8;
   background: none;
   padding: 10px;
   font-weight: 700;
   width: 75%;
+  color: white;
   transition: .2s;
 }
 
@@ -218,11 +219,11 @@ export default {
 .login__input:focus,
 .login__input:hover {
   outline: none;
-  border-bottom-color: rgb(63, 2, 80);
+  border-bottom-color: white;
 }
 
 .login__submit {
-  background: #fff;
+  background: black;
   font-size: 14px;
   margin: 15px 0;
   padding: 16px 20px;
@@ -233,7 +234,7 @@ export default {
   display: flex;
   align-items: center;
   width: 100%;
-  color: #4C489D;
+  color: white;
   box-shadow: 0px 2px 2px #5C5696;
   cursor: pointer;
   transition: .2s;
@@ -273,4 +274,11 @@ export default {
   transform: scale(1.2);
   cursor: pointer;
 }
+.route-link{
+  color: #d1d1d4a8;
+}
+.route-link:hover{
+  color: white;
+}
+
 </style>
