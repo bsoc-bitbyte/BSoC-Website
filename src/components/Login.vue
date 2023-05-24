@@ -15,7 +15,7 @@
           <button class="button login__submit" v-else>
             <span class="button__text">Signing In</span>
           </button>
-          <router-link to="/signUp" style="color: rgb(63, 2, 80);">Don’t have an account? Sign up instead</router-link>
+          <router-link to="/signUp" class="route-link">Don’t have an account? Sign up instead</router-link>
         </form>
         <div class="social-login">
           <h4>Sign In via</h4>
@@ -96,7 +96,6 @@ export default {
 </script>
 
 <style scoped>
-
 @import url('https://fonts.googleapis.com/css?family=Raleway:400,700');
 
 .content {
@@ -116,7 +115,7 @@ export default {
   position: relative;
   height: 600px;
   width: 360px;
-  box-shadow: 0px 0px 24px white;
+  box-shadow: 0px 0px 24px black;
 }
 
 .screen__content {
@@ -134,7 +133,7 @@ export default {
   z-index: 0;
   -webkit-clip-path: inset(0 0 0 0);
   clip-path: inset(0 0 0 0);
-  
+
 }
 
 .screen__background__shape {
@@ -145,7 +144,7 @@ export default {
 .screen__background__shape1 {
   height: 600px;
   width: 500px;
-  background: #FFF;
+  background: black;
   right: 160px;
   border-radius: 0 72px 0 0;
 }
@@ -180,22 +179,23 @@ export default {
 .login {
   width: 320px;
   padding: 20px;
-  padding-top: 156px;
+  padding-top: 170px;
 }
 
 .login__field {
-  padding: 20px 0px;
+  padding: 15px 0px;
   position: relative;
 }
 
 
 .login__input {
   border: none;
-  border-bottom: 2px solid #D1D1D4;
+  border-bottom: 2px solid #d1d1d4a8;
   background: none;
   padding: 10px;
   font-weight: 700;
   width: 75%;
+  color: white;
   transition: .2s;
 }
 
@@ -203,11 +203,11 @@ export default {
 .login__input:focus,
 .login__input:hover {
   outline: none;
-  border-bottom-color: rgb(63, 2, 80);
+  border-bottom-color: white;
 }
 
 .login__submit {
-  background: #fff;
+  background: black;
   font-size: 14px;
   margin: 15px 0;
   padding: 16px 20px;
@@ -218,7 +218,7 @@ export default {
   display: flex;
   align-items: center;
   width: 100%;
-  color: #4C489D;
+  color: white;
   box-shadow: 0px 2px 2px #5C5696;
   cursor: pointer;
   transition: .2s;
@@ -257,5 +257,13 @@ export default {
 .social-login__icon:hover {
   transform: scale(1.2);
   cursor: pointer;
+}
+
+.route-link {
+  color: #d1d1d4a8;
+}
+
+.route-link:hover {
+  color: white;
 }
 </style>
