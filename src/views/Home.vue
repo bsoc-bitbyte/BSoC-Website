@@ -21,16 +21,16 @@
                 <p>
                     The goals of our Event are to:
                     <br />
-                    - <span class="highlight">Inspire</span> you to begin participating in
+                    - Inspire you to begin participating in
                     open source development.
                     <br />
-                    - <span class="highlight">Identifying</span> open-source projects and
+                    -Identifying open-source projects and
                     bring in new developers.
                     <br />
-                    - <span class="highlight">Provide</span> you the opportunity to do
+                    -Provide you the opportunity to do
                     work and give you industry experience.
                     <br />
-                    - <span class="highlight">Give</span> you more exposure to real-world
+                    -Give you more exposure to real-world
                     software development
                 </p>
             </div>
@@ -77,7 +77,7 @@
         <div class="accordion" id="accordionExample">
             <div class="accordion-item bg-black">
                 <h2 class="accordion-header" id="headingOne">
-                    <button class="accordion-button bg-black collapsed" type="button" style="color: #ffffff;"
+                    <button class="accordion-button bg-black collapsed" type="button" style="color: #fffaff;"
                         data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true"
                         aria-controls="collapseOne">
                         Why should I participate?
@@ -97,7 +97,7 @@
             </div>
             <div class="accordion-item bg-black">
                 <h2 class="accordion-header">
-                    <button class="accordion-button bg-black collapsed" type="button" style="color: #ffffff; outline: none"
+                    <button class="accordion-button bg-black collapsed" type="button" style="color: #fffaff; outline: none"
                         data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false"
                         aria-controls="collapseTwo">
                         Why is Open Source important?
@@ -118,7 +118,7 @@
             </div>
             <div class="accordion-item bg-black">
                 <h2 class="accordion-header" id="headingThree">
-                    <button class="accordion-button bg-black collapsed" type="button" style="color: #ffffff"
+                    <button class="accordion-button bg-black collapsed" type="button" style="color: #fffaff"
                         data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false"
                         aria-controls="collapseThree">
                         Are there any placement opportunities available?
@@ -142,7 +142,7 @@
             </div>
             <div class="accordion-item bg-black">
                 <h2 class="accordion-header" id="headingFour">
-                    <button class="accordion-button bg-black collapsed" type="button" style="color: #ffffff"
+                    <button class="accordion-button bg-black collapsed" type="button" style="color: #fffaff"
                         data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false"
                         aria-controls="collapseFour">
                         Can we work in groups to participate in this event?
@@ -158,7 +158,7 @@
             </div>
             <div class="accordion-item bg-black">
                 <h2 class="accordion-header" id="headingFive">
-                    <button class="accordion-button bg-black collapsed" type="button" style="color: #ffffff"
+                    <button class="accordion-button bg-black collapsed" type="button" style="color: #fffaff"
                         data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false"
                         aria-controls="collapseFour">
                         How do I submit my pull requests on Event Website?
@@ -174,7 +174,7 @@
             </div>
             <div class="accordion-item bg-black">
                 <h2 class="accordion-header" id="headingSix">
-                    <button class="accordion-button bg-black collapsed" type="button" style="color: #ffffff"
+                    <button class="accordion-button bg-black collapsed" type="button" style="color: #fffaff"
                         data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false"
                         aria-controls="collapseSix">
                         I am stuck. How do I get help?
@@ -191,7 +191,7 @@
             </div>
             <div class="accordion-item bg-black">
                 <h2 class="accordion-header" id="headingSeven">
-                    <button class="accordion-button bg-black collapsed" type="button" style="color: #ffffff"
+                    <button class="accordion-button bg-black collapsed" type="button" style="color: #fffaff"
                         data-bs-toggle="collapse" data-bs-target="#collapseSeven" aria-expanded="false"
                         aria-controls="collapseSix">
                         Do I need to pay to enter this event?
@@ -234,7 +234,7 @@ export default {
                         }
                     },
                     "color": {
-                        "value": "#ffffff"
+                        "value": "#fffaff"
                     },
                     "shape": {
                         "type": "circle",
@@ -269,7 +269,7 @@ export default {
                     "line_linked": {
                         "enable": true,
                         "distance": 150,
-                        "color": "#ffffff",
+                        "color": "#fffaff",
                         "opacity": 0.4,
                         "width": 1
                     },
@@ -414,7 +414,7 @@ export default {
 .highlight {
     padding: 0 3px;
     position: relative;
-    background-color: #176885;
+    background-color: #6A0785;
 }
 
 .timer {
@@ -426,26 +426,26 @@ export default {
 #start {
     font-family: "Poppins", sans-serif;
     font-size: 2vh;
-    color: #ffffff;
+    color: #fffaff;
     margin: 5vh 0 0 0;
 }
 
 .timer span {
     font-size: 2vh;
-    color: #ffffff;
+    color: #fffaff;
     font-family: "Poppins", sans-serif;
 }
 
 .timer span span {
     font-family: Stargaze, sans-serif;
-    color: #ffffff;
+    color: #fffaff;
     font-size: 8vh;
 }
 
 .prize-section {
     width: 100vw;
     height: 100vh;
-    background-color: #176885;
+    background-color: #6A0785;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -466,14 +466,14 @@ export default {
     letter-spacing: 2px;
     line-height: 7.36vw;
     font-family: Stargaze, sans-serif;
-    color: #ffffff;
+    color: #fffaff;
 }
 
 .list {
     width: 70%;
     margin: auto;
     text-align: left;
-    color: #ffffff;
+    color: #fffaff;
 }
 
 .list p {
@@ -499,18 +499,18 @@ export default {
     margin: 0;
     text-align: center;
     padding-top: 7vh;
-    color: #ffffff;
+    color: #fffaff;
 }
 
 .accordion {
     width: 55vw;
     margin: 12vh auto 0;
-    color: #ffffff;
+    color: #fffaff;
     font-family: 'Poppins', sans-serif;
 }
 
 .accordion-header {
-    border-bottom: 0.3vh solid #ffffff;
+    border-bottom: 0.3vh solid #fffaff;
 }
 
 .accordion-item {
@@ -519,7 +519,7 @@ export default {
 
 .accordion-button {
     font-family: 'Poppins', sans-serif;
-    color: #ffffff;
+    color: #fffaff;
     font-size: 1.5vw;
 }
 

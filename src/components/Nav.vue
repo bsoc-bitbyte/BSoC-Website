@@ -34,7 +34,7 @@ export default {
 .navbar {
   position: fixed;
   width: 100vw;
-  background-color: #176885;
+  background-color: transparent;
   z-index: 10;
 }
 
