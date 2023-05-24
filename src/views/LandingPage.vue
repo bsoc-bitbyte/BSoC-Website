@@ -252,13 +252,8 @@ export default {
       //console.log(window.innerWidth);
     };
     //---
-<<<<<<< HEAD
-    const k = renderer.domElement
-    k.setAttribute('id', 'three-js')
-=======
     const getRenderDomByID = renderer.domElement
     getRenderDomByID.setAttribute('id', 'three-js')
->>>>>>> bd2710c921802f23d52d2d688a760abd2886a90c
     document.body.appendChild(renderer.domElement);
     console.log(renderer.domElement);
 
@@ -538,10 +533,6 @@ export default {
 
   },
   beforeUnmount(){
-<<<<<<< HEAD
-    console.log(document.getElementById('three-js'))
-=======
->>>>>>> bd2710c921802f23d52d2d688a760abd2886a90c
     document.body.removeChild(document.getElementById('three-js'))
 
   }}
