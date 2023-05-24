@@ -1,20 +1,14 @@
 <template>
     <Nav></Nav>
+    
     <!--  About Section-->
-
-
     <div class="about-section" id="about">
         <div id="particles-js"></div>
         <div class="about">
             <h1 class="about-heading">About</h1>
             <div class="about-content">
                 <p>
-                    Aperta Fons is a
-                    month-long open source event, that is
-                    aimed at encouraging you towards the world of open-source and taking
-                    the first step towards licentious open-source programs like
-                    Outreachy, Google Summer of Code, MLH,
-                    etc. This event is managed by BitByte, The Programming Club and Google
+                    Welcome to Bitbyte Summer of Code! An exciting opportunity for passionate developers and aspiring coders to hone their skills, collaborate with industry experts, and contribute to open-source projects. Bitbyte Summer of Code (BSoC) is an annual program that provides a platform for students and developers to immerse themselves in real-world coding challenges and gain valuable experience. This event is managed by BitByte, The Programming Club and Google
                     DSC of IIITDM Jabalpur.
                 </p>
                 <p>
