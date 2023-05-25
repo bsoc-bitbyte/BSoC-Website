@@ -8,13 +8,11 @@
             <h1 class="about-heading">About</h1>
             <div class="about-content">
                 <p>
-                    Welcome to Bitbyte Summer of Code! An exciting opportunity for passionate developers and aspiring coders to hone their skills, collaborate with industry experts, and contribute to open-source projects. Bitbyte Summer of Code (BSoC) is an annual program that provides a platform for students and developers to immerse themselves in real-world coding challenges and gain valuable experience. This event is managed by BitByte, The Programming Club and Google
-                    DSC of IIITDM Jabalpur.
+                    Welcome to Bitbyte Summer of Code! An exciting opportunity for passionate developers.
                 </p>
                 <p>
                     This event is aimed at matching you with open source, free software,
-                    and technology-related organizations to write code and become part of
-                    these communities. The organizations provide mentors who act as guides
+                    and technology-related projects to write code and learn. The projects provide mentors who act as guides
                     through the entire process, from learning about the community to
                     contributing code.
                 </p>
@@ -48,14 +46,14 @@
             <div class="prizes">
                 <div class="list">
                     <p>
-                        &bull; <span class="bolder">TOP CONTRIBUTORS</span> can win
-                        exclusive club t-shirts.
+                        &bull; <span class="bolder">TOP CONTRIBUTORS</span> Can
+                        get a chance to interview for the BitByte Dev Wing.
                     </p>
                     <p>
                         &bull;
                         <span class="bolder">EVERY CONTRIBUTOR</span> who has got at least 3
-                        easy-level and 1 medium-level PR merged to repositories with 100+⭐
-                        will get exclusive club stickers.
+                        easy-level and 1 medium-level PR merged to projects will get exclusive 
+                        stickers and swags.
                     </p>
                     <p style="margin: 0 0 10px;">
                         <span class="bolder">NOT ENOUGH?</span>
@@ -85,7 +83,7 @@
                 </h2>
                 <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
                     data-bs-parent="#accordionExample">
-                    <div class="accordion-body">
+                    <div class="accordion-body" style="color: #fffaff;">
                         <strong>Ans. </strong>Participating in such events provides an amazing learning experience, helps in
                         improving your development skills, getting involved in big organizations and helping to build
                         networks. This
@@ -105,7 +103,7 @@
                 </h2>
                 <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
                     data-bs-parent="#accordionExample">
-                    <div class="accordion-body">
+                    <div class="accordion-body" style="color: #fffaff;">
                         <strong>Ans. </strong> Open source provides you first-hand experience with working on big and
                         real-world
                         projects, on which many top companies depend, which will give a huge boost in your development
@@ -117,7 +115,7 @@
                 </div>
             </div>
             <div class="accordion-item bg-black">
-                <h2 class="accordion-header" id="headingThree">
+                <h2 class="accordion-header" id="headingThree" >
                     <button class="accordion-button bg-black collapsed" type="button" style="color: #fffaff"
                         data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false"
                         aria-controls="collapseThree">
@@ -126,7 +124,7 @@
                 </h2>
                 <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
                     data-bs-parent="#accordionExample">
-                    <div class="accordion-body">
+                    <div class="accordion-body" style="color: #fffaff;">
                         <strong>Ans. </strong>Contributing to some real world project will have a huge impact on your CV and
                         you
                         will gain some experience about how to work in a large organisation with hundreds of contributors.
@@ -150,7 +148,7 @@
                 </h2>
                 <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
                     data-bs-parent="#accordionExample">
-                    <div class="accordion-body">
+                    <div class="accordion-body" style="color: #fffaff;">
                         <strong>Ans. </strong>No, team participation is not allowed in this event. Everyone must participate
                         individually. But you can collaborate with each other if contributing to the same organization.
                     </div>
@@ -166,7 +164,7 @@
                 </h2>
                 <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
                     data-bs-parent="#accordionExample">
-                    <div class="accordion-body">
+                    <div class="accordion-body" style="color: #fffaff;">
                         <strong>Ans. </strong>Head over to the Submit PR tab on your dashboard and fill the form
                         accordingly.
                     </div>
@@ -181,9 +179,9 @@
                     </button>
                 </h2>
                 <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix"
-                    data-bs-parent="#accordionExample">
+                    data-bs-parent="#accordionExample" style="color: #fffaff;">
                     <div class="accordion-body">
-                        <strong>Ans. </strong>Join our discord server (<a href="https://discord.gg/c3WWbdf983"
+                        <strong>Ans. </strong>Join our discord server (<a href="https://discord.gg/C72FYTYYcZ"
                             style="color: #3770ff">click here to join</a>) and the
                         mentors would be glad to help you there.
                     </div>
@@ -199,7 +197,7 @@
                 </h2>
                 <div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="headingSeven"
                     data-bs-parent="#accordionExample">
-                    <div class="accordion-body">
+                    <div class="accordion-body" style="color: #fffaff;">
                         <strong>Ans. </strong> No purchase/payment is necessary to participate or win in this event. It is
                         free of
                         cost.
