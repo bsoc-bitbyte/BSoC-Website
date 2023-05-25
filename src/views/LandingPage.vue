@@ -3,7 +3,7 @@
     <div class="container home">
     
       <p id="heading">BitByte Summer Of Code</p>
-      <p id="subH">A Month Long Open Source Challenge</p>
+      <p id="subH">Event to begin your Open Source Journey</p>
       <p id="text">Presented by The Programming Club, IIITDMJ</p>
       <div class="buttonContainer">
         <router-link to="/home" style="text-decoration: none; color: inherit;">
@@ -12,10 +12,10 @@
              Explore
           </button>
         </router-link>
-        <a href="#" style="text-decoration: none">
+        <a href="https://discord.gg/C72FYTYYcZ" target="_blank" style="text-decoration: none">
           <button class="button hvr-grow">
             <img src="../assets/discord.svg" alt="discord" />
-            <p>Discord_</p>
+            <p>Discord</p>
             <span></span>
           </button>
         </a>
