@@ -2,10 +2,10 @@
   <nav class="navbar navbar-expand-lg text-white">
     <div class="container-fluid nav-container">
       <div class="logo">
-        <a class="text-white" href="#">
+        <router-link to="/" class="text-white" href="#">
           <img src="../assets/logo.png" alt="logo">
           <h2>BSOC</h2>
-        </a>
+        </router-link>
       </div>
       <div class="collapse navbar-collapse">
         <div class="navbar-nav ">
