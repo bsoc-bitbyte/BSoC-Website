@@ -9,14 +9,27 @@
       </div>
       <div class="collapse navbar-collapse">
         <div class="navbar-nav ">
-          <a class="nav-link active text-white" aria-current="page" href="#">Home</a>
-          <a class="nav-link text-white" href="#">Features</a>
-          <a class="nav-link text-white" href="#">Pricing</a>
+          <router-link class="nav-link text-white" to="/dashboard" style="text-decoration: none; color: inherit;" v-if = "isHome">Dashboard</router-link>
+          <router-link class="nav-link text-white" to="/home" style="text-decoration: none; color: inherit;" v-if = "!isHome">Home</router-link>
+          <router-link class="nav-link text-white" to="/dashboard" style="text-decoration: none; color: inherit;">
+            <button class = "nav-button" v-on:click="handleMyPR()"
+              v-if="isloggedIn && userPR">Dashboard</button>
+            <button class = "nav-button" v-on:click="handleMyPR()" v-if = "isloggedIn && !userPR">My
+              PR's</button>
+          </router-link>
+          <router-link class="nav-link text-white" to="/submit"
+            style="text-decoration: none; color: inherit;" v-if = "isloggedIn">SubmitPR</router-link>
+          <a class="nav-link text-white" href="#">Projects</a>
         </div>
       </div>
-      <div class="navbar-nav auth ">
-        <router-link class="nav-link text-white" to="/login" style="text-decoration: none; color: inherit;">Login</router-link>
-        <router-link class="nav-link text-white" to="/signUp" style="text-decoration: none; color: inherit;">Sign Up</router-link>
+      <div v-if = "!isloggedIn" class="navbar-nav auth ">
+        <router-link class="nav-link text-white" to="/login"
+          style="text-decoration: none; color: inherit;">Login</router-link>
+        <router-link class="nav-link text-white" to="/signUp" style="text-decoration: none; color: inherit;">Sign
+          Up</router-link>
+      </div><div v-else class="navbar-nav auth ">
+        <button class = "nav-button" v-on:click="handleLogout()" v-if = "isloggedIn && !userPR">
+            LogOut</button>
       </div>
 
     </div>
@@ -24,8 +37,76 @@
 </template>
 
 <script>
+import { ref } from "vue";
+import { projectAuth } from "../firebase/config";
+import useLogout from "@/composables/useLogout";
+import { useRouter } from "vue-router";
+
 export default {
   name: "Nav",
+  created() {
+    this.checkAuth();
+    this.isHonePage();
+
+  },
+  beforeRouteLeave(to, from, next) {
+    this.isHonePage();
+    next();
+  },
+  setup() {
+    const { error, logout } = useLogout();
+    const userPR = ref(false);
+    let isloggedIn = ref(false);
+    let isHome = ref(true);
+    const router = useRouter();
+
+    const checkAuth = () => {
+      projectAuth.onAuthStateChanged((user) => {
+        if (user) {
+          isloggedIn.value = true;
+        } else {
+          isloggedIn.value = false;
+        }
+      });
+    };
+
+    const isHonePage = () => {
+      if (window.location.pathname === "/home") {
+        console.log("home");
+        isHome.value = true;
+      } else {
+        isHome.value = false;
+      }
+    };
+
+    const handleLogout = () => {
+            logout();
+            if (!error.value) {
+                router.push({ name: "Home" });
+            } else {
+                console.log(error.value);
+            }
+        };
+
+
+    const handleMyPR = () => {
+      if (userPR.value) {
+        userPR.value = false;
+      } else {
+        userPR.value = true;
+      }
+    };
+
+    return {
+      handleMyPR,
+      userPR,
+      isloggedIn,
+      checkAuth,
+      isHonePage,
+      handleLogout,
+      isHome,
+    }
+  }
 
 }
 </script>
@@ -33,7 +114,7 @@ export default {
 <style scoped>
 .navbar {
   position: fixed;
-  height: 10vh; 
+  height: 10vh;
   width: 100vw;
   background-color: transparent;
   z-index: 10;
@@ -68,8 +149,15 @@ export default {
 
 }
 
-.auth{
+.auth {
   margin-right: 2em;
 }
 
+.nav-button {
+  background: none;
+  border: none;
+  color: white;
+  padding: 0;
+  margin: 0;
+}
 </style>
