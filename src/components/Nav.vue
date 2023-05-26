@@ -22,32 +22,50 @@
           <a class="nav-link text-white" href="#">Projects</a>
         </div>
       </div>
-      <div v-if = "!isloggedIn" class="navbar-nav auth ">
-        <router-link class="nav-link text-white" to="/login"
-          style="text-decoration: none; color: inherit;">Login</router-link>
-        <router-link class="nav-link text-white" to="/signUp" style="text-decoration: none; color: inherit;">Sign
-          Up</router-link>
+      <div v-if = "!isloggedIn" class="navbar-nav auth " >
+        <span v-on:click="handleLogin"  style="padding-right: 1.3em;">Login</span>
+        <Login v-if = "login" :toggle="handleLogin" />
+        <span v-on:click="handleSignup">Signup</span>
+        <Signup v-if="signup" :toggle="handleSignup"/>
       </div><div v-else class="navbar-nav auth ">
         <button class = "nav-button" v-on:click="handleLogout()" v-if = "isloggedIn && !userPR">
             LogOut</button>
       </div>
-
+   
     </div>
   </nav>
 </template>
-
 <script>
 import { ref } from "vue";
 import { projectAuth } from "../firebase/config";
 import useLogout from "@/composables/useLogout";
 import { useRouter } from "vue-router";
-
+import Login from "./Login.vue";
+import Signup from "./Signup.vue";
 export default {
   name: "Nav",
+  data(){
+    return {
+      login: false,
+      signup:false,
+    }
+  },
+  
   created() {
     this.checkAuth();
     this.isHonePage();
 
+  },
+  components: {
+     Login,
+     Signup,
+  },
+  methods: {
+    handleLogin(){
+        this.login = !this.login;
+    },
+    handleSignup(){
+      this.signup = !this.signup;}
   },
   beforeRouteLeave(to, from, next) {
     this.isHonePage();
