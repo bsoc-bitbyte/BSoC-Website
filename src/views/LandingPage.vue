@@ -228,9 +228,15 @@ canvas {
 // import { TweenMax } from "gsap/all";
 
 export default {
+  data: function() {
+                    return {
+                        stopAnimation: false
+                    }
+                  },
+  
   mounted() {
     // Three JS Template
-    const stopAnimation = false;  
+    
     //----------------------------------------------------------------- BASIC parameters
     var renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setSize(window.innerWidth, window.innerHeight);
@@ -246,7 +252,7 @@ export default {
     const getRenderDomByID = renderer.domElement
     getRenderDomByID.setAttribute('id', 'three-js')
     document.body.appendChild(renderer.domElement);
-    console.log(renderer.domElement);
+    // console.log(renderer.domElement);
 
 
     window.addEventListener('resize', onWindowResize, false);
@@ -298,7 +304,7 @@ export default {
     };
 
     //----------------------------------------------------------------- CREATE City
-
+    
     function init() {
       var segments = 2;
       for (var i = 1; i < 100; i++) {
@@ -486,10 +492,14 @@ export default {
       createCars(0.1, 20, 0xFFFAFF);
       //TweenMax.to(camera.position, 1, {y:1+Math.random()*4, ease:Expo.easeInOut})
     };
-
+  
     //----------------------------------------------------------------- ANIMATE
-
+    var vm = this; 
     var animate = function () {
+      if(vm.stopAnimation){
+        // console.log(vm.stopAnimation,"sacdsc");  //to check this use preserve log setting in console of browser
+        return
+      }
       var time = Date.now() * 0.00005;
       requestAnimationFrame(animate);
 
@@ -516,10 +526,7 @@ export default {
       camera.lookAt(city.position);
       renderer.render(scene, camera);
     }
-    if (stopAnimation){
-      return
-    }
-
+    
     //----------------------------------------------------------------- START functions
     // generateLines();
     init();
@@ -529,7 +536,10 @@ export default {
   },
   beforeUnmount(){
     document.body.removeChild(document.getElementById('three-js'));
+    // console.log(this.stopAnimation);
     this.stopAnimation = true;
+    // console.log(this.stopAnimation);
+    
     
 
   }}
