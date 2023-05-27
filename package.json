@@ -5,7 +5,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "production": "vue-cli-service build --mode production",
+    "production": "vue-cli-service build --mode production"
   },
   "engines": {
     "node": "14.x",
