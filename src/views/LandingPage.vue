@@ -3,7 +3,7 @@
     <div class="container home">
     
       <p id="heading">BitByte Summer Of Code</p>
-      <p id="subH">A Month Long Open Source Challenge</p>
+      <p id="subH">Event to begin your Open Source Journey</p>
       <p id="text">Presented by The Programming Club, IIITDMJ</p>
       <div class="buttonContainer">
         <router-link to="/home" style="text-decoration: none; color: inherit;">
@@ -12,10 +12,10 @@
              Explore
           </button>
         </router-link>
-        <a href="#" style="text-decoration: none">
+        <a href="https://discord.gg/C72FYTYYcZ" target="_blank" style="text-decoration: none">
           <button class="button hvr-grow">
             <img src="../assets/discord.svg" alt="discord" />
-            <p>Discord_</p>
+            <p>Discord</p>
             <span></span>
           </button>
         </a>
@@ -228,8 +228,15 @@ canvas {
 // import { TweenMax } from "gsap/all";
 
 export default {
+  data: function() {
+                    return {
+                        stopAnimation: false
+                    }
+                  },
+  
   mounted() {
     // Three JS Template
+    
     //----------------------------------------------------------------- BASIC parameters
     var renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setSize(window.innerWidth, window.innerHeight);
@@ -245,7 +252,7 @@ export default {
     const getRenderDomByID = renderer.domElement
     getRenderDomByID.setAttribute('id', 'three-js')
     document.body.appendChild(renderer.domElement);
-    console.log(renderer.domElement);
+    // console.log(renderer.domElement);
 
 
     window.addEventListener('resize', onWindowResize, false);
@@ -297,7 +304,7 @@ export default {
     };
 
     //----------------------------------------------------------------- CREATE City
-
+    
     function init() {
       var segments = 2;
       for (var i = 1; i < 100; i++) {
@@ -485,10 +492,14 @@ export default {
       createCars(0.1, 20, 0xFFFAFF);
       //TweenMax.to(camera.position, 1, {y:1+Math.random()*4, ease:Expo.easeInOut})
     };
-
+  
     //----------------------------------------------------------------- ANIMATE
-
+    var vm = this; 
     var animate = function () {
+      if(vm.stopAnimation){
+        // console.log(vm.stopAnimation,"sacdsc");  //to check this use preserve log setting in console of browser
+        return
+      }
       var time = Date.now() * 0.00005;
       requestAnimationFrame(animate);
 
@@ -515,15 +526,21 @@ export default {
       camera.lookAt(city.position);
       renderer.render(scene, camera);
     }
-
+    
     //----------------------------------------------------------------- START functions
     // generateLines();
     init();
     animate();
+    
 
   },
   beforeUnmount(){
-    document.body.removeChild(document.getElementById('three-js'))
+    document.body.removeChild(document.getElementById('three-js'));
+    // console.log(this.stopAnimation);
+    this.stopAnimation = true;
+    // console.log(this.stopAnimation);
+    
+    
 
   }}
 </script>
