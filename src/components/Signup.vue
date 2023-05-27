@@ -1,7 +1,7 @@
 <template>
   <div class="content">
     <div class="screen">
-      <div style="display: flex; justify-content: space-between; padding: 1em; margin-top: 2em; color: #EBB02D;"><h1 class="heading">Sign Up  Form</h1>
+      <div style="display: flex; justify-content: space-between; padding: 1em; margin-top: 2em; color: #EBB02D;"><h1 class="heading">Sign Up</h1>
       <span v-on:click="toggle()"  class="x">x</span></div>
       <div class="screen__content">
         <form class="login">
@@ -21,12 +21,12 @@
             <span class="button__text">Signing Up</span>
           </button>
         </form>
+        <span style="padding-left: 11em;">Or</span>
         <div class="social-login">
 
           <div class="social-icons">
             <div class="social-login__icon" @click="handleGoogleSubmit">
               <img src="../assets/google-icon.png" style="height: 2em; margin-right: 10px;" class="google-icon">
-              <span>Google</span>
             </div>
           </div>
         </div>
@@ -116,10 +116,10 @@ export default {
   margin: auto;
   position: absolute;
   top: 10em;
-  right: 47.5em;
+  right: 45em;
   z-index: 2;
   filter: blur(px);
-  height: 600px;
+  height: 630px;
   width: 400px;
   box-shadow: 0px 0px 24px black;
   font-family: popins , sans-serif;
@@ -172,7 +172,7 @@ export default {
   background: none;
   padding: 10px;
   font-weight: 700;
-  width: 75%;
+  width: 100%;
   color: white;
   transition: .2s;
 }
@@ -187,15 +187,15 @@ export default {
 .login__submit {
   background: black;
   font-size: 14px;
-  margin: 15px 0;
+  margin: 20px -2px;
   padding: 16px 20px;
-  border-radius: 26px;
+  border-radius: 5px;
   border: 1px solid #D4D3E8;
   text-transform: uppercase;
   font-weight: 700;
   display: flex;
   align-items: center;
-  width: 100%;
+  width: 22em;
   color: white;
   box-shadow: 0px 2px 2px #5C5696;
   cursor: pointer;
@@ -212,7 +212,6 @@ export default {
 
 .social-login {
   position: absolute;
-  height: 110px;
   width: 160px;
   text-align: center;
   color: #fff;
@@ -225,12 +224,15 @@ export default {
 }
 
 .social-login__icon {
-  padding: 10px 10px;
+  margin-left: 13.5em;
+  margin-top: 2em;
   color: #fff;
   text-decoration: none;
   text-shadow: 0px 0px 8px #7875B5;
 }
-
+.button__text{
+  margin: auto;
+}
 .social-login__icon:hover {
   transform: scale(1.2);
   cursor: pointer;
