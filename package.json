@@ -4,7 +4,13 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "build": "vue-cli-service build",
+    "production": "vue-cli-service build --mode production",
+  },
+  "engines": {
+    "node": "14.x",
+    "npm": "7.x",
+    "yarn": ">=1.19.0 < 2.0.0"
   },
   "dependencies": {
     "@popperjs/core": "^2.10.1",
