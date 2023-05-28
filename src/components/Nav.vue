@@ -19,7 +19,7 @@
           </router-link>
           <router-link class="nav-link text-white" to="/submit"
             style="text-decoration: none; color: inherit;" v-if = "isloggedIn">SubmitPR</router-link>
-          <a class="nav-link text-white" href="#">Projects</a>
+          <a class="nav-link text-white" href="/projects">Projects</a>
         </div>
       </div>
       <div v-if = "!isloggedIn" class="navbar-nav auth " >
