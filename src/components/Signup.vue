@@ -113,13 +113,12 @@ export default {
 
 .screen {
   background: rgb(19, 18, 17);
-  margin: auto;
   position: absolute;
-  top: 10em;
-  right: 45em;
+	top: calc(100%);
+	left: calc(42%);
   z-index: 2;
   filter: blur(px);
-  height: 630px;
+  height: 640px;
   width: 400px;
   box-shadow: 0px 0px 24px black;
   font-family: popins , sans-serif;
@@ -138,6 +137,18 @@ export default {
   font-weight: bold;
   font-size: x-large;
   cursor: pointer;
+}
+
+@media (max-width:768px){
+
+.screen{
+  margin-top: 0%;
+  left: 0%;
+
+}
+.x{
+  left: -4em;
+}
 }
 
 .screen__content {

@@ -1,7 +1,7 @@
 <template>
-    <div class="screen"> 
+      <div class="screen"> 
       <div style="display: flex; justify-content: space-between; padding: 1em; margin-top: 2em; color: #EBB02D;"><h1 class="heading">LOGIN</h1>
-        <br/>
+      
       <span v-on:click="toggle()"  class="x">x</span></div>
       <div class="screen__content" >
         <form class="login">
@@ -26,7 +26,6 @@
             </div>
           </div>
         </div>
-      </div>
   </div>
   <!-- <div class="content">
     <div class="login">
@@ -42,7 +41,7 @@
         <p @click="handleClick">Don’t have an account? Sign up instead</p>
       </div>
     </div>
-  </div> -->
+  </div> --></div>
 </template>
 
 <script>
@@ -96,10 +95,9 @@ export default {
 
 .screen {
   background: rgb(19, 18, 17);
-  margin: auto;
   position: absolute;
-  top: 10em;
-  right: 45em;
+	top: calc(100%);
+	left: calc(42%);
   z-index: 2;
   filter: blur(px);
   height: 580px;
@@ -108,10 +106,12 @@ export default {
   font-family: popins , sans-serif;
   
 }
+ 
+  
 .container{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  position: relative;
+  
+
   
 }
 .heading{
@@ -128,7 +128,17 @@ export default {
   font-size: x-large;
   cursor: pointer;
 }
+@media (max-width:768px){
 
+  .screen{
+    margin-top: 0%;
+    left: 0%;
+
+  }
+  .x{
+    left: -4em;
+  }
+}
 .screen__content {
   z-index: 1;
   position: relative;

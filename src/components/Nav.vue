@@ -24,7 +24,7 @@
       </div>
       <div v-if = "!isloggedIn" class="navbar-nav auth " >
         <span v-on:click="handleLogin"  style="padding-right: 1.3em;">Login</span>
-        <Login v-if = "login" :toggle="handleLogin" />
+        <Login v-if = "login" :toggle="handleLogin"/>
         <span v-on:click="handleSignup">Signup</span>
         <Signup v-if="signup" :toggle="handleSignup"/>
       </div><div v-else class="navbar-nav auth ">
@@ -130,6 +130,8 @@ export default {
 </script>
 
 <style scoped>
+
+
 .navbar {
   position: fixed;
   height: 10vh;
