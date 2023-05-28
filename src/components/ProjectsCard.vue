@@ -1,12 +1,12 @@
 <template>
     <div class="card">
-        <div class="projectName">{{ projectname }}</div>
+        <div class="projectName">{{projectName}}</div>
         <div class="card-name">
-            {{ name }}
+            {{name}}
         </div>
-        <div class="github"><a href={{ link }}>Github Link</a></div>
-        <div class="techStack">Tech Stack: <span>{{ techStack }}</span></div>
-        <div class="projectDetail">{{ description }}</div>
+        <div class="github"><a href={{link}}>Github Link</a></div>
+        <div class="techStack">Tech Stack: <span>{{techStack}}</span></div>
+        <div class="projectDetail">{{description}}</div>
     </div>
 </template>
 
@@ -89,4 +89,5 @@ export default {
     margin-top: 20px;
     word-spacing: 1px;
     font-family: Poppins, sans-serif;
-}</style>
+}
+</style>

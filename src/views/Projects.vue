@@ -3,14 +3,13 @@
     <div class="projects">
         <h1>PROJECTS</h1>
         <div class="projectcards">
-            <ProjectsCard v-for="item in items" :key="item.id" :projectName="item.projectName" :name="item.name"
-                :link="item.link" :techStack="item.techStack" :description="item.description" />
+            <ProjectsCard v-for="item in items" :key=item.id :projectName=item.projectName :name=item.name
+                :link=item.link :techStack=item.techStack :description=item.description />
         </div>
     </div>
 </template>
 
 <script>
-
 import ProjectsCard from '@/components/ProjectsCard.vue';
 import Nav from "@/components/Nav";
 export default {
@@ -60,7 +59,6 @@ export default {
 .projects h1 {
     font-size: 3vw;
     color: #fff;
-    ;
     font-family: Stargaze, sans-serif;
     margin-top: 7vh;
 }
