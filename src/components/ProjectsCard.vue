@@ -40,11 +40,12 @@ export default {
 <style scoped>
 .card {
     width: 22vw;
-    height: fit-content;
+    height: 41vh;
     padding: 27px;
     background-color: #fff;
     color: black;
     border-radius: 15px;
+    margin-bottom: 3vh;
 }
 
 .projectName {

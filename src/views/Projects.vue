@@ -21,19 +21,43 @@ export default {
             items: [
                 {
                     id: 1,
-                    projectName: "Busify",
-                    name: "Tushar",
-                    link: "https://github.com/Tusharjain123",
-                    techStack: "React, Vue",
-                    description: 'Description for Card 1',
+                    projectName: "Let's Buy",
+                    name: "Armin",
+                    link: "https://github.com/bsoc-bitbyte/LetsBuy",
+                    techStack: "Vue, Firebase, Redis, MongoDB, Python",
+                    description: 'A single Platform where merchandise of every club of college can be found and will be made available for everyone to buy.',
                 },
                 {
                     id: 2,
+                    projectName: "IIITians-Space",
+                    name: "Varun Singh",
+                    link: "",
+                    techStack: "React with Typescript, Express and Postgresql",
+                    description: 'A Forum website for students to better connect with seniors and super seniors',
+                },
+                {
+                    id: 3,
+                    projectName: "Resource Sharing",
+                    name: "Anurag",
+                    link: "https://github.com/bsoc-bitbyte/resource-sharing",
+                    techStack: "React,Firebase, Tailwind ",
+                    description: 'A College utility website where every necessary semester resources will be made available for all students directly from their google drive to ease their access.',
+                },
+                {
+                    id: 4,
+                    projectName: "Summer Analytics",
+                    name: "Aryan Pandey",
+                    link: "",
+                    techStack: "Tensorflow, Seaborn, Natplotlib, Pandas, Numpy ",
+                    description: 'Hands on with Machine Learning Basics',
+                },
+                {
+                    id: 5,
                     projectName: "Busify",
-                    name: "Tushar",
-                    link: "https://github.com/Tusharjain123",
-                    techStack: "React, Vue",
-                    description: 'Description for Card 1',
+                    name: "Prajjwal Kapoor",
+                    link: "https://github.com/bsoc-bitbyte/busify",
+                    techStack: "React, Typescript, MUI, SCSS, NESTJS, Postgres, REDIS",
+                    description: 'A centralised bus ticket booking system that will allow the students to book tickets in advance through an online website, saving time and effort.',
                 },
             ],
         };
@@ -45,15 +69,17 @@ export default {
 .projects {
     width: 100vw;
     background-color: #19192a;
-    height: 100vh;
+    height: 100%;
     padding: 6vh;
 }
 
 .projectcards {
-    margin-top: 3vh;
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
+    width: 85vw;
+    margin: auto;
+    margin-top: 3vh;
 }
 
 .projects h1 {
