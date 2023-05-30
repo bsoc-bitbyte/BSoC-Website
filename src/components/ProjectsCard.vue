@@ -8,7 +8,7 @@
         <div class="techStack">Tech Stack: <span>{{techStack}}</span></div>
         <div class="projectDetail">{{description}}</div>
     </div> -->
-    <div class="container">
+    <div class="card-container">
         <div class="card">
             <div class="box">
                 <div class="content">
@@ -51,23 +51,8 @@ export default {
 
 <style scoped>
 /* @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700;800&display=swap"); */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Poppins", sans-serif;
-}
 
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    min-height: 100vh;
-    background: #232427;
-}
-
-body .container {
+.card-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -76,7 +61,7 @@ body .container {
     margin: 40px 0;
 }
 
-body .container .card {
+.card-container .card {
     position: relative;
     min-width: 320px;
     height: 440px;
@@ -88,19 +73,19 @@ body .container .card {
     transition: 0.5s;
 }
 
-body .container .card:nth-child(1) .box .content a {
+.card-container .card:nth-child(1) .box .content a {
     background: #2196f3;
 }
 
-body .container .card:nth-child(2) .box .content a {
+.card-container .card:nth-child(2) .box .content a {
     background: #e91e63;
 }
 
-body .container .card:nth-child(3) .box .content a {
+.card-container .card:nth-child(3) .box .content a {
     background: #23c186;
 }
 
-body .container .card .box {
+.card-container .card .box {
     position: absolute;
     top: 20px;
     left: 20px;
@@ -115,11 +100,11 @@ body .container .card .box {
     transition: 0.5s;
 }
 
-body .container .card .box:hover {
+.card-container .card .box:hover {
     transform: translateY(-50px);
 }
 
-body .container .card .box:before {
+.card-container .card .box:before {
     content: "";
     position: absolute;
     top: 0;
@@ -129,12 +114,12 @@ body .container .card .box:before {
     background: rgba(255, 255, 255, 0.03);
 }
 
-body .container .card .box .content {
+.card-container .card .box .content {
     padding: 20px;
     text-align: center;
 }
 
-body .container .card .box .content h2 {
+.card-container .card .box .content h2 {
     position: absolute;
     top: -10px;
     right: 30px;
@@ -142,7 +127,7 @@ body .container .card .box .content h2 {
     color: rgba(255, 255, 255, 0.1);
 }
 
-body .container .card .box .content h3 {
+.card-container .card .box .content h3 {
     font-size: 1.8rem;
     color: #fff;
     z-index: 1;
@@ -150,7 +135,7 @@ body .container .card .box .content h3 {
     margin-bottom: 15px;
 }
 
-body .container .card .box .content p {
+.card-container .card .box .content p {
     font-size: 1rem;
     font-weight: 300;
     color: rgba(255, 255, 255, 0.9);
@@ -158,7 +143,7 @@ body .container .card .box .content p {
     transition: 0.5s;
 }
 
-body .container .card .box .content a {
+.card-container .card .box .content a {
     position: relative;
     display: inline-block;
     padding: 8px 20px;
@@ -171,7 +156,7 @@ body .container .card .box .content a {
     transition: 0.5s;
 }
 
-body .container .card .box .content a:hover {
+.card-container .card .box .content a:hover {
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.6);
     background: #fff;
     color: #000;
