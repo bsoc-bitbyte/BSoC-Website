@@ -2,11 +2,9 @@
     <Nav></Nav>
     <div class="projects">
         <h1>PROJECTS</h1>
-        <div class="container">
-            <div class="projectcards">
+        <div class="project-container">
                 <ProjectsCard v-for="item in items" :key=item.id :projectName=item.projectName :name=item.name
                     :link=item.link :techStack=item.techStack :description=item.description />
-            </div>
         </div>
     </div>
 </template>
@@ -73,12 +71,14 @@ export default {
     background-color: #19192a;
     height: 100%;
     padding: 6vh;
+    text-align: center;
 }
 
-.projectcards {
+.project-container {
     display: flex;
-    flex-direction : row;
-    justify-content: space-evenly;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
 }
 
 .projects h1 {
@@ -88,8 +88,4 @@ export default {
     margin-top: 7vh;
 }
 
-.container {
-    max-width: 80vw;
-    overflow: hidden
-}
 </style>
