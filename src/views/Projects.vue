@@ -2,9 +2,11 @@
     <Nav></Nav>
     <div class="projects">
         <h1>PROJECTS</h1>
-        <div class="projectcards">
-            <ProjectsCard v-for="item in items" :key=item.id :projectName=item.projectName :name=item.name
-                :link=item.link :techStack=item.techStack :description=item.description />
+        <div class="container">
+            <div class="projectcards">
+                <ProjectsCard v-for="item in items" :key=item.id :projectName=item.projectName :name=item.name
+                    :link=item.link :techStack=item.techStack :description=item.description />
+            </div>
         </div>
     </div>
 </template>
@@ -75,11 +77,8 @@ export default {
 
 .projectcards {
     display: flex;
+    flex-direction : row;
     justify-content: space-evenly;
-    flex-wrap: wrap;
-    width: 85vw;
-    margin: auto;
-    margin-top: 3vh;
 }
 
 .projects h1 {
@@ -87,5 +86,10 @@ export default {
     color: #fff;
     font-family: Stargaze, sans-serif;
     margin-top: 7vh;
+}
+
+.container {
+    max-width: 80vw;
+    overflow: hidden
 }
 </style>
