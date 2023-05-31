@@ -7,6 +7,7 @@ import SubmitPR from "@/views/SubmitPR";
 import Home from "@/views/Home";
 import Signup from "@/components/Signup";
 import Login from "@/components/Login";
+import Projects from "@/views/Projects"
 
 const requireAuth = (to, from, next) => {
   let user = projectAuth.currentUser;
@@ -67,6 +68,11 @@ const routes = [
     component: Signup,
     beforeEnter: requireNoAuth,
   },
+  {
+    path: "/projects",
+    name: "Project",
+    component: Projects,
+  }
 ];
 
 const router = createRouter({

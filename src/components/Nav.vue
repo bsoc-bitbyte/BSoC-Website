@@ -19,7 +19,7 @@
           </router-link>
           <router-link class="nav-link text-white" to="/submit"
             style="text-decoration: none; color: inherit;" v-if = "isloggedIn">SubmitPR</router-link>
-          <a class="nav-link text-white" href="#">Projects</a>
+          <router-link class="nav-link text-white" to="/projects">Projects</router-link>
         </div>
       </div>
       <div v-if = "!isloggedIn" class="navbar-nav auth " >
@@ -134,10 +134,11 @@ export default {
 
 .navbar {
   position: fixed;
-  height: 10vh;
+  height: 8vh;
   width: 100vw;
-  background-color: transparent;
   z-index: 10;
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
 }
 
 .nav-container {
