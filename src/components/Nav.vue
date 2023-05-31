@@ -24,9 +24,9 @@
       </div>
       <div v-if = "!isloggedIn" class="navbar-nav auth " >
         <span v-on:click="handleLogin"  style="padding-right: 1.3em;">Login</span>
-        <Login v-if = "login" :toggle="handleLogin"/>
+        <Login v-if = "$store.state.login" :toggle="handleLogin"/>
         <span v-on:click="handleSignup">Signup</span>
-        <Signup v-if="signup" :toggle="handleSignup"/>
+        <Signup v-if="$store.state.signup" :toggle="handleSignup"/>
       </div><div v-else class="navbar-nav auth ">
         <button class = "nav-button" v-on:click="handleLogout()" v-if = "isloggedIn && !userPR">
             LogOut</button>
@@ -62,10 +62,10 @@ export default {
   },
   methods: {
     handleLogin(){
-        this.login = !this.login;
+        this.$store.state.login = !this.$store.state.login;
     },
     handleSignup(){
-      this.signup = !this.signup;}
+      this.$store.state.signup = !this.$store.state.signup;}
   },
   beforeRouteLeave(to, from, next) {
     this.isHonePage();

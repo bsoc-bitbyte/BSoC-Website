@@ -1,8 +1,9 @@
-<template>
+<template   >
     <Nav></Nav>
-    
+    <div class="home-container">
     <!--  About Section-->
-    <div class="about-section" id="about">
+    <div  class="about-section" id="about" >
+        
         <div id="particles-js"></div>
         <div class="about">
             <h1 class="about-heading">About</h1>
@@ -205,7 +206,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div></div>
 </template>
 
 <script>
@@ -331,7 +332,7 @@ export default {
     },
 
     setup() {
-
+    
         const days = ref(0);
         const hours = ref(0);
         const mins = ref(0);
@@ -370,6 +371,10 @@ export default {
 </script>
 
 <style scoped>
+
+/* .home-container{
+    filter:blur(2px);
+} */
 .about-section {
     width: 100vw;
     background-color: #040509;
@@ -412,7 +417,7 @@ export default {
 .highlight {
     padding: 0 3px;
     position: relative;
-    background-color: #6A0785;
+   
 }
 
 .timer {
@@ -443,7 +448,7 @@ export default {
 .prize-section {
     width: 100vw;
     height: 100vh;
-    background-color: #6A0785;
+    background-color: #040509;
     display: flex;
     justify-content: center;
     align-items: center;
