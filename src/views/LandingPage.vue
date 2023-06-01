@@ -67,6 +67,8 @@ canvas {
   text-align: center;
 }
 
+
+
 #subH {
   font-family: "Stargaze", sans-serif;
   font-size: 4.2vh;

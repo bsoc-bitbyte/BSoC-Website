@@ -75,6 +75,7 @@ export default {
 </script>
 
 <style scoped>
+
 .projects {
     width: 100vw;
     background-color: #19192a;
