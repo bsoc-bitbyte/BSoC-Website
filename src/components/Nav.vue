@@ -9,23 +9,23 @@
       </div>
       <div class="collapse navbar-collapse">
         <div class="navbar-nav ">
-          <router-link class="nav-link text-white" to="/dashboard" style="text-decoration: none; color: inherit;" v-if = "isHome">Dashboard</router-link>
-          <router-link class="nav-link text-white" to="/home" style="text-decoration: none; color: inherit;" v-if = "!isHome">Home</router-link>
-          <router-link class="nav-link text-white" to="/dashboard" style="text-decoration: none; color: inherit;">
+          <router-link class="nav-link text-white px-2" to="/dashboard" style="text-decoration: none; color: inherit;" v-if = "isHome">Dashboard</router-link>
+          <router-link class="nav-link text-white px-4" to="/home" style="text-decoration: none; color: inherit;" v-if = "!isHome">Home</router-link>
+          <router-link class="nav-link text-white px-4" to="/dashboard" style="text-decoration: none; color: inherit;">
             <button class = "nav-button" v-on:click="handleMyPR()"
               v-if="isloggedIn && userPR">Dashboard</button>
             <button class = "nav-button" v-on:click="handleMyPR()" v-if = "isloggedIn && !userPR">My
               PR's</button>
           </router-link>
-          <router-link class="nav-link text-white" to="/submit"
+          <router-link class="nav-link text-white px-4" to="/submit"
             style="text-decoration: none; color: inherit;" v-if = "isloggedIn">SubmitPR</router-link>
-          <router-link class="nav-link text-white" to="/projects">Projects</router-link>
+          <router-link class="nav-link text-white px-4" to="/projects">Projects</router-link>
         </div>
       </div>
       <div v-if = "!isloggedIn" class="navbar-nav auth " >
-        <span v-on:click="handleLogin"  style="padding-right: 1.3em;">Login</span>
-        <Login v-if = "$store.state.login" :toggle="handleLogin"/>
-        <span v-on:click="handleSignup">Signup</span>
+        <span v-on:click="handleLogin"  style="padding-right: 1.3em; cursor: pointer;">Login</span>
+        <Login v-if = "$store.state.login"  :toggle="handleLogin"/>
+        <span v-on:click="handleSignup" style="cursor: pointer;" >Signup</span>
         <Signup v-if="$store.state.signup" :toggle="handleSignup"/>
       </div><div v-else class="navbar-nav auth ">
         <button class = "nav-button" v-on:click="handleLogout()" v-if = "isloggedIn && !userPR">

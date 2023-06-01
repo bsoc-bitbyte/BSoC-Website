@@ -74,9 +74,9 @@
     <div class="faq" id="faq">
         <p class="faq_head">FAQS</p>
         <div class="accordion" id="accordionExample">
-            <div class="accordion-item bg-black">
+            <div class="accordion-item " style="background-color: #19192a;">
                 <h2 class="accordion-header" id="headingOne">
-                    <button class="accordion-button bg-black collapsed" type="button" style="color: #fffaff;"
+                    <button class="accordion-button  collapsed" type="button" style="color: #fffaff; background-color: #19192a;"
                         data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true"
                         aria-controls="collapseOne">
                         Why should I participate?
@@ -94,9 +94,9 @@
                     </div>
                 </div>
             </div>
-            <div class="accordion-item bg-black">
+            <div class="accordion-item" style="background-color: #19192a;">
                 <h2 class="accordion-header">
-                    <button class="accordion-button bg-black collapsed" type="button" style="color: #fffaff; outline: none"
+                    <button class="accordion-button  collapsed" type="button" style="color: #fffaff; background-color: #19192a; outline: none"
                         data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false"
                         aria-controls="collapseTwo">
                         Why is Open Source important?
@@ -115,9 +115,9 @@
                     </div>
                 </div>
             </div>
-            <div class="accordion-item bg-black">
+            <div class="accordion-item " style="background-color: #19192a;">
                 <h2 class="accordion-header" id="headingThree" >
-                    <button class="accordion-button bg-black collapsed" type="button" style="color: #fffaff"
+                    <button class="accordion-button collapsed" type="button" style="color: #fffaff; background-color: #19192a;"
                         data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false"
                         aria-controls="collapseThree">
                         Are there any placement opportunities available?
@@ -139,9 +139,9 @@
                     </div>
                 </div>
             </div>
-            <div class="accordion-item bg-black">
+            <div class="accordion-item" style="background-color: #19192a;">
                 <h2 class="accordion-header" id="headingFour">
-                    <button class="accordion-button bg-black collapsed" type="button" style="color: #fffaff"
+                    <button class="accordion-button collapsed" type="button" style="color: #fffaff; background-color: #19192a;"
                         data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false"
                         aria-controls="collapseFour">
                         Can we work in groups to participate in this event?
@@ -155,9 +155,9 @@
                     </div>
                 </div>
             </div>
-            <div class="accordion-item bg-black">
+            <div class="accordion-item" style="background-color: #19192a;">
                 <h2 class="accordion-header" id="headingFive">
-                    <button class="accordion-button bg-black collapsed" type="button" style="color: #fffaff"
+                    <button class="accordion-button collapsed" type="button" style="color: #fffaff; background-color: #19192a;"
                         data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false"
                         aria-controls="collapseFour">
                         How do I submit my pull requests on Event Website?
@@ -171,9 +171,9 @@
                     </div>
                 </div>
             </div>
-            <div class="accordion-item bg-black">
+            <div class="accordion-item " style="background-color: #19192a;">
                 <h2 class="accordion-header" id="headingSix">
-                    <button class="accordion-button bg-black collapsed" type="button" style="color: #fffaff"
+                    <button class="accordion-button collapsed" type="button" style="color: #fffaff; background-color: #19192a;"
                         data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false"
                         aria-controls="collapseSix">
                         I am stuck. How do I get help?
@@ -188,9 +188,9 @@
                     </div>
                 </div>
             </div>
-            <div class="accordion-item bg-black">
+            <div class="accordion-item" style="background-color: #19192a;">
                 <h2 class="accordion-header" id="headingSeven">
-                    <button class="accordion-button bg-black collapsed" type="button" style="color: #fffaff"
+                    <button class="accordion-button collapsed" type="button" style="color: #fffaff; background-color: #19192a;"
                         data-bs-toggle="collapse" data-bs-target="#collapseSeven" aria-expanded="false"
                         aria-controls="collapseSix">
                         Do I need to pay to enter this event?
@@ -377,7 +377,7 @@ export default {
 } */
 .about-section {
     width: 100vw;
-    background-color: #040509;
+    background-color: #19192a;
 }
 
 .about {
@@ -448,7 +448,7 @@ export default {
 .prize-section {
     width: 100vw;
     height: 100vh;
-    background-color: #040509;
+    background-color: #19192a;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -492,7 +492,7 @@ export default {
 .faq {
     min-height: 100vh;
     width: 100%;
-    background: #000000;
+    background: #19192a;
     padding-bottom: 10vh;
 }
 
