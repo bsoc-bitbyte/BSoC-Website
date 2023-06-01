@@ -237,7 +237,7 @@ export default {
     //----------------------------------------------------------------- BASIC parameters
     var renderer = new THREE.WebGLRenderer({ antialias: true });
     renderer.setSize(window.innerWidth, window.innerHeight);
-
+    renderer.setPixelRatio(window.devicePixelRatio * 0.8);
     if (window.innerWidth > 800) {
       renderer.shadowMap.enabled = true;
       renderer.shadowMap.type = THREE.PCFSoftShadowMap;
@@ -262,7 +262,7 @@ export default {
       20,
       window.innerWidth / window.innerHeight,
       1,
-      500
+      50
     );
 
     camera.position.set(0, 2, 14);
@@ -272,6 +272,7 @@ export default {
     var smoke = new THREE.Object3D();
     var town = new THREE.Object3D();
 
+    var createCarPos = true;
     var uSpeed = 0.001;
 
     //------------------ ----------------------------------------------- FOG background
@@ -364,6 +365,23 @@ export default {
         town.add(cube);
       }
       //----------------------------------------------------------------- Particular
+      var gmaterial = new THREE.MeshToonMaterial({
+        color: 0x0a7185,
+        side: THREE.DoubleSide,
+      });
+      var gparticular = new THREE.CircleGeometry(0.01, 3);
+      var aparticular = 5;
+
+      for (var h = 1; h < 300; h++) {
+        var particular = new THREE.Mesh(gparticular, gmaterial);
+        particular.position.set(
+          mathRandom(aparticular),
+          mathRandom(aparticular),
+          mathRandom(aparticular)
+        );
+        particular.rotation.set(mathRandom(), mathRandom(), mathRandom());
+        smoke.add(particular);
+      }
 
       var pmaterial = new THREE.MeshPhongMaterial({
         color: 0x000000,
@@ -436,6 +454,53 @@ export default {
     var gridHelper = new THREE.GridHelper(60, 120, 0x0000ff, 0x000000);
     city.add(gridHelper);
 
+    var createCars = function (cScale = 2, cPos = 20, cColor = 0x0a7185) {
+      var cMat = new THREE.MeshToonMaterial({
+        color: cColor,
+        side: THREE.DoubleSide,
+      });
+      var cGeo = new THREE.CubeGeometry(1, cScale / 40, cScale / 40);
+      var cElem = new THREE.Mesh(cGeo, cMat);
+      var cAmp = 3;
+      if (createCarPos) {
+        createCarPos = false;
+        cElem.position.x = -cPos;
+        cElem.position.z = mathRandom(cAmp);
+
+        TweenMax.to(cElem.position, 3, {
+          x: cPos,
+          repeat: -1,
+          yoyo: true,
+          delay: mathRandom(3),
+        });
+      } else {
+        createCarPos = true;
+        cElem.position.x = mathRandom(cAmp);
+        cElem.position.z = -cPos;
+        cElem.rotation.y = (90 * Math.PI) / 180;
+
+        TweenMax.to(cElem.position, 5, {
+          z: cPos,
+          repeat: -1,
+          yoyo: true,
+          delay: mathRandom(3),
+          ease: Power1.easeInOut,
+        });
+      }
+      cElem.receiveShadow = true;
+      cElem.castShadow = true;
+      cElem.position.y = Math.abs(mathRandom(5));
+      city.add(cElem);
+    };
+    var generateLines = function () {
+      for (var i = 0; i < 50; i++) {
+        createCars(0.1, 20);
+      }
+    };
+    var cameraSet = function () {
+      createCars(0.1, 20, 0xfffaff);
+      //TweenMax.to(camera.position, 1, {y:1+Math.random()*4, ease:Expo.easeInOut})
+    };
     //----------------------------------------------------------------- ANIMATE
     var vm = this;
     var animate = function () {
@@ -457,6 +522,7 @@ export default {
     };
 
     //----------------------------------------------------------------- START functions
+    generateLines();
     init();
     animate();
   },
