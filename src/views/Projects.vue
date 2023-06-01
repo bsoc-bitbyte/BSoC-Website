@@ -59,6 +59,15 @@ export default {
                     techStack: "React, Typescript, MUI, SCSS, NESTJS, Postgres, REDIS",
                     description: 'A centralised bus ticket booking system that will allow the students to book tickets in advance through an online website, saving time and effort.',
                 },
+                {
+                    id: 6,
+                    projectName: "2D Platformer",
+                    name: "Raman Chaudhary",
+                    link: "https://github.com/bsoc-bitbyte/2D-Platformer",
+                    techStack: "Unity Engine, C#",
+                    description: 'An exhilarating 2D platform game that combines intense platforming challenges with thrilling combat encounters. where you have to fight and tackle enemies to complete the platform.',
+                },
+
             ],
         };
     },
