@@ -11,11 +11,12 @@
     <div class="card-container">
         <div class="card">
             <div class="box">
+                {{ console.log(link) }}
                 <div class="content">
                     <h2>{{ projectName }}</h2>
                     <h3>{{ projectName }}</h3>
                     <p>{{ description }}</p>
-                    <a href={{link}}>Explore</a>
+                    <a :href='link'>Explore</a>
                 </div>
             </div>
         </div>
