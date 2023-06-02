@@ -22,12 +22,14 @@ html {
   background-color: black;
 }
 
+
 ::-webkit-scrollbar-thumb {
-  background-color: #3770ff;
-  border-radius: 20px;
-  border: 6px solid transparent;
-  background-clip: content-box;
+    background-color: #6262b7;
+    border-radius: 20px;
+    border: 6px solid transparent;
+    background-clip: content-box;
 }
+
 
 ::-webkit-scrollbar-thumb:hover {
   background-color: #1e45a9;

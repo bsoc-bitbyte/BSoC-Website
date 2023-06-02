@@ -1,54 +1,37 @@
 <template>
   <div class="content">
     <div class="screen">
-      <div style="display: flex; justify-content: space-between; padding: 1em; margin-top: 2em; color: #EBB02D;"><h1 class="heading">Sign Up</h1>
-      <span v-on:click="toggle()"  class="x">x</span></div>
-      <div class="screen__content">
-        <form class="login">
-          <div class="login__field">
-            <input class="login__input" type="text" required placeholder="Name" v-model="displayName">
-          </div>
-          <div class="login__field">
-            <input class="login__input" type="email" required placeholder="Email" v-model="email">
-          </div>
-          <div class="login__field">
-            <input class="login__input" type="password" required placeholder="Password" v-model="password">
-          </div>
-          <button class="button login__submit" v-if="!loading" @click="handleSubmit">
-            <span class="button__text">Sign Up Now</span>
-          </button>
-          <button class="button login__submit" v-else>
-            <span class="button__text">Signing Up</span>
-          </button>
-        </form>
-        <span style="padding-left: 11em;">Or</span>
-        <div class="social-login">
+      <div class="card bg-dark text-white" style="border-radius: 1rem;  ">
+        <span v-on:click="toggle()"  class="x" style="position: relative; margin-left: 15em; padding-top: 1em;">x</span>
+        <div class="row d-flex justify-content-center align-items-center h-100" style="margin-top: -1em; ">
+      <div class="card-body p-5 text-center" >
+            <div class="mb-md-5 mt-md-4 pb-5">
 
-          <div class="social-icons">
-            <div class="social-login__icon" @click="handleGoogleSubmit">
-              <img src="../assets/google-icon.png" style="height: 2em; margin-right: 10px;" class="google-icon">
-            </div>
-          </div>
-        </div>
-      </div>
+              <h2 class="fw-bold mb-2 text-uppercase">Sign Up</h2>
+              <p class="text-white-50 mb-5">Please enter email and password!</p>
+              <div class="form-outline form-white mb-4">
+                <input type="name" id="typeEmailX" class="form-control form-control-lg" placeholder="Name" v-model="displayName"/>
+              </div>
+              <div class="form-outline form-white mb-4">
+                <input type="email" id="typeEmailX" class="form-control form-control-lg" placeholder="Email" v-model="email"/>
+              </div>
+
+              <div class="form-outline form-white mb-4">
+                <input type="password" id="typePasswordX" class="form-control form-control-lg " placeholder="Password" v-model="password" />
+              </div>
+
+
+              <button class="btn btn-outline-light tn-lg px-5" type="submit" @click="handleSubmit">Sign Up</button>
+              <div class="d-flex flex-column mt-4 pt-1">
+                <span>or</span>
+              <div class="d-flex justify-content-center text-center mt-4 pt-1" @click="handleGoogleSubmit">
+                <a href="#!" class="text-white"><img src="../assets/google-icon.png" style="height: 1.5em;"/></a>
+              </div></div>
+
+            </div></div></div></div>
     </div>
   </div>
-  <!-- <div class="content">
-    <div class="login">
-      <div class="signInGoogle hvr-grow" @click="handleGoogleSubmit">
-        <img src="../assets/google-icon.png" class="google-icon">
-        <span>Sign Up with Google</span>
-      </div>
-      <div class="signUpForm">
-        <input class="field" type="text" required placeholder="Name" v-model="displayName">
-        <input class="field" type="email" required placeholder="Email" v-model="email">
-        <input class="field" type="password" required placeholder="Password" v-model="password">
-          <button v-if="!loading" @click="handleSubmit" class="hvr-grow">Sign Up</button>
-          <button v-else class="disabled hvr-grow">Signing In</button>
-          <p @click="handleClick">Already have an account? Sign in instead</p>
-      </div>
-    </div>
-  </div> -->
+ 
 </template>
 
 <script>
@@ -124,10 +107,6 @@ export default {
   font-family: popins , sans-serif;
   
 }
-.heading{
-  font-weight: bold;
-  /* padding-top: 2em; */
-}
 .x{
   position: relative;
   
@@ -151,109 +130,5 @@ export default {
 }
 }
 
-.screen__content {
-  z-index: 1;
-  position: relative;
-  margin-top: 2em;
-  height: 100%;
-}
 
-
-.screen__background__shape {
-  transform: rotate(45deg);
-  position: absolute;
-}
-
-
-
-.login {
-  width: 320px;
-  padding: 20px;
-}
-
-.login__field {
-  padding: 15px 0px;
-  position: relative;
-}
-
-
-.login__input {
-  border: none;
-  border-bottom: 2px solid #d1d1d4a8;
-  background: none;
-  padding: 10px;
-  font-weight: 700;
-  width: 100%;
-  color: white;
-  transition: .2s;
-}
-
-.login__input:active,
-.login__input:focus,
-.login__input:hover {
-  outline: none;
-  border-bottom-color: white;
-}
-
-.login__submit {
-  background: black;
-  font-size: 14px;
-  margin: 20px -2px;
-  padding: 16px 20px;
-  border-radius: 5px;
-  border: 1px solid #D4D3E8;
-  text-transform: uppercase;
-  font-weight: 700;
-  display: flex;
-  align-items: center;
-  width: 22em;
-  color: white;
-  box-shadow: 0px 2px 2px #5C5696;
-  cursor: pointer;
-  transition: .2s;
-}
-
-.login__submit:active,
-.login__submit:focus,
-.login__submit:hover {
-  border-color: #EBB02D;
-  box-shadow: 0px 2px 2px #EBB02D;
-  outline: none;
-}
-
-.social-login {
-  position: absolute;
-  width: 160px;
-  text-align: center;
-  color: #fff;
-}
-
-.social-icons {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.social-login__icon {
-  margin-left: 13.5em;
-  margin-top: 2em;
-  color: #fff;
-  text-decoration: none;
-  text-shadow: 0px 0px 8px #7875B5;
-}
-.button__text{
-  margin: auto;
-}
-.social-login__icon:hover {
-  transform: scale(1.2);
-  cursor: pointer;
-}
-
-.route-link {
-  color: #d1d1d4a8;
-}
-
-.route-link:hover {
-  color: white;
-}
 </style>

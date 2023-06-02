@@ -207,7 +207,7 @@ export default {
     color: #fff;
   }
   100% {
-    color: #3bb2d0;
+    color: #e0c948;
   }
 }
 
@@ -216,7 +216,7 @@ export default {
     color: #fff;
   }
   100% {
-    color: #3bb2d0;
+    color: #e0c948;
   }
 }
 
@@ -225,7 +225,7 @@ export default {
     color: #fff;
   }
   100% {
-    color: #3bb2d0;
+    color: #e0c948;
   }
 }
 
@@ -234,7 +234,7 @@ export default {
     color: #fff;
   }
   100% {
-    color: #3bb2d0;
+    color: #e0c948;
   }
 }
 
@@ -248,7 +248,7 @@ body {
   font-family: 'Open Sans', sans-serif;
   width: 100vw;
   height: 100vh;
-  background: #222;
+  background: #19192a;
 }
 
 .e-loadholder {
@@ -262,7 +262,7 @@ body {
   transform: translate(-51%, -50%);
   width: 240px;
   height: 240px;
-  border: 5px solid #1b5f70;
+  border: 5px solid #FFAD01;
   border-radius: 120px;
   box-sizing: border-box;
 }
@@ -278,7 +278,7 @@ body {
   transform: translate(-51%, -50%);
   content: " ";
   display: block;
-  background: #222;
+  background: #19192A;
   transform-origin: center;
   z-index: 0;
 }
@@ -305,7 +305,7 @@ body {
   height: 200px;
   color: #888;
   text-align: center;
-  border: 5px solid #2a93ae;
+  border: 5px solid #FFC30B;
   border-radius: 100px;
   box-sizing: border-box;
   z-index: 20;
@@ -323,7 +323,7 @@ body {
   transform: translate(-51%, -50%);
   content: " ";
   display: block;
-  background: #222;
+  background: #19192A;
   transform-origin: center;
   z-index: -1;
 }
@@ -356,7 +356,7 @@ body {
   width: 140px;
   height: 140px;
   text-align: center;
-  border: 5px solid #3bb2d0;
+  border: 5px solid #FEDE17;
   border-radius: 70px;
   box-sizing: border-box;
   z-index: 20;
@@ -373,7 +373,7 @@ body {
   transform: translate(-51%, -50%);
   content: " ";
   display: block;
-  background: #222;
+  background: #19192A;
   transform-origin: center;
   z-index: -1;
 }
@@ -410,7 +410,7 @@ body {
 }
 
 .bg {
-  background: #222;
+  background: #19192a;
   height: 100vh;
   width: 100vw;
 }
