@@ -21,7 +21,7 @@ export default {
             items: [
                 {
                     id: 1,
-                    projectName: "Let's Buy",
+                    projectName: "GetIt",
                     name: "Armin",
                     link: "https://github.com/bsoc-bitbyte/LetsBuy",
                     techStack: "Vue, Firebase, Redis, MongoDB, Python",
@@ -31,7 +31,7 @@ export default {
                     id: 2,
                     projectName: "IIITians-Space",
                     name: "Varun Singh",
-                    link: "",
+                    link: "https://github.com/bsoc-bitbyte/IIITians-Space",
                     techStack: "React with Typescript, Express and Postgresql",
                     description: 'A Forum website for students to better connect with seniors and super seniors',
                 },
@@ -47,7 +47,7 @@ export default {
                     id: 4,
                     projectName: "Summer Analytics",
                     name: "Aryan Pandey",
-                    link: "",
+                    link: "https://github.com/orgs/bsoc-bitbyte/repositories",
                     techStack: "Tensorflow, Seaborn, Natplotlib, Pandas, Numpy ",
                     description: 'Hands on with Machine Learning Basics',
                 },
