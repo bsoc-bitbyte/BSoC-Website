@@ -17,14 +17,14 @@
             </div>
             <div v-for="doc in formattedDocuments" :doc="doc.time">
                 <div class="table-content">
-                    <div class="heading1">
+                    <div class="heading1 text-white">
                         <span>{{ doc.displayName }}</span>
                     </div>
-                    <div class="heading3">
-                        <span><a :href="doc.link" target="_blank">{{ doc.message }}</a>
+                    <div class="heading3 text-white">
+                        <span><a :href="doc.link" target="_blank" class="text-white">{{ doc.message }}</a>
                         </span>
                     </div>
-                    <div class="heading4">
+                    <div class="heading4 text-white">
                         <span>{{ doc.time }}</span>
                     </div>
                 </div>
@@ -41,7 +41,7 @@
             </div>
             <div v-for="user in formattedUserPRData" :key="user.time">
                 <div class="table-content">
-                    <div class="heading1">
+                    <div class="heading1 ">
                         <span>{{ user.displayName }}</span>
                     </div>
                     <div class="heading3">

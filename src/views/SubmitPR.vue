@@ -3,6 +3,16 @@
     <div class="inner">
       <input class="field" type="text" placeholder="Commit Message" v-model="message" required autofocus>
       <input class="field" type="url" placeholder="Link to PR" v-model="link" required>
+      <div class="d-flex justify-content-between">
+        <input type="radio" class="btn-check" name="options" id="option1" autocomplete="off" checked>
+        <label class="btn btn-secondary" for="option1">Checked</label>
+
+        <input type="radio" class="btn-check" name="options" id="option2" autocomplete="off">
+        <label class="btn btn-secondary" for="option2">Radio</label>
+
+        <input type="radio" class="btn-check" name="options" id="option3" autocomplete="off" disabled>
+        <label class="btn btn-secondary" for="option3">Disabled</label>
+      </div>
       <button v-if="!loading" class="hvr-grow" @click="handleClick">Submit</button>
       <button v-else disabled class="disabled">Submitting</button>
     </div>
@@ -10,11 +20,11 @@
 </template>
 
 <script>
-import {ref} from "vue";
-import {projectAuth} from "@/firebase/config";
+import { ref } from "vue";
+import { projectAuth } from "@/firebase/config";
 import useCollection from "@/composables/useCollection";
-import {timestamp} from "@/firebase/config";
-import {useRouter} from "vue-router";
+import { timestamp } from "@/firebase/config";
+import { useRouter } from "vue-router";
 
 export default {
   name: "SubmitPR",
@@ -57,12 +67,16 @@ export default {
   justify-content: center;
   align-items: center;
 
-  background: #3770FF;
+  background: #19192a;
 }
+
+.btn {
+    margin-right: 25%;
+  }
 .inner {
   width: 40vw;
   min-width: 550px;
-  height: 38vh;
+  height: 42vh;
 
   margin: 40px 0;
   display: flex;
@@ -70,14 +84,13 @@ export default {
   justify-content: space-evenly;
   align-items: center;
 
-  background: #5384FF;
-  box-shadow: 4px 4px 40px 2px #466ED1;
+  background: #19192a;
+  box-shadow: 4px 4px 40px 2px #132e72;
   border-radius: 8px;
 }
 
 .inner input {
   width: 90%;
-  height: 18%;
 
   border: none;
   box-sizing: border-box;
@@ -90,14 +103,13 @@ export default {
   font-size: 18px;
   line-height: 27px;
 
-  color: #808AA3;
+  color: #19192a;
 
   padding: 8px 14px;
 }
 
 .inner button {
   width: 90%;
-  height: 18%;
 
   background: #E8EEFF;
   border: none;
@@ -111,7 +123,7 @@ export default {
   font-size: 22px;
   line-height: 33px;
 
-  color: #04325E;
+  color: #19192a;
 
   cursor: pointer;
 }
@@ -129,12 +141,14 @@ export default {
 .hvr-grow:focus,
 .hvr-grow:active {
   transform: scale(1.03);
-  box-shadow: 4px 4px 40px 4px #466ED1;;
+  box-shadow: 4px 4px 40px 4px #466ED1;
+  ;
 }
-@media(max-width:900px){
-  .inner{
+
+@media(max-width:900px) {
+  .inner {
     min-width: 90%;
-    width:initial;
+    width: initial;
   }
 }
 </style>
