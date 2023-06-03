@@ -67,6 +67,14 @@ export default {
                     techStack: "Unity Engine, C#",
                     description: 'An exhilarating 2D platform game that combines intense platforming challenges with thrilling combat encounters. where you have to fight and tackle enemies to complete the platform.',
                 },
+                {
+                    id: 7,
+                    projectName: "BSoC Website",
+                    name: "Tushit Shukla",
+                    link: "https://github.com/bsoc-bitbyte/BSoC-Website",
+                    techStack: "Vue, Firebase, Bootstrap",
+                    description: 'A website for BSoC to showcase all the projects and events that are being conducted under BSoC.',
+                }
 
             ],
         };
