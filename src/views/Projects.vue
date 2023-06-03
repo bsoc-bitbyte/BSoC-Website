@@ -49,7 +49,7 @@ export default {
                     name: "Aryan Pandey",
                     link: "",
                     techStack: "Tensorflow, Seaborn, Natplotlib, Pandas, Numpy ",
-                    description: 'Hands on with Machine Learning Basics',
+                    description: 'Machine Learning made simple. Going right from the traditional Linear Regression to building Neural Networks, including all the nitty gritty optimizations, regularizations and loss functions.',
                 },
                 {
                     id: 5,
