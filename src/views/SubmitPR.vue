@@ -228,6 +228,10 @@ nav ul a {
 .btn {
   margin-right: 25%;
 }
+
+.btn {
+    margin-right: 25%;
+  }
 .inner {
   width: 40vw;
   min-width: 550px;
