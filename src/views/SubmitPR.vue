@@ -3,6 +3,12 @@
     <div class="inner">
       <input class="field" type="text" placeholder="Commit Message" v-model="message" required autofocus>
       <input class="field" type="url" placeholder="Link to PR" v-model="link" required>
+      <select class="custom-select select" id="inputGroupSelect01">
+        <option selected>Please Select</option>
+        <option value="1">Easy</option>
+        <option value="2">Medium</option>
+        <option value="3">Difficult</option>
+      </select>
       <button v-if="!loading" class="hvr-grow" @click="handleClick">Submit</button>
       <button v-else disabled class="disabled">Submitting</button>
     </div>
@@ -10,11 +16,11 @@
 </template>
 
 <script>
-import {ref} from "vue";
-import {projectAuth} from "@/firebase/config";
+import { ref } from "vue";
+import { projectAuth } from "@/firebase/config";
 import useCollection from "@/composables/useCollection";
-import {timestamp} from "@/firebase/config";
-import {useRouter} from "vue-router";
+import { timestamp } from "@/firebase/config";
+import { useRouter } from "vue-router";
 
 export default {
   name: "SubmitPR",
@@ -59,6 +65,7 @@ export default {
 
   background: #3770FF;
 }
+
 .inner {
   width: 40vw;
   min-width: 550px;
@@ -75,7 +82,7 @@ export default {
   border-radius: 8px;
 }
 
-.inner input {
+.inner input, .select {
   width: 90%;
   height: 18%;
 
@@ -129,12 +136,13 @@ export default {
 .hvr-grow:focus,
 .hvr-grow:active {
   transform: scale(1.03);
-  box-shadow: 4px 4px 40px 4px #466ED1;;
+  box-shadow: 4px 4px 40px 4px #466ED1;
+  ;
 }
-@media(max-width:900px){
-  .inner{
+
+@media(max-width:900px) {
+  .inner {
     min-width: 90%;
-    width:initial;
+    width: initial;
   }
-}
-</style>
+}</style>
