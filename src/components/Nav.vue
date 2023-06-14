@@ -16,6 +16,9 @@
               v-if="!isHome">Home</router-link>
             <router-link class="nav-link text-white px-4" to="/dashboard" style="text-decoration: none; color: inherit;">
               <button class="nav-button" v-on:click="handleMyPR()" v-if="isloggedIn && userPR">Dashboard</button>
+            </router-link>
+            <router-link class="nav-link text-white px-4" to="/myPR" style="text-decoration: none; color: inherit;"
+              v-if="isloggedIn && !userPR">
               <button class="nav-button" v-on:click="handleMyPR()" v-if="isloggedIn && !userPR">My
                 PR's</button>
             </router-link>
@@ -81,9 +84,9 @@ export default {
   },
   setup() {
     const { error, logout } = useLogout();
-    const userPR = ref(false);
     let isloggedIn = ref(false);
     let isHome = ref(true);
+    const userPR = ref(false);
     const router = useRouter();
 
     const checkAuth = () => {
@@ -102,6 +105,9 @@ export default {
         isHome.value = true;
       } else {
         isHome.value = false;
+      }
+      if (window.location.pathname === '/myPR') {
+        userPR.value = true;
       }
     };
 
