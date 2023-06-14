@@ -3,8 +3,8 @@
     <div class="inner">
       <input class="field" type="text" placeholder="Commit Message" v-model="message" required autofocus>
       <input class="field" type="url" placeholder="Link to PR" v-model="link" required>
-      <select class="custom-select select" id="inputGroupSelect01">
-        <option selected>Please Select</option>
+      <select class="custom-select select" id="inputGroupSelect01" v-model="difficulty" required>
+        <option selected>Select Difficulty</option>
         <option value="1">Easy</option>
         <option value="2">Medium</option>
         <option value="3">Difficult</option>
@@ -27,6 +27,7 @@ export default {
   setup() {
     const message = ref("");
     const link = ref("");
+    const difficulty = ref("");
     const loading = ref(false)
 
     const { error, addDoc } = useCollection("dashboard-2022")
@@ -37,6 +38,7 @@ export default {
       const doc = {
         message: message.value,
         link: link.value,
+        difficulty: PRdifficulty.value,
         displayName,
         score: 0,
         time: timestamp(),
@@ -49,7 +51,7 @@ export default {
       await router.push("/dashboard")
     }
 
-    return { message, link, handleClick, loading }
+    return { message, link, handleClick, loading, difficulty }
   }
 }
 </script>
@@ -104,7 +106,7 @@ export default {
 .inner button {
   width: 90%;
 
-  background: #E8EEFF;
+  background: #e5e6eb;
   border: none;
   box-sizing: border-box;
   border-radius: 8px;
