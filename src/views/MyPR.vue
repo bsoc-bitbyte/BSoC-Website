@@ -5,7 +5,7 @@
     <div class="pr-outer">
         <div class="pr-container">
             <div class="table-heading">
-                <div class="heading1"><span>no</span></div>
+                <div class="heading1"><span>Name</span></div>
                 <div class="heading3"><span>Latest PR</span></div>
                 <div class="heading4"><span>Time Added</span></div>
             </div>
