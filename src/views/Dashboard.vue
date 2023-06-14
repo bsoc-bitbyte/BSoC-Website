@@ -1,13 +1,5 @@
 <template>
     <Nav></Nav>
-    <!-- <div class="navi">
-        <span v-if="userPR">My PR's</span>
-        <span v-else>Dashboard</span>
-        <div class="inner">
-
-            <button @click="handleLogout">Logout</button>
-        </div>
-    </div> -->
     <div v-if="started && !userPR" class="pr-outer">
         <div class="pr-container">
             <div class="table-heading">
@@ -26,30 +18,6 @@
                     </div>
                     <div class="heading4 text-white">
                         <span>{{ doc.time }}</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div v-if="userPR" class="pr-outer">
-        <div class="pr-container">
-            <div class="table-heading">
-                <div class="heading1"><span>Name</span></div>
-                <div class="heading3"><span>Latest PR</span></div>
-                <div class="heading4"><span>Time Added</span></div>
-            </div>
-            <div v-for="user in formattedUserPRData" :key="user.time">
-                <div class="table-content">
-                    <div class="heading1 ">
-                        <span>{{ user.displayName }}</span>
-                    </div>
-                    <div class="heading3">
-                        <span><a :href="user.link" target="_blank">{{ user.message }}</a>
-                        </span>
-                    </div>
-                    <div class="heading4">
-                        <span>{{ user.time }}</span>
                     </div>
                 </div>
             </div>
@@ -83,39 +51,9 @@ export default {
         const userPR = ref(false);
         var userData = new Map();
         var userPRData = new Map();
+        console.log("dash",documents.value)
+        console.log("user",userPRData)
 
-
-
-        axios
-            .get("https://v2.jokeapi.dev/joke/Programming?type=single")
-            .then((res) => {
-                joke.value = res.data.joke;
-            });
-
-        const getJoke = () => {
-            axios
-                .get("https://v2.jokeapi.dev/joke/Programming?type=single")
-                .then((res) => {
-                    joke.value = res.data.joke;
-                });
-        };
-
-        const handleMyPR = () => {
-            if (userPR.value) {
-                userPR.value = false;
-            } else {
-                userPR.value = true;
-            }
-        };
-
-        const handleLogout = () => {
-            logout();
-            if (!error.value) {
-                router.push({ name: "Home" });
-            } else {
-                console.log(error.value);
-            }
-        };
 
         const formattedUserPRData = computed(() => {
             if (userPRData) {
@@ -134,12 +72,13 @@ export default {
                 userPRData = userData.filter((doc) => {
                     return doc.uid == userUID;
                 });
+                console.log(userPRData)
                 return userData;
 
             }
         });
 
-        return { handleLogout, handleMyPR, joke, getJoke, started, userPR, formattedDocuments, formattedUserPRData };
+        return {  started, userPR, formattedDocuments, formattedUserPRData };
     },
 };
 </script>
