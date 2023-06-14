@@ -3,16 +3,12 @@
     <div class="inner">
       <input class="field" type="text" placeholder="Commit Message" v-model="message" required autofocus>
       <input class="field" type="url" placeholder="Link to PR" v-model="link" required>
-      <div class="d-flex justify-content-between">
-        <input type="radio" class="btn-check" name="options" id="option1" autocomplete="off" checked>
-        <label class="btn btn-secondary" for="option1">Checked</label>
-
-        <input type="radio" class="btn-check" name="options" id="option2" autocomplete="off">
-        <label class="btn btn-secondary" for="option2">Radio</label>
-
-        <input type="radio" class="btn-check" name="options" id="option3" autocomplete="off" disabled>
-        <label class="btn btn-secondary" for="option3">Disabled</label>
-      </div>
+      <select class="custom-select select" id="inputGroupSelect01">
+        <option selected>Please Select</option>
+        <option value="1">Easy</option>
+        <option value="2">Medium</option>
+        <option value="3">Difficult</option>
+      </select>
       <button v-if="!loading" class="hvr-grow" @click="handleClick">Submit</button>
       <button v-else disabled class="disabled">Submitting</button>
     </div>
@@ -70,9 +66,6 @@ export default {
   background: #19192a;
 }
 
-.btn {
-    margin-right: 25%;
-  }
 .inner {
   width: 40vw;
   min-width: 550px;
@@ -89,7 +82,7 @@ export default {
   border-radius: 8px;
 }
 
-.inner input {
+.inner input, .select {
   width: 90%;
 
   border: none;
@@ -150,5 +143,4 @@ export default {
     min-width: 90%;
     width: initial;
   }
-}
-</style>
+}</style>
