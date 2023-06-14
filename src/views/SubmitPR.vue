@@ -3,11 +3,11 @@
     <div class="inner">
       <input class="field" type="text" placeholder="Commit Message" v-model="message" required autofocus>
       <input class="field" type="url" placeholder="Link to PR" v-model="link" required>
-      <select class="custom-select select" id="inputGroupSelect01" v-model="difficulty" required>
+      <select class="custom-select select" v-model="difficulty" id="inputGroupSelect01"  required>
         <option selected>Select Difficulty</option>
-        <option value="1">Easy</option>
-        <option value="2">Medium</option>
-        <option value="3">Difficult</option>
+        <option value="15">Easy</option>
+        <option value="30">Medium</option>
+        <option value="50">Difficult</option>
       </select>
       <button v-if="!loading" class="hvr-grow" @click="handleClick">Submit</button>
       <button v-else disabled class="disabled">Submitting</button>
@@ -27,7 +27,7 @@ export default {
   setup() {
     const message = ref("");
     const link = ref("");
-    const difficulty = ref("");
+    const difficulty = ref("Select Difficulty");
     const loading = ref(false)
 
     const { error, addDoc } = useCollection("dashboard-2022")
@@ -38,12 +38,13 @@ export default {
       const doc = {
         message: message.value,
         link: link.value,
-        difficulty: PRdifficulty.value,
+        difficulty: difficulty.value,
         displayName,
         score: 0,
         time: timestamp(),
         uid: projectAuth.currentUser.uid
       }
+      console.log(doc)
       loading.value = true
       await addDoc(doc)
       loading.value = false
