@@ -8,6 +8,7 @@ import Home from "@/views/Home";
 import Signup from "@/components/Signup";
 import Login from "@/components/Login";
 import Projects from "@/views/Projects"
+import MyPR from "@/views/MyPR"
 
 const requireAuth = (to, from, next) => {
   let user = projectAuth.currentUser;
@@ -72,6 +73,11 @@ const routes = [
     path: "/projects",
     name: "Project",
     component: Projects,
+  },
+  {
+    path: "/myPR",
+    name: "MyPR",
+    component: MyPR,
   }
 ];
 
