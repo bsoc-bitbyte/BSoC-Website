@@ -1,22 +1,12 @@
 <template>
-    <!-- <div class="card">
-        <div class="projectName">{{projectName}}</div>
-        <div class="card-name">
-            {{name}}
-        </div>
-        <div class="github"><a href={{link}}>Github Link</a></div>
-        <div class="techStack">Tech Stack: <span>{{techStack}}</span></div>
-        <div class="projectDetail">{{description}}</div>
-    </div> -->
     <div class="card-container">
         <div class="card">
             <div class="box">
-                {{ console.log(link) }}
                 <div class="content">
                     <h2>{{ projectName }}</h2>
                     <h3>{{ projectName }}</h3>
                     <p>{{ description }}</p>
-                    <a :href='link'>Explore</a>
+                    <a :href='link' target ="_blank">Explore</a>
                 </div>
             </div>
         </div>
@@ -51,8 +41,6 @@ export default {
 </script>
 
 <style scoped>
-/* @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;700;800&display=swap"); */
-
 .card-container {
     display: flex;
     justify-content: center;
@@ -165,9 +153,6 @@ export default {
     margin-left: 4.2em;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
     transition: 0.5s;
-}
-a {
-    
 }
 
 .card-container .card .box .content a:hover {

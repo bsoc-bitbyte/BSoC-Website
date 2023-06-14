@@ -21,7 +21,7 @@ export default {
             items: [
                 {
                     id: 1,
-                    projectName: "Let's Buy",
+                    projectName: "GetIt",
                     name: "Armin",
                     link: "https://github.com/bsoc-bitbyte/LetsBuy",
                     techStack: "Vue, Firebase, Redis, MongoDB, Python",
@@ -31,7 +31,7 @@ export default {
                     id: 2,
                     projectName: "IIITians-Space",
                     name: "Varun Singh",
-                    link: "",
+                    link: "https://github.com/bsoc-bitbyte/IIITians-Space",
                     techStack: "React with Typescript, Express and Postgresql",
                     description: 'A Forum website for students to better connect with seniors and super seniors',
                 },
@@ -47,7 +47,7 @@ export default {
                     id: 4,
                     projectName: "Summer Analytics",
                     name: "Aryan Pandey",
-                    link: "",
+                    link: "https://github.com/orgs/bsoc-bitbyte/repositories",
                     techStack: "Tensorflow, Seaborn, Natplotlib, Pandas, Numpy ",
                     description: 'Machine Learning made simple. Going right from the traditional Linear Regression to building Neural Networks, including all the nitty gritty optimizations, regularizations and loss functions.',
                 },
@@ -67,6 +67,14 @@ export default {
                     techStack: "Unity Engine, C#",
                     description: 'An exhilarating 2D platform game that combines intense platforming challenges with thrilling combat encounters. where you have to fight and tackle enemies to complete the platform.',
                 },
+                {
+                    id: 7,
+                    projectName: "BSoC Website",
+                    name: "Tushit Shukla",
+                    link: "https://github.com/bsoc-bitbyte/BSoC-Website",
+                    techStack: "Vue, Firebase, Bootstrap",
+                    description: 'A website for BSoC to showcase all the projects and events that are being conducted under BSoC.',
+                }
 
             ],
         };

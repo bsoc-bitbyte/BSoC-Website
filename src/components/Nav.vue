@@ -9,29 +9,39 @@
       </div>
       <div class="collapse navbar-collapse">
         <div class="navbar-nav ">
-          <router-link class="nav-link text-white px-2" to="/dashboard" style="text-decoration: none; color: inherit;" v-if = "isHome">Dashboard</router-link>
-          <router-link class="nav-link text-white px-4" to="/home" style="text-decoration: none; color: inherit;" v-if = "!isHome">Home</router-link>
-          <router-link class="nav-link text-white px-4" to="/dashboard" style="text-decoration: none; color: inherit;">
-            <button class = "nav-button" v-on:click="handleMyPR()"
-              v-if="isloggedIn && userPR">Dashboard</button>
-            <button class = "nav-button" v-on:click="handleMyPR()" v-if = "isloggedIn && !userPR">My
-              PR's</button>
-          </router-link>
-          <router-link class="nav-link text-white px-4" to="/submit"
-            style="text-decoration: none; color: inherit;" v-if = "isloggedIn">SubmitPR</router-link>
+          <div class="d-flex align-item-center" v-if="isloggedIn">
+            <router-link class="nav-link text-white px-2" to="/dashboard" style="text-decoration: none; color: inherit;"
+              v-if="isHome">Dashboard</router-link>
+            <router-link class="nav-link text-white px-4" to="/home" style="text-decoration: none; color: inherit;"
+              v-if="!isHome">Home</router-link>
+            <router-link class="nav-link text-white px-4" to="/dashboard" style="text-decoration: none; color: inherit;">
+              <button class="nav-button" v-on:click="handleMyPR()" v-if="isloggedIn && userPR">Dashboard</button>
+            </router-link>
+            <router-link class="nav-link text-white px-4" to="/myPR" style="text-decoration: none; color: inherit;"
+              v-if="isloggedIn && !userPR">
+              <button class="nav-button" v-on:click="handleMyPR()" v-if="isloggedIn && !userPR">My
+                PR's</button>
+            </router-link>
+            <router-link class="nav-link text-white px-4" to="/submit" style="text-decoration: none; color: inherit;"
+              v-if="isloggedIn">SubmitPR</router-link>
+          </div>
+          <div v-else>
+            <button class="mt-2 nav-button" v-on:click="handleLogin()" >Dashboard</button>
+          </div>
           <router-link class="nav-link text-white px-4" to="/projects">Projects</router-link>
         </div>
       </div>
-      <div v-if = "!isloggedIn" class="navbar-nav auth " >
-        <span v-on:click="handleLogin"  style="padding-right: 1.3em; cursor: pointer;">Login</span>
-        <Login v-if = "$store.state.login"  :toggle="handleLogin"/>
-        <span v-on:click="handleSignup" style="cursor: pointer;" >Signup</span>
-        <Signup v-if="$store.state.signup" :toggle="handleSignup"/>
-      </div><div v-else class="navbar-nav auth ">
-        <button class = "nav-button" v-on:click="handleLogout()" v-if = "isloggedIn && !userPR">
-            LogOut</button>
+      <div v-if="!isloggedIn" class="navbar-nav auth ">
+        <span v-on:click="handleLogin" style="padding-right: 1.3em; cursor: pointer;">Login</span>
+        <Login v-if="$store.state.login" :toggle="handleLogin" />
+        <span v-on:click="handleSignup" style="cursor: pointer;">Signup</span>
+        <Signup v-if="$store.state.signup" :toggle="handleSignup" />
       </div>
-   
+      <div v-else class="navbar-nav auth ">
+        <button class="nav-button" v-on:click="handleLogout()" v-if="isloggedIn && !userPR">
+          LogOut</button>
+      </div>
+
     </div>
   </nav>
 </template>
@@ -44,28 +54,29 @@ import Login from "./Login.vue";
 import Signup from "./Signup.vue";
 export default {
   name: "Nav",
-  data(){
+  data() {
     return {
       login: false,
-      signup:false,
+      signup: false,
     }
   },
-  
+
   created() {
     this.checkAuth();
     this.isHonePage();
 
   },
   components: {
-     Login,
-     Signup,
+    Login,
+    Signup,
   },
   methods: {
-    handleLogin(){
-        this.$store.state.login = !this.$store.state.login;
+    handleLogin() {
+      this.$store.state.login = !this.$store.state.login;
     },
-    handleSignup(){
-      this.$store.state.signup = !this.$store.state.signup;}
+    handleSignup() {
+      this.$store.state.signup = !this.$store.state.signup;
+    }
   },
   beforeRouteLeave(to, from, next) {
     this.isHonePage();
@@ -73,9 +84,9 @@ export default {
   },
   setup() {
     const { error, logout } = useLogout();
-    const userPR = ref(false);
     let isloggedIn = ref(false);
     let isHome = ref(true);
+    const userPR = ref(false);
     const router = useRouter();
 
     const checkAuth = () => {
@@ -95,16 +106,19 @@ export default {
       } else {
         isHome.value = false;
       }
+      if (window.location.pathname === '/myPR') {
+        userPR.value = true;
+      }
     };
 
     const handleLogout = () => {
-            logout();
-            if (!error.value) {
-                router.push({ name: "Home" });
-            } else {
-                console.log(error.value);
-            }
-        };
+      logout();
+      if (!error.value) {
+        router.push({ name: "Home" });
+      } else {
+        console.log(error.value);
+      }
+    };
 
 
     const handleMyPR = () => {
@@ -130,8 +144,6 @@ export default {
 </script>
 
 <style scoped>
-
-
 .navbar {
   position: fixed;
   height: 8vh;
@@ -178,7 +190,5 @@ export default {
   background: none;
   border: none;
   color: white;
-  padding: 0;
-  margin: 0;
 }
 </style>
