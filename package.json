@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "serve": "set NODE_OPTIONS=--openssl-legacy-provider && vue-cli-service serve",
+    "build": "set NODE_OPTIONS=--openssl-legacy-provider && vue-cli-service build",
     "production": "vue-cli-service build --mode production"
   },
   "engines": {
@@ -21,6 +21,7 @@
     "firebase": "^9.0.2",
     "hover.css": "^2.3.2",
     "jquery": "^3.6.0",
+    "mdb-vue-ui-kit": "^4.0.0",
     "particles.js": "^2.0.0",
     "popper": "^1.0.1",
     "vue": "^3.0.0",
