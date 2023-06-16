@@ -9,8 +9,6 @@
         </router-link>
       </div>
 
-      <!--             MY WORK                 -->
-
       <div id="nav">
         <section class="mb-3" id="hambur">
           <MDBNavbar dark bg="info" container>
@@ -21,7 +19,7 @@
               aria-label="Toggle navigation"
               aria-controls="navbarToggleExternalContent11"
             >
-              <div class="animated-icon3" :class="[collapse11 && 'open']">
+              <div class="animated-icon3" :class="[!collapse11 && 'open']">
                 <span></span><span></span><span></span>
               </div>
             </button>
@@ -29,33 +27,51 @@
           <MDBCollapse v-model="collapse11" id="navbarToggleExternalContent9">
             <div
               :class="`bg-dark shadow-3 p-4 ${
-                collapse11 ? 'd-none' : 'd-flex flex-column'  
+                collapse11 ? 'd-none' : 'd-flex flex-column'
               } position-absolute`"
-              style="top: 50px;"
+              style="top: 50px"
             >
               <MDBBtn color="link" block class="border-none ms-0 px-3">
                 <ul class="list-unstyled">
-                  <li><a href="/dashboard" target="_blank" class="custom-link">Dashboard</a></li>
+                  <li>
+                    <a href="/dashboard" target="_blank" class="custom-link"
+                      >Dashboard</a
+                    >
+                  </li>
                 </ul>
               </MDBBtn>
-              <MDBBtn color="link" block class="border-none  ms-0 px-3">
+              <MDBBtn color="link" block class="border-none ms-0 px-3">
                 <ul class="list-unstyled">
-                  <li><a href="/home" target="_blank" class="custom-link">Home</a></li>
+                  <li>
+                    <a href="/home" target="_blank" class="custom-link">Home</a>
+                  </li>
                 </ul>
               </MDBBtn>
-              <MDBBtn color="link" block class="border-none  ms-0 px-3">
+              <MDBBtn color="link" block class="border-none ms-0 px-3">
                 <ul class="list-unstyled">
-                  <li><a href="/myPR" target="_blank" class="custom-link">My PR's</a></li>
+                  <li>
+                    <a href="/myPR" target="_blank" class="custom-link"
+                      >My PR's</a
+                    >
+                  </li>
                 </ul>
               </MDBBtn>
-              <MDBBtn color="link" block class="border-none  ms-0 px-3">
+              <MDBBtn color="link" block class="border-none ms-0 px-3">
                 <ul class="list-unstyled">
-                  <li><a href="/submit" target="_blank" class="custom-link">SubmitPR</a></li>
+                  <li>
+                    <a href="/submit" target="_blank" class="custom-link"
+                      >SubmitPR</a
+                    >
+                  </li>
                 </ul>
               </MDBBtn>
-              <MDBBtn color="link" block class="border-none  ms-0 px-3">
+              <MDBBtn color="link" block class="border-none ms-0 px-3">
                 <ul class="list-unstyled">
-                  <li><a href="/projects" target="_blank" class="custom-link">Projects</a></li>
+                  <li>
+                    <a href="/projects" target="_blank" class="custom-link"
+                      >Projects</a
+                    >
+                  </li>
                 </ul>
               </MDBBtn>
             </div>
@@ -124,134 +140,6 @@
             >
           </div>
         </div>
-
-        <!-- </section> -->
-        <!-- <nav class="abc">
-          <div>
-            <button class="navbar-toggler" @click="toggleHamburger">
-              <img
-                src="https://icon-library.com/images/hamburger-icon-white/hamburger-icon-white-16.jpg"
-                alt=""
-                class="navbar-toggler-icon"
-              />
-            </button>
-            <div :class="['hamburger-content', {active: showHamburger}]">
-              Hamburger content here
-              <nav id="navitems">
-                <ul>
-                  <li><a href="/dashboard">Dashboard</a></li>
-                  <li><a href="/home">Home</a></li>
-                  <li><a href="#">My PR's</a></li>
-                  <li><a href="/submit">SubmitPR</a></li>
-                  <li><a href="/projects">Projects</a></li>
-                </ul>
-              </nav>
-            </div>
-          </div>
-
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <div class="navbar-nav mr-auto">
-              <router-link
-                to="/dashboard"
-                class="nav-item nav-link"
-                v-if="isHome"
-                style="text-decoration: none; color: inherit"
-                >Dashboard</router-link
-              >
-
-              <router-link
-                to="/home"
-                class="nav-item nav-link"
-                style="text-decoration: none; color: inherit"
-                v-if="!isHome"
-                >Home</router-link
-              >
-
-              <router-link
-                to="/dashboard"
-                class="nav-item nav-link"
-                style="text-decoration: none; color: inherit"
-              >
-                <button
-                  class="nav-button"
-                  @click="handleMyPR()"
-                  v-if="isloggedIn && userPR"
-                >
-                  Dashboard
-                </button>
-                <button
-                  class="nav-button"
-                  @click="handleMyPR()"
-                  v-if="isloggedIn && !userPR"
-                >
-                  My PR's
-                </button>
-              </router-link>
-
-              <router-link
-                to="/submit"
-                class="nav-item nav-link"
-                style="text-decoration: none; color: inherit"
-                v-if="isloggedIn"
-                >SubmitPR</router-link
-              >
-
-              <router-link
-                class="nav-item nav-link"
-                to="/projects"
-                style="color: white"
-                >Projects</router-link
-              >
-            </div>
-          </div>
-        </nav> -->
-        <!-- <div class="collapse navbar-collapse">
-        <div class="navbar-nav">
-          <router-link
-            class="nav-link text-white px-2"
-            to="/dashboard"
-            style="text-decoration: none; color: inherit"
-            v-if="isHome"
-            >Dashboard</router-link
-          >
-          <router-link
-            class="nav-link text-white px-4"
-            to="/home"
-            style="text-decoration: none; color: inherit"
-            v-if="!isHome"
-            >Home</router-link
-          >
-          <router-link
-            class="nav-link text-white px-4"
-            to="/dashboard"
-            style="text-decoration: none; color: inherit"
-          >
-            <button
-              class="nav-button"
-              v-on:click="handleMyPR()"
-              v-if="isloggedIn && userPR"
-            >
-              Dashboard
-            </button>
-            <button
-              class="nav-button"
-              v-on:click="handleMyPR()"
-              v-if="isloggedIn && !userPR"
-            >
-              My PR's
-            </button>
-          </router-link>
-          <router-link
-            class="nav-link text-white px-4"
-            to="/submit"
-            style="text-decoration: none; color: inherit"
-            v-if="isloggedIn"
-            >SubmitPR</router-link
-          >
-          <router-link class="nav-link text-white px-4" to="/projects"
-            >Projects</router-link
-          >
-        </div> -->
       </div>
       <div v-if="!isloggedIn" class="navbar-nav auth">
         <span
@@ -323,7 +211,6 @@ export default {
     };
   },
 
-
   created() {
     this.checkAuth();
     this.isHonePage();
@@ -335,8 +222,6 @@ export default {
     Signup,
   },
   methods: {
-    handleLogin() {
-      this.$store.state.login = !this.$store.state.login;
     handleLogin() {
       this.$store.state.login = !this.$store.state.login;
     },
@@ -353,7 +238,6 @@ export default {
   },
   setup() {
     const {error, logout} = useLogout();
-    const userPR = ref(false);
     let isloggedIn = ref(false);
     let isHome = ref(true);
     const userPR = ref(false);
@@ -420,16 +304,11 @@ export default {
   }
 }
 
-
 .custom-link {
-  color: #87CEEB; /* Replace #ff0000 with the desired color value */
+  color: #87ceeb; /* Replace #ff0000 with the desired color value */
   text-decoration: none;
   font-weight: bold;
 }
-
-/* Icon 1 */
-.animated-icon1,
-.animated-icon2,
 .animated-icon3 {
   width: 30px;
   height: 20px;
@@ -446,8 +325,6 @@ export default {
   cursor: pointer;
 }
 
-.animated-icon1 span,
-.animated-icon2 span,
 .animated-icon3 span {
   display: block;
   position: absolute;
@@ -466,91 +343,11 @@ export default {
   transition: 0.25s ease-in-out;
 }
 
-.animated-icon1 span {
-  background: #2d7ef7;
-}
-
-.animated-icon2 span {
-  background: #e3f2fd;
-}
 
 .animated-icon3 span {
   background: #f3e5f5;
 }
 
-.animated-icon1 span:nth-child(1) {
-  top: 0px;
-}
-
-.animated-icon1 span:nth-child(2) {
-  top: 10px;
-}
-
-.animated-icon1 span:nth-child(3) {
-  top: 20px;
-}
-
-.animated-icon1.open span:nth-child(1) {
-  top: 11px;
-  -webkit-transform: rotate(135deg);
-  -moz-transform: rotate(135deg);
-  -o-transform: rotate(135deg);
-  transform: rotate(135deg);
-}
-
-.animated-icon1.open span:nth-child(2) {
-  opacity: 0;
-  left: -60px;
-}
-
-.animated-icon1.open span:nth-child(3) {
-  top: 11px;
-  -webkit-transform: rotate(-135deg);
-  -moz-transform: rotate(-135deg);
-  -o-transform: rotate(-135deg);
-  transform: rotate(-135deg);
-}
-
-/* Icon 3*/
-
-.animated-icon2 span:nth-child(1) {
-  top: 0px;
-}
-
-.animated-icon2 span:nth-child(2),
-.animated-icon2 span:nth-child(3) {
-  top: 10px;
-}
-
-.animated-icon2 span:nth-child(4) {
-  top: 20px;
-}
-
-.animated-icon2.open span:nth-child(1) {
-  top: 11px;
-  width: 0%;
-  left: 50%;
-}
-
-.animated-icon2.open span:nth-child(2) {
-  -webkit-transform: rotate(45deg);
-  -moz-transform: rotate(45deg);
-  -o-transform: rotate(45deg);
-  transform: rotate(45deg);
-}
-
-.animated-icon2.open span:nth-child(3) {
-  -webkit-transform: rotate(-45deg);
-  -moz-transform: rotate(-45deg);
-  -o-transform: rotate(-45deg);
-  transform: rotate(-45deg);
-}
-
-.animated-icon2.open span:nth-child(4) {
-  top: 11px;
-  width: 0%;
-  left: 50%;
-}
 
 /* Icon 4 */
 
