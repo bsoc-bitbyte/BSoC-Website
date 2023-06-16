@@ -323,6 +323,7 @@ export default {
     };
   },
 
+
   created() {
     this.checkAuth();
     this.isHonePage();
@@ -330,8 +331,12 @@ export default {
   components: {
     Login,
     Signup,
+    Login,
+    Signup,
   },
   methods: {
+    handleLogin() {
+      this.$store.state.login = !this.$store.state.login;
     handleLogin() {
       this.$store.state.login = !this.$store.state.login;
     },
@@ -351,6 +356,7 @@ export default {
     const userPR = ref(false);
     let isloggedIn = ref(false);
     let isHome = ref(true);
+    const userPR = ref(false);
     const router = useRouter();
     const collapse11 = ref(false);
 
@@ -370,6 +376,9 @@ export default {
         isHome.value = true;
       } else {
         isHome.value = false;
+      }
+      if (window.location.pathname === '/myPR') {
+        userPR.value = true;
       }
     };
 
@@ -639,7 +648,5 @@ export default {
   background: none;
   border: none;
   color: white;
-  padding: 0;
-  margin: 0;
 }
 </style>

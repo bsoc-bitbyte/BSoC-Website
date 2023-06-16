@@ -3,6 +3,12 @@
     <div class="inner">
       <input class="field" type="text" placeholder="Commit Message" v-model="message" required autofocus>
       <input class="field" type="url" placeholder="Link to PR" v-model="link" required>
+      <select class="custom-select select" v-model="difficulty" id="inputGroupSelect01"  required>
+        <option selected>Select Difficulty</option>
+        <option value="15">Easy</option>
+        <option value="30">Medium</option>
+        <option value="50">Difficult</option>
+      </select>
       <button v-if="!loading" class="hvr-grow" @click="handleClick">Submit</button>
       <button v-else disabled class="disabled">Submitting</button>
     </div>
@@ -10,17 +16,18 @@
 </template>
 
 <script>
-import {ref} from "vue";
-import {projectAuth} from "@/firebase/config";
+import { ref } from "vue";
+import { projectAuth } from "@/firebase/config";
 import useCollection from "@/composables/useCollection";
-import {timestamp} from "@/firebase/config";
-import {useRouter} from "vue-router";
+import { timestamp } from "@/firebase/config";
+import { useRouter } from "vue-router";
 
 export default {
   name: "SubmitPR",
   setup() {
     const message = ref("");
     const link = ref("");
+    const difficulty = ref("Select Difficulty");
     const loading = ref(false)
 
     const { error, addDoc } = useCollection("dashboard-2022")
@@ -31,11 +38,13 @@ export default {
       const doc = {
         message: message.value,
         link: link.value,
+        difficulty: difficulty.value,
         displayName,
         score: 0,
         time: timestamp(),
         uid: projectAuth.currentUser.uid
       }
+      console.log(doc)
       loading.value = true
       await addDoc(doc)
       loading.value = false
@@ -43,7 +52,7 @@ export default {
       await router.push("/dashboard")
     }
 
-    return { message, link, handleClick, loading }
+    return { message, link, handleClick, loading, difficulty }
   }
 }
 </script>
@@ -57,12 +66,13 @@ export default {
   justify-content: center;
   align-items: center;
 
-  background: #3770FF;
+  background: #19192a;
 }
+
 .inner {
   width: 40vw;
   min-width: 550px;
-  height: 38vh;
+  height: 42vh;
 
   margin: 40px 0;
   display: flex;
@@ -70,14 +80,13 @@ export default {
   justify-content: space-evenly;
   align-items: center;
 
-  background: #5384FF;
-  box-shadow: 4px 4px 40px 2px #466ED1;
+  background: #19192a;
+  box-shadow: 4px 4px 40px 2px #132e72;
   border-radius: 8px;
 }
 
-.inner input {
+.inner input, .select {
   width: 90%;
-  height: 18%;
 
   border: none;
   box-sizing: border-box;
@@ -90,16 +99,15 @@ export default {
   font-size: 18px;
   line-height: 27px;
 
-  color: #808AA3;
+  color: #19192a;
 
   padding: 8px 14px;
 }
 
 .inner button {
   width: 90%;
-  height: 18%;
 
-  background: #E8EEFF;
+  background: #e5e6eb;
   border: none;
   box-sizing: border-box;
   border-radius: 8px;
@@ -111,7 +119,7 @@ export default {
   font-size: 22px;
   line-height: 33px;
 
-  color: #04325E;
+  color: #19192a;
 
   cursor: pointer;
 }
@@ -129,12 +137,13 @@ export default {
 .hvr-grow:focus,
 .hvr-grow:active {
   transform: scale(1.03);
-  box-shadow: 4px 4px 40px 4px #466ED1;;
+  box-shadow: 4px 4px 40px 4px #466ED1;
+  ;
 }
-@media(max-width:900px){
-  .inner{
+
+@media(max-width:900px) {
+  .inner {
     min-width: 90%;
-    width:initial;
+    width: initial;
   }
-}
-</style>
+}</style>

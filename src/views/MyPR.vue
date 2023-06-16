@@ -1,23 +1,25 @@
 <template>
     <Nav></Nav>
-    <div v-if="started && !userPR" class="pr-outer">
+
+
+    <div class="pr-outer">
         <div class="pr-container">
             <div class="table-heading">
                 <div class="heading1"><span>Name</span></div>
                 <div class="heading3"><span>Latest PR</span></div>
                 <div class="heading4"><span>Time Added</span></div>
             </div>
-            <div v-for="doc in formattedDocuments" :doc="doc.time">
+            <div v-for="user in formattedDocuments" :key="user.time">
                 <div class="table-content">
                     <div class="heading1 text-white">
-                        <span>{{ doc.displayName }}</span>
+                        <span>{{ user.displayName }}</span>
                     </div>
                     <div class="heading3 text-white">
-                        <span><a :href="doc.link" target="_blank" class="text-white">{{ doc.message }}</a>
+                        <span><a :href="user.link" target="_blank"  class="text-white">{{ user.message }}</a>
                         </span>
                     </div>
                     <div class="heading4 text-white">
-                        <span>{{ doc.time }}</span>
+                        <span>{{ user.time }}</span>
                     </div>
                 </div>
             </div>
@@ -38,23 +40,18 @@ import { projectAuth } from "../firebase/config";
 import Nav from "@/components/Nav.vue";
 
 export default {
-    name: "Dashboard",
+    name: "MyPR",
     components: {
         Nav,
     },
     setup() {
-        const { error, logout } = useLogout();
-        const router = useRouter();
         const { documents } = getCollection("dashboard-2022");
-        const joke = ref("");
         const started = ref(true);
         const userPR = ref(false);
         var userData = new Map();
         var userPRData = new Map();
-        console.log("dash",documents.value)
-        console.log("user",userPRData)
 
-
+        console.log("Working",documents.value)
         const formattedUserPRData = computed(() => {
             if (userPRData) {
                 return userPRData
@@ -69,16 +66,17 @@ export default {
                     let time = formatDistanceToNow(doc.time.toDate());
                     return { ...doc, time: time, time_sec: doc.time };
                 });
+                console.log("hello",userData)
                 userPRData = userData.filter((doc) => {
                     return doc.uid == userUID;
                 });
-                console.log(userPRData)
-                return userData;
+                console.log("hello",userPRData)
+                return userPRData;
 
             }
         });
 
-        return {  started, userPR, formattedDocuments, formattedUserPRData };
+        return { started, userPR, formattedDocuments, formattedUserPRData };
     },
 };
 </script>
