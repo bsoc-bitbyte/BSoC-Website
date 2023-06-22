@@ -4,8 +4,8 @@
         <div class="pr-container">
             <div class="table-heading">
                 <div class="heading1"><span>Name</span></div>
-                <div class="heading3"><span>Latest PR</span></div>
-                <div class="heading4"><span>Time Added</span></div>
+                <div class="heading3"><span>Score</span></div>
+                <div class="heading4"><span>Time Updated</span></div>
             </div>
             <div v-for="doc in formattedDocuments" :doc="doc.time">
                 <div class="table-content">
@@ -13,7 +13,7 @@
                         <span>{{ doc.displayName }}</span>
                     </div>
                     <div class="heading3 text-white">
-                        <span><a :href="doc.link" target="_blank" class="text-white">{{ doc.message }}</a>
+                        <span>{{ doc.score }}
                         </span>
                     </div>
                     <div class="heading4 text-white">
@@ -33,7 +33,7 @@ import { useRouter } from "vue-router";
 import { computed, ref } from "vue";
 import axios from "axios";
 import { formatDistanceToNow } from "date-fns";
-import {getCollection} from "../composables/getCollection";
+import {getCollection,getAllUserStats} from "../composables/getCollection";
 import { projectAuth } from "../firebase/config";
 import Nav from "@/components/Nav.vue";
 
@@ -45,7 +45,7 @@ export default {
     setup() {
         const { error, logout } = useLogout();
         const router = useRouter();
-        const { documents } = getCollection("dashboard-2023");
+        const { documents } = getAllUserStats("userStats-2023");
         const joke = ref("");
         const started = ref(true);
         const userPR = ref(false);

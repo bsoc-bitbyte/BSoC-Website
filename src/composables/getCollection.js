@@ -31,8 +31,6 @@ const getAllUserStats = (collection) => {
     const documents = ref(null)
     const error = ref(null)
 
-    console.log("in get all user stats",collection,uid)
-
     let collectionRef = projectFirestore.collection(collection);
     const populate = collectionRef.onSnapshot((snap) => {
         let results = []
