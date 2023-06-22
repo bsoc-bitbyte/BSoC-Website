@@ -205,8 +205,8 @@ export default {
 .table-heading {
     display: grid;
     background: #eaeaef;
-    grid-template-columns: repeat(4, 1fr);
-    grid-column-gap: 0px;
+    grid-template-columns: repeat(5, 1fr);
+    grid-column-gap: 1.5em;
     padding: 25px 0;
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
@@ -220,22 +220,13 @@ export default {
 
 .table-content {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-column-gap: 0;
+    grid-template-columns: repeat(5, 1fr);
+    grid-column-gap: 1.5em;
     padding: 25px 0;
     font-weight: 400;
     font-size: 1.38vw;
     color: #04325e;
     text-align: center;
-}
-
-.heading3 {
-    text-align: left;
-}
-
-.heading3 a {
-    text-decoration: none;
-    color: #04325e;
 }
 
 @media (max-width: 900px) {
