@@ -31,14 +31,17 @@ const updateUserStats = async (collection, doc, id) => {
         const docRef = firebaseDoc(projectFirestore, collection, id);
         const existingDoc = await getDoc(docRef);
         let updatedScore = 0;
+        let numberOfPRs = 0;
         if (!existingDoc.exists()) {
             console.log("No such document!");
             updatedScore = doc.difficulty;
+            numberOfPRs = 1;
             await setDoc(docRef, {
                 message: doc.message,
                 link: doc.link,
                 score: updatedScore,
                 displayName: doc.displayName,
+                numberOfPRs: numberOfPRs,
                 time: doc.time
             }, { merge: true });
             console.log("Document successfully written!","score updated",updatedScore)
@@ -46,13 +49,15 @@ const updateUserStats = async (collection, doc, id) => {
         }
         const existingScore = existingDoc.data().score;
         updatedScore = parseInt(existingScore) + parseInt(doc.difficulty);
+        numberOfPRs = parseInt(existingDoc.data().numberOfPRs) + 1;
 
         await setDoc(docRef, {
             message: doc.message,
             link: doc.link,
             score: updatedScore,
             displayName: doc.displayName,
-            time: doc.time
+            time: doc.time,
+            numberOfPRs: numberOfPRs
         }, { merge: true });
 
         console.log("Document successfully written!","score updated",updatedScore)
