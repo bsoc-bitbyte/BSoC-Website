@@ -3,25 +3,29 @@
     <div v-if="started && !userPR" class="pr-outer">
         <div class="pr-container">
             <div class="table-heading">
-                <div class="heading1"><span>Name</span></div>
-                <div class="heading2"><span>Score</span></div>
-                <div class="heading3"><span>No of PRs</span></div>
-                <div class="heading4"><span>Time Updated</span></div>
+                <div class="heading1"><span>Rank</span></div>
+                <div class="heading2"><span>Name</span></div>
+                <div class="heading3"><span>Score</span></div>
+                <div class="heading4"><span>No of PRs</span></div>
+                <div class="heading5"><span>Time Updated</span></div>
             </div>
-            <div v-for="doc in formattedDocuments" :doc="doc.time">
+            <div v-for="(doc,index) in formattedDocuments" :doc="doc.time">
                 <div class="table-content">
                     <div class="heading1 text-white">
-                        <span>{{ doc.displayName }}</span>
+                        <span>{{ index + 1 }}</span>
                     </div>
                     <div class="heading2 text-white">
+                        <span>{{ doc.displayName }}</span>
+                    </div>
+                    <div class="heading3 text-white">
                         <span>{{ doc.score }}
                         </span>
                     </div>
-                    <div class="heading3 text-white">
+                    <div class="heading4 text-white">
                         <span>{{ doc.numberOfPRs }}
                         </span>
                     </div>
-                    <div class="heading4 text-white">
+                    <div class="heading5 text-white">
                         <span>{{ doc.time }}</span>
                     </div>
                 </div>
