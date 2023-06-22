@@ -13,7 +13,7 @@
                     <div class="heading1 text-white">
                         <span>{{ doc.displayName }}</span>
                     </div>
-                    <div class="heading3 text-white">
+                    <div class="heading2 text-white">
                         <span>{{ doc.score }}
                         </span>
                     </div>
@@ -201,7 +201,7 @@ export default {
 .table-heading {
     display: grid;
     background: #eaeaef;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     grid-column-gap: 0px;
     padding: 25px 0;
     border-top-left-radius: 15px;
@@ -216,8 +216,8 @@ export default {
 
 .table-content {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-column-gap: 0px;
+    grid-template-columns: repeat(4, 1fr);
+    grid-column-gap: 0;
     padding: 25px 0;
     font-weight: 400;
     font-size: 1.38vw;
