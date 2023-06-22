@@ -3,21 +3,30 @@
     <div v-if="started && !userPR" class="pr-outer">
         <div class="pr-container">
             <div class="table-heading">
-                <div class="heading1"><span>Name</span></div>
-                <div class="heading3"><span>Latest PR</span></div>
-                <div class="heading4"><span>Time Added</span></div>
+                <div class="heading1"><span>Rank</span></div>
+                <div class="heading2"><span>Name</span></div>
+                <div class="heading3"><span>Score</span></div>
+                <div class="heading4"><span>No of PRs</span></div>
+                <div class="heading5"><span>Last Updated</span></div>
             </div>
-            <div v-for="doc in formattedDocuments" :doc="doc.time">
+            <div v-for="(doc,index) in formattedDocuments" :doc="doc.time">
                 <div class="table-content">
                     <div class="heading1 text-white">
+                        <span>{{ index + 1 }}</span>
+                    </div>
+                    <div class="heading2 text-white">
                         <span>{{ doc.displayName }}</span>
                     </div>
                     <div class="heading3 text-white">
-                        <span><a :href="doc.link" target="_blank" class="text-white">{{ doc.message }}</a>
+                        <span>{{ doc.score }}
                         </span>
                     </div>
                     <div class="heading4 text-white">
-                        <span>{{ doc.time }}</span>
+                        <span>{{ doc.numberOfPRs }}
+                        </span>
+                    </div>
+                    <div class="heading5 text-white">
+                        <span>{{ doc.time }} ago</span>
                     </div>
                 </div>
             </div>
@@ -33,7 +42,7 @@ import { useRouter } from "vue-router";
 import { computed, ref } from "vue";
 import axios from "axios";
 import { formatDistanceToNow } from "date-fns";
-import getCollection from "../composables/getCollection";
+import {getCollection,getAllUserStats} from "../composables/getCollection";
 import { projectAuth } from "../firebase/config";
 import Nav from "@/components/Nav.vue";
 
@@ -45,14 +54,13 @@ export default {
     setup() {
         const { error, logout } = useLogout();
         const router = useRouter();
-        const { documents } = getCollection("dashboard-2022");
+        const { documents } = getAllUserStats("userStats-2023");
         const joke = ref("");
         const started = ref(true);
         const userPR = ref(false);
         var userData = new Map();
         var userPRData = new Map();
-        console.log("dash",documents.value)
-        console.log("user",userPRData)
+
 
 
         const formattedUserPRData = computed(() => {
@@ -197,8 +205,8 @@ export default {
 .table-heading {
     display: grid;
     background: #eaeaef;
-    grid-template-columns: repeat(3, 1fr);
-    grid-column-gap: 0px;
+    grid-template-columns: repeat(5, 1fr);
+    grid-column-gap: 1.5em;
     padding: 25px 0;
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
@@ -212,22 +220,13 @@ export default {
 
 .table-content {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-column-gap: 0px;
+    grid-template-columns: repeat(5, 1fr);
+    grid-column-gap: 1.5em;
     padding: 25px 0;
     font-weight: 400;
     font-size: 1.38vw;
     color: #04325e;
     text-align: center;
-}
-
-.heading3 {
-    text-align: left;
-}
-
-.heading3 a {
-    text-decoration: none;
-    color: #04325e;
 }
 
 @media (max-width: 900px) {

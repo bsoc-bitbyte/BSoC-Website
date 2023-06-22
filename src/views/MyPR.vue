@@ -35,7 +35,7 @@ import { useRouter } from "vue-router";
 import { computed, ref } from "vue";
 import axios from "axios";
 import { formatDistanceToNow } from "date-fns";
-import getCollection from "../composables/getCollection";
+import {getCollection} from "../composables/getCollection";
 import { projectAuth } from "../firebase/config";
 import Nav from "@/components/Nav.vue";
 
@@ -45,7 +45,7 @@ export default {
         Nav,
     },
     setup() {
-        const { documents } = getCollection("dashboard-2022");
+        const { documents } = getCollection("dashboard-2023");
         const started = ref(true);
         const userPR = ref(false);
         var userData = new Map();
