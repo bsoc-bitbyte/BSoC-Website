@@ -18,7 +18,7 @@
 <script>
 import { ref } from "vue";
 import { projectAuth } from "@/firebase/config";
-import useCollection from "@/composables/useCollection";
+import {addDoc,updateUserStats, addUserStats} from "../composables/useCollection";
 import { timestamp } from "@/firebase/config";
 import { useRouter } from "vue-router";
 
@@ -29,24 +29,35 @@ export default {
     const link = ref("");
     const difficulty = ref("Select Difficulty");
     const loading = ref(false)
-
-    const { error, addDoc } = useCollection("dashboard-2022")
     const displayName = projectAuth.currentUser.displayName
     const router = useRouter();
 
     const handleClick = async () => {
+
+      if (difficulty.value === "Select Difficulty") {
+        alert("Please select a difficulty")
+        return
+      }
+
+      if (message.value === "" || link.value === "") {
+        alert("Please fill in all fields")
+        return
+      }
+      loading.value = true
+
       const doc = {
         message: message.value,
         link: link.value,
         difficulty: difficulty.value,
-        displayName,
-        score: 0,
+        displayName: displayName,
         time: timestamp(),
         uid: projectAuth.currentUser.uid
       }
+
+      await updateUserStats("userStats-2023",doc,projectAuth.currentUser.uid);
+      
       console.log(doc)
-      loading.value = true
-      await addDoc(doc)
+      await addDoc("dashboard-2023", doc);
       loading.value = false
 
       await router.push("/dashboard")
