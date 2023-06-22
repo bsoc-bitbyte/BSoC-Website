@@ -37,8 +37,7 @@ const updateUserStats = async (collection, doc, id) => {
             updatedScore = doc.difficulty;
             numberOfPRs = 1;
             await setDoc(docRef, {
-                message: doc.message,
-                link: doc.link,
+                uid: doc.uid,       
                 score: updatedScore,
                 displayName: doc.displayName,
                 numberOfPRs: numberOfPRs,
@@ -52,8 +51,7 @@ const updateUserStats = async (collection, doc, id) => {
         numberOfPRs = parseInt(existingDoc.data().numberOfPRs) + 1;
 
         await setDoc(docRef, {
-            message: doc.message,
-            link: doc.link,
+            uid: doc.uid,
             score: updatedScore,
             displayName: doc.displayName,
             time: doc.time,
