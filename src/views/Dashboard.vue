@@ -7,7 +7,7 @@
                 <div class="heading2"><span>Name</span></div>
                 <div class="heading3"><span>Score</span></div>
                 <div class="heading4"><span>No of PRs</span></div>
-                <div class="heading5"><span>Time Updated</span></div>
+                <div class="heading5"><span>Last Updated</span></div>
             </div>
             <div v-for="(doc,index) in formattedDocuments" :doc="doc.time">
                 <div class="table-content">
@@ -26,7 +26,7 @@
                         </span>
                     </div>
                     <div class="heading5 text-white">
-                        <span>{{ doc.time }}</span>
+                        <span>{{ doc.time }} ago</span>
                     </div>
                 </div>
             </div>
