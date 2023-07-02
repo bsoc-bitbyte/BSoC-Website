@@ -1,5 +1,6 @@
 <!-- Jai shree ram -->
 <template>
+  <div id="ody" :style="{ backgroundColor: bodyBackgroundColor }">
   <nav class="navbar navbar-expand-lg text-white">
     <div class="container-fluid nav-container">
       <div class="logo">
@@ -10,7 +11,7 @@
       </div>
 
       <div id="nav">
-        <section class="mb-3" id="hambur">
+        <section class="mb-3" id="hambur" >
           <MDBNavbar dark bg="info" container>
             <button
               @click="collapse11 = !collapse11"
@@ -18,6 +19,7 @@
               :aria-expanded="collapse11"
               aria-label="Toggle navigation"
               aria-controls="navbarToggleExternalContent11"
+              style="position:fixed; z-index:99999;"
             >
               <div class="animated-icon3" :class="[!collapse11 && 'open']">
                 <span></span><span></span><span></span>
@@ -26,10 +28,10 @@
           </MDBNavbar>
           <MDBCollapse v-model="collapse11" id="navbarToggleExternalContent9">
             <div
-              :class="`bg-dark shadow-3 p-4 ${
+              :class="`bg-dark shadow-3 ${
                 collapse11 ? 'd-none' : 'd-flex flex-column'
               } position-absolute`"
-              style="top: 50px"
+              style="top:0; height:100vh ; width:0; justify-content:center; align-items:center; z-index: 9998; transition: .3s ease-in-out;visibility: visible;opacity: 1;position: fixed;"
             >
               <MDBBtn color="link" block class="border-none ms-0 px-3">
                 <ul class="list-unstyled">
@@ -161,7 +163,8 @@
         </button>
       </div>
     </div>
-  </nav>
+    </nav>
+  </div>
 </template>
 <script>
 // my work
@@ -187,20 +190,6 @@ export default {
     MDBBtn,
     MDBIcon,
   },
-
-  // setup() {
-  // const collapse9 = ref(false);
-  // const collapse10 = ref(false);
-  // const collapse11 = ref(false);
-  // showHamburger = false;
-
-  // return {
-  // collapse9,
-  // collapse10,
-  // collapse11,
-  // this.showHamburger = !this.showHamburger;
-  //   };
-  // },
 
   name: 'Nav',
   data() {
@@ -293,7 +282,13 @@ export default {
       isHome,
       collapse11,
     };
+
   },
+  computed: {
+  bodyBackgroundColor() {
+    return this.collapse11 ? 'black' : '';
+  },
+},
 };
 </script>
 
@@ -303,6 +298,12 @@ export default {
     display: none !important;
   }
 }
+/* #hambur
+{
+  background-color: black;
+  width: 10px;
+} */
+
 
 .custom-link {
   color: #87ceeb; /* Replace #ff0000 with the desired color value */
