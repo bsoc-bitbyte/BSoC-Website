@@ -1,195 +1,90 @@
 <!-- Jai shree ram -->
 <template>
   <div id="ody" :style="{ backgroundColor: bodyBackgroundColor }">
-  <nav class="navbar navbar-expand-lg text-white">
-    <div class="container-fluid nav-container">
-      <div class="logo">
-        <router-link to="/" class="text-white" href="#">
-          <img src="../assets/logo.png" alt="logo" />
-          <h2>BSOC</h2>
-        </router-link>
-      </div>
+    <nav class="navbar navbar-expand-lg text-white">
+      <div class="container-fluid nav-container">
+        <div class="logo">
+          <router-link to="/" class="text-white" href="#">
+            <img src="../assets/logo.png" alt="logo" />
+            <h2>BSOC</h2>
+          </router-link>
+        </div>
 
-      <div id="nav">
-        <section class="mb-3" id="hambur" >
-          <MDBNavbar dark bg="info" container>
-            <button
-              @click="collapse11 = !collapse11"
-              class="navbar-toggler third-button"
-              :aria-expanded="collapse11"
-              aria-label="Toggle navigation"
-              aria-controls="navbarToggleExternalContent11"
-              style="position:fixed; z-index:99999;"
-            >
-              <div class="animated-icon3" :class="[!collapse11 && 'open']">
-                <span></span><span></span><span></span>
+        <div id="nav">
+          <section class="mb-3" id="hambur">
+            <div id="tension">
+              <div class="hamburger-menu">
+                <input id="menu__toggle" type="checkbox" />
+                <label class="menu__btn" for="menu__toggle">
+                  <span></span>
+                </label>
+
+                <ul class="menu__box">
+                  <li><a class="menu__item" href="/dashboard">Dashboard</a></li>
+                  <li><a class="menu__item" href="/home">Home</a></li>
+                  <li><a class="menu__item" href="/myPR">MYPR</a></li>
+                  <li><a class="menu__item" href="/submit">Submit PR</a></li>
+                  <li><a class="menu__item" href="/projects">Projects</a></li>
+                </ul>
               </div>
-            </button>
-          </MDBNavbar>
-          <MDBCollapse v-model="collapse11" id="navbarToggleExternalContent9">
-            <div
-              :class="`bg-dark shadow-3 ${
-                collapse11 ? 'd-none' : 'd-flex flex-column'
-              } position-absolute`"
-              style="top:0; height:100vh ; width:0; justify-content:center; align-items:center; z-index: 9998; transition: .3s ease-in-out;visibility: visible;opacity: 1;position: fixed;"
-            >
-              <MDBBtn color="link" block class="border-none ms-0 px-3">
-                <ul class="list-unstyled">
-                  <li>
-                    <a href="/dashboard" target="_blank" class="custom-link"
-                      >Dashboard</a
-                    >
-                  </li>
-                </ul>
-              </MDBBtn>
-              <MDBBtn color="link" block class="border-none ms-0 px-3">
-                <ul class="list-unstyled">
-                  <li>
-                    <a href="/home" target="_blank" class="custom-link">Home</a>
-                  </li>
-                </ul>
-              </MDBBtn>
-              <MDBBtn color="link" block class="border-none ms-0 px-3">
-                <ul class="list-unstyled">
-                  <li>
-                    <a href="/myPR" target="_blank" class="custom-link"
-                      >My PR's</a
-                    >
-                  </li>
-                </ul>
-              </MDBBtn>
-              <MDBBtn color="link" block class="border-none ms-0 px-3">
-                <ul class="list-unstyled">
-                  <li>
-                    <a href="/submit" target="_blank" class="custom-link"
-                      >SubmitPR</a
-                    >
-                  </li>
-                </ul>
-              </MDBBtn>
-              <MDBBtn color="link" block class="border-none ms-0 px-3">
-                <ul class="list-unstyled">
-                  <li>
-                    <a href="/projects" target="_blank" class="custom-link"
-                      >Projects</a
-                    >
-                  </li>
-                </ul>
-              </MDBBtn>
             </div>
-          </MDBCollapse>
-        </section>
+          </section>
 
-        <div class="collapse navbar-collapse" id="Yahoo">
-          <div class="navbar-nav">
-            <div class="d-flex align-item-center" v-if="isloggedIn">
-              <router-link
-                class="nav-link text-white px-2"
-                to="/dashboard"
-                style="text-decoration: none; color: inherit"
-                v-if="isHome"
-                >Dashboard</router-link
-              >
-              <router-link
-                class="nav-link text-white px-4"
-                to="/home"
-                style="text-decoration: none; color: inherit"
-                v-if="!isHome"
-                >Home</router-link
-              >
-              <router-link
-                class="nav-link text-white px-4"
-                to="/dashboard"
-                style="text-decoration: none; color: inherit"
-              >
-                <button
-                  class="nav-button"
-                  v-on:click="handleMyPR()"
-                  v-if="isloggedIn && userPR"
-                >
+          <div class="collapse navbar-collapse" id="Yahoo">
+            <div class="navbar-nav">
+              <div class="d-flex align-item-center" v-if="isloggedIn">
+                <router-link class="nav-link text-white px-2" to="/dashboard"
+                  style="text-decoration: none; color: inherit" v-if="isHome">Dashboard</router-link>
+                <router-link class="nav-link text-white px-4" to="/home" style="text-decoration: none; color: inherit"
+                  v-if="!isHome">Home</router-link>
+                <router-link class="nav-link text-white px-4" to="/dashboard"
+                  style="text-decoration: none; color: inherit">
+                  <button class="nav-button" v-on:click="handleMyPR()" v-if="isloggedIn && userPR">
+                    Dashboard
+                  </button>
+                </router-link>
+                <router-link class="nav-link text-white px-4" to="/myPR" style="text-decoration: none; color: inherit"
+                  v-if="isloggedIn && !userPR">
+                  <button class="nav-button" v-on:click="handleMyPR()" v-if="isloggedIn && !userPR">
+                    My PR's
+                  </button>
+                </router-link>
+                <router-link class="nav-link text-white px-4" to="/submit" style="text-decoration: none; color: inherit"
+                  v-if="isloggedIn">SubmitPR</router-link>
+              </div>
+              <div v-else>
+                <button class="mt-2 nav-button" v-on:click="handleLogin()">
                   Dashboard
                 </button>
-              </router-link>
-              <router-link
-                class="nav-link text-white px-4"
-                to="/myPR"
-                style="text-decoration: none; color: inherit"
-                v-if="isloggedIn && !userPR"
-              >
-                <button
-                  class="nav-button"
-                  v-on:click="handleMyPR()"
-                  v-if="isloggedIn && !userPR"
-                >
-                  My PR's
-                </button>
-              </router-link>
-              <router-link
-                class="nav-link text-white px-4"
-                to="/submit"
-                style="text-decoration: none; color: inherit"
-                v-if="isloggedIn"
-                >SubmitPR</router-link
-              >
+              </div>
+              <router-link class="nav-link text-white px-4" to="/projects">Projects</router-link>
             </div>
-            <div v-else>
-              <button class="mt-2 nav-button" v-on:click="handleLogin()">
-                Dashboard
-              </button>
-            </div>
-            <router-link class="nav-link text-white px-4" to="/projects"
-              >Projects</router-link
-            >
           </div>
         </div>
+        <div v-if="!isloggedIn" class="navbar-nav auth">
+          <span v-on:click="handleLogin" style="padding-right: 1.3em; cursor: pointer">Login</span>
+          <Login v-if="$store.state.login" :toggle="handleLogin" />
+          <span v-on:click="handleSignup" style="cursor: pointer">Signup</span>
+          <Signup v-if="$store.state.signup" :toggle="handleSignup" />
+        </div>
+        <div v-else class="navbar-nav auth">
+          <button class="nav-button" v-on:click="handleLogout()" v-if="isloggedIn && !userPR">
+            LogOut
+          </button>
+        </div>
       </div>
-      <div v-if="!isloggedIn" class="navbar-nav auth">
-        <span
-          v-on:click="handleLogin"
-          style="padding-right: 1.3em; cursor: pointer"
-          >Login</span
-        >
-        <Login v-if="$store.state.login" :toggle="handleLogin" />
-        <span v-on:click="handleSignup" style="cursor: pointer">Signup</span>
-        <Signup v-if="$store.state.signup" :toggle="handleSignup" />
-      </div>
-      <div v-else class="navbar-nav auth">
-        <button
-          class="nav-button"
-          v-on:click="handleLogout()"
-          v-if="isloggedIn && !userPR"
-        >
-          LogOut
-        </button>
-      </div>
-    </div>
     </nav>
   </div>
 </template>
 <script>
-// my work
-import {
-  MDBNavbar,
-  MDBNavbarToggler,
-  MDBCollapse,
-  MDBBtn,
-  MDBIcon,
-} from 'mdb-vue-ui-kit';
-// end
-import {ref, toDisplayString} from 'vue';
-import {projectAuth} from '../firebase/config';
+
+import { ref, toDisplayString } from 'vue';
+import { projectAuth } from '../firebase/config';
 import useLogout from '@/composables/useLogout';
-import {useRouter} from 'vue-router';
+import { useRouter } from 'vue-router';
 import Login from './Login.vue';
 import Signup from './Signup.vue';
 export default {
-  components: {
-    MDBNavbar,
-    MDBNavbarToggler,
-    MDBCollapse,
-    MDBBtn,
-    MDBIcon,
-  },
 
   name: 'Nav',
   data() {
@@ -226,7 +121,7 @@ export default {
     next();
   },
   setup() {
-    const {error, logout} = useLogout();
+    const { error, logout } = useLogout();
     let isloggedIn = ref(false);
     let isHome = ref(true);
     const userPR = ref(false);
@@ -258,7 +153,7 @@ export default {
     const handleLogout = () => {
       logout();
       if (!error.value) {
-        router.push({name: 'Home'});
+        router.push({ name: 'Home' });
       } else {
         console.log(error.value);
       }
@@ -284,11 +179,6 @@ export default {
     };
 
   },
-  computed: {
-  bodyBackgroundColor() {
-    return this.collapse11 ? 'black' : '';
-  },
-},
 };
 </script>
 
@@ -298,108 +188,113 @@ export default {
     display: none !important;
   }
 }
-/* #hambur
-{
-  background-color: black;
-  width: 10px;
-} */
 
-
-.custom-link {
-  color: #87ceeb; /* Replace #ff0000 with the desired color value */
-  text-decoration: none;
-  font-weight: bold;
-}
-.animated-icon3 {
-  width: 30px;
-  height: 20px;
-  position: relative;
-  margin: 0px;
-  -webkit-transform: rotate(0deg);
-  -moz-transform: rotate(0deg);
-  -o-transform: rotate(0deg);
-  transform: rotate(0deg);
-  -webkit-transition: 0.5s ease-in-out;
-  -moz-transition: 0.5s ease-in-out;
-  -o-transition: 0.5s ease-in-out;
-  transition: 0.5s ease-in-out;
-  cursor: pointer;
-}
-
-.animated-icon3 span {
-  display: block;
-  position: absolute;
-  height: 3px;
-  width: 100%;
-  border-radius: 9px;
-  opacity: 1;
-  left: 0;
-  -webkit-transform: rotate(0deg);
-  -moz-transform: rotate(0deg);
-  -o-transform: rotate(0deg);
-  transform: rotate(0deg);
-  -webkit-transition: 0.25s ease-in-out;
-  -moz-transition: 0.25s ease-in-out;
-  -o-transition: 0.25s ease-in-out;
-  transition: 0.25s ease-in-out;
-}
-
-
-.animated-icon3 span {
-  background: #f3e5f5;
-}
-
-
-/* Icon 4 */
-
-.animated-icon3 span:nth-child(1) {
-  top: 0px;
-  -webkit-transform-origin: left center;
-  -moz-transform-origin: left center;
-  -o-transform-origin: left center;
-  transform-origin: left center;
-}
-
-.animated-icon3 span:nth-child(2) {
-  top: 10px;
-  -webkit-transform-origin: left center;
-  -moz-transform-origin: left center;
-  -o-transform-origin: left center;
-  transform-origin: left center;
-}
-
-.animated-icon3 span:nth-child(3) {
-  top: 20px;
-  -webkit-transform-origin: left center;
-  -moz-transform-origin: left center;
-  -o-transform-origin: left center;
-  transform-origin: left center;
-}
-
-.animated-icon3.open span:nth-child(1) {
-  -webkit-transform: rotate(45deg);
-  -moz-transform: rotate(45deg);
-  -o-transform: rotate(45deg);
-  transform: rotate(45deg);
-  top: 0px;
-  left: 8px;
-}
-
-.animated-icon3.open span:nth-child(2) {
-  width: 0%;
+#menu__toggle {
   opacity: 0;
 }
 
-.animated-icon3.open span:nth-child(3) {
-  -webkit-transform: rotate(-45deg);
-  -moz-transform: rotate(-45deg);
-  -o-transform: rotate(-45deg);
-  transform: rotate(-45deg);
-  top: 21px;
-  left: 8px;
+#menu__toggle:checked~.menu__btn>span {
+  transform: rotate(45deg);
 }
-/*  */
-/*  */
+
+#menu__toggle:checked~.menu__btn>span::before {
+  top: 0;
+  transform: rotate(0);
+}
+
+#menu__toggle:checked~.menu__btn>span::after {
+  top: 0;
+  transform: rotate(90deg);
+}
+
+#menu__toggle:checked~.menu__box {
+  visibility: visible;
+  left: 0;
+}
+
+.menu__btn {
+  display: flex;
+  align-items: center;
+  position: fixed;
+  top: 100px;
+  left: 20px;
+  margin-left: auto;
+  width: 26px;
+  height: 26px;
+  /* color: white; */
+
+  cursor: pointer;
+  z-index: 1;
+}
+
+.menu__btn>span,
+.menu__btn>span::before,
+.menu__btn>span::after {
+  display: block;
+  position: absolute;
+
+  width: 100%;
+  height: 2px;
+
+  background-color: #137460;
+
+  transition-duration: 0.25s;
+}
+
+.menu__btn>span::before {
+  content: "";
+  top: -8px;
+}
+
+.menu__btn>span::after {
+  content: "";
+  top: 8px;
+}
+
+.menu__box {
+  display: block;
+  position: fixed;
+  visibility: hidden;
+  top: 0;
+  left: -100%;
+
+  width: 100vw;
+  height: 100vh;
+
+  margin : 0;
+  padding: 150px 0px;
+
+  list-style: none;
+
+  background-color: #a4cfec;
+  box-shadow: 1px 0px 6px rgba(0, 0, 0, 0.2);
+
+  transition-duration: 0.25s;
+}
+
+.menu__item {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  display: block;
+  padding: 12px 24px;
+
+  color: #333;
+  background-color: #a4cfec;
+
+  font-family: "Roboto", sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+
+  text-decoration: none;
+
+  transition-duration: 0.25s;
+}
+
+.menu__item:hover {
+  background-color: #cfd8dc;
+}
+
 
 .navbar {
   position: fixed;
