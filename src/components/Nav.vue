@@ -215,8 +215,9 @@ export default {
   display: flex;
   align-items: center;
   position: fixed;
-  top: 100px;
-  left: 20px;
+  top: 30px;
+  /* left: 20px; */
+  right :150px;
   margin-left: auto;
   width: 26px;
   height: 26px;
@@ -235,7 +236,7 @@ export default {
   width: 100%;
   height: 2px;
 
-  background-color: #137460;
+  background-color: whitesmoke;
 
   transition-duration: 0.25s;
 }
@@ -265,7 +266,7 @@ export default {
 
   list-style: none;
 
-  background-color: #a4cfec;
+  background-color: #00192E;
   box-shadow: 1px 0px 6px rgba(0, 0, 0, 0.2);
 
   transition-duration: 0.25s;
@@ -278,8 +279,8 @@ export default {
   display: block;
   padding: 12px 24px;
 
-  color: #333;
-  background-color: #a4cfec;
+  color: white;
+  background-color:#00192E;
 
   font-family: "Roboto", sans-serif;
   font-size: 20px;
@@ -291,7 +292,7 @@ export default {
 }
 
 .menu__item:hover {
-  background-color: #cfd8dc;
+  background-color: rgb(141, 141, 178);
 }
 
 
