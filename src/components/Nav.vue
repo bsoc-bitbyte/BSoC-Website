@@ -61,13 +61,13 @@
           </div>
         </div>
         <div v-if="!isloggedIn" class="navbar-nav auth">
-          <span v-on:click="handleLogin" style="padding-right: 1.3em; cursor: pointer">Login</span>
+          <span v-on:click="handleLogin" style="padding-right: 1.3em; cursor: pointer; margin-right: 80px;">Login</span>
           <Login v-if="$store.state.login" :toggle="handleLogin" />
-          <span v-on:click="handleSignup" style="cursor: pointer">Signup</span>
+          <span v-on:click="handleSignup" style="cursor: pointer;margin-right: 80px;">Signup</span>
           <Signup v-if="$store.state.signup" :toggle="handleSignup" />
         </div>
         <div v-else class="navbar-nav auth">
-          <button class="nav-button" v-on:click="handleLogout()" v-if="isloggedIn && !userPR">
+          <button class="nav-button" style="margin-right: 80px;" v-on:click="handleLogout()" v-if="isloggedIn && !userPR">
             LogOut
           </button>
         </div>
@@ -217,7 +217,7 @@ export default {
   position: fixed;
   top: 30px;
   /* left: 20px; */
-  right :150px;
+  right :70px;
   margin-left: auto;
   width: 26px;
   height: 26px;
@@ -236,7 +236,7 @@ export default {
   width: 100%;
   height: 2px;
 
-  background-color: whitesmoke;
+  background-color: rgb(245, 235, 235) !important;
 
   transition-duration: 0.25s;
 }
@@ -266,7 +266,7 @@ export default {
 
   list-style: none;
 
-  background-color: #00192E;
+  background-color: #19192a;
   box-shadow: 1px 0px 6px rgba(0, 0, 0, 0.2);
 
   transition-duration: 0.25s;
@@ -280,7 +280,7 @@ export default {
   padding: 12px 24px;
 
   color: white;
-  background-color:#00192E;
+  background-color:#19192a;
 
   font-family: "Roboto", sans-serif;
   font-size: 20px;
