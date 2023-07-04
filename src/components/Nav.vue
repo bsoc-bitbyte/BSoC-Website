@@ -1,4 +1,3 @@
-<!-- Jai shree ram -->
 <template>
   <div id="ody" :style="{ backgroundColor: bodyBackgroundColor }">
     <nav class="navbar navbar-expand-lg text-white">
