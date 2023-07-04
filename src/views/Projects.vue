@@ -74,6 +74,14 @@ export default {
                     link: "https://github.com/bsoc-bitbyte/BSoC-Website",
                     techStack: "Vue, Firebase, Bootstrap",
                     description: 'A website for BSoC to showcase all the projects and events that are being conducted under BSoC.',
+                },
+                {
+                    id: 8,
+                    projectName: "Busify Android",
+                    name: "Priyanshu",
+                    link: "https://github.com/bsoc-bitbyte/busify-android/",
+                    techStack: "Kotlin, Architecture, Dagger-Hilt",
+                    description: 'Busify-Android is a mobile application developed as a part of Busify. The app was built to help ease out the process of verifying the passengers boarding the bus and managing them.',
                 }
 
             ],
