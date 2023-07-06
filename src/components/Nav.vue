@@ -75,10 +75,10 @@
             </div>
           </div>
         </div>
-        <div v-if="!isloggedIn" class="navbar-nav auth hambur2">
-          <span v-on:click="handleLogin" style="padding-right: 1.3em; cursor: pointer; margin-right: 80px;">Login</span>
+        <div v-if="!isloggedIn" class="navbar-nav auth">
+          <span class="hambur2" v-on:click="handleLogin" style="padding-right: 1.3em; cursor: pointer; margin-right: 80px;">Login</span>
           <Login v-if="$store.state.login" :toggle="handleLogin" />
-          <span v-on:click="handleSignup" style="cursor: pointer;margin-right: 80px;">Sign Up</span>
+          <span class="hambur2" v-on:click="handleSignup" style="cursor: pointer;margin-right: 80px;">Sign Up</span>
           <Signup v-if="$store.state.signup" :toggle="handleSignup" />
         </div>
         <div v-if="isloggedIn" class="navbar-nav auth">
@@ -205,7 +205,8 @@ export default {
 
 @media (max-width: 991px) {
   .hambur2 {
-    display: none !important;
+    opacity: 0;
+    /* display:none !important; */
   }
 }
 
