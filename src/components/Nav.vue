@@ -1,3 +1,4 @@
+<!-- Jai shree ram -->
 <template>
   <div id="ody" :style="{ backgroundColor: bodyBackgroundColor }">
     <nav class="navbar navbar-expand-lg text-white">
@@ -19,11 +20,25 @@
                 </label>
 
                 <ul class="menu__box">
-                  <li><a class="menu__item" href="/dashboard">Dashboard</a></li>
+                  
+                  <li  v-if="isloggedIn"><a class="menu__item" href="/dashboard">Dashboard</a></li>
                   <li><a class="menu__item" href="/home">Home</a></li>
-                  <li><a class="menu__item" href="/myPR">MYPR</a></li>
-                  <li><a class="menu__item" href="/submit">Submit PR</a></li>
+                  <li v-if="isloggedIn"><a class="menu__item" href="/myPR">MYPR</a></li>
+                  <li v-if="isloggedIn"><a class="menu__item" href="/submit">Submit PR</a></li>
                   <li><a class="menu__item" href="/projects">Projects</a></li>
+
+                    <div v-if="!isloggedIn" class="navbar-nav auth menu__item" v-on:click="handleLogin" style="cursor: pointer; text-align: center; margin-left: 2em;">Login</div>
+                    <Login v-if="$store.state.login" :toggle="handleLogin" />
+              
+                    <div v-if="!isloggedIn" class="navbar-nav auth menu__item" v-on:click="handleSignup"  style="cursor: pointer; margin-left: 2em;">Signup</div>
+                    <Signup v-if="$store.state.signup" :toggle="handleSignup" />
+
+                    <!-- <div v-if="isloggedIn"  class="navbar-nav auth menu__item"> -->
+                      <div class="navbar-nav auth menu__item" style="cursor: pointer; margin-left: 2em;" v-on:click="handleLogout()" v-if="isloggedIn && !userPR">
+                      LogOut
+                      </div>
+                     <!-- </div> -->
+
                 </ul>
               </div>
             </div>
@@ -60,14 +75,14 @@
             </div>
           </div>
         </div>
-        <div v-if="!isloggedIn" class="navbar-nav auth">
+        <div v-if="!isloggedIn" class="navbar-nav auth hambur2">
           <span v-on:click="handleLogin" style="padding-right: 1.3em; cursor: pointer; margin-right: 80px;">Login</span>
           <Login v-if="$store.state.login" :toggle="handleLogin" />
-          <span v-on:click="handleSignup" style="cursor: pointer;margin-right: 80px;">Signup</span>
+          <span v-on:click="handleSignup" style="cursor: pointer;margin-right: 80px;">Sign Up</span>
           <Signup v-if="$store.state.signup" :toggle="handleSignup" />
         </div>
-        <div v-else class="navbar-nav auth">
-          <button class="nav-button" style="margin-right: 80px;" v-on:click="handleLogout()" v-if="isloggedIn && !userPR">
+        <div v-if="isloggedIn" class="navbar-nav auth">
+          <button  class="nav-button hambur2" style="margin-right: 80px;" v-on:click="handleLogout()" v-if="isloggedIn && !userPR">
             LogOut
           </button>
         </div>
@@ -184,6 +199,12 @@ export default {
 <style scoped>
 @media (min-width: 991px) {
   #hambur {
+    display: none !important;
+  }
+}
+
+@media (max-width: 991px) {
+  .hambur2 {
     display: none !important;
   }
 }
