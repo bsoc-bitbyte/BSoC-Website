@@ -2,9 +2,9 @@
 <template>
   <div id="ody" :style="{ backgroundColor: bodyBackgroundColor }">
     <nav class="navbar navbar-expand-lg text-white">
-      <div class="container-fluid nav-container">
+      <div class="container-fluid nav-container" style="display: flex;">
         <div class="logo">
-          <router-link to="/" class="text-white" href="#">
+          <router-link to="/" class="text-white" style="margin-right: 0%;" href="#">
             <img src="../assets/logo.png" alt="logo" />
             <h2>BSOC</h2>
           </router-link>
@@ -20,24 +20,27 @@
                 </label>
 
                 <ul class="menu__box">
-                  
-                  <li  v-if="isloggedIn"><a class="menu__item" href="/dashboard">Dashboard</a></li>
+
+                  <li v-if="isloggedIn"><a class="menu__item" href="/dashboard">Dashboard</a></li>
                   <li><a class="menu__item" href="/home">Home</a></li>
                   <li v-if="isloggedIn"><a class="menu__item" href="/myPR">MYPR</a></li>
                   <li v-if="isloggedIn"><a class="menu__item" href="/submit">Submit PR</a></li>
                   <li><a class="menu__item" href="/projects">Projects</a></li>
 
-                    <div v-if="!isloggedIn" class="navbar-nav auth menu__item" v-on:click="handleLogin" style="cursor: pointer; text-align: center; margin-left: 2em;">Login</div>
-                    <Login v-if="$store.state.login" :toggle="handleLogin" />
-              
-                    <div v-if="!isloggedIn" class="navbar-nav auth menu__item" v-on:click="handleSignup"  style="cursor: pointer; margin-left: 2em;">Signup</div>
-                    <Signup v-if="$store.state.signup" :toggle="handleSignup" />
+                  <router-link to="/projects" v-if="!isloggedIn" class="navbar-nav auth menu__item" v-on:click="handleLogin"
+                    style="cursor: pointer; text-align: center; margin-left: 2em;">Login</router-link>
+                  <Login v-if="$store.state.login" :toggle="handleLogin" />
 
-                    <!-- <div v-if="isloggedIn"  class="navbar-nav auth menu__item"> -->
-                      <div class="navbar-nav auth menu__item" style="cursor: pointer; margin-left: 2em;" v-on:click="handleLogout()" v-if="isloggedIn && !userPR">
-                      LogOut
-                      </div>
-                     <!-- </div> -->
+                  <router-link to="/prjects" v-if="!isloggedIn" class="navbar-nav auth menu__item" v-on:click="handleSignup"
+                    style="cursor: pointer; margin-left: 2em;">Signup</router-link>
+                  <Signup v-if="$store.state.signup" :toggle="handleSignup" />
+
+                  <!-- <div v-if="isloggedIn"  class="navbar-nav auth menu__item"> -->
+                  <div class="navbar-nav auth menu__item" style="cursor: pointer; margin-left: 2em;"
+                    v-on:click="handleLogout()" v-if="isloggedIn && !userPR">
+                    LogOut
+                  </div>
+                  <!-- </div> -->
 
                 </ul>
               </div>
@@ -45,15 +48,17 @@
           </section>
 
           <div class="collapse navbar-collapse" id="Yahoo">
-            <div class="navbar-nav">
+            <div class="navbarhh" style="float: left !important; margin-left: 0px; display: flex; margin-right: 40px;">
               <div class="d-flex align-item-center" v-if="isloggedIn">
                 <router-link class="nav-link text-white px-2" to="/dashboard"
-                  style="text-decoration: none; color: inherit" v-if="isHome">Dashboard</router-link>
+                  style="text-decoration: none; float: left;color: inherit;margin-left: 0px;"
+                  v-if="isHome">Dashboard</router-link>
                 <router-link class="nav-link text-white px-4" to="/home" style="text-decoration: none; color: inherit"
                   v-if="!isHome">Home</router-link>
                 <router-link class="nav-link text-white px-4" to="/dashboard"
                   style="text-decoration: none; color: inherit">
-                  <button class="nav-button" v-on:click="handleMyPR()" v-if="isloggedIn && userPR">
+                  <button class="nav-button" style="float: left;margin-left: 0px;" v-on:click="handleMyPR()"
+                    v-if="isloggedIn && userPR">
                     Dashboard
                   </button>
                 </router-link>
@@ -66,23 +71,26 @@
                 <router-link class="nav-link text-white px-4" to="/submit" style="text-decoration: none; color: inherit"
                   v-if="isloggedIn">SubmitPR</router-link>
               </div>
-              <div v-else>
-                <button class="mt-2 nav-button" v-on:click="handleLogin()">
+              <div v-else class="hii" style="float: left;">
+                <button class="mt-1 nav-button hii" style=" display: flex;float: left;  padding-left: -100%;"
+                  v-on:click="handleLogin()">
                   Dashboard
                 </button>
               </div>
-              <router-link class="nav-link text-white px-4" to="/projects">Projects</router-link>
+              <router-link class="nav-link text-white px-4 mt-1 mx-0 my-0 mz-0" to="/projects">Projects</router-link>
             </div>
           </div>
         </div>
         <div v-if="!isloggedIn" class="navbar-nav auth">
-          <span class="hambur2" v-on:click="handleLogin" style="padding-right: 1.3em; cursor: pointer; margin-right: 80px;">Login</span>
+          <div class="hambur2" v-on:click="handleLogin"
+            style="padding-right: 0em; cursor: pointer; margin-right: 20px;">Login</div>
           <Login v-if="$store.state.login" :toggle="handleLogin" />
-          <span class="hambur2" v-on:click="handleSignup" style="cursor: pointer;margin-right: 80px;">Sign Up</span>
+          <span class="hambur2" v-on:click="handleSignup" style="cursor: pointer;margin-right: 0px;">Sign Up</span>
           <Signup v-if="$store.state.signup" :toggle="handleSignup" />
         </div>
         <div v-if="isloggedIn" class="navbar-nav auth">
-          <button  class="nav-button hambur2" style="margin-right: 80px;" v-on:click="handleLogout()" v-if="isloggedIn && !userPR">
+          <button class="nav-button hambur2" style="margin-right: 80px;" v-on:click="handleLogout()"
+            v-if="isloggedIn && !userPR">
             LogOut
           </button>
         </div>
@@ -122,12 +130,13 @@ export default {
   methods: {
     handleLogin() {
       this.$store.state.login = !this.$store.state.login;
+      showHamburger = !showHamburger;
     },
     handleSignup() {
       this.$store.state.signup = !this.$store.state.signup;
     },
     toggleHamburger() {
-      this.showHamburger = !this.showHamburger;
+      showHamburger = !showHamburger;
     },
   },
   beforeRouteLeave(to, from, next) {
@@ -210,6 +219,40 @@ export default {
   }
 }
 
+
+@media (min-width: 992px ) {
+  .hii {
+    display: contents;
+    float: left;
+    /* margin-left: 0px !important; */
+    margin-left: -25vw !important;
+    margin-top: 1px !important;
+
+  }
+}
+
+@media (min-width: 1300px ) {
+  .hii {
+    display: contents;
+    float: left;
+    /* margin-left: 0px !important; */
+    margin-left: -33vw !important;
+
+  }
+}
+
+@media (min-width: 1800px ) {
+  .hii {
+    display: contents;
+    float: left;
+    /* margin-left: 0px !important; */
+    margin-left: -38vw !important;
+
+  }
+}
+
+
+
 #menu__toggle {
   opacity: 0;
 }
@@ -239,7 +282,7 @@ export default {
   position: fixed;
   top: 30px;
   /* left: 20px; */
-  right :70px;
+  right: 70px;
   margin-left: auto;
   width: 26px;
   height: 26px;
@@ -283,7 +326,7 @@ export default {
   width: 100vw;
   height: 100vh;
 
-  margin : 0;
+  margin: 0;
   padding: 150px 0px;
 
   list-style: none;
@@ -302,7 +345,7 @@ export default {
   padding: 12px 24px;
 
   color: white;
-  background-color:#19192a;
+  background-color: #19192a;
 
   font-family: "Roboto", sans-serif;
   font-size: 20px;
@@ -363,5 +406,5 @@ export default {
   background: none;
   border: none;
   color: white;
-}
-</style>
+  margin-left: 0%;
+}</style>
