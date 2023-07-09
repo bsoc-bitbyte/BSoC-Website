@@ -97,8 +97,9 @@ export default {
 .screen {
   background: rgb(19, 18, 17);
   position: absolute;
-	top: calc(100%);
-	left: calc(42%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 5%);
   z-index: 2;
   filter: blur(px);
   height: 640px;
@@ -110,25 +111,11 @@ export default {
 .x{
   position: relative;
   
-  /* top: 2em; */
   border: none;
   background-color: transparent;
   font-weight: bold;
   font-size: x-large;
   cursor: pointer;
 }
-
-@media (max-width:768px){
-
-.screen{
-  margin-top: 0%;
-  left: 0%;
-
-}
-.x{
-  left: -4em;
-}
-}
-
 
 </style>
