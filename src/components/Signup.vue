@@ -111,20 +111,11 @@ export default {
 .x{
   position: relative;
   
-  /* top: 2em; */
   border: none;
   background-color: transparent;
   font-weight: bold;
   font-size: x-large;
   cursor: pointer;
 }
-
-@media (max-width:768px){
-
-.x{
-  left: -4em;
-}
-}
-
 
 </style>
