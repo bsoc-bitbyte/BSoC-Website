@@ -31,6 +31,24 @@ You can check your node and npm versions by typing the mentioned commands in the
 node -v
 npm -v
 ```
+### For Windows Users only
+TO run the project locally on your device you need to make the following changes
+   1. Got to /package.json
+   2. Find the "scripts" object in the 5th line
+   3. In the 6th and 7th line replace the following code 
+      {
+         "serve": "vue-cli-service serve",
+         "build": "vue-cli-service build",
+      }
+
+      with
+
+      {
+         "serve": "set NODE_OPTIONS=--openssl-legacy-provider && vue-cli-service serve",
+         "build": "set NODE_OPTIONS=--openssl-legacy-provider && vue-cli-service build",
+      }
+   4. But always keep in mind that you never have to push the package.json file while submiting a PR
+
 ### 🔶Project Initialization
 1. Fork this repository which will create a copy of this project in your GitHub account.
 2. Clone the forked repository. Steps to clone :-
