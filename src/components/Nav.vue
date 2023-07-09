@@ -6,7 +6,7 @@
         <div class="logo">
           <router-link to="/" class="text-white" style="margin-right: 0%;" href="#">
             <img src="../assets/logo.png" alt="logo" />
-            <h2>BSOC</h2>
+            <h2 style="margin-top: 4px;">BSOC</h2>
           </router-link>
         </div>
 
@@ -214,7 +214,7 @@ export default {
 
 @media (max-width: 991px) {
   .hambur2 {
-    opacity: 0;
+    display: none !important;
     /* display:none !important; */
   }
 }
