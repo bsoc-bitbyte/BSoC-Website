@@ -21,11 +21,18 @@
 
                 <ul class="menu__box">
 
-                  <li v-if="isloggedIn"><a class="menu__item" href="/dashboard">Dashboard</a></li>
-                  <li><a class="menu__item" href="/home">Home</a></li>
-                  <li v-if="isloggedIn"><a class="menu__item" href="/myPR">MYPR</a></li>
-                  <li v-if="isloggedIn"><a class="menu__item" href="/submit">Submit PR</a></li>
-                  <li><a class="menu__item" href="/projects">Projects</a></li>
+                  <router-link v-if="isloggedIn" class="menu__item" to="/dashboard">Dashboard</router-link>
+                  <router-link class="menu__item" to="/home">Home</router-link>
+                  <router-link class="menu__item" to="/myPR"
+                  v-if="isloggedIn && !userPR"
+                    v-on:click="handleMyPR()">
+                    My PR's
+                  </router-link>
+
+                  <router-link class="menu__item" to="/submit" v-if="isloggedIn">SubmitPR</router-link>
+
+
+                  <router-link class="menu__item" to="/projects">Projects</router-link>
 
                   <router-link to="/projects" v-if="!isloggedIn" class="navbar-nav auth menu__item"
                     v-on:click="handleLogin"
@@ -52,9 +59,9 @@
             <div class="navbarhh" style="float: left !important; margin-left: 0px; display: flex; margin-right: 40px;">
               <div class="d-flex align-item-center" v-if="isloggedIn">
                 <router-link class="nav-link text-white px-2" to="/dashboard"
-                  style="text-decoration: none; float: left;color: inherit;margin-left: 0px;"
+                  style="text-decoration: none; float: left;color: inherit;margin-left: 0px;margin-top: 23px;"
                   v-if="isHome">Dashboard</router-link>
-                <router-link class="nav-link text-white px-4" to="/home" style="text-decoration: none; color: inherit"
+                <router-link class="nav-link text-white px-4" to="/home" style="text-decoration: none;margin-top: 22px; color: inherit"
                   v-if="!isHome">Home</router-link>
                 <router-link class="nav-link text-white px-4" to="/dashboard"
                   style="text-decoration: none; color: inherit">
@@ -65,32 +72,32 @@
                 </router-link>
                 <router-link class="nav-link text-white px-4" to="/myPR" style="text-decoration: none; color: inherit"
                   v-if="isloggedIn && !userPR">
-                  <button class="nav-button" v-on:click="handleMyPR()" v-if="isloggedIn && !userPR">
+                  <button class="nav-button" style="margin-top: 23px;" v-on:click="handleMyPR()" v-if="isloggedIn && !userPR">
                     My PR's
                   </button>
                 </router-link>
-                <router-link class="nav-link text-white px-4" to="/submit" style="text-decoration: none; color: inherit"
+                <router-link class="nav-link text-white px-4 mt-4" to="/submit" style="text-decoration: none; margin-top: 22px;color: inherit"
                   v-if="isloggedIn">SubmitPR</router-link>
               </div>
               <div v-else class="hii" style="float: left;">
-                <button class="mt-1 nav-button hii" style=" display: flex;float: left;  padding-left: -100%;"
+                <button class="mt-1 nav-button hii" style=" display: flex;float: left;  padding-left: -100%; margin-top: 23px !important;"
                   v-on:click="handleLogin()">
                   Dashboard
                 </button>
               </div>
-              <router-link class="nav-link text-white px-4 mt-1 mx-0 my-0 mz-0" to="/projects">Projects</router-link>
+              <router-link class="nav-link text-white px-4 mt-4 mx-0 my-0 mz-0"  to="/projects">Projects</router-link>
             </div>
           </div>
         </div>
         <div v-if="!isloggedIn" class="navbar-nav auth">
-          <div class="hambur2" v-on:click="handleLogin" style="padding-right: 0em; cursor: pointer; margin-right: 20px;">
+          <div class="hambur2" v-on:click="handleLogin" style="padding-right: 0em; cursor: pointer; margin-right: 20px; margin-top: 14px;">
             Login</div>
           <Login v-if="$store.state.login" :toggle="handleLogin" />
-          <span class="hambur2" v-on:click="handleSignup" style="cursor: pointer;margin-right: 0px;">Sign Up</span>
+          <span class="hambur2" v-on:click="handleSignup" style="cursor: pointer;margin-right: 0px;margin-top: 14px;">Sign Up</span>
           <Signup v-if="$store.state.signup" :toggle="handleSignup" />
         </div>
         <div v-if="isloggedIn" class="navbar-nav auth">
-          <button class="nav-button hambur2" style="margin-right: 80px;" v-on:click="handleLogout()"
+          <button class="nav-button hambur2" style="margin-right: 80px;margin-top: 22px;" v-on:click="handleLogout()"
             v-if="isloggedIn && !userPR">
             LogOut
           </button>
