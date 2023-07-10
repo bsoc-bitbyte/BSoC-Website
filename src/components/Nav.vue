@@ -3,10 +3,10 @@
   <div id="ody" :style="{ backgroundColor: bodyBackgroundColor }">
     <nav class="navbar navbar-expand-lg text-white">
       <div class="container-fluid nav-container" style="display: flex;">
-        <div class="logo">
+        <div class="logo" style="margin-left: 10px;margin-top: 10px;">
           <router-link to="/" class="text-white" style="margin-right: 0%;" href="#">
             <img src="../assets/logo.png" alt="logo" />
-            <h2 style="margin-top: 4px;">BSOC</h2>
+            <h2 style="margin-top:2.5px; margin-left: 10px;">BSOC</h2>
           </router-link>
         </div>
 
@@ -27,12 +27,13 @@
                   <li v-if="isloggedIn"><a class="menu__item" href="/submit">Submit PR</a></li>
                   <li><a class="menu__item" href="/projects">Projects</a></li>
 
-                  <router-link to="/projects" v-if="!isloggedIn" class="navbar-nav auth menu__item" v-on:click="handleLogin"
+                  <router-link to="/projects" v-if="!isloggedIn" class="navbar-nav auth menu__item"
+                    v-on:click="handleLogin"
                     style="cursor: pointer; text-align: center; margin-left: 2em;">Login</router-link>
                   <Login v-if="$store.state.login" :toggle="handleLogin" />
 
-                  <router-link to="/prjects" v-if="!isloggedIn" class="navbar-nav auth menu__item" v-on:click="handleSignup"
-                    style="cursor: pointer; margin-left: 2em;">Signup</router-link>
+                  <router-link to="/prjects" v-if="!isloggedIn" class="navbar-nav auth menu__item"
+                    v-on:click="handleSignup" style="cursor: pointer; margin-left: 2em;">Signup</router-link>
                   <Signup v-if="$store.state.signup" :toggle="handleSignup" />
 
                   <!-- <div v-if="isloggedIn"  class="navbar-nav auth menu__item"> -->
@@ -82,8 +83,8 @@
           </div>
         </div>
         <div v-if="!isloggedIn" class="navbar-nav auth">
-          <div class="hambur2" v-on:click="handleLogin"
-            style="padding-right: 0em; cursor: pointer; margin-right: 20px;">Login</div>
+          <div class="hambur2" v-on:click="handleLogin" style="padding-right: 0em; cursor: pointer; margin-right: 20px;">
+            Login</div>
           <Login v-if="$store.state.login" :toggle="handleLogin" />
           <span class="hambur2" v-on:click="handleSignup" style="cursor: pointer;margin-right: 0px;">Sign Up</span>
           <Signup v-if="$store.state.signup" :toggle="handleSignup" />
@@ -220,7 +221,7 @@ export default {
 }
 
 
-@media (min-width: 992px ) {
+@media (min-width: 992px) {
   .hii {
     display: contents;
     float: left;
@@ -231,7 +232,7 @@ export default {
   }
 }
 
-@media (min-width: 1300px ) {
+@media (min-width: 1300px) {
   .hii {
     display: contents;
     float: left;
@@ -241,7 +242,7 @@ export default {
   }
 }
 
-@media (min-width: 1800px ) {
+@media (min-width: 1800px) {
   .hii {
     display: contents;
     float: left;
@@ -407,4 +408,5 @@ export default {
   border: none;
   color: white;
   margin-left: 0%;
-}</style>
+}
+</style>
