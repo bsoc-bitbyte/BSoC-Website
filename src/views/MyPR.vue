@@ -21,6 +21,9 @@
                     <div class="heading4 text-white">
                         <span>{{ user.time }}</span>
                     </div>
+                    <div>        
+                        <img @click="delete_pr(user.id), update_score(user.uid, user.difficulty)" :id="set_id(user.id)" src="../assets/delete-icon.svg" style="&:hover{background-color: aqua; cursor: pointer;}; height: 1.5rem; width: 1.5rem;" alt="delete">
+                    </div>
                 </div>
             </div>
         </div>
@@ -37,6 +40,7 @@ import axios from "axios";
 import { formatDistanceToNow } from "date-fns";
 import {getCollection} from "../composables/getCollection";
 import { projectAuth } from "../firebase/config";
+import {projectFirestore} from "@/firebase/config";
 import Nav from "@/components/Nav.vue";
 
 export default {
@@ -44,6 +48,52 @@ export default {
     components: {
         Nav,
     },
+
+    methods :
+    {
+        set_id (id){
+            return id;
+        },
+
+        delete_pr (id) {
+            this.formattedUserPRData.filter(async (doc) => {
+                
+                if (doc.id == id){
+                    const colRef = await projectFirestore.collection("dashboard-2023")
+                    const docRef = colRef.doc(doc.id)
+                    docRef.delete().then(() => {
+                        console.log(docRef + " deleted")
+                    }).catch((e) => {
+                        console.log(e.message)
+                    })
+                    console.log("finished deleting")
+                    
+                    
+                
+            }})
+            
+        },
+
+        async update_score (uid, difficulty) {
+            var current_score = 0
+            var new_score = 0
+            var current_prs = 0
+            var new_prs = 0
+            
+            await projectFirestore.collection("userStats-2023").doc(uid).get().then((snapshot) => {
+            current_score = snapshot.data().score
+            current_prs = snapshot.data().numberOfPRs
+            new_score = current_score-difficulty
+            new_prs = current_prs-1
+            
+            }).catch((e) => console.log(e))
+            await projectFirestore.collection("userStats-2023").doc(uid).update({score: new_score, numberOfPRs: new_prs});
+            console.log("updated")
+
+
+        }
+    },
+
     setup() {
         const { documents } = getCollection("dashboard-2023");
         const started = ref(true);
@@ -195,7 +245,7 @@ export default {
 .table-heading {
     display: grid;
     background: #eaeaef;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     grid-column-gap: 0px;
     padding: 25px 0;
     border-top-left-radius: 15px;
@@ -210,7 +260,7 @@ export default {
 
 .table-content {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     grid-column-gap: 0px;
     padding: 25px 0;
     font-weight: 400;
