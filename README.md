@@ -31,6 +31,7 @@ You can check your node and npm versions by typing the mentioned commands in the
 node -v
 npm -v
 ```
+
 ### 🔶Project Initialization
 1. Fork this repository which will create a copy of this project in your GitHub account.
 2. Clone the forked repository. Steps to clone :-
