@@ -66,6 +66,8 @@ export default {
                     }).catch((e) => {
                         console.log(e.message)
                     })
+                    var toast = "Your PR " + doc.message + " is deleted successfully."
+                    alert(toast)
                     console.log("finished deleting")
                     
                     
@@ -75,6 +77,7 @@ export default {
         },
 
         async update_score (uid, difficulty) {
+            
             var current_score = 0
             var new_score = 0
             var current_prs = 0
@@ -89,7 +92,6 @@ export default {
             }).catch((e) => console.log(e))
             await projectFirestore.collection("userStats-2023").doc(uid).update({score: new_score, numberOfPRs: new_prs});
             console.log("updated")
-
 
         }
     },
