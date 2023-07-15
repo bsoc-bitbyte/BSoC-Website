@@ -1,8 +1,8 @@
 <template>
     <Nav></Nav>
 
-
     <div class="pr-outer">
+        <ToastComponent  :title="('PR deleted !')" :message="('Your PR is successfully deleted.')"/>
         <div class="pr-container">
             <div class="table-heading">
                 <div class="heading1"><span>Name</span></div>
@@ -21,8 +21,8 @@
                     <div class="heading4 text-white">
                         <span>{{ user.time }}</span>
                     </div>
-                    <div>        
-                        <img @click="delete_pr(user.id), update_score(user.uid, user.difficulty)" :id="set_id(user.id)" src="../assets/delete-icon.svg" style="&:hover{background-color: aqua; cursor: pointer;}; height: 1.5rem; width: 1.5rem;" alt="delete">
+                    <div>       
+                        <img @click="handleClick(user.id, user.difficulty, user.uid)"  :id="user.id" src="../assets/delete-icon.svg" style="&:hover{background-color: aqua; cursor: pointer;}; height: 1.5rem; width: 1.5rem;" alt="delete">
                     </div>
                 </div>
             </div>
@@ -42,59 +42,16 @@ import {getCollection} from "../composables/getCollection";
 import { projectAuth } from "../firebase/config";
 import {projectFirestore} from "@/firebase/config";
 import Nav from "@/components/Nav.vue";
+import {deleteDocuments, deletePr} from "../composables/deleteDocuments"
+import ToastComponent from "../components/ToastComponent.vue";
 
 export default {
     name: "MyPR",
     components: {
-        Nav,
-    },
+    Nav,
+    ToastComponent,
+},
 
-    methods :
-    {
-        set_id (id){
-            return id;
-        },
-
-        delete_pr (id) {
-            this.formattedUserPRData.filter(async (doc) => {
-                
-                if (doc.id == id){
-                    const colRef = await projectFirestore.collection("dashboard-2023")
-                    const docRef = colRef.doc(doc.id)
-                    docRef.delete().then(() => {
-                        console.log(docRef + " deleted")
-                    }).catch((e) => {
-                        console.log(e.message)
-                    })
-                    var toast = "Your PR " + doc.message + " is deleted successfully."
-                    alert(toast)
-                    console.log("finished deleting")
-                    
-                    
-                
-            }})
-            
-        },
-
-        async update_score (uid, difficulty) {
-            
-            var current_score = 0
-            var new_score = 0
-            var current_prs = 0
-            var new_prs = 0
-            
-            await projectFirestore.collection("userStats-2023").doc(uid).get().then((snapshot) => {
-            current_score = snapshot.data().score
-            current_prs = snapshot.data().numberOfPRs
-            new_score = current_score-difficulty
-            new_prs = current_prs-1
-            
-            }).catch((e) => console.log(e))
-            await projectFirestore.collection("userStats-2023").doc(uid).update({score: new_score, numberOfPRs: new_prs});
-            console.log("updated")
-
-        }
-    },
 
     setup() {
         const { documents } = getCollection("dashboard-2023");
@@ -118,17 +75,20 @@ export default {
                     let time = formatDistanceToNow(doc.time.toDate());
                     return { ...doc, time: time, time_sec: doc.time };
                 });
-                console.log("hello",userData)
                 userPRData = userData.filter((doc) => {
                     return doc.uid == userUID;
                 });
-                console.log("hello",userPRData)
-                return userPRData;
+                return userPRData; 
 
             }
         });
 
-        return { started, userPR, formattedDocuments, formattedUserPRData };
+        const handleClick = (id, difficulty, uid) => {
+            userPRData.filter((doc) => {
+                deletePr(id, doc, difficulty, uid)                
+            });
+        }
+        return { handleClick, started, userPR, formattedDocuments, formattedUserPRData };
     },
 };
 </script>
