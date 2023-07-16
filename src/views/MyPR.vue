@@ -1,13 +1,15 @@
 <template>
     <Nav></Nav>
 
-
     <div class="pr-outer">
+        <ToastComponent  :title="('PR deleted successfully !')" :message="('Your PR is successfully deleted.')"/>
         <div class="pr-container">
             <div class="table-heading">
                 <div class="heading1"><span>Name</span></div>
                 <div class="heading3"><span>Latest PR</span></div>
                 <div class="heading4"><span>Time Added</span></div>
+                <div class="heading5"><span>Delete</span></div>
+
             </div>
             <div v-for="user in formattedDocuments" :key="user.time">
                 <div class="table-content">
@@ -20,6 +22,9 @@
                     </div>
                     <div class="heading4 text-white">
                         <span>{{ user.time }}</span>
+                    </div>
+                    <div>       
+                        <img @click="handleClick(user.id, user.difficulty, user.uid)"  :id="user.id" src="../assets/delete-icon.svg" style="&:hover{background-color: aqua; cursor: pointer;}; height: 1.5rem; width: 1.5rem;" alt="delete">
                     </div>
                 </div>
             </div>
@@ -37,13 +42,19 @@ import axios from "axios";
 import { formatDistanceToNow } from "date-fns";
 import {getCollection} from "../composables/getCollection";
 import { projectAuth } from "../firebase/config";
+import {projectFirestore} from "@/firebase/config";
 import Nav from "@/components/Nav.vue";
+import {deletePr} from "../composables/deleteDocuments"
+import ToastComponent from "../components/ToastComponent.vue";
 
 export default {
     name: "MyPR",
     components: {
-        Nav,
-    },
+    Nav,
+    ToastComponent,
+},
+
+
     setup() {
         const { documents } = getCollection("dashboard-2023");
         const started = ref(true);
@@ -66,17 +77,20 @@ export default {
                     let time = formatDistanceToNow(doc.time.toDate());
                     return { ...doc, time: time, time_sec: doc.time };
                 });
-                console.log("hello",userData)
                 userPRData = userData.filter((doc) => {
                     return doc.uid == userUID;
                 });
-                console.log("hello",userPRData)
-                return userPRData;
+                return userPRData; 
 
             }
         });
 
-        return { started, userPR, formattedDocuments, formattedUserPRData };
+        const handleClick = (id, difficulty, uid) => {
+            userPRData.filter((doc) => {
+                deletePr(id, doc, difficulty, uid)                
+            });
+        }
+        return { handleClick, started, userPR, formattedDocuments, formattedUserPRData };
     },
 };
 </script>
@@ -195,7 +209,7 @@ export default {
 .table-heading {
     display: grid;
     background: #eaeaef;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     grid-column-gap: 0px;
     padding: 25px 0;
     border-top-left-radius: 15px;
@@ -210,7 +224,7 @@ export default {
 
 .table-content {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     grid-column-gap: 0px;
     padding: 25px 0;
     font-weight: 400;
