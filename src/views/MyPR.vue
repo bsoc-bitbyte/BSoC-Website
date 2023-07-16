@@ -2,12 +2,14 @@
     <Nav></Nav>
 
     <div class="pr-outer">
-        <ToastComponent  :title="('PR deleted !')" :message="('Your PR is successfully deleted.')"/>
+        <ToastComponent  :title="('PR deleted successfully !')" :message="('Your PR is successfully deleted.')"/>
         <div class="pr-container">
             <div class="table-heading">
                 <div class="heading1"><span>Name</span></div>
                 <div class="heading3"><span>Latest PR</span></div>
                 <div class="heading4"><span>Time Added</span></div>
+                <div class="heading5"><span>Delete</span></div>
+
             </div>
             <div v-for="user in formattedDocuments" :key="user.time">
                 <div class="table-content">
@@ -42,7 +44,7 @@ import {getCollection} from "../composables/getCollection";
 import { projectAuth } from "../firebase/config";
 import {projectFirestore} from "@/firebase/config";
 import Nav from "@/components/Nav.vue";
-import {deleteDocuments, deletePr} from "../composables/deleteDocuments"
+import {deletePr} from "../composables/deleteDocuments"
 import ToastComponent from "../components/ToastComponent.vue";
 
 export default {

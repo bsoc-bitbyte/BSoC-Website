@@ -1,6 +1,6 @@
 <template>
 <div class="toaster">
-    <div class="card mb-3">
+    <div class="card mb-3 text-light">
       <div class="card-body">
         <h5 class="card-title">{{ title }}</h5>
         <p class="card-text">{{message}}</p>       
@@ -43,16 +43,14 @@ export default{
 .card {
   border-radius: .4rem;
   line-height: 10px;
-  background-color: #ffffff;
+  background-color: #05af00cc;
   width: 100%;
   position: inherit;
   margin-left: inherit;
   margin-right: inherit;
   left: 0;
   right: 0;
-  border-color: #f6ba42;
-  border-width: 2px;
-  box-shadow: -1px 0px 20px 1px #332f2f;
+
 }
 
 .card-title{
@@ -61,7 +59,6 @@ export default{
 }
 
 .card-body {
-  border-width: inherit;
   border-radius: inherit;
   font-size: 1rem;
   padding: .7rem;

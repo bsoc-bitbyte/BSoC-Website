@@ -23,6 +23,7 @@ const deletePr = async (id, doc, difficulty, uid) => {
             const docRef = colRef.doc(doc.id)
             docRef.delete().then(() => {                
             }).catch((e) => {
+                document.querySelector(".toaster .card").style.backgroundColor = '#dc3545db'
                 document.querySelector(".toaster .card-title").innerHTML = "Error !"
                 document.querySelector(".toaster .card-text").innerHTML = e.message
             })
@@ -41,6 +42,7 @@ const deletePr = async (id, doc, difficulty, uid) => {
             new_prs = current_prs-1
             
             }).catch((e) => {
+                document.querySelector(".toaster .card").style.backgroundColor = '#dc3545db'
                 document.querySelector(".toaster .card-text").innerHTML = e.message
                 document.querySelector(".toaster .card-title").innerHTML = "Error !"
             })
