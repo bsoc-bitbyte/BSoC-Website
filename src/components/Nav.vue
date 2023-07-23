@@ -65,7 +65,7 @@
                   v-if="!isHome">Home</router-link>
                 <router-link class="nav-link text-white px-4" to="/dashboard"
                   style="text-decoration: none; color: inherit">
-                  <button class="nav-button" style="float: left;margin-left: 0px;" v-on:click="handleMyPR()"
+                  <button class="nav-button" style="float: left;margin-top: 23px;margin-left: 0px;" v-on:click="handleMyPR()"
                     v-if="isloggedIn && userPR">
                     Dashboard
                   </button>
