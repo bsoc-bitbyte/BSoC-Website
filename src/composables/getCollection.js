@@ -35,7 +35,8 @@ const getAllUserStats = (collection) => {
     const populate = collectionRef.onSnapshot((snap) => {
         let results = []
         snap.docs.forEach(doc => {
-            results.push({ ...doc.data(), id: doc.id, time_sec: doc.time })
+            if (doc.data().displayName != null && doc.data().uid != null){
+            results.push({ ...doc.data(), id: doc.id, time_sec: doc.time })}
         })
         results.sort((a, b) => (a.score < b.score) ? 1 : -1)
         documents.value = results
