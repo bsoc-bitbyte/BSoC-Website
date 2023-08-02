@@ -1,94 +1,74 @@
 <template>
     <Nav></Nav>
-    <div v-if="started && !userPR" class="pr-outer">
-        <div class="pr-container">
-            <div class="table-heading">
-                <div class="heading1"><span>Rank</span></div>
-                <div class="heading2"><span>Name</span></div>
-                <div class="heading3"><span>Score</span></div>
-                <div class="heading4"><span>No of PRs</span></div>
-                <div class="heading5"><span>Last Updated</span></div>
-            </div>
-            <div v-for="(doc,index) in formattedDocuments" :doc="doc.time">
-                <div class="table-content">
-                    <div class="heading1 text-white">
-                        <span>{{ index + 1 }}</span>
-                    </div>
-                    <div class="heading1 text-white">
-                        <router-link title="Click to view PRs" class="menu__item" :to="{name:'User',path: '/user/'+doc.uid, params:{ uid:doc.uid }}"><span > {{ doc.displayName }} </span></router-link>
-                    </div>
-                    <div class="heading3 text-white">
-                        <span>{{ doc.score }}
-                        </span>
-                    </div>
-                    <div class="heading4 text-white">
-                        <span>{{ doc.numberOfPRs }}
-                        </span>
-                    </div>
-                    <div class="heading5 text-white">
-                        <span>{{ doc.time }} ago</span>
-                    </div>
+
+<div class="pr-outer">
+    <div class="pr-container">
+        <div class="table-heading">
+            <div class="heading1"><span>Name</span></div>
+            <div class="heading3"><span>Latest PR</span></div>
+            <div class="heading4"><span>Difficulty</span></div>
+
+        </div>
+        <div v-for="user in userData" :key="user.time"> 
+            <div class="table-content">
+                <div class="heading1 text-white">
+                    <span>{{ user.displayName }}</span>
                 </div>
+                <div class="heading3 text-white">
+                    <span><a :href="user.link" target="_blank"  class="text-white">{{ user.message }}</a>
+                    </span>
+                </div>
+                <div class="heading4 text-white">
+                    <span>{{ user.difficulty }}</span>
+                </div>        
             </div>
         </div>
     </div>
+</div>
 </template>
 
-
-
 <script>
-import useLogout from "@/composables/useLogout";
-import { useRouter } from "vue-router";
-import { computed, ref } from "vue";
-import axios from "axios";
-import { formatDistanceToNow } from "date-fns";
-import {getCollection,getAllUserStats} from "../composables/getCollection";
-import { projectAuth } from "../firebase/config";
 import Nav from "@/components/Nav.vue";
+import {getSingleUserStats} from "../composables/getCollection";
+import { formatDistanceToNow } from "date-fns";
 
-export default {
-    name: "Dashboard",
+
+export default{
+    props: {
+        uid: {type: String,
+            required: true,
+            default: null},
+        },
+
+    name: "User",
+
     components: {
         Nav,
     },
 
-    setup() {
-        const { error, logout } = useLogout();
-        const router = useRouter();
-        const { documents } = getAllUserStats("userStats-2023");
-        const joke = ref("");
-        const started = ref(true);
-        const userPR = ref(false);
-        var userData = new Map();
-        var userPRData = new Map();
+    data(props){
+        return{
+            userID : props.uid,
+            userData : new Map
 
+        }
+    },
 
+    created(){
+        const documents =  getSingleUserStats("dashboard-2023",this.userID)
+        const difficulties = {15:'Easy', 30:"Medium", 50:"Hard"}
 
-        const formattedUserPRData = computed(() => {
-            if (userPRData) {
-                return userPRData
-            }
-        });
-
-
-        const formattedDocuments = computed(() => {
-            if (documents.value) {
-                const userUID = projectAuth.currentUser.uid;
-                userData = documents.value.map((doc) => {   
+        documents.then((val)=>{
+            if (!val['error'].value){
+            this.userData = val['documents'].value.map((doc)=>{
                 let time = formatDistanceToNow(doc.time.toDate());
+                doc['difficulty'] = difficulties[doc['difficulty']]
                 return { ...doc, time: time, time_sec: doc.time };
-                });
-                userPRData = userData.filter((doc) => {
-                    return doc.uid == userUID;
-                });
-                return userData;
 
-            }
-        });
-
-        return {  started, userPR, formattedDocuments, formattedUserPRData };
+            })}
+        })
     }
-};
+}
 </script>
 
 <style scoped>
@@ -99,7 +79,6 @@ export default {
     justify-content: space-between;
     align-items: center;
     border-bottom: 2px solid rgba(4, 50, 94, 0.2);
-
     background: #f0f0f3;
 }
 
@@ -205,8 +184,8 @@ export default {
 .table-heading {
     display: grid;
     background: #eaeaef;
-    grid-template-columns: repeat(5, 1fr);
-    grid-column-gap: 1.5em;
+    grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: 0px;
     padding: 25px 0;
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
@@ -220,8 +199,8 @@ export default {
 
 .table-content {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-column-gap: 1.5em;
+    grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: 0px;
     padding: 25px 0;
     font-weight: 400;
     font-size: 1.38vw;
@@ -229,15 +208,13 @@ export default {
     text-align: center;
 }
 
-.menu__item {
-color: white;
-text-decoration: none;
+.heading3 {
+    text-align: left;
 }
 
-.menu__item:hover {
-    color: #f8af1e;
-    background-color: #427bf624;
-    border-radius: 4px;
+.heading3 a {
+    text-decoration: none;
+    color: #04325e;
 }
 
 @media (max-width: 900px) {
