@@ -7,7 +7,7 @@
 		"build": "set NODE_OPTIONS=--openssl-legacy-provider && vue-cli-service build",
 		"production": "vue-cli-service build --mode production",
 		"prepare": "husky",
-		"format": "prettier --write --ignore-unknown"
+		"format": "prettier --write --ignore-unknown **/*"
 	},
 	"engines": {
 		"node": "18.x",
