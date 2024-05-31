@@ -1,38 +1,49 @@
 {
-  "name": "aperta-fons",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "serve": "set NODE_OPTIONS=--openssl-legacy-provider && vue-cli-service serve",
-    "build": "set NODE_OPTIONS=--openssl-legacy-provider && vue-cli-service build",
-    "production": "vue-cli-service build --mode production"
-  },
-  "engines": {
-    "node": "18.x",
-    "npm": "9.x",
-    "yarn": ">=1.19.0 < 2.0.0"
-  },
-  "dependencies": {
-    "@popperjs/core": "^2.11.8",
-    "axios": "^1.7.2",
-    "bootstrap": "^5.3.3",
-    "core-js": "^3.6.5",
-    "date-fns": "^2.24.0",
-    "firebase": "^9.0.2",
-    "hover.css": "^2.3.2",
-    "mdb-vue-ui-kit": "^4.0.0",
-    "particles.js": "^2.0.0",
-    "popper": "^1.0.1",
-    "vue": "^3.4.27",
-    "vue-anchor-router-link": "^0.8.5",
-    "vue-router": "^4.3.2",
-    "vuex": "^4.1.0"
-  },
-  "devDependencies": {
-    "@vue/cli-plugin-babel": "~4.5.0",
-    "@vue/cli-plugin-router": "~4.5.0",
-    "@vue/cli-plugin-vuex": "~4.5.0",
-    "@vue/cli-service": "~4.5.0",
-    "@vue/compiler-sfc": "^3.0.0"
-  }
+	"name": "aperta-fons",
+	"version": "0.1.0",
+	"private": true,
+	"scripts": {
+		"serve": "set NODE_OPTIONS=--openssl-legacy-provider && vue-cli-service serve",
+		"build": "set NODE_OPTIONS=--openssl-legacy-provider && vue-cli-service build",
+		"production": "vue-cli-service build --mode production",
+		"prepare": "husky",
+		"format": "prettier --write --ignore-unknown"
+	},
+	"engines": {
+		"node": "18.x",
+		"npm": "9.x",
+		"yarn": ">=1.19.0 < 2.0.0"
+	},
+	"dependencies": {
+		"@popperjs/core": "^2.11.8",
+		"axios": "^1.7.2",
+		"bootstrap": "^5.3.3",
+		"core-js": "^3.6.5",
+		"date-fns": "^2.24.0",
+		"firebase": "^9.0.2",
+		"hover.css": "^2.3.2",
+		"mdb-vue-ui-kit": "^4.0.0",
+		"particles.js": "^2.0.0",
+		"popper": "^1.0.1",
+		"vue": "^3.4.27",
+		"vue-anchor-router-link": "^0.8.5",
+		"vue-router": "^4.3.2",
+		"vuex": "^4.1.0"
+	},
+	"devDependencies": {
+		"@vue/cli-plugin-babel": "~4.5.0",
+		"@vue/cli-plugin-router": "~4.5.0",
+		"@vue/cli-plugin-vuex": "~4.5.0",
+		"@vue/cli-service": "~4.5.0",
+		"@vue/compiler-sfc": "^3.0.0",
+		"husky": "^9.0.11",
+		"lint-staged": "^15.2.5",
+		"prettier": "^3.2.5",
+		"prettier-plugin-tailwindcss": "^0.6.0"
+	},
+	"lint-staged": {
+		"**/*": [
+			"npm run format"
+		]
+	}
 }

@@ -1,0 +1,20 @@
+ #!/bin/sh
+
+commit_message_file=$1
+commit_message=$(cat $commit_message_file)
+# echo "commit_message: $commit_message"
+
+# Define your desired commit message format
+commit_message_regex="^(build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test)(\((.*?)\))?: (.*?)$"
+
+# Check if the commit message matches the desired format
+if ! echo "$commit_message" | grep -iqE "$commit_message_regex"; then
+    echo "Invalid commit message format. Please use the following format: '<type>(optional scope): <description>'"
+    echo ""
+    echo "--------- Refer to Contributing.md for more information regarding types ---------"
+    echo ""
+    echo "Example: ✅ 'feat(auth): Added login feature'"
+    echo "Current message: ❌ '$commit_message'"
+    echo ""
+    exit 1
+fi
