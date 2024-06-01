@@ -55,7 +55,7 @@ export default{
     },
 
     created(){
-        const documents =  getSingleUserStats("dashboard-2023",this.userID)
+        const documents =  getSingleUserStats("dashboard-2024",this.userID)
         const difficulties = {15:'Easy', 30:"Medium", 50:"Hard"}
 
         documents.then((val)=>{
