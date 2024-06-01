@@ -138,13 +138,13 @@ export default {
   methods: {
     handleLogin() {
       this.$store.state.login = !this.$store.state.login;
-      showHamburger = !showHamburger;
+      this.showHamburger = !this.showHamburger;
     },
     handleSignup() {
       this.$store.state.signup = !this.$store.state.signup;
     },
     toggleHamburger() {
-      showHamburger = !showHamburger;
+      this.showHamburger = !this.showHamburger;
     },
   },
   beforeRouteLeave(to, from, next) {
