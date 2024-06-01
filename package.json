@@ -1,18 +1,20 @@
 {
-  "name": "bsoc-website",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "serve": "set NODE_OPTIONS=--openssl-legacy-provider && vue-cli-service serve",
-    "build": "set NODE_OPTIONS=--openssl-legacy-provider && vue-cli-service build",
-    "production": "vue-cli-service build --mode production"
-  },
-  "engines": {
-    "node": "20.x",
-    "npm": "10.x"
-  },
-  "dependencies": {
-    "@popperjs/core": "^2.11.8",
+	"name": "bsoc-website",
+	"version": "0.1.0",
+	"private": true,
+	"scripts": {
+		"serve": "set NODE_OPTIONS=--openssl-legacy-provider && vue-cli-service serve",
+		"build": "set NODE_OPTIONS=--openssl-legacy-provider && vue-cli-service build",
+		"production": "vue-cli-service build --mode production",
+		"format": "prettier --write --ignore-unknown **/*",
+		"prepare": "husky"
+	},
+	"engines": {
+		"node": "20.x",
+		"npm": "10.x"
+	},
+	"dependencies": {
+		"@popperjs/core": "^2.11.8",
 		"axios": "^1.7.2",
 		"bootstrap": "^5.3.3",
 		"core-js": "^3.8.3",
@@ -26,9 +28,9 @@
 		"vue-anchor-router-link": "^0.8.5",
 		"vue-router": "^4.0.3",
 		"vuex": "^4.0.0"
-  },
-  "devDependencies": {
-    "@vue/cli-plugin-babel": "~5.0.0",
+	},
+	"devDependencies": {
+		"@vue/cli-plugin-babel": "~5.0.0",
 		"@vue/cli-plugin-router": "~5.0.0",
 		"@vue/cli-plugin-vuex": "~5.0.0",
 		"@vue/cli-service": "~5.0.0",
@@ -37,5 +39,10 @@
 		"lint-staged": "^15.2.5",
 		"prettier": "^3.2.5",
 		"prettier-plugin-tailwindcss": "^0.6.0"
-  }
+	},
+	"lint-staged": {
+		"src/**/*.{js,vue}": [
+			"prettier --write --ignore-unknown"
+		]
+	}
 }
