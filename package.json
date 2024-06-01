@@ -1,5 +1,5 @@
 {
-  "name": "aperta-fons",
+  "name": "bsoc-website",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -8,35 +8,35 @@
     "production": "vue-cli-service build --mode production"
   },
   "engines": {
-    "node": "14.x",
-    "npm": "6.x",
+    "node": "20.x",
+    "npm": "10.x",
     "yarn": ">=1.19.0 < 2.0.0"
   },
   "dependencies": {
-    "@popperjs/core": "^2.10.1",
-    "axios": "^0.21.4",
-    "bootstrap": "^5.3.0-alpha3",
-    "core-js": "^3.6.5",
-    "date-fns": "^2.24.0",
-    "firebase": "^9.0.2",
-    "hover.css": "^2.3.2",
-    "jquery": "^3.6.0",
-    "mdb-vue-ui-kit": "^4.0.0",
-    "particles.js": "^2.0.0",
-    "popper": "^1.0.1",
-    "vue": "^3.0.0",
-    "vue-anchor-router-link": "^0.8.5",
-    "vue-router": "^4.0.0-0",
-    "vuex": "^4.0.0-0"
+    "@popperjs/core": "^2.11.8",
+		"axios": "^1.7.2",
+		"bootstrap": "^5.3.3",
+		"core-js": "^3.8.3",
+		"date-fns": "^2.24.0",
+		"firebase": "^9.0.2",
+		"hover.css": "^2.3.2",
+		"mdb-vue-ui-kit": "^4.0.0",
+		"particles.js": "^2.0.0",
+		"popper": "^1.0.1",
+		"vue": "^3.2.13",
+		"vue-anchor-router-link": "^0.8.5",
+		"vue-router": "^4.0.3",
+		"vuex": "^4.0.0"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "~4.5.0",
-    "@vue/cli-plugin-router": "~4.5.0",
-    "@vue/cli-plugin-vuex": "~4.5.0",
-    "@vue/cli-service": "~4.5.0",
-    "@vue/compiler-sfc": "^3.0.0",
-    "autoprefixer": "^10.4.14",
-    "postcss": "^8.4.23",
-    "tailwindcss": "^3.3.2"
+    "@vue/cli-plugin-babel": "~5.0.0",
+		"@vue/cli-plugin-router": "~5.0.0",
+		"@vue/cli-plugin-vuex": "~5.0.0",
+		"@vue/cli-service": "~5.0.0",
+		"@vue/compiler-sfc": "^3.2.13",
+		"husky": "^9.0.11",
+		"lint-staged": "^15.2.5",
+		"prettier": "^3.2.5",
+		"prettier-plugin-tailwindcss": "^0.6.0"
   }
 }
