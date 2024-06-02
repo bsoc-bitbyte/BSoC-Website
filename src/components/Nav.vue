@@ -39,7 +39,7 @@
                     style="cursor: pointer; text-align: center; margin-left: 2em;">Login</router-link>
                   <Login v-if="$store.state.login" :toggle="handleLogin" />
 
-                  <router-link to="/prjects" v-if="!isloggedIn" class="navbar-nav auth menu__item"
+                  <router-link to="/projects" v-if="!isloggedIn" class="navbar-nav auth menu__item"
                     v-on:click="handleSignup" style="cursor: pointer; margin-left: 2em;">Signup</router-link>
                   <Signup v-if="$store.state.signup" :toggle="handleSignup" />
 
@@ -138,13 +138,13 @@ export default {
   methods: {
     handleLogin() {
       this.$store.state.login = !this.$store.state.login;
-      showHamburger = !showHamburger;
+      this.showHamburger = !this.showHamburger;
     },
     handleSignup() {
       this.$store.state.signup = !this.$store.state.signup;
     },
     toggleHamburger() {
-      showHamburger = !showHamburger;
+      this.showHamburger = !this.showHamburger;
     },
   },
   beforeRouteLeave(to, from, next) {

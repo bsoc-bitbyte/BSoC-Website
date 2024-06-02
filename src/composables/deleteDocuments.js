@@ -1,6 +1,6 @@
 import {ref} from "vue";
 import {projectFirestore} from "@/firebase/config";
-import getCollection from "@/composables/getCollection";
+import {getCollection} from "@/composables/getCollection";
 
 const deleteDocuments = async (n) => {
     const { err, documents } = getCollection("PriorityQueue")
@@ -19,7 +19,7 @@ const deleteDocuments = async (n) => {
 const deletePr = async (id, doc, difficulty, uid) => {
 
         if (doc.id == id && confirm("Are you sure you want to delete ? \nThis action can not be undone.")){
-            const colRef = await projectFirestore.collection("dashboard-2023")
+            const colRef = await projectFirestore.collection("dashboard-2024")
             const docRef = colRef.doc(doc.id)
             docRef.delete().then(() => {                
             }).catch((e) => {
@@ -35,7 +35,7 @@ const deletePr = async (id, doc, difficulty, uid) => {
             var new_prs = 0
             
             
-            await projectFirestore.collection("userStats-2023").doc(uid).get().then((snapshot) => {
+            await projectFirestore.collection("userStats-2024").doc(uid).get().then((snapshot) => {
             current_score = snapshot.data().score
             current_prs = snapshot.data().numberOfPRs
             new_score = current_score-difficulty
@@ -47,7 +47,7 @@ const deletePr = async (id, doc, difficulty, uid) => {
                 document.querySelector(".toaster .card-title").innerHTML = "Error !"
             })
 
-            await projectFirestore.collection("userStats-2023").doc(uid).update({score: new_score, numberOfPRs: new_prs});
+            await projectFirestore.collection("userStats-2024").doc(uid).update({score: new_score, numberOfPRs: new_prs});
             
             function show_toast() { 
                document.querySelector(".toaster").style.display = "flex"                                           

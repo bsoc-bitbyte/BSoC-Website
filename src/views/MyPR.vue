@@ -56,7 +56,7 @@ export default {
 
 
     setup() {
-        const { documents } = getCollection("dashboard-2023");
+        const { documents } = getCollection("dashboard-2024");
         const started = ref(true);
         const userPR = ref(false);
         var userData = new Map();

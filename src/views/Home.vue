@@ -340,28 +340,28 @@ export default {
         const countDownDate = new Date("Jan 5 2023 00:00:00").getTime();
 
         // Update the count down every 1 second
-        const x = setInterval(function () {
-            // Get today's date and time
-            const now = new Date().getTime();
+        // const x = setInterval(function () {
+        //     // Get today's date and time
+        //     const now = new Date().getTime();
 
-            // Find the distance between now and the count down date
-            const distance = countDownDate - now;
+        //     // Find the distance between now and the count down date
+        //     const distance = countDownDate - now;
 
-            // Time calculations for days, hours, minutes and seconds
-            days.value = Math.floor(distance / (1000 * 60 * 60 * 24));
-            hours.value = Math.floor(
-                (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-            );
-            mins.value = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            secs.value = Math.floor((distance % (1000 * 60)) / 1000);
+        //     // Time calculations for days, hours, minutes and seconds
+        //     days.value = Math.floor(distance / (1000 * 60 * 60 * 24));
+        //     hours.value = Math.floor(
+        //         (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+        //     );
+        //     mins.value = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        //     secs.value = Math.floor((distance % (1000 * 60)) / 1000);
 
-            // Display the result in the element with id="demo"
-            // If the count down is finished, write some text
-            if (distance < 0) {
-                clearInterval(x);
-                document.getElementById("demo").innerHTML = "EXPIRED";
-            }
-        }, 1000);
+        //     // Display the result in the element with id="demo"
+        //     // If the count down is finished, write some text
+        //     // if (distance < 0) {
+        //     //     clearInterval(x);
+        //     //     document.getElementById("demo").innerHTML = "EXPIRED";
+        //     // }
+        // }, 1000);
 
         const user = projectAuth.currentUser
 
