@@ -29,75 +29,75 @@ export default {
 			items: [
 				{
 					id: 1,
-					projectName: 'GetIt',
-					name: 'Armin',
-					link: 'https://github.com/bsoc-bitbyte/LetsBuy',
-					techStack: 'Vue, Firebase, Redis, MongoDB, Python',
-					description:
-						'A single Platform where merchandise of every club of college can be found and will be made available for everyone to buy.',
-				},
-				{
-					id: 2,
-					projectName: 'IIITians-Space',
-					name: 'Varun Singh',
-					link: 'https://github.com/bsoc-bitbyte/IIITians-Space',
-					techStack: 'React with Typescript, Express and Postgresql',
-					description:
-						'A Forum website for students to better connect with seniors and super seniors',
-				},
-				{
-					id: 3,
-					projectName: 'Resource Sharing',
-					name: 'Anurag',
-					link: 'https://github.com/bsoc-bitbyte/resource-sharing',
-					techStack: 'React,Firebase, Tailwind ',
-					description:
-						'A College utility website where every necessary semester resources will be made available for all students directly from their google drive to ease their access.',
-				},
-				{
-					id: 4,
-					projectName: 'Summer Analytics',
-					name: 'Aryan Pandey',
-					link: 'https://github.com/orgs/bsoc-bitbyte/repositories',
-					techStack: 'Tensorflow, Seaborn, Natplotlib, Pandas, Numpy ',
-					description:
-						'Machine Learning made simple. Going right from the traditional Linear Regression to building Neural Networks, including all the nitty gritty optimizations, regularizations and loss functions.',
-				},
-				{
-					id: 5,
-					projectName: 'Busify',
-					name: 'Prajjwal Kapoor',
-					link: 'https://github.com/bsoc-bitbyte/busify',
-					techStack: 'React, Typescript, MUI, SCSS, NESTJS, Postgres, REDIS',
-					description:
-						'A centralised bus ticket booking system that will allow the students to book tickets in advance through an online website, saving time and effort.',
-				},
-				{
-					id: 6,
-					projectName: '2D Platformer',
-					name: 'Raman Chaudhary',
-					link: 'https://github.com/bsoc-bitbyte/2D-Platformer',
-					techStack: 'Unity Engine, C#',
-					description:
-						'An exhilarating 2D platform game that combines intense platforming challenges with thrilling combat encounters. where you have to fight and tackle enemies to complete the platform.',
-				},
-				{
-					id: 7,
 					projectName: 'BSoC Website',
-					name: 'Tushit Shukla',
+					name: 'Parth Singh, Ramgopal Reddy',
 					link: 'https://github.com/bsoc-bitbyte/BSoC-Website',
 					techStack: 'Vue, Firebase, Bootstrap',
 					description:
 						'A website for BSoC to showcase all the projects and events that are being conducted under BSoC.',
 				},
 				{
-					id: 8,
-					projectName: 'Busify Android',
-					name: 'Priyanshu',
-					link: 'https://github.com/bsoc-bitbyte/busify-android/',
-					techStack: 'Kotlin, Architecture, Dagger-Hilt',
+					id: 2,
+					projectName: 'GetIt',
+					name: 'Akash Paloju, Kushagra Gupta',
+					link: 'https://github.com/bsoc-bitbyte/GetIt',
+					techStack: 'Vue, Firebase, Redis, MongoDB, Python',
 					description:
-						'Busify-Android is a mobile application developed as a part of Busify. The app was built to help ease out the process of verifying the passengers boarding the bus and managing them.',
+						'A single Platform where merchandise of every club of college can be found and will be made available for everyone to buy.',
+				},
+				{
+					id: 3,
+					projectName: 'Busify Web',
+					name: 'Pratik Solanki, Rishikesh Kupalla',
+					link: 'https://github.com/bsoc-bitbyte/busify',
+					techStack: 'React, Typescript, MUI, SCSS, NESTJS, Postgres, REDIS',
+					description:
+						'A centralised bus ticket booking system that will allow the students to book tickets in advance through an online website, saving time and effort.',
+				},
+				{
+					id: 4,
+					projectName: 'Alumni Website',
+					name: 'Eshaan Modi, Samaksh Agarwal ',
+					link: 'https://github.com/BitByte-TPC/alumni',
+					techStack: 'HTML, CSS, Javascript, Python',
+					description:
+						'This web application aims to facilitate the Alumni Affairs of IIITDM Jabalpur',
+				},
+				{
+					id: 5,
+					projectName: 'myLeave',
+					name: 'Agrim Gupta',
+					link: 'https://github.com/bsoc-bitbyte/myLeave',
+					techStack: 'Kotlin, Architecture',
+					description:
+						'myLeave is a user-friendly application designed to streamline and simplify the process of submitting and managing leave requests within an organization',
+				},
+				{
+					id: 6,
+					projectName: 'DigiGate',
+					name: 'Aarav Jain',
+					link: 'https://github.com/bsoc-bitbyte/DigiGate',
+					techStack: 'Kotlin, Architecture',
+					description:
+						'This project aims to enhance gate entry and exit management for better security and entry management, by implementing a QR-based system',
+				},
+				{
+					id: 7,
+					projectName: 'Summer Analytics',
+					name: 'Joyee Biswas, Shreyans Katariya',
+					link: 'https://github.com/bsoc-bitbyte/Summer_of_ML',
+					techStack: 'Tensorflow, Seaborn, Matplotlib, Pandas, Numpy ',
+					description:
+						'Machine Learning made simple. Going right from the traditional Linear Regression to building Neural Networks, including all the nitty gritty optimizations, regularizations and loss functions.',
+				},
+				{
+					id: 8,
+					projectName: 'Dreamyard',
+					name: 'Akshay Bhel, Prince Bhujetia',
+					link: 'https://github.com/bsoc-bitbyte/Dreamyard',
+					techStack: 'Unity Engine, C#',
+					description:
+						'An exhilarating 2D platform game that combines intense platforming challenges with thrilling combat encounters. where you have to fight and tackle enemies to complete the platform.',
 				},
 			],
 		}
