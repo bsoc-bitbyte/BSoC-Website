@@ -5,14 +5,13 @@
 
 <script>
 import Login from '@/components/Login'
-import Signup from '../components/Signup'
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
-import ToastComponent from '../components/ToastComponent.vue'
+import Signup from '../components/Signup'
 
 export default {
 	name: 'Auth',
-	components: { Signup, Login, ToastComponent },
+	components: { Signup, Login },
 	setup() {
 		const toggle = ref(true)
 

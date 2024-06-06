@@ -50,7 +50,6 @@
 import Nav from '@/components/Nav.vue'
 import { formatDistanceToNow } from 'date-fns'
 import { computed, ref } from 'vue'
-import ToastComponent from '../components/ToastComponent.vue'
 import { deletePr } from '../composables/deleteDocuments'
 import { getCollection } from '../composables/getCollection'
 import { projectAuth } from '../firebase/config'
