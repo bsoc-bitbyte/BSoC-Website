@@ -1,160 +1,401 @@
 <template>
-  <div class="content">
-    <div class="inner">
-      <input class="field" type="text" placeholder="Commit Message" v-model="message" required autofocus>
-      <input class="field" type="url" placeholder="Link to PR" v-model="link" required>
-      <select class="custom-select select" v-model="difficulty" id="inputGroupSelect01"  required>
-        <option selected>Select Difficulty</option>
-        <option value="15">Easy</option>
-        <option value="30">Medium</option>
-        <option value="50">Difficult</option>
-      </select>
-      <button v-if="!loading" class="hvr-grow" @click="handleClick">Submit</button>
-      <button v-else disabled class="disabled">Submitting</button>
-    </div>
-  </div>
+	<Nav></Nav>
+	<div class="content">
+		<div>
+			<h3 style="text-align: center; color: #fff; margin-bottom: 10px">
+				Select The Repository
+			</h3>
+			<select v-model="selectedRepo" class="custom-select" @change="fetchPRs">
+				<option value="" disabled>Select The Repository</option>
+				<option v-for="repo in repos" :key="repo" :value="repo">
+					{{ repo }}
+				</option>
+			</select>
+		</div>
+		<div class="inner">
+			<h3 v-if="loading" style="color: #fff; padding: 10px; text-align: center">
+				Getting the repos...
+			</h3>
+			<h3
+				v-else-if="selectedRepo === ''"
+				style="color: #fff; padding: 10px; text-align: center"
+			>
+				Please select a repo to get the Pull Requests
+			</h3>
+			<h3
+				v-else-if="fetchErr"
+				style="color: red; padding: 10px; text-align: center"
+			>
+				{{ fetchErr }}
+			</h3>
+			<div v-else class="pr-list">
+				<h3>
+					Pull Requests:
+					<span
+						v-if="prs.length === 0"
+						style="color: yellow; padding: 10px; text-align: center"
+						>No PRs found!</span
+					>
+				</h3>
+				<ul>
+					<li
+						v-for="pr in prs"
+						:key="pr.id"
+						@click="openModal(pr)"
+						class="hvr-grow"
+					>
+						<a :href="pr.html_url" target="_blank">{{ pr.title }}</a> by
+						{{ pr.user.login }}
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<!-- Modal -->
+		<div v-if="showModal" class="modal-overlay">
+			<div class="confirm-pr">
+				<h3>Submit Your PR</h3>
+				<p>{{ selectedPR?.title }}</p>
+				<p>
+					Difficulty:
+					{{
+						selectedDifficulty ??
+						'Contact the maintainer to assign a difficulty label.'
+					}}
+				</p>
+				<p v-if="isBsoc24 !== true" style="color: yellow">
+					Not assigned the BSoC'24 Label
+				</p>
+				<div class="modal-actions">
+					<button @click="showModal = false" class="btn btn-secondary">
+						Close
+					</button>
+					<button @click="handleClick" class="btn btn-primary">Submit</button>
+				</div>
+			</div>
+		</div>
+	</div>
 </template>
 
 <script>
-import { ref } from "vue";
-import { projectAuth } from "@/firebase/config";
-import {addDoc,updateUserStats, addUserStats} from "../composables/useCollection";
-import { timestamp } from "@/firebase/config";
-import { useRouter } from "vue-router";
+import Nav from '@/components/Nav'
+import { ref } from 'vue'
+import { projectAuth } from '@/firebase/config'
+import { addDoc, updateUserStats } from '../composables/useCollection'
+import { timestamp } from '@/firebase/config'
+import { useRouter } from 'vue-router'
+import axios from 'axios'
 
 export default {
-  name: "SubmitPR",
-  setup() {
-    const message = ref("");
-    const link = ref("");
-    const difficulty = ref("Select Difficulty");
-    const loading = ref(false)
-    const displayName = projectAuth.currentUser.displayName
-    const router = useRouter();
+	name: 'SubmitPR',
+	components: { Nav },
+	setup() {
+		const repos = [
+			'bsoc-bitbyte/BSoC-Website',
+			'bsoc-bitbyte/GetIt',
+			'bsoc-bitbyte/busify',
+			'BitByte-TPC/alumni',
+			'bsoc-bitbyte/myLeave',
+			'bsoc-bitbyte/DigiGate',
+			'bsoc-bitbyte/Summer_of_ML',
+			'bsoc-bitbyte/Dreamyard',
+		]
+		const message = ref('')
+		const link = ref('')
+		const difficulty = ref('Select Difficulty')
+		const loading = ref(false)
+		const fetchErr = ref(null)
+		const prs = ref([])
+		const showModal = ref(false)
+		const selectedPR = ref(null)
+		const selectedDifficulty = ref(null)
+		const isBsoc24 = ref(false)
+		const selectedRepo = ref('')
+		const displayName = projectAuth.currentUser.displayName
+		const router = useRouter()
 
-    const handleClick = async () => {
+		const difficultyOptions = {
+			Easy: '15',
+			Medium: '30',
+			Hard: '50',
+		}
 
-      if (difficulty.value === "Select Difficulty") {
-        alert("Please select a difficulty")
-        return
-      }
+		const handleClick = async () => {
+			if (
+				!selectedDifficulty?.value ||
+				!difficultyOptions[selectedDifficulty?.value]
+			) {
+				alert('Please ask the maintainer to assign a difficulty!')
+				return
+			}
+			if (!isBsoc24.value) {
+				alert("Please ask the maintainer to assign a the BSoc'24 tag!")
+				return
+			}
 
-      if (message.value === "" || link.value === "") {
-        alert("Please fill in all fields")
-        return
-      }
-      loading.value = true
+			console.log(selectedPR.value)
 
-      const doc = {
-        message: message.value,
-        link: link.value,
-        difficulty: difficulty.value,
-        displayName: displayName,
-        time: timestamp(),
-        uid: projectAuth.currentUser.uid
-      }
+			if (
+				selectedPR?.value?.title === '' ||
+				selectedPR?.value?.html_url === ''
+			) {
+				alert('Please choose a valid PR')
+				return
+			}
+			loading.value = true
 
-      await updateUserStats("userStats-2024",doc,projectAuth.currentUser.uid);
-      
-      console.log(doc)
-      await addDoc("dashboard-2024", doc);
-      loading.value = false
+			const doc = {
+				message: selectedPR.value.title,
+				link: selectedPR.value.html_url,
+				difficulty: difficultyOptions[selectedDifficulty.value],
+				displayName: displayName,
+				time: timestamp(),
+				uid: projectAuth.currentUser.uid,
+			}
 
-      await router.push("/dashboard")
-    }
+			await updateUserStats('userStats-2024', doc, projectAuth.currentUser.uid)
 
-    return { message, link, handleClick, loading, difficulty }
-  }
+			console.log(doc)
+			await addDoc('dashboard-2024', doc)
+			loading.value = false
+
+			await router.push('/dashboard')
+		}
+
+		const fetchPRs = async () => {
+			loading.value = true
+			try {
+				const response = await axios.get(
+					`https://api.github.com/repos/${selectedRepo.value}/pulls?state=closed`
+				)
+				prs.value = response.data.filter((pr) => pr.merged_at != null)
+				console.log(prs.value)
+				fetchErr.value = null
+			} catch (error) {
+				if (error.response.status === 403) {
+					fetchErr.value =
+						'Could not fetch PRs from repo as Rate limit has exceeded! Try again in an hour or use a VPN.'
+				} else
+					fetchErr.value =
+						'There was an error fetching The PRs! Please try again later.'
+				console.error('Error fetching PRs:', error)
+			} finally {
+				loading.value = false
+			}
+		}
+
+		const openModal = (pr) => {
+			selectedPR.value = pr
+			// Function to check if an object with a specific name exists
+			function containsName(arr, name) {
+				return arr.some((item) =>
+					item.name.toLowerCase().includes(name.toLowerCase())
+				)
+			}
+
+			if (containsName(pr.labels, "BSoC'24")) {
+				// Check if bsoc 24 label exists in the array
+				isBsoc24.value = true
+				console.log('BSOC24')
+			} else {
+				isBsoc24.value = false
+				console.log('not bsoc24')
+			}
+			if (containsName(pr.labels, 'easy')) {
+				// Check if "difficulty - medium" exists in the array
+				selectedDifficulty.value = 'Easy'
+			} else if (containsName(pr.labels, 'medium')) {
+				// Check if "difficulty - medium" exists in the array
+				selectedDifficulty.value = 'Medium'
+			} else if (containsName(pr.labels, 'hard')) {
+				// Check if "difficulty - medium" exists in the array
+				selectedDifficulty.value = 'Hard'
+			} else {
+				selectedDifficulty.value = null
+			}
+
+			showModal.value = true
+		}
+
+		// onMounted(async () => {
+		// });
+
+		return {
+			message,
+			link,
+			handleClick,
+			loading,
+			isBsoc24,
+			fetchErr,
+			difficulty,
+			repos,
+			prs,
+			showModal,
+			selectedPR,
+			fetchPRs,
+			selectedRepo,
+			selectedDifficulty,
+			openModal,
+		}
+	},
 }
 </script>
 
 <style scoped>
 .content {
-  height: 100vh;
-  width: 100vw;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  background: #19192a;
+	width: 100vw;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	padding: 100px 10px 0 10px;
+	justify-content: center;
+	align-items: center;
+	background: #19192a;
 }
 
 .inner {
-  width: 40vw;
-  min-width: 550px;
-  height: 42vh;
-
-  margin: 40px 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
-
-  background: #19192a;
-  box-shadow: 4px 4px 40px 2px #132e72;
-  border-radius: 8px;
-}
-
-.inner input, .select {
-  width: 90%;
-
-  border: none;
-  box-sizing: border-box;
-  border-radius: 8px;
-  outline: none;
-
-  font-family: Poppins, sans-serif;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 18px;
-  line-height: 27px;
-
-  color: #19192a;
-
-  padding: 8px 14px;
-}
-
-.inner button {
-  width: 90%;
-
-  background: #e5e6eb;
-  border: none;
-  box-sizing: border-box;
-  border-radius: 8px;
-  outline: none;
-
-  font-family: Poppins, sans-serif;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 22px;
-  line-height: 33px;
-
-  color: #19192a;
-
-  cursor: pointer;
+	padding: 10px 0;
+	width: 80%;
+	min-width: 550px;
+	height: auto;
+	margin: 40px 0;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	background: #19192a;
+	box-shadow: 4px 4px 40px 2px #132e72;
+	border-radius: 8px;
 }
 
 .hvr-grow {
-  transform: translateZ(0);
-  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
-  backface-visibility: hidden;
-  -moz-osx-font-smoothing: grayscale;
-  transition-duration: 0.3s;
-  transition-property: transform;
+	border: 1px dotted #466ed1;
+	transform: translateZ(0);
+	box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+	backface-visibility: hidden;
+	-moz-osx-font-smoothing: grayscale;
+	transition-duration: 0.3s;
+	transition-property: transform;
 }
 
 .hvr-grow:hover,
 .hvr-grow:focus,
 .hvr-grow:active {
-  transform: scale(1.03);
-  box-shadow: 4px 4px 40px 4px #466ED1;
-  ;
+	transform: scale(1.03);
+	box-shadow: 4px 4px 40px 4px #466ed1;
 }
 
-@media(max-width:900px) {
-  .inner {
-    min-width: 90%;
-    width: initial;
-  }
-}</style>
+.pr-list {
+	width: 90%;
+	background: #2e2e3e;
+	border-radius: 8px;
+	padding: 20px;
+	margin-top: 20px;
+	color: #e5e6eb;
+}
+
+.pr-list h3 {
+	margin-bottom: 10px;
+	color: #e5e6eb;
+}
+
+.pr-list ul {
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+}
+
+.pr-list li {
+	margin-bottom: 10px;
+	padding: 10px;
+	border-radius: 8px;
+	transition: background 0.3s;
+	cursor: pointer;
+}
+
+.pr-list li:hover {
+	background: #1e1e2e;
+}
+
+.pr-list a {
+	color: #66d9ef;
+	text-decoration: none;
+	font-weight: 500;
+	transition: color 0.3s;
+}
+
+.pr-list a:hover {
+	color: #66c5ef;
+	text-decoration: underline;
+}
+
+.modal-overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	background: rgba(0, 0, 0, 0.7);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.confirm-pr {
+	width: 95%;
+	max-width: 500px;
+	background-color: #1e1e2e;
+	padding: 50px;
+	border-radius: 10px;
+}
+
+.confirm-pr h3 {
+	margin-bottom: 20px;
+	color: #e5e6eb;
+}
+.confirm-pr p {
+	margin-bottom: 20px;
+	color: #e5e6eb;
+}
+
+.custom-select {
+	width: 100%;
+	padding: 8px 14px;
+	border-radius: 8px;
+	border: none;
+	margin-bottom: 20px;
+	font-family: Poppins, sans-serif;
+	font-size: 18px;
+}
+
+.modal-actions {
+	display: flex;
+	justify-content: space-between;
+}
+
+.btn {
+	padding: 10px 20px;
+	border: none;
+	border-radius: 8px;
+	cursor: pointer;
+	font-family: Poppins, sans-serif;
+	font-size: 18px;
+}
+
+.btn-secondary {
+	background: #e5e6eb;
+	color: #19192a;
+}
+
+.btn-primary {
+	background: #466ed1;
+	color: #fff;
+}
+
+@media (max-width: 900px) {
+	.inner {
+		min-width: 90%;
+		width: initial;
+	}
+}
+</style>
