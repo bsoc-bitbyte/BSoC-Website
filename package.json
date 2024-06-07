@@ -17,28 +17,28 @@
 		"@popperjs/core": "^2.11.8",
 		"axios": "^1.7.2",
 		"bootstrap": "^5.3.3",
-		"core-js": "^3.8.3",
-		"date-fns": "^2.24.0",
-		"firebase": "^9.0.2",
+		"core-js": "^3.37.1",
+		"date-fns": "^3.6.0",
+		"firebase": "^10.12.2",
 		"hover.css": "^2.3.2",
-		"mdb-vue-ui-kit": "^4.0.0",
+		"mdb-vue-ui-kit": "^5.0.0",
 		"particles.js": "^2.0.0",
 		"popper": "^1.0.1",
-		"vue": "^3.2.13",
+		"vue": "^3.4.27",
 		"vue-anchor-router-link": "^0.8.5",
-		"vue-router": "^4.0.3",
-		"vuex": "^4.0.0"
+		"vue-router": "^4.3.2",
+		"vuex": "^4.1.0"
 	},
 	"devDependencies": {
-		"@vue/cli-plugin-babel": "~5.0.0",
-		"@vue/cli-plugin-router": "~5.0.0",
-		"@vue/cli-plugin-vuex": "~5.0.0",
-		"@vue/cli-service": "~5.0.0",
-		"@vue/compiler-sfc": "^3.2.13",
+		"@vue/cli-plugin-babel": "~5.0.8",
+		"@vue/cli-plugin-router": "~5.0.8",
+		"@vue/cli-plugin-vuex": "~5.0.8",
+		"@vue/cli-service": "^5.0.8",
+		"@vue/compiler-sfc": "^3.4.27",
 		"husky": "^9.0.11",
 		"lint-staged": "^15.2.5",
-		"prettier": "^3.2.5",
-		"prettier-plugin-tailwindcss": "^0.6.0"
+		"prettier": "^3.3.1",
+		"prettier-plugin-tailwindcss": "^0.6.1"
 	},
 	"lint-staged": {
 		"src/**/*.{js,vue}": [
