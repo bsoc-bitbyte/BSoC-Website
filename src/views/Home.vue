@@ -201,6 +201,7 @@
             </div>
         </div> 
      </div> -->
+		<h1 class="h1">FAQ'S</h1>
 		<New></New>
 	</div>
 </template>
@@ -208,7 +209,7 @@
 <script>
 import { ref } from 'vue'
 import Nav from '@/components/Nav'
-import New from './New.vue'
+import New from './FAQAPP.vue'
 import { projectAuth } from '@/firebase/config'
 
 export default {
@@ -372,6 +373,7 @@ export default {
 /* .home-container{
     filter:blur(2px);
 } */
+
 .about-section {
 	width: 100vw;
 	background-color: #19192a;
@@ -485,6 +487,15 @@ export default {
 	font-family: Stargaze, sans-serif;
 }
 
+.h1 {
+	font-family: Stargaze, serif;
+	font-size: 6vw;
+	margin: 0;
+	text-align: center;
+	padding-top: 7vh;
+	color: #fffaff;
+	margin-bottom: 60px;
+}
 /* .faq {
     min-height: 100vh;
     width: 100%;
@@ -612,6 +623,10 @@ export default {
 		font-size: 1rem;
 		line-height: initial;
 		margin-top: 30px;
+	}
+
+	.h1 {
+		font-size: 45px;
 	}
 
 	/* .faq_head {

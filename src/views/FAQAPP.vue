@@ -25,7 +25,7 @@ export default {
 					question: 'Why should I participate?',
 
 					answer:
-						'Participating in such events provides an amazing learning experience, helps in improving your development skills, getting involved in big organizations and helping to buildnetworks. Thisis a great place to get you jump-started and up to speed with various industry-demanded technologies and getting involved with some great Open Source communities.',
+						'Participating in such events provides an amazing learning experience, helps in improving your development skills, getting involved in big organizations and helping to buildnetworks. This is a great place to get you jump-started and up to speed with various industry-demanded technologies and getting involved with some great Open Source communities.',
 
 					open: false,
 				},
@@ -99,64 +99,123 @@ export default {
 	},
 }
 </script>
-
 <style>
-.faq {
-	display: block;
-	width: 100%;
-	max-width: 768px;
-	margin: 26px auto;
-	padding: 26px;
-	border-radius: 8px;
-	box-shadow: 0px 0px rgba(0, 0, 0, 0.2);
+* {
+	color: #fffaff;
+	box-sizing: border-box;
+}
+
+body,
+html {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	font-family: Arial, sans-serif;
 	background-color: #19192a;
+}
+
+.faqs {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	justify-content: center;
+	align-items: center;
+}
+
+.faq {
+	width: 60%;
+	width: 100%;
+	max-width: 50%;
+	padding: 5px;
+	border-radius: 8px;
+}
+
+.question {
+	width: 50vw;
+	margin: 3vh auto 0;
+	border-bottom: 0.2vh solid #fffaff;
+	cursor: pointer;
+	font-size: 24px;
 }
 
 .faq .question {
 	position: relative;
-	color: #fffaff;
-	background-color: #19192a;
-	transition: all 0.4s linear;
+	transition: all 0.7s linear;
 }
 
 .faq .question::after {
-	content: '';
-
+	content: ' ';
 	position: absolute;
-	top: 50%;
-	right: 0px;
-	transform: translateY(-50%) rotate(0deg);
-	width: 30px;
+	width: 50vw;
 	height: 30px;
-	background-color: #19192a;
-	transition: all 0.4sec linear;
 }
 
-.faq .open .question {
+.arrquestion {
+	display: flex;
+	align-items: end;
+	height: 50px;
+	width: 50vw;
+	margin-bottom: 20px;
+}
+
+.arrow {
+	position: relative;
+	right: 4%;
+	transition: all 0.7s linear;
+}
+
+.faq-open .arrow {
+	transform: translateY(-50%) rotate(180deg);
 	margin-bottom: 15px;
 }
 
-.faq .open .question::after {
+.faq-open .arrow::after {
 	transform: translateY(-50%) rotate(180deg);
 }
 
-.faq .answer {
-	color: #fffaff;
-	font-size: 18px;
-	opacity: 0;
-	max-height: 0;
-	overflow: hidden;
-	transition:
-		opacity 0.4s ease-out,
-		max-height 0.4s ease-out,
-		padding 0.4s ease-out;
-	padding: 0 0;
-	background-color: #19192a;
+.faq-open .question {
+	margin-bottom: 15px;
 }
 
-.faq .open .answer {
-	opacity: 1;
+.faq-open .question::after {
+	transform: translateY(-50%) rotate(180deg);
+}
+.faq-open {
+	width: 50%;
+	height: 80%;
+}
+
+.answer {
+	display: none;
+	max-height: 0;
+	overflow: hidden;
+	font-size: 18px;
+	transition: all 0.4s ease-out;
+	margin: 30px;
+}
+.faq .answer {
+	max-height: 0px;
+	overflow-y: hidden;
+}
+.faq-open .answer {
+	display: block;
 	max-height: 1000px;
-	padding: 10px 0;
+	opacity: 1;
+}
+
+@media (max-width: 412px) {
+	.question {
+		font-size: 16px;
+	}
+
+	.answer {
+		font-size: 14px;
+	}
+}
+
+@media (max-width: 500px) {
+	.arrquestion {
+		margin-bottom: 60px;
+	}
 }
 </style>
