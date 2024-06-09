@@ -99,9 +99,8 @@ export default {
 	},
 }
 </script>
-<style scoped>
+<style>
 * {
-	color: #fffaff;
 	box-sizing: border-box;
 }
 
@@ -112,6 +111,7 @@ html {
 	height: 100%;
 	font-family: Arial, sans-serif;
 	background-color: #19192a;
+	color: #fffaff;
 }
 
 .faqs {
