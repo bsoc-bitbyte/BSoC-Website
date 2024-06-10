@@ -20,6 +20,7 @@
 		"core-js": "^3.8.3",
 		"date-fns": "^2.24.0",
 		"firebase": "^9.0.2",
+		"dompurify": "^3.1.5",
 		"hover.css": "^2.3.2",
 		"mdb-vue-ui-kit": "^4.0.0",
 		"particles.js": "^2.0.0",
