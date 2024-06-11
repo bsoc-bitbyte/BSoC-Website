@@ -50,7 +50,6 @@ html {
 
 .faq {
 	width: 60%;
-
 	max-width: 50%;
 	padding: 5px;
 	border-radius: 8px;
@@ -67,11 +66,9 @@ html {
 
 .faq .question {
 	position: relative;
-	transition: all 0.7s linear;
 }
 
 .faq .question::after {
-	content: ' ';
 	position: absolute;
 	width: 50vw;
 	height: 30px;
@@ -87,7 +84,7 @@ html {
 .arrow {
 	position: relative;
 	right: 4%;
-	transition: all 0.7s linear;
+	transition: all 0.5s linear;
 }
 
 .faq-open .arrow {
@@ -95,50 +92,32 @@ html {
 	margin-bottom: 15px;
 }
 
-.faq-open .arrow::after {
-	transform: translateY(-50%) rotate(180deg);
-}
-
 .faq-open .question {
 	margin-bottom: 15px;
 }
 
-.faq-open .question::after {
-	transform: translateY(-50%) rotate(180deg);
-}
 .faq-open {
 	width: 50%;
 	height: 80%;
 }
 
 .answer {
-	display: none;
 	max-height: 0;
 	overflow: hidden;
 	font-size: 18px;
-	transition: all 0.4s linear;
 	margin-bottom: 25px;
 	color: white;
-}
-.faq .answer {
-	max-height: 0px;
-	overflow-y: hidden;
-}
-.faq-open .answer {
-	display: block;
-	max-height: 1000px;
-	opacity: 1;
-	animation: answeropen 0.6s;
-	animation-timing-function: linear;
+	opacity: 0;
+	padding-top: 0;
+	padding-bottom: 0;
 }
 
-@keyframes answeropen {
-	from {
-		height: 0px;
-	}
-	to {
-		height: auto;
-	}
+.faq-open .answer {
+	max-height: 1000px;
+	opacity: 1;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	transition: all 0.5s linear;
 }
 
 @media (max-width: 412px) {
