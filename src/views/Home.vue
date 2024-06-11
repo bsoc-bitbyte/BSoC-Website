@@ -453,7 +453,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 /* .home-container{
     filter:blur(2px);
 } */
@@ -617,15 +617,15 @@ export default {
 }
 .countdown-timer {
 	text-align: center;
-	margin-top: 20px;
+	margin-top: 100px;
 	color: #fffaff;
-	font-family: 'Stargaze', sans-serif;
+	font-family: 'Stargaze', monospace;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 }
 .countdown-title {
-	font-size: 3vw;
+	font-size: 8vw;
 }
 .timer {
 	display: flex;
@@ -634,12 +634,40 @@ export default {
 .timer span {
 	display: inline-block;
 	margin: 0 10px;
-	font-size: 2vw;
-}
-.final-text {
-	font-size: 1.25vw;
+	font-size: 6vw;
 }
 
+.final-text {
+	font-size: 8vw;
+}
+
+@media (min-width: 600px) {
+	.countdown-title {
+		font-size: 6vw;
+	}
+
+	.timer span {
+		font-size: 4vw;
+	}
+
+	.final-text {
+		font-size: 6vw;
+	}
+}
+
+@media (min-width: 1024px) {
+	.countdown-title {
+		font-size: 3vw;
+	}
+
+	.timer span {
+		font-size: 2vw;
+	}
+
+	.final-text {
+		font-size: 3vw;
+	}
+}
 @media (max-width: 900px) {
 	.container {
 		margin-left: 0;
@@ -685,17 +713,16 @@ export default {
 	.timer span span {
 		font-size: 3rem;
 	}
-	countdown-title {
-		font-size: 4.5vw;
-	}
-	.timer span {
-		font-size: 3.5vw;
-	}
 	.countdown-title {
-		font-size: 3.5vw;
+		font-size: 6vw;
 	}
+
+	.timer span {
+		font-size: 4vw;
+	}
+
 	.final-text {
-		font-size: 2.5vw;
+		font-size: 5vw;
 	}
 	.about {
 		height: initial;
