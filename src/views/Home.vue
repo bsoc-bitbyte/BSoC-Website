@@ -501,29 +501,11 @@ export default {
 	position: relative;
 }
 
-.timer {
-	width: 45vw;
-	display: flex;
-	justify-content: space-between;
-}
-
 #start {
 	font-family: 'Poppins', sans-serif;
 	font-size: 2vh;
 	color: #fffaff;
 	margin: 5vh 0 0 0;
-}
-
-.timer span {
-	font-size: 2vh;
-	color: #fffaff;
-	font-family: 'Poppins', sans-serif;
-}
-
-.timer span span {
-	font-family: Stargaze, sans-serif;
-	color: #fffaff;
-	font-size: 8vh;
 }
 
 .prize-section {
@@ -628,15 +610,19 @@ export default {
 	font-size: 8vw;
 }
 .timer {
+	width: 45vw;
 	display: flex;
-	justify-content: center;
+	justify-content: space-between;
 }
 .timer span {
-	display: inline-block;
-	margin: 0 10px;
-	font-size: 6vw;
+	font-size: 2vh;
+	color: #fffaff;
 }
-
+.timer span span {
+	font-family: monospace, Stargaze;
+	color: #fffaff;
+	font-size: 8vh;
+}
 .final-text {
 	font-size: 8vw;
 }
@@ -647,7 +633,7 @@ export default {
 	}
 
 	.timer span {
-		font-size: 4vw;
+		font-size: 2vw;
 	}
 
 	.final-text {
