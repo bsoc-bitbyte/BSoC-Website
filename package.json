@@ -43,6 +43,9 @@
 	"lint-staged": {
 		"src/**/*.{js,vue}": [
 			"prettier --write --ignore-unknown"
+		],
+		"public/**/*.html": [
+			"prettier --write --ignore-unknown"
 		]
 	}
 }
