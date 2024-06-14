@@ -1,4 +1,3 @@
-<!-- Jai shree ram -->
 <template>
 	<div id="ody" :style="{ backgroundColor: bodyBackgroundColor }">
 		<nav class="navbar navbar-expand-lg text-white">
@@ -240,10 +239,10 @@
 	</div>
 </template>
 <script>
-import { ref, toDisplayString } from 'vue'
-import { projectAuth } from '../firebase/config'
 import useLogout from '@/composables/useLogout'
+import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+import { projectAuth } from '../firebase/config'
 import Login from './Login.vue'
 import Signup from './Signup.vue'
 export default {
