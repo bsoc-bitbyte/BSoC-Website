@@ -60,7 +60,7 @@
 					Difficulty:
 					{{
 						selectedDifficulty ??
-						'Contact the maintainer to assign a difficulty label.'
+						'Contact the maintainer to assign a difficulty label to the PR.'
 					}}
 				</p>
 				<p v-if="isBsoc24 !== true" style="color: yellow">
@@ -125,11 +125,11 @@ export default {
 				!selectedDifficulty?.value ||
 				!difficultyOptions[selectedDifficulty?.value]
 			) {
-				alert('Please ask the maintainer to assign a difficulty!')
+				alert('Please ask the maintainer to assign a difficulty to the PR!')
 				return
 			}
 			if (!isBsoc24.value) {
-				alert("Please ask the maintainer to assign a the BSoc'24 tag!")
+				alert("Please ask the maintainer to assign a the BSoC'24 tag!")
 				return
 			}
 

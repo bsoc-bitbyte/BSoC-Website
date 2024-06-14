@@ -8,8 +8,9 @@
 				v-on:click="toggle()"
 				class="x"
 				style="position: relative; margin-left: 15em; padding-top: 1em"
-				>x</span
 			>
+				x
+			</span>
 			<div
 				class="row d-flex justify-content-center align-items-center h-100"
 				style="margin-top: -1em"
@@ -54,9 +55,9 @@
 								class="d-flex justify-content-center mt-4 pt-1 text-center"
 								@click="handleGoogleSubmit"
 							>
-								<a href="#!" class="text-white"
-									><img src="../assets/google-icon.png" style="height: 1.5em"
-								/></a>
+								<a href="#!" class="text-white">
+									<img src="../assets/google-icon.png" style="height: 1.5em" />
+								</a>
 							</div>
 						</div>
 					</div>
