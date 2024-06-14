@@ -1,6 +1,5 @@
-import { ref } from 'vue'
-import { projectFirestore } from '@/firebase/config'
 import { getCollection } from '@/composables/getCollection'
+import { projectFirestore } from '@/firebase/config'
 import { errorToast, successToast } from './useToast'
 
 const deleteDocuments = async (n) => {

@@ -1,6 +1,5 @@
 <template>
 	<Nav></Nav>
-
 	<div class="pr-outer">
 		<div class="pr-container">
 			<div class="table-heading">
@@ -15,10 +14,10 @@
 						<span>{{ user.displayName }}</span>
 					</div>
 					<div class="heading3 text-white">
-						<span
-							><a :href="user.link" target="_blank" class="text-white">{{
-								user.message
-							}}</a>
+						<span>
+							<a :href="user.link" target="_blank" class="text-white">
+								{{ user.message }}
+							</a>
 						</span>
 					</div>
 					<div class="heading4 text-white">
