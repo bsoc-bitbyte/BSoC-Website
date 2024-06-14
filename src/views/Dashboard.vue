@@ -42,14 +42,11 @@
 </template>
 
 <script>
-import useLogout from '@/composables/useLogout'
-import { useRouter } from 'vue-router'
-import { computed, ref } from 'vue'
-import axios from 'axios'
-import { formatDistanceToNow } from 'date-fns'
-import { getCollection, getAllUserStats } from '../composables/getCollection'
-import { projectAuth } from '../firebase/config'
 import Nav from '@/components/Nav.vue'
+import { formatDistanceToNow } from 'date-fns'
+import { computed, ref } from 'vue'
+import { getAllUserStats } from '../composables/getCollection'
+import { projectAuth } from '../firebase/config'
 
 export default {
 	name: 'Dashboard',
@@ -58,10 +55,7 @@ export default {
 	},
 
 	setup() {
-		const { error, logout } = useLogout()
-		const router = useRouter()
 		const { documents } = getAllUserStats('userStats-2024')
-		const joke = ref('')
 		const started = ref(true)
 		const userPR = ref(false)
 		var userData = new Map()

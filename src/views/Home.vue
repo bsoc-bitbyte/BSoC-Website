@@ -273,6 +273,8 @@
 				</div>
 			</div>
 
+			<!-- Countdown Timer Section -->
+
 			<div class="countdown-timer">
 				<p class="countdown-title">BSoC Ends in:</p>
 				<div class="timer" v-if="!hasEnded">
