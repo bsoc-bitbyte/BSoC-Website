@@ -4,7 +4,7 @@ function sleep(ms) {
 
 export async function fade(element) {
 	if (element != undefined) {
-		await sleep(800)
+		await sleep(2000)
 		element.style.opacity = '0'
 		await sleep(500)
 		element.style.display = 'none'
