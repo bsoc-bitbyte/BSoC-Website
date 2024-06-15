@@ -64,9 +64,9 @@
 		</div>
 
 		<!--  FAQ Section-->
-
+		<New></New>
 		<div class="faq" id="faq">
-			<p class="faq_head">FAQS</p>
+			<!--<p class="faq_head">FAQS</p>
 			<div class="accordion" id="accordionExample">
 				<div class="accordion-item" style="background-color: #19192a">
 					<h2 class="accordion-header" id="headingOne">
@@ -269,12 +269,11 @@
 							<strong>Ans. </strong> No purchase/payment is necessary to
 							participate or win in this event. It is free of cost.
 						</div>
-					</div>
-				</div>
-			</div>
+					</div> -->
+			<!-- </div> -->
+			<!-- </div> -->
 
 			<!-- Countdown Timer Section -->
-
 			<div class="countdown-timer">
 				<p class="countdown-title">BSoC Ends in:</p>
 				<div class="timer" v-if="!hasEnded">
@@ -300,11 +299,12 @@
 <script>
 import { ref, onMounted } from 'vue'
 import Nav from '@/components/Nav'
+import New from '../components/FAQITEMS.vue'
 import { projectAuth } from '@/firebase/config'
 
 export default {
 	name: 'Home',
-	components: { Nav },
+	components: { Nav, New },
 	mounted() {
 		this.initParticles()
 	},
@@ -555,22 +555,18 @@ export default {
 }
 
 .faq {
-	min-height: 100vh;
-	width: 100%;
 	background: #19192a;
-	padding-bottom: 10vh;
 }
 
-.faq_head {
+/*.faq_head {
 	font-family: Stargaze, serif;
 	font-size: 6vw;
 	margin: 0;
 	text-align: center;
 	padding-top: 7vh;
-	color: #fffaff;
-}
+	/*
 
-.accordion {
+/*.accordion {
 	width: 55vw;
 	margin: 12vh auto 0;
 	color: #fffaff;
@@ -598,10 +594,9 @@ export default {
 
 .accordion-body {
 	text-align: left;
-}
+}*/
 .countdown-timer {
 	text-align: center;
-	margin-top: 100px;
 	color: #fffaff;
 	font-family: 'Stargaze', monospace;
 	display: flex;
