@@ -64,234 +64,26 @@
 		</div>
 
 		<!--  FAQ Section-->
-		<New></New>
-		<div class="faq" id="faq">
-			<!--<p class="faq_head">FAQS</p>
-			<div class="accordion" id="accordionExample">
-				<div class="accordion-item" style="background-color: #19192a">
-					<h2 class="accordion-header" id="headingOne">
-						<button
-							class="accordion-button collapsed"
-							type="button"
-							style="color: #fffaff; background-color: #19192a"
-							data-bs-toggle="collapse"
-							data-bs-target="#collapseOne"
-							aria-expanded="true"
-							aria-controls="collapseOne"
-						>
-							Why should I participate?
-						</button>
-					</h2>
-					<div
-						id="collapseOne"
-						class="accordion-collapse collapse"
-						aria-labelledby="headingOne"
-						data-bs-parent="#accordionExample"
-					>
-						<div class="accordion-body" style="color: #fffaff">
-							<strong>Ans. </strong>Participating in such events provides an
-							amazing learning experience, helps in improving your development
-							skills, getting involved in big organizations and helping to build
-							networks. This is a great place to get you jump-started and up to
-							speed with various industry-demanded technologies and getting
-							involved with some great Open Source communities.
-						</div>
-					</div>
-				</div>
-				<div class="accordion-item" style="background-color: #19192a">
-					<h2 class="accordion-header">
-						<button
-							class="accordion-button collapsed"
-							type="button"
-							style="color: #fffaff; background-color: #19192a; outline: none"
-							data-bs-toggle="collapse"
-							data-bs-target="#collapseTwo"
-							aria-expanded="false"
-							aria-controls="collapseTwo"
-						>
-							Why is Open Source important?
-						</button>
-					</h2>
-					<div
-						id="collapseTwo"
-						class="accordion-collapse collapse"
-						aria-labelledby="headingTwo"
-						data-bs-parent="#accordionExample"
-					>
-						<div class="accordion-body" style="color: #fffaff">
-							<strong>Ans. </strong> Open source provides you first-hand
-							experience with working on big and real-world projects, on which
-							many top companies depend, which will give a huge boost in your
-							development career. Not only this, but you also get to work with
-							and learn from some of the most talented developers around the
-							world.
-						</div>
-					</div>
-				</div>
-				<div class="accordion-item" style="background-color: #19192a">
-					<h2 class="accordion-header" id="headingThree">
-						<button
-							class="accordion-button collapsed"
-							type="button"
-							style="color: #fffaff; background-color: #19192a"
-							data-bs-toggle="collapse"
-							data-bs-target="#collapseThree"
-							aria-expanded="false"
-							aria-controls="collapseThree"
-						>
-							Are there any placement opportunities available?
-						</button>
-					</h2>
-					<div
-						id="collapseThree"
-						class="accordion-collapse collapse"
-						aria-labelledby="headingThree"
-						data-bs-parent="#accordionExample"
-					>
-						<div class="accordion-body" style="color: #fffaff">
-							<strong>Ans. </strong>Contributing to some real world project will
-							have a huge impact on your CV and you will gain some experience
-							about how to work in a large organisation with hundreds of
-							contributors. Though direct placement opportunities are rare,
-							there are chances to get full time opportunities in the
-							organisation you’re contributing for a long time. Mentors often
-							recommend contributors to some startup companies or you might get
-							to know people who work in FAANG companies which can help you
-							later on when you apply to those companies with referral.
-						</div>
-					</div>
-				</div>
-				<div class="accordion-item" style="background-color: #19192a">
-					<h2 class="accordion-header" id="headingFour">
-						<button
-							class="accordion-button collapsed"
-							type="button"
-							style="color: #fffaff; background-color: #19192a"
-							data-bs-toggle="collapse"
-							data-bs-target="#collapseFour"
-							aria-expanded="false"
-							aria-controls="collapseFour"
-						>
-							Can we work in groups to participate in this event?
-						</button>
-					</h2>
-					<div
-						id="collapseFour"
-						class="accordion-collapse collapse"
-						aria-labelledby="headingFour"
-						data-bs-parent="#accordionExample"
-					>
-						<div class="accordion-body" style="color: #fffaff">
-							<strong>Ans. </strong>No, team participation is not allowed in
-							this event. Everyone must participate individually. But you can
-							collaborate with each other if contributing to the same
-							organization.
-						</div>
-					</div>
-				</div>
-				<div class="accordion-item" style="background-color: #19192a">
-					<h2 class="accordion-header" id="headingFive">
-						<button
-							class="accordion-button collapsed"
-							type="button"
-							style="color: #fffaff; background-color: #19192a"
-							data-bs-toggle="collapse"
-							data-bs-target="#collapseFive"
-							aria-expanded="false"
-							aria-controls="collapseFour"
-						>
-							How do I submit my pull requests on Event Website?
-						</button>
-					</h2>
-					<div
-						id="collapseFive"
-						class="accordion-collapse collapse"
-						aria-labelledby="headingFive"
-						data-bs-parent="#accordionExample"
-					>
-						<div class="accordion-body" style="color: #fffaff">
-							<strong>Ans. </strong>Head over to the Submit PR tab on your
-							dashboard and fill the form accordingly.
-						</div>
-					</div>
-				</div>
-				<div class="accordion-item" style="background-color: #19192a">
-					<h2 class="accordion-header" id="headingSix">
-						<button
-							class="accordion-button collapsed"
-							type="button"
-							style="color: #fffaff; background-color: #19192a"
-							data-bs-toggle="collapse"
-							data-bs-target="#collapseSix"
-							aria-expanded="false"
-							aria-controls="collapseSix"
-						>
-							I am stuck. How do I get help?
-						</button>
-					</h2>
-					<div
-						id="collapseSix"
-						class="accordion-collapse collapse"
-						aria-labelledby="headingSix"
-						data-bs-parent="#accordionExample"
-						style="color: #fffaff"
-					>
-						<div class="accordion-body">
-							<strong>Ans. </strong>Join our discord server (<a
-								href="https://discord.gg/C72FYTYYcZ"
-								style="color: #3770ff"
-								>click here to join</a
-							>) and the mentors would be glad to help you there.
-						</div>
-					</div>
-				</div>
-				<div class="accordion-item" style="background-color: #19192a">
-					<h2 class="accordion-header" id="headingSeven">
-						<button
-							class="accordion-button collapsed"
-							type="button"
-							style="color: #fffaff; background-color: #19192a"
-							data-bs-toggle="collapse"
-							data-bs-target="#collapseSeven"
-							aria-expanded="false"
-							aria-controls="collapseSix"
-						>
-							Do I need to pay to enter this event?
-						</button>
-					</h2>
-					<div
-						id="collapseSeven"
-						class="accordion-collapse collapse"
-						aria-labelledby="headingSeven"
-						data-bs-parent="#accordionExample"
-					>
-						<div class="accordion-body" style="color: #fffaff">
-							<strong>Ans. </strong> No purchase/payment is necessary to
-							participate or win in this event. It is free of cost.
-						</div>
-					</div> -->
-			<!-- </div> -->
-			<!-- </div> -->
+		<FAQS></FAQS>
 
-			<!-- Countdown Timer Section -->
-			<div class="countdown-timer">
-				<p class="countdown-title">BSoC Ends in:</p>
-				<div class="timer" v-if="!hasEnded">
-					<span>
-						<span>{{ days }}</span> Days
-					</span>
-					<span>
-						<span>{{ hours }}</span> Hours
-					</span>
-					<span>
-						<span>{{ minutes }}</span> Minutes
-					</span>
-					<span>
-						<span>{{ seconds }}</span> Seconds
-					</span>
-				</div>
-				<p class="final-text" v-else>BSoC'24 has ended</p>
+		<!--COUNTDOWN-TIMER-SECTION-->
+		<div class="countdown-timer">
+			<p class="countdown-title">BSoC Ends in:</p>
+			<div class="timer" v-if="!hasEnded">
+				<span>
+					<span>{{ days }}</span> Days
+				</span>
+				<span>
+					<span>{{ hours }}</span> Hours
+				</span>
+				<span>
+					<span>{{ minutes }}</span> Minutes
+				</span>
+				<span>
+					<span>{{ seconds }}</span> Seconds
+				</span>
 			</div>
+			<p class="final-text" v-else>BSoC'24 has ended</p>
 		</div>
 	</div>
 </template>
@@ -299,12 +91,12 @@
 <script>
 import { ref, onMounted } from 'vue'
 import Nav from '@/components/Nav'
-import New from '../components/FAQITEMS.vue'
+import FAQS from '../components/FAQS.vue'
 import { projectAuth } from '@/firebase/config'
 
 export default {
 	name: 'Home',
-	components: { Nav, New },
+	components: { Nav, FAQS },
 	mounted() {
 		this.initParticles()
 	},
@@ -456,9 +248,6 @@ export default {
 </script>
 
 <style>
-/* .home-container{
-    filter:blur(2px);
-} */
 .about-section {
 	width: 100vw;
 	background-color: #19192a;
@@ -554,47 +343,6 @@ export default {
 	font-family: Stargaze, sans-serif;
 }
 
-.faq {
-	background: #19192a;
-}
-
-/*.faq_head {
-	font-family: Stargaze, serif;
-	font-size: 6vw;
-	margin: 0;
-	text-align: center;
-	padding-top: 7vh;
-	/*
-
-/*.accordion {
-	width: 55vw;
-	margin: 12vh auto 0;
-	color: #fffaff;
-	font-family: 'Poppins', sans-serif;
-}
-
-.accordion-header {
-	border-bottom: 0.3vh solid #fffaff;
-}
-
-.accordion-item {
-	border: none;
-}
-
-.accordion-button {
-	font-family: 'Poppins', sans-serif;
-	color: #fffaff;
-	font-size: 1.5vw;
-}
-
-.accordion-button:focus {
-	box-shadow: none;
-	border-color: rgba(0, 0, 0, 0.125);
-}
-
-.accordion-body {
-	text-align: left;
-}*/
 .countdown-timer {
 	text-align: center;
 	color: #fffaff;
@@ -602,6 +350,7 @@ export default {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	background: #19192a;
 }
 .countdown-title {
 	font-size: 8vw;
