@@ -351,6 +351,7 @@ export default {
 	flex-direction: column;
 	align-items: center;
 	background: #19192a;
+	padding-bottom: 100px;
 }
 .countdown-title {
 	font-size: 8vw;
