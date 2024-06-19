@@ -42,11 +42,11 @@
 </template>
 
 <script>
-import Nav from '@/components/Nav.vue'
-import { formatDistanceToNow } from 'date-fns'
 import { computed, ref } from 'vue'
+import { formatDistanceToNow } from 'date-fns'
 import { getAllUserStats } from '../composables/getCollection'
 import { projectAuth } from '../firebase/config'
+import Nav from '@/components/Nav.vue'
 
 export default {
 	name: 'Dashboard',
@@ -76,6 +76,9 @@ export default {
 				})
 				userPRData = userData.filter((doc) => {
 					return doc.uid == userUID
+				})
+				userData = userData.filter((doc) => {
+					return doc.score > 0
 				})
 				return userData
 			}
