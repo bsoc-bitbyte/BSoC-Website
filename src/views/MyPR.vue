@@ -201,7 +201,7 @@ export default {
 
 .pr-outer {
 	background: #19192a;
-	min-height: 90vh;
+	min-height: 100vh;
 	width: 100vw;
 	display: flex;
 	padding-top: 12vh;
