@@ -60,7 +60,7 @@
 					Difficulty:
 					{{
 						selectedDifficulty ??
-						'Contact the maintainer to assign a difficulty label to the PR.'
+						'Contact the maintainer to assign a difficulty label.'
 					}}
 				</p>
 				<p v-if="isBsoc24 !== true" style="color: yellow">
@@ -78,8 +78,9 @@
 </template>
 
 <script>
+import { projectFirestore } from '@/firebase/config'
 import Nav from '@/components/Nav'
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 import { projectAuth } from '@/firebase/config'
 import { addDoc, updateUserStats } from '../composables/useCollection'
 import { timestamp } from '@/firebase/config'
@@ -113,6 +114,7 @@ export default {
 		const selectedRepo = ref('')
 		const displayName = projectAuth.currentUser.displayName
 		const router = useRouter()
+		const submittedPRs = ref([])
 
 		const difficultyOptions = {
 			Easy: '15',
@@ -120,20 +122,33 @@ export default {
 			Hard: '50',
 		}
 
+		const fetchSubmittedPRs = async () => {
+			try {
+				const userID = projectAuth.currentUser.uid
+				const collectionRef = projectFirestore
+					.collection('user-submitted-prs')
+					.where('uid', '==', userID)
+				const snap = await collectionRef.get()
+				snap.forEach((doc) => {
+					submittedPRs.value.push(doc.data().prID)
+				})
+			} catch (error) {
+				console.log(error.message)
+			}
+		}
+
 		const handleClick = async () => {
 			if (
 				!selectedDifficulty?.value ||
 				!difficultyOptions[selectedDifficulty?.value]
 			) {
-				alert('Please ask the maintainer to assign a difficulty to the PR!')
+				alert('Please ask the maintainer to assign a difficulty!')
 				return
 			}
 			if (!isBsoc24.value) {
-				alert("Please ask the maintainer to assign a the BSoC'24 tag!")
+				alert("Please ask the maintainer to assign a the BSoc'24 tag!")
 				return
 			}
-
-			console.log(selectedPR.value)
 
 			if (
 				selectedPR?.value?.title === '' ||
@@ -154,11 +169,8 @@ export default {
 			}
 
 			await updateUserStats('userStats-2024', doc, projectAuth.currentUser.uid)
-
-			console.log(doc)
 			await addDoc('dashboard-2024', doc)
 			loading.value = false
-
 			await router.push('/dashboard')
 		}
 
@@ -168,16 +180,25 @@ export default {
 				const response = await axios.get(
 					`https://api.github.com/repos/${selectedRepo.value}/pulls?state=closed`
 				)
-				prs.value = response.data.filter((pr) => pr.merged_at != null)
-				console.log(prs.value)
+				const allPRs = response.data.filter((pr) => pr.merged_at != null)
+				const submittedPRsSnapshot = await projectFirestore
+					.collection('dashboard-2024')
+					.get()
+				const submittedPRs = submittedPRsSnapshot.docs.map(
+					(doc) => doc.data().link
+				)
+				prs.value = allPRs.filter((pr) => !submittedPRs.includes(pr.html_url))
+				console.log('Filtered PRs:', prs.value)
+
 				fetchErr.value = null
 			} catch (error) {
-				if (error.response.status === 403) {
+				if (error.response == 403) {
 					fetchErr.value =
 						'Could not fetch PRs from repo as Rate limit has exceeded! Try again in an hour or use a VPN.'
-				} else
+				} else {
 					fetchErr.value =
 						'There was an error fetching The PRs! Please try again later.'
+				}
 				console.error('Error fetching PRs:', error)
 			} finally {
 				loading.value = false
@@ -186,7 +207,6 @@ export default {
 
 		const openModal = (pr) => {
 			selectedPR.value = pr
-			// Function to check if an object with a specific name exists
 			function containsName(arr, name) {
 				return arr.some((item) =>
 					item.name.toLowerCase().includes(name.toLowerCase())
@@ -194,7 +214,6 @@ export default {
 			}
 
 			if (containsName(pr.labels, "BSoC'24")) {
-				// Check if bsoc 24 label exists in the array
 				isBsoc24.value = true
 				console.log('BSOC24')
 			} else {
@@ -202,13 +221,10 @@ export default {
 				console.log('not bsoc24')
 			}
 			if (containsName(pr.labels, 'easy')) {
-				// Check if "difficulty - medium" exists in the array
 				selectedDifficulty.value = 'Easy'
 			} else if (containsName(pr.labels, 'medium')) {
-				// Check if "difficulty - medium" exists in the array
 				selectedDifficulty.value = 'Medium'
 			} else if (containsName(pr.labels, 'hard')) {
-				// Check if "difficulty - medium" exists in the array
 				selectedDifficulty.value = 'Hard'
 			} else {
 				selectedDifficulty.value = null
@@ -217,8 +233,9 @@ export default {
 			showModal.value = true
 		}
 
-		// onMounted(async () => {
-		// });
+		onMounted(async () => {
+			await fetchSubmittedPRs()
+		})
 
 		return {
 			message,
