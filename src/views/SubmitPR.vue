@@ -60,7 +60,7 @@
 					Difficulty:
 					{{
 						selectedDifficulty ??
-						'Contact the maintainer to assign a difficulty label.'
+						'Contact the maintainer to assign a difficulty label to the PR.'
 					}}
 				</p>
 				<p v-if="isBsoc24 !== true" style="color: yellow">
@@ -78,18 +78,14 @@
 </template>
 
 <script>
-import { projectFirestore } from '@/firebase/config'
-import Nav from '@/components/Nav'
+import { projectFirestore, projectAuth, timestamp } from '@/firebase/config'
 import { ref, onMounted } from 'vue'
-import { projectAuth } from '@/firebase/config'
-import { addDoc, updateUserStats } from '../composables/useCollection'
-import { timestamp } from '@/firebase/config'
 import { useRouter } from 'vue-router'
 import axios from 'axios'
+import { addDoc, updateUserStats } from '../composables/useCollection'
 
 export default {
 	name: 'SubmitPR',
-	components: { Nav },
 	setup() {
 		const repos = [
 			'bsoc-bitbyte/BSoC-Website',
@@ -124,14 +120,12 @@ export default {
 
 		const fetchSubmittedPRs = async () => {
 			try {
-				const userID = projectAuth.currentUser.uid
-				const collectionRef = projectFirestore
-					.collection('user-submitted-prs')
-					.where('uid', '==', userID)
-				const snap = await collectionRef.get()
-				snap.forEach((doc) => {
-					submittedPRs.value.push(doc.data().prID)
-				})
+				const submittedPRsSnapshot = await projectFirestore
+					.collection('dashboard-2024')
+					.get()
+				submittedPRs.value = submittedPRsSnapshot.docs.map(
+					(doc) => doc.data().link
+				)
 			} catch (error) {
 				console.log(error.message)
 			}
@@ -142,11 +136,11 @@ export default {
 				!selectedDifficulty?.value ||
 				!difficultyOptions[selectedDifficulty?.value]
 			) {
-				alert('Please ask the maintainer to assign a difficulty!')
+				alert('Please ask the maintainer to assign a difficulty to the PR!')
 				return
 			}
 			if (!isBsoc24.value) {
-				alert("Please ask the maintainer to assign a the BSoc'24 tag!")
+				alert("Please ask the maintainer to assign the BSoC'24 tag!")
 				return
 			}
 
@@ -157,6 +151,7 @@ export default {
 				alert('Please choose a valid PR')
 				return
 			}
+
 			loading.value = true
 
 			const doc = {
@@ -181,15 +176,10 @@ export default {
 					`https://api.github.com/repos/${selectedRepo.value}/pulls?state=closed`
 				)
 				const allPRs = response.data.filter((pr) => pr.merged_at != null)
-				const submittedPRsSnapshot = await projectFirestore
-					.collection('dashboard-2024')
-					.get()
-				const submittedPRs = submittedPRsSnapshot.docs.map(
-					(doc) => doc.data().link
+				prs.value = allPRs.filter(
+					(pr) => !submittedPRs.value.includes(pr.html_url)
 				)
-				prs.value = allPRs.filter((pr) => !submittedPRs.includes(pr.html_url))
 				console.log('Filtered PRs:', prs.value)
-
 				fetchErr.value = null
 			} catch (error) {
 				if (error.response == 403) {
