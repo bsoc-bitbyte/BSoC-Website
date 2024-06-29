@@ -2,43 +2,57 @@
 	<Nav></Nav>
 	<div class="pr-outer">
 		<div class="pr-container">
-			<div class="table-heading">
+			<div
+				v-if="formattedDocuments && formattedDocuments.length"
+				class="table-heading"
+			>
 				<div class="heading1"><span>Name</span></div>
 				<div class="heading3"><span>Latest PR</span></div>
 				<div class="heading4"><span>Time Added</span></div>
 				<div class="heading5"><span>Delete</span></div>
 			</div>
-			<div v-for="user in formattedDocuments" :key="user.time">
-				<div class="table-content">
-					<div class="heading1 text-white">
-						<span>{{ user.displayName }}</span>
+			<div v-if="formattedDocuments && formattedDocuments.length">
+				<div v-for="user in formattedDocuments" :key="user.time">
+					<div class="table-content">
+						<div class="heading1 text-white">
+							<span>{{ user.displayName }}</span>
+						</div>
+						<div class="heading3 text-white">
+							<span>
+								<a :href="user.link" target="_blank" class="text-white">
+									{{ user.message }}
+								</a>
+							</span>
+						</div>
+						<div class="heading4 text-white">
+							<span>{{ user.time }}</span>
+						</div>
+						<div>
+							<img
+								@click="handleClick(user.id, user.difficulty, user.uid)"
+								:id="user.id"
+								src="../assets/delete-icon.svg"
+								style="
+									&:hover {
+										background-color: aqua;
+										cursor: pointer;
+									}
+									height: 1.5rem;
+									width: 1.5rem;
+								"
+								alt="delete"
+							/>
+						</div>
 					</div>
-					<div class="heading3 text-white">
-						<span>
-							<a :href="user.link" target="_blank" class="text-white">
-								{{ user.message }}
-							</a>
-						</span>
-					</div>
-					<div class="heading4 text-white">
-						<span>{{ user.time }}</span>
-					</div>
-					<div>
-						<img
-							@click="handleClick(user.id, user.difficulty, user.uid)"
-							:id="user.id"
-							src="../assets/delete-icon.svg"
-							style="
-								&:hover {
-									background-color: aqua;
-									cursor: pointer;
-								}
-								height: 1.5rem;
-								width: 1.5rem;
-							"
-							alt="delete"
-						/>
-					</div>
+				</div>
+			</div>
+			<div v-else>
+				<div class="no-prs-text">
+					<img src="../assets/noPR2.png" />
+					<h1>Looks like you have no PR's!</h1>
+					<h5>
+						Explore the Projects section to start contributing and earn points.
+					</h5>
 				</div>
 			</div>
 		</div>
@@ -249,7 +263,11 @@ export default {
 	text-decoration: none;
 	color: #04325e;
 }
-
+.no-prs-text {
+	color: white;
+	text-align: center;
+	margin-top: 2.6vh;
+}
 @media (max-width: 900px) {
 	.navi span {
 		font-size: initial;
