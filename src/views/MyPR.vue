@@ -1,47 +1,54 @@
 <template>
 	<Nav></Nav>
+	<div class="loading-bar" v-if="loading"></div>
 	<div class="pr-outer">
 		<div class="pr-container">
-			<div
-				v-if="formattedDocuments && formattedDocuments.length"
-				class="table-heading"
-			>
-				<div class="heading1"><span>Name</span></div>
-				<div class="heading3"><span>Latest PR</span></div>
-				<div class="heading4"><span>Time Added</span></div>
-				<div class="heading5"><span>Delete</span></div>
+			<div v-if="loading" class="loading-indicator">
+				<h6>Fetching your PR's....</h6>
 			</div>
-			<div v-if="formattedDocuments && formattedDocuments.length">
-				<div v-for="user in formattedDocuments" :key="user.time">
-					<div class="table-content">
-						<div class="heading1 text-white">
-							<span>{{ user.displayName }}</span>
-						</div>
-						<div class="heading3 text-white">
-							<span>
-								<a :href="user.link" target="_blank" class="text-white">
-									{{ user.message }}
-								</a>
-							</span>
-						</div>
-						<div class="heading4 text-white">
-							<span>{{ user.time }}</span>
-						</div>
-						<div>
-							<img
-								@click="handleClick(user.id, user.difficulty, user.uid)"
-								:id="user.id"
-								src="../assets/delete-icon.svg"
-								style="
-									&:hover {
-										background-color: aqua;
-										cursor: pointer;
-									}
-									height: 1.5rem;
-									width: 1.5rem;
-								"
-								alt="delete"
-							/>
+			<div v-else>
+				<div
+					v-if="formattedDocuments && formattedDocuments.length"
+					class="table-heading"
+				>
+					<div class="heading1"><span>Name</span></div>
+					<div class="heading3"><span>Latest PR</span></div>
+					<div class="heading4"><span>Time Added</span></div>
+					<div class="heading5"><span>Delete</span></div>
+				</div>
+
+				<div v-if="formattedDocuments && formattedDocuments.length">
+					<div v-for="user in formattedDocuments" :key="user.time">
+						<div class="table-content">
+							<div class="heading1 text-white">
+								<span>{{ user.displayName }}</span>
+							</div>
+							<div class="heading3 text-white">
+								<span>
+									<a :href="user.link" target="_blank" class="text-white">
+										{{ user.message }}
+									</a>
+								</span>
+							</div>
+							<div class="heading4 text-white">
+								<span>{{ user.time }}</span>
+							</div>
+							<div>
+								<img
+									@click="handleClick(user.id, user.difficulty, user.uid)"
+									:id="user.id"
+									src="../assets/delete-icon.svg"
+									style="
+										&:hover {
+											background-color: aqua;
+											cursor: pointer;
+										}
+										height: 1.5rem;
+										width: 1.5rem;
+									"
+									alt="delete"
+								/>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -77,8 +84,14 @@ export default {
 		const { documents } = getCollection('dashboard-2024')
 		const started = ref(true)
 		const userPR = ref(false)
+		const loading = ref(true)
 		var userData = new Map()
 		var userPRData = new Map()
+		setTimeout(() => {
+			if (documents.value) {
+				loading.value = false
+			}
+		}, 1000)
 
 		console.log('Working', documents.value)
 		const formattedUserPRData = computed(() => {
@@ -112,6 +125,7 @@ export default {
 			userPR,
 			formattedDocuments,
 			formattedUserPRData,
+			loading,
 		}
 	},
 }
@@ -267,6 +281,33 @@ export default {
 	color: white;
 	text-align: center;
 	margin-top: 2.6vh;
+}
+.loading-bar {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 4px;
+	background-color: #3770ff;
+	animation: loadingAnimation 2s infinite;
+}
+@keyframes loadingAnimation {
+	0% {
+		transform: translateX(-100%);
+	}
+	50% {
+		transform: translateX(0);
+	}
+	100% {
+		transform: translateX(100%);
+	}
+}
+
+.loading-indicator {
+	text-align: center;
+	margin-top: 4vh;
+	color: white;
+	padding: 2rem;
 }
 @media (max-width: 900px) {
 	.navi span {
