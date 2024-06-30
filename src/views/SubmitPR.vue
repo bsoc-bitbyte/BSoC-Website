@@ -83,9 +83,11 @@ import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import axios from 'axios'
 import { addDoc, updateUserStats } from '../composables/useCollection'
+import Nav from '@/components/Nav'
 
 export default {
 	name: 'SubmitPR',
+	components: { Nav },
 	setup() {
 		const repos = [
 			'bsoc-bitbyte/BSoC-Website',
@@ -140,7 +142,7 @@ export default {
 				return
 			}
 			if (!isBsoc24.value) {
-				alert("Please ask the maintainer to assign the BSoC'24 tag!")
+				alert("Please ask the maintainer to assign the BSoC'24 tag to the PR!")
 				return
 			}
 
@@ -182,7 +184,7 @@ export default {
 				console.log('Filtered PRs:', prs.value)
 				fetchErr.value = null
 			} catch (error) {
-				if (error.response == 403) {
+				if (error.response.status == 403) {
 					fetchErr.value =
 						'Could not fetch PRs from repo as Rate limit has exceeded! Try again in an hour or use a VPN.'
 				} else {
