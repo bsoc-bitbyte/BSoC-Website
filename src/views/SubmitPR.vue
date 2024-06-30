@@ -70,7 +70,7 @@
 					<button @click="showModal = false" class="btn btn-secondary">
 						Close
 					</button>
-					<button @click="handleClick" class="btn btn-primary">Submit</button>
+					<button @click="handleClick" class="btn btn-primary" :disabled="loading">Submit</button>
 				</div>
 			</div>
 		</div>
