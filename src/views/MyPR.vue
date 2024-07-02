@@ -7,17 +7,14 @@
 				<h6>Fetching your PR's....</h6>
 			</div>
 			<div v-else>
-				<div
-					v-if="formattedDocuments && formattedDocuments.length"
-					class="table-heading"
-				>
+				<div v-if="formattedDocuments.length" class="table-heading">
 					<div class="heading1"><span>Name</span></div>
 					<div class="heading3"><span>Latest PR</span></div>
 					<div class="heading4"><span>Time Added</span></div>
 					<div class="heading5"><span>Delete</span></div>
 				</div>
 
-				<div v-if="formattedDocuments && formattedDocuments.length">
+				<div v-if="formattedDocuments.length">
 					<div v-for="user in formattedDocuments" :key="user.time">
 						<div class="table-content">
 							<div class="heading1 text-white">
@@ -52,9 +49,8 @@
 						</div>
 					</div>
 				</div>
-			</div>
-			<div v-else>
-				<div class="no-prs-text">
+
+				<div v-else class="no-prs-text">
 					<img src="../assets/noPR2.png" />
 					<h1>Looks like you have no PR's!</h1>
 					<h5>
@@ -84,9 +80,9 @@ export default {
 		const { documents } = getCollection('dashboard-2024')
 		const started = ref(true)
 		const userPR = ref(false)
-		const loading = ref(true)
 		var userData = new Map()
 		var userPRData = new Map()
+		const loading = ref(true)
 		setTimeout(() => {
 			if (documents.value) {
 				loading.value = false
