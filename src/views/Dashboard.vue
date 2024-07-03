@@ -2,12 +2,26 @@
 	<Nav></Nav>
 	<div v-if="started && !userPR" class="pr-outer">
 		<div class="pr-container">
+			<div class="searchbar">
+				<input
+					type="text"
+					v-model="searchQuery"
+					placeholder="Search name..."
+					class="search-input"
+				/>
+			</div>
 			<div class="table-heading">
 				<div class="heading1"><span>Rank</span></div>
 				<div class="heading2"><span>Name</span></div>
 				<div class="heading3"><span>Score</span></div>
 				<div class="heading4"><span>No of PRs</span></div>
 				<div class="heading5"><span>Last Updated</span></div>
+			</div>
+			<div
+				v-if="!formattedDocuments || formattedDocuments.length === 0"
+				class="no-results"
+			>
+				<span>No results found!</span>
 			</div>
 			<div v-for="(doc, index) in formattedDocuments" :doc="doc.time">
 				<div class="table-content">
@@ -60,6 +74,7 @@ export default {
 		const userPR = ref(false)
 		var userData = new Map()
 		var userPRData = new Map()
+		const searchQuery = ref('')
 
 		const formattedUserPRData = computed(() => {
 			if (userPRData) {
@@ -80,11 +95,19 @@ export default {
 				userData = userData.filter((doc) => {
 					return doc.score > 0
 				})
-				return userData
+				if (searchQuery.value) {
+					return userData.filter((doc) =>
+						doc.displayName
+							.toLowerCase()
+							.includes(searchQuery.value.toLowerCase())
+					)
+				} else {
+					return userData
+				}
 			}
 		})
 
-		return { started, userPR, formattedDocuments, formattedUserPRData }
+		return { started, userPR, formattedDocuments, searchQuery }
 	},
 }
 </script>
@@ -189,7 +212,7 @@ export default {
 	min-height: 100vh;
 	width: 100vw;
 	display: flex;
-	padding-top: 12vh;
+	padding-top: 8vh;
 	flex-direction: column;
 }
 
@@ -237,7 +260,26 @@ export default {
 	background-color: #427bf624;
 	border-radius: 4px;
 }
+.searchbar {
+	padding: 15px 0;
+}
 
+.search-input {
+	width: 50%;
+	padding: 10px;
+	border: 1px solid #ccc;
+	border-radius: 10px;
+	font-family: Poppins, sans-serif;
+	font-size: 1rem;
+}
+
+.no-results {
+	padding: 20px;
+	text-align: center;
+	font-family: Poppins, sans-serif;
+	font-size: 1.2rem;
+	color: #ffffff;
+}
 @media (max-width: 900px) {
 	.navi span {
 		font-size: initial;
