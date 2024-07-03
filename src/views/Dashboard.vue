@@ -9,10 +9,10 @@
 				<div class="heading4"><span>No of PRs</span></div>
 				<div class="heading5"><span>Last Updated</span></div>
 			</div>
-			<div v-for="(doc, index) in formattedDocuments" :doc="doc.time">
+			<div v-for="(doc, index) in paginatedDocuments" :doc="doc.time">
 				<div class="table-content">
 					<div class="heading1 text-white">
-						<span>{{ index + 1 }}</span>
+						<span>{{ (pagenum - 1) * numofitems + index + 1 }}</span>
 					</div>
 					<div class="heading1 text-white">
 						<router-link
@@ -38,6 +38,24 @@
 				</div>
 			</div>
 		</div>
+
+		<div
+			v-if="paginatedDocuments && paginatedDocuments.length != 0"
+			class="pagination"
+		>
+			<button class="prevPage" @click="prevPage"><</button>
+			<button
+				v-for="(currentpage, index) in totalPages"
+				:key="index"
+				@click="changepage(currentpage)"
+				:class="{ active: pagenum == currentpage }"
+			>
+				{{ currentpage }}
+			</button>
+
+			<button class="nextPage" @click="nextPage">></button>
+		</div>
+		<div v-else class="no-results">No results found.</div>
 	</div>
 </template>
 
@@ -58,6 +76,9 @@ export default {
 		const { documents } = getAllUserStats('userStats-2024')
 		const started = ref(true)
 		const userPR = ref(false)
+		const numofitems = ref(10)
+		const pagenum = ref(1)
+
 		var userData = new Map()
 		var userPRData = new Map()
 
@@ -83,8 +104,47 @@ export default {
 				return userData
 			}
 		})
+		const changepage = (currentpage) => {
+			pagenum.value = currentpage
+		}
+		const nextPage = () => {
+			if (pagenum.value < totalPages.value) {
+				pagenum.value += 1
+			}
+		}
+		const prevPage = () => {
+			if (pagenum.value > 1) {
+				pagenum.value -= 1
+			}
+		}
 
-		return { started, userPR, formattedDocuments, formattedUserPRData }
+		const paginatedDocuments = computed(() => {
+			if (formattedDocuments.value && formattedDocuments.value.length > 0) {
+				const start = ref((pagenum.value - 1) * numofitems.value)
+				const end = ref(pagenum.value * numofitems.value)
+				return userData.slice(start.value, end.value)
+			}
+		})
+		const totalPages = computed(() => {
+			if (formattedDocuments.value && formattedDocuments.value.length > 0) {
+				return Math.ceil(formattedDocuments.value.length / numofitems.value)
+			}
+			return 0
+		})
+
+		return {
+			nextPage,
+			prevPage,
+			pagenum,
+			numofitems,
+			changepage,
+			paginatedDocuments,
+			totalPages,
+			started,
+			userPR,
+			formattedDocuments,
+			formattedUserPRData,
+		}
 	},
 }
 </script>
@@ -237,7 +297,57 @@ export default {
 	background-color: #427bf624;
 	border-radius: 4px;
 }
-
+.pagination {
+	box-sizing: border-box;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	margin-bottom: 3%;
+	gap: 1.4vw;
+	height: 35px;
+}
+.pagination * {
+	box-sizing: border-box;
+	border: 2px white solid;
+	background-color: #ffffff00;
+	min-width: 35px;
+	padding: 5px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-weight: 600;
+	font-size: 1.1vw;
+	color: #ffffff;
+	font-family: Poppins, sans-serif;
+	border-radius: 3px;
+	transition: all linear 0.26s;
+}
+.prevPage {
+	margin-right: 2vw;
+	font-size: 2vw;
+}
+.nextPage {
+	margin-left: 2vw;
+	font-size: 2vw;
+}
+.active {
+	border: #04325e;
+	color: #04325e;
+	background-color: white;
+	font-size: 1.3vw;
+}
+.pagination *:hover {
+	background-color: white;
+	color: #04325e;
+}
+.no-results {
+	color: white;
+	position: absolute;
+	top: 60%;
+	width: 100%;
+	text-align: center;
+	font-family: Poppins, sans-serif;
+}
 @media (max-width: 900px) {
 	.navi span {
 		font-size: initial;
@@ -272,6 +382,27 @@ export default {
 
 	.table-content {
 		font-size: 0.8rem;
+	}
+	.pagination * {
+		padding: 4px;
+		font-size: 1.8vw;
+	}
+	.nextPage,
+	.prevPage {
+		font-size: 3vw;
+	}
+}
+
+@media (max-width: 550px) {
+	.pagination * {
+		font-size: 2.7vw;
+		padding: 1px;
+		height: 25px;
+		width: 25px;
+	}
+	.nextPage,
+	.prevPage {
+		font-size: 4vw;
 	}
 }
 </style>
