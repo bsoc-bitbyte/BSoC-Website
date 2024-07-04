@@ -268,9 +268,11 @@ export default {
 	methods: {
 		handleLogin() {
 			this.$store.state.login = !this.$store.state.login
+			this.$store.state.signup = false
 			this.showHamburger = !this.showHamburger
 		},
 		handleSignup() {
+			this.$store.state.login = false
 			this.$store.state.signup = !this.$store.state.signup
 		},
 		toggleHamburger() {
