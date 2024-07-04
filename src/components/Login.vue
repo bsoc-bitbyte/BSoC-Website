@@ -98,6 +98,7 @@ export default {
 			if (!err.value) {
 				console.log('Auth Complete')
 				context.emit('login')
+				props.toggle()
 			} else {
 				errorToast('Error', err.value)
 			}
@@ -142,7 +143,6 @@ export default {
 
 .x {
 	position: relative;
-
 	border: none;
 	background-color: transparent;
 	font-weight: bold;
