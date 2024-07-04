@@ -2,6 +2,14 @@
 	<Nav></Nav>
 	<div v-if="started && !userPR" class="pr-outer">
 		<div class="pr-container">
+			<div class="searchbar">
+				<input
+					type="text"
+					v-model="searchQuery"
+					placeholder="Search name..."
+					class="search-input"
+				/>
+			</div>
 			<div class="table-heading">
 				<div class="heading1"><span>Rank</span></div>
 				<div class="heading2"><span>Name</span></div>
@@ -78,6 +86,7 @@ export default {
 		const userPR = ref(false)
 		const numofitems = ref(10)
 		const pagenum = ref(1)
+		const searchQuery = ref('')
 
 		var userData = new Map()
 		var userPRData = new Map()
@@ -117,17 +126,29 @@ export default {
 				pagenum.value -= 1
 			}
 		}
+		const filteredDocuments = computed(() => {
+			if (formattedDocuments.value) {
+				return formattedDocuments.value.filter((doc) =>
+					doc.displayName
+						.toLowerCase()
+						.includes(searchQuery.value.toLowerCase())
+				)
+			}
+			return []
+		})
 
 		const paginatedDocuments = computed(() => {
-			if (formattedDocuments.value && formattedDocuments.value.length > 0) {
-				const start = ref((pagenum.value - 1) * numofitems.value)
-				const end = ref(pagenum.value * numofitems.value)
-				return userData.slice(start.value, end.value)
+			if (filteredDocuments.value && filteredDocuments.value.length > 0) {
+				const start = (pagenum.value - 1) * numofitems.value
+				const end = pagenum.value * numofitems.value
+				return filteredDocuments.value.slice(start, end)
 			}
+			return []
 		})
+
 		const totalPages = computed(() => {
-			if (formattedDocuments.value && formattedDocuments.value.length > 0) {
-				return Math.ceil(formattedDocuments.value.length / numofitems.value)
+			if (filteredDocuments.value && filteredDocuments.value.length > 0) {
+				return Math.ceil(filteredDocuments.value.length / numofitems.value)
 			}
 			return 0
 		})
@@ -144,6 +165,8 @@ export default {
 			userPR,
 			formattedDocuments,
 			formattedUserPRData,
+			searchQuery,
+			filteredDocuments,
 		}
 	},
 }
@@ -348,6 +371,27 @@ export default {
 	text-align: center;
 	font-family: Poppins, sans-serif;
 }
+.searchbar {
+	padding: 15px 0;
+	text-align: center;
+}
+
+.search-input {
+	width: 50%;
+	padding: 10px 10px 10px 40px;
+	background-color: white;
+	border: 1px solid white;
+	border-radius: 10vw;
+	font-family: Poppins, sans-serif;
+	font-size: 1rem;
+	position: relative;
+	background-image: url('../assets/searchicon.jpg');
+	background-size: 20px 20px;
+	background-repeat: no-repeat;
+	background-position: 10px center;
+	position: relative;
+}
+
 @media (max-width: 900px) {
 	.navi span {
 		font-size: initial;
