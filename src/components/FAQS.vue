@@ -63,7 +63,15 @@ export default {
 					question: 'How do I submit my pull requests on Event Website? ',
 
 					answer:
-						'Head over to the Submit PR tab on your dashboard and fill the form accordingly.',
+						'It is quite simple! We guess you have figured it out already by now. If not, head onto the SubmitPR tab from the dashboard and select the repository from the drop-down list of repositories. A list of "merged" PRs will be displayed. Select your PR from the list to be submitted after ensuring that is has the proper tags assigned to it, if not ask the maintainer to do so and hit the Submit Button. Voila! Your PR is merged and corresponding points will be added in the dashboard.',
+
+					open: false,
+				},
+				{
+					question: 'Where can I see the PRs I have submitted?',
+
+					answer:
+						'Head onto the My PRs Tab in the dashboard to view your PRs that you have already submitted.',
 
 					open: false,
 				},
@@ -72,7 +80,7 @@ export default {
 					question: 'I am stuck. How do I get help?',
 
 					answer:
-						'Join our discord server (<a href="https://discord.gg/C72FYTYYcZ">click here to join</a>) and the mentors would be glad to help you there.',
+						'Join our discord server (<a href="https://discord.gg/C72FYTYYcZ">click here to join</a>) and the mentors would be glad to help you there or you can drop a message to the maintainers directly.',
 
 					open: false,
 				},
