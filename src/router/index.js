@@ -1,6 +1,10 @@
 import { projectAuth } from '@/firebase/config'
 import { createRouter, createWebHistory } from 'vue-router'
 
+import AuthLayout from '@/layouts/AuthLayout.vue'
+import DashboardLayout from '@/layouts/DashboardLayout.vue'
+import GeneralLayout from '@/layouts/GeneralLayout.vue'
+
 import Login from '@/components/Login'
 import Signup from '@/components/Signup'
 import Auth from '@/views/Auth'
@@ -33,59 +37,80 @@ const requireNoAuth = (to, from, next) => {
 const routes = [
 	{
 		path: '/',
-		name: 'LandingPage',
-		component: LandingPage,
+		component: GeneralLayout,
+		children: [
+			{
+				path: '',
+				name: 'LandingPage',
+				component: LandingPage,
+			},
+		],
 	},
 	{
 		path: '/auth',
-		name: 'Auth',
-		component: Auth,
-		beforeEnter: requireNoAuth,
+		component: AuthLayout,
+		children: [
+			{
+				path: '',
+				name: 'Auth',
+				component: Auth,
+				beforeEnter: requireNoAuth,
+			},
+			{
+				path: 'login',
+				name: 'Login',
+				component: Login,
+				beforeEnter: requireNoAuth,
+			},
+			{
+				path: 'signup',
+				name: 'Signup',
+				component: Signup,
+				beforeEnter: requireNoAuth,
+			},
+		],
 	},
 	{
-		path: '/dashboard',
-		name: 'Dashboard',
-		component: Dashboard,
-		beforeEnter: requireAuth,
-	},
-	{
-		path: '/submit',
-		name: 'Submit',
-		component: SubmitPR,
-		beforeEnter: requireAuth,
-	},
-	{
-		path: '/home',
-		name: 'Home',
-		component: Home,
-	},
-	{
-		path: '/login',
-		name: 'Login',
-		component: Login,
-		beforeEnter: requireNoAuth,
-	},
-	{
-		path: '/signUp',
-		name: 'SignUp',
-		component: Signup,
-		beforeEnter: requireNoAuth,
-	},
-	{
-		path: '/projects',
-		name: 'Project',
-		component: Projects,
-	},
-	{
-		path: '/myPR',
-		name: 'MyPR',
-		component: MyPR,
-	},
-	{
-		path: '/user/:uid',
-		name: 'User',
-		component: User,
-		props: true,
+		path: '/',
+		component: DashboardLayout,
+		children: [
+			{
+				path: 'dashboard',
+				name: 'Dashboard',
+				component: Dashboard,
+				beforeEnter: requireAuth,
+			},
+
+			{
+				path: 'myPR',
+				name: 'MyPR',
+				component: MyPR,
+				beforeEnter: requireAuth,
+			},
+			{
+				path: 'user/:uid',
+				name: 'User',
+				component: User,
+				props: true,
+				beforeEnter: requireAuth,
+			},
+			{
+				path: 'projects',
+				name: 'Projects',
+				component: Projects,
+			},
+			{
+				path: 'submit',
+				name: 'SubmitPR',
+				component: SubmitPR,
+				beforeEnter: requireAuth,
+			},
+			{
+				path: 'home',
+				name: 'Home',
+				component: Home,
+			},
+		],
 	},
 ]
 

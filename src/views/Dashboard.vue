@@ -1,5 +1,4 @@
 <template>
-	<Nav></Nav>
 	<div v-if="started && !userPR" class="pr-outer">
 		<div class="pr-container">
 			<div class="searchbar">
@@ -76,9 +75,6 @@ import Nav from '@/components/Nav.vue'
 
 export default {
 	name: 'Dashboard',
-	components: {
-		Nav,
-	},
 
 	setup() {
 		const { documents } = getAllUserStats('userStats-2024')

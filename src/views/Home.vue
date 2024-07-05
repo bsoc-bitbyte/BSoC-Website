@@ -1,5 +1,4 @@
 <template>
-	<Nav></Nav>
 	<div class="home-container">
 		<!--  About Section-->
 		<div class="about-section" id="about">
@@ -96,7 +95,7 @@ import { projectAuth } from '@/firebase/config'
 
 export default {
 	name: 'Home',
-	components: { Nav, FAQS },
+	components: { FAQS },
 	mounted() {
 		this.initParticles()
 	},

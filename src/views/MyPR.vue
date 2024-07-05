@@ -1,5 +1,4 @@
 <template>
-	<Nav></Nav>
 	<div class="loading-bar" v-if="loading"></div>
 	<div class="pr-outer">
 		<div class="pr-container">
@@ -72,9 +71,6 @@ import { projectAuth } from '../firebase/config'
 
 export default {
 	name: 'MyPR',
-	components: {
-		Nav,
-	},
 
 	setup() {
 		const { documents } = getCollection('dashboard-2024')
