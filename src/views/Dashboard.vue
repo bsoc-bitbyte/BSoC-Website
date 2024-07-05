@@ -17,7 +17,11 @@
 				<div class="heading4"><span>No of PRs</span></div>
 				<div class="heading5"><span>Last Updated</span></div>
 			</div>
-			<div v-for="(doc, index) in paginatedDocuments" :doc="doc.time">
+			<div v-if="isLoading">
+				<!-- Loading Placeholder -->
+				<div class="loading-placeholder" v-for="n in 3" :key="n"></div>
+			</div>
+			<div v-else v-for="(doc, index) in paginatedDocuments" :doc="doc.time">
 				<div class="table-content">
 					<div class="heading1 text-white">
 						<span>{{ (pagenum - 1) * numofitems + index + 1 }}</span>
@@ -63,7 +67,7 @@
 
 			<button class="nextPage" @click="nextPage">></button>
 		</div>
-		<div v-else class="no-results">No results found.</div>
+		<div v-else-if="!isLoading" class="no-results">No results found.</div>
 	</div>
 </template>
 
@@ -82,6 +86,7 @@ export default {
 
 	setup() {
 		const { documents } = getAllUserStats('userStats-2024')
+		const isLoading = ref(true)
 		const started = ref(true)
 		const userPR = ref(false)
 		const numofitems = ref(10)
@@ -137,10 +142,16 @@ export default {
 			return []
 		})
 
+		const delayLoading = async () => {
+			await new Promise((resolve) => setTimeout(resolve, 2000))
+			isLoading.value = false
+		}
+
 		const paginatedDocuments = computed(() => {
 			if (filteredDocuments.value && filteredDocuments.value.length > 0) {
 				const start = (pagenum.value - 1) * numofitems.value
 				const end = pagenum.value * numofitems.value
+				delayLoading()
 				return filteredDocuments.value.slice(start, end)
 			}
 			return []
@@ -154,6 +165,8 @@ export default {
 		})
 
 		return {
+			isLoading,
+			delayLoading,
 			nextPage,
 			prevPage,
 			pagenum,
@@ -173,6 +186,24 @@ export default {
 </script>
 
 <style scoped>
+.loading-placeholder {
+	height: 70px;
+	margin: 10px 0;
+	background-color: grey;
+	border-radius: 4px;
+	animation: pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+	0%,
+	100% {
+		opacity: 1;
+	}
+	50% {
+		opacity: 0.5;
+	}
+}
+
 .navi {
 	height: 10vh;
 	width: 100vw;
