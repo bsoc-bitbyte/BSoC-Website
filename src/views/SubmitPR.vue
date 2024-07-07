@@ -1,5 +1,4 @@
 <template>
-	<Nav></Nav>
 	<div class="content">
 		<div>
 			<h3 style="text-align: center; color: #fff; margin-bottom: 10px">
@@ -70,7 +69,13 @@
 					<button @click="showModal = false" class="btn btn-secondary">
 						Close
 					</button>
-					<button @click="handleClick" class="btn btn-primary" :disabled="loading">Submit</button>
+					<button
+						@click="handleClick"
+						class="btn btn-primary"
+						:disabled="loading"
+					>
+						Submit
+					</button>
 				</div>
 			</div>
 		</div>
@@ -83,11 +88,10 @@ import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import axios from 'axios'
 import { addDoc, updateUserStats } from '../composables/useCollection'
-import Nav from '@/components/Nav'
 
 export default {
 	name: 'SubmitPR',
-	components: { Nav },
+
 	setup() {
 		const repos = [
 			'bsoc-bitbyte/BSoC-Website',
