@@ -23,16 +23,21 @@
 									<span></span>
 								</label>
 
-								<ul class="menu__box">
+								<ul class="menu__box" v-on:click="closeNav()">
 									<router-link
 										v-if="isloggedIn"
 										class="menu__item"
 										to="/dashboard"
+										:class="{ active: isActive('/dashboard') }"
 									>
 										Dashboard
 									</router-link>
 
-									<router-link class="menu__item" to="/home">
+									<router-link
+										class="menu__item"
+										to="/home"
+										:class="{ active: isActive('/home') }"
+									>
 										Home
 									</router-link>
 
@@ -41,6 +46,7 @@
 										to="/myPR"
 										v-if="isloggedIn && !userPR"
 										v-on:click="handleMyPR()"
+										:class="{ active: isActive('/myPR') }"
 									>
 										My PR's
 									</router-link>
@@ -49,11 +55,16 @@
 										class="menu__item"
 										to="/submit"
 										v-if="isloggedIn"
+										:class="{ active: isActive('/submit') }"
 									>
 										SubmitPR
 									</router-link>
 
-									<router-link class="menu__item" to="/projects">
+									<router-link
+										class="menu__item"
+										to="/projects"
+										:class="{ active: isActive('/projects') }"
+									>
 										Projects
 									</router-link>
 
@@ -278,6 +289,9 @@ export default {
 		toggleHamburger() {
 			this.showHamburger = !this.showHamburger
 		},
+		isActive(route) {
+			return this.$route.path === route
+		},
 	},
 	beforeRouteLeave(to, from, next) {
 		this.isHonePage()
@@ -299,6 +313,11 @@ export default {
 					isloggedIn.value = false
 				}
 			})
+		}
+
+		const closeNav = () => {
+			const checkbox = document.getElementById('menu__toggle')
+			checkbox.checked = false
 		}
 
 		const isHonePage = () => {
@@ -339,6 +358,7 @@ export default {
 			handleLogout,
 			isHome,
 			collapse11,
+			closeNav,
 		}
 	},
 }
@@ -489,7 +509,8 @@ export default {
 	transition-duration: 0.25s;
 }
 
-.menu__item:hover {
+.menu__item:hover,
+.active {
 	background-color: rgb(141, 141, 178);
 }
 
