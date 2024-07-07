@@ -1,5 +1,4 @@
 <template>
-	<Nav></Nav>
 	<div class="projects">
 		<h1>PROJECTS</h1>
 		<div class="project-container">
@@ -22,7 +21,6 @@ import Nav from '@/components/Nav'
 export default {
 	components: {
 		ProjectsCard,
-		Nav,
 	},
 	data() {
 		return {

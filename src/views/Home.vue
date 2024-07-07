@@ -1,5 +1,4 @@
 <template>
-	<Nav></Nav>
 	<div class="home-container">
 		<!--  About Section-->
 		<div class="about-section" id="about">
@@ -31,6 +30,26 @@
 					</p>
 				</div>
 			</div>
+		</div>
+
+		<!--COUNTDOWN-TIMER-SECTION-->
+		<div class="countdown-timer">
+			<p class="countdown-title">BSoC Ends in:</p>
+			<div class="timer" v-if="!hasEnded">
+				<span>
+					<span>{{ days }}</span> Days
+				</span>
+				<span>
+					<span>{{ hours }}</span> Hours
+				</span>
+				<span>
+					<span>{{ minutes }}</span> Minutes
+				</span>
+				<span>
+					<span>{{ seconds }}</span> Seconds
+				</span>
+			</div>
+			<p class="final-text" v-else>BSoC'24 has ended</p>
 		</div>
 
 		<!--  Prize Section-->
@@ -65,26 +84,6 @@
 
 		<!--  FAQ Section-->
 		<FAQS></FAQS>
-
-		<!--COUNTDOWN-TIMER-SECTION-->
-		<div class="countdown-timer">
-			<p class="countdown-title">BSoC Ends in:</p>
-			<div class="timer" v-if="!hasEnded">
-				<span>
-					<span>{{ days }}</span> Days
-				</span>
-				<span>
-					<span>{{ hours }}</span> Hours
-				</span>
-				<span>
-					<span>{{ minutes }}</span> Minutes
-				</span>
-				<span>
-					<span>{{ seconds }}</span> Seconds
-				</span>
-			</div>
-			<p class="final-text" v-else>BSoC'24 has ended</p>
-		</div>
 	</div>
 </template>
 
@@ -96,7 +95,7 @@ import { projectAuth } from '@/firebase/config'
 
 export default {
 	name: 'Home',
-	components: { Nav, FAQS },
+	components: { FAQS },
 	mounted() {
 		this.initParticles()
 	},
