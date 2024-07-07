@@ -52,8 +52,8 @@ canvas {
 	align-items: center;
 	justify-content: center;
 	gap: 60px;
-	height: 100vh;
-	width: 100vw;
+	height: 100%;
+	width: 100%;
 	color: #fffaff;
 }
 
@@ -134,6 +134,7 @@ canvas {
 @media (max-width: 900px) {
 	.container {
 		margin-left: 0;
+		margin-right: 0;
 		text-align: center;
 	}
 
