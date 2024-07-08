@@ -62,7 +62,6 @@
 </template>
 
 <script>
-import Nav from '@/components/Nav.vue'
 import { formatDistanceToNow } from 'date-fns'
 import { computed, ref } from 'vue'
 import { deletePr } from '../composables/deleteDocuments'

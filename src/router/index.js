@@ -47,11 +47,11 @@ const routes = [
 		],
 	},
 	{
-		path: '/auth',
+		path: '/',
 		component: AuthLayout,
 		children: [
 			{
-				path: '',
+				path: 'auth',
 				name: 'Auth',
 				component: Auth,
 				beforeEnter: requireNoAuth,
@@ -85,14 +85,12 @@ const routes = [
 				path: 'myPR',
 				name: 'MyPR',
 				component: MyPR,
-				beforeEnter: requireAuth,
 			},
 			{
 				path: 'user/:uid',
 				name: 'User',
 				component: User,
 				props: true,
-				beforeEnter: requireAuth,
 			},
 			{
 				path: 'projects',
@@ -101,7 +99,7 @@ const routes = [
 			},
 			{
 				path: 'submit',
-				name: 'SubmitPR',
+				name: 'Submit',
 				component: SubmitPR,
 				beforeEnter: requireAuth,
 			},
