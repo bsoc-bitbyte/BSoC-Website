@@ -70,8 +70,6 @@
 									>
 										Login
 									</router-link>
-									<Login v-if="$store.state.login" :toggle="handleLogin" />
-
 									<router-link
 										to="/projects"
 										v-if="!isloggedIn"
@@ -81,8 +79,6 @@
 									>
 										Signup
 									</router-link>
-									<Signup v-if="$store.state.signup" :toggle="handleSignup" />
-
 									<div
 										class="navbar-nav auth menu__item"
 										style="cursor: pointer; margin-left: 2em"
