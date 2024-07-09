@@ -19,7 +19,7 @@
 			</div>
 			<div v-if="isLoading">
 				<!-- Loading Placeholder -->
-				<div class="loading-placeholder" v-for="n in 3" :key="n"></div>
+				<div class="loading-placeholder" v-for="n in 5" :key="n"></div>
 			</div>
 			<div v-else v-for="(doc, index) in paginatedDocuments" :doc="doc.time">
 				<div class="table-content">
@@ -142,16 +142,11 @@ export default {
 			return []
 		})
 
-		const delayLoading = async () => {
-			await new Promise((resolve) => setTimeout(resolve, 2000))
-			isLoading.value = false
-		}
-
 		const paginatedDocuments = computed(() => {
 			if (filteredDocuments.value && filteredDocuments.value.length > 0) {
 				const start = (pagenum.value - 1) * numofitems.value
 				const end = pagenum.value * numofitems.value
-				delayLoading()
+				isLoading.value = false
 				return filteredDocuments.value.slice(start, end)
 			}
 			return []
@@ -166,7 +161,6 @@ export default {
 
 		return {
 			isLoading,
-			delayLoading,
 			nextPage,
 			prevPage,
 			pagenum,
