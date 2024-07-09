@@ -1,5 +1,4 @@
 <template>
-	<Nav></Nav>
 	<div class="pr-outer">
 		<div class="pr-container">
 			<div class="table-heading">
@@ -39,10 +38,6 @@ export default {
 	},
 
 	name: 'User',
-
-	components: {
-		Nav,
-	},
 
 	data(props) {
 		return {
