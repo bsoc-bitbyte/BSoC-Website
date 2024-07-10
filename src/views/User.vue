@@ -24,6 +24,9 @@
 				</div>
 			</div>
 		</div>
+
+		<!-- Footer -->
+		<Footer></Footer>
 	</div>
 </template>
 
@@ -31,6 +34,7 @@
 import Nav from '@/components/Nav.vue'
 import { getSingleUserStats } from '../composables/getCollection'
 import { formatDistanceToNow } from 'date-fns'
+import Footer from '../components/Footer.vue'
 
 export default {
 	props: {
@@ -38,7 +42,7 @@ export default {
 	},
 
 	name: 'User',
-
+	components: { Footer },
 	data(props) {
 		return {
 			userID: props.uid,
@@ -158,16 +162,17 @@ export default {
 }
 
 .pr-outer {
-	background: #19192a;
+	background: var(--primary_bg_col);
 	min-height: 100vh;
 	width: 100vw;
 	display: flex;
 	padding-top: 12vh;
 	flex-direction: column;
+	justify-content: space-between;
 }
 
 .pr-container {
-	min-height: 80vh;
+	min-height: 40vh;
 	width: 80vw;
 	margin: 40px auto;
 	border-radius: 16px;
@@ -175,7 +180,7 @@ export default {
 
 .table-heading {
 	display: grid;
-	background: #eaeaef;
+	background: var(--secondary_bg_col);
 	grid-template-columns: repeat(3, 1fr);
 	grid-column-gap: 0px;
 	padding: 25px 0;
@@ -184,8 +189,8 @@ export default {
 	font-family: Poppins, sans-serif;
 	font-weight: 600;
 	font-size: 1.53vw;
-	color: #04325e;
-	border-bottom: 1px solid #04325e;
+	color: var(--primary_bg_col);
+	border-bottom: 1px solid var(--secondary_bg_col);
 	text-align: center;
 }
 
@@ -196,7 +201,7 @@ export default {
 	padding: 25px 0;
 	font-weight: 400;
 	font-size: 1.38vw;
-	color: #04325e;
+	color: var(--font_col);
 	text-align: center;
 }
 
@@ -206,7 +211,7 @@ export default {
 
 .heading3 a {
 	text-decoration: none;
-	color: #04325e;
+	color: var(--font_col);
 }
 
 @media (max-width: 900px) {

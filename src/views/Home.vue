@@ -6,28 +6,59 @@
 			<div class="about">
 				<h1 class="about-heading">About</h1>
 				<div class="about-content">
-					<p>
-						Welcome to Bitbyte Summer of Code! An exciting opportunity for
-						passionate developers.
-					</p>
-					<p>
-						This event is aimed at matching you with open source, free software,
-						and technology-related projects to write code and learn. The
-						projects provide mentors who act as guides through the entire
-						process, from learning about the community to contributing code.
-					</p>
-					<p>
-						The goals of our Event are to:
-						<br />
-						- Inspire you to begin participating in open source development.
-						<br />
-						-Identifying open-source projects and bring in new developers.
-						<br />
-						-Provide you the opportunity to do work and give you industry
-						experience.
-						<br />
-						-Give you more exposure to real-world software development
-					</p>
+					<div class="about-general">
+						<p>
+							Welcome to <strong>Bitbyte Summer of Code!</strong> An exciting
+							opportunity for passionate developers.
+						</p>
+						<p>
+							This event is aimed at matching you with open source, free
+							software, and technology-related projects to write code and learn.
+							The projects provide mentors who act as guides through the entire
+							process, from learning about the community to contributing code.
+						</p>
+					</div>
+					<div class="about-goals">
+						<p><strong>Our goals are to :</strong></p>
+						<ul class="goals-list">
+							<li>
+								Inspire you to begin participating in open source development.
+							</li>
+							<li>
+								Identifying open-source projects and bring in new developers.
+							</li>
+							<li>
+								Provide you the opportunity to do work and give you industry
+								experience.
+							</li>
+							<li>Give you more exposure to real-world software development</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!--  Prize Section-->
+		<div class="prize-section" id="prize">
+			<div class="prize">
+				<h1 class="prize-heading">Benefits</h1>
+				<div class="prizes">
+					<div class="list">
+						<p>
+							Top contributors can get a chance to interview for the BitByte Dev
+							Wing.
+						</p>
+						<p style="margin: 0 0 4vw 2vw">
+							&bull; Every contributor who has got at least 3 easy-level and 1
+							medium-level PR merged to projects will get exclusive stickers and
+							swags.
+						</p>
+						<p>Not enough ?</p>
+						<p style="margin-left: 2vw">
+							&bull; Top participants will get exclusive swags and merchandise
+							for their exceptional performance in the event.
+						</p>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -36,54 +67,27 @@
 		<div class="countdown-timer">
 			<p class="countdown-title">BSoC Ends in:</p>
 			<div class="timer" v-if="!hasEnded">
-				<span>
+				<span class="timer-time">
 					<span>{{ days }}</span> Days
 				</span>
 				<span>
-					<span>{{ hours }}</span> Hours
+					<span class="timer-time">{{ hours }}</span> Hours
 				</span>
 				<span>
-					<span>{{ minutes }}</span> Minutes
+					<span class="timer-time">{{ minutes }}</span> Minutes
 				</span>
 				<span>
-					<span>{{ seconds }}</span> Seconds
+					<span class="timer-time">{{ seconds }}</span> Seconds
 				</span>
 			</div>
 			<p class="final-text" v-else>BSoC'24 has ended</p>
 		</div>
 
-		<!--  Prize Section-->
-
-		<div class="prize-section" id="prize">
-			<div class="prize">
-				<h1 class="prize-heading">What's in it for you?</h1>
-				<div class="prizes">
-					<div class="list">
-						<p>
-							&bull; <span class="bolder">TOP CONTRIBUTORS</span> Can get a
-							chance to interview for the BitByte Dev Wing.
-						</p>
-						<p>
-							&bull;
-							<span class="bolder">EVERY CONTRIBUTOR</span> who has got at least
-							3 easy-level and 1 medium-level PR merged to projects will get
-							exclusive stickers and swags.
-						</p>
-						<p style="margin: 0 0 10px">
-							<span class="bolder">NOT ENOUGH?</span>
-						</p>
-						<p style="margin: 0">
-							&bull; Top participants will get
-							<span class="bolder">Exclusive swags and merchandise</span>
-							for their exceptional performance in the event.
-						</p>
-					</div>
-				</div>
-			</div>
-		</div>
-
 		<!--  FAQ Section-->
 		<FAQS></FAQS>
+
+		<!-- Footer -->
+		<Footer></Footer>
 	</div>
 </template>
 
@@ -92,10 +96,11 @@ import { ref, onMounted } from 'vue'
 import Nav from '@/components/Nav'
 import FAQS from '../components/FAQS.vue'
 import { projectAuth } from '@/firebase/config'
+import Footer from '../components/Footer.vue'
 
 export default {
 	name: 'Home',
-	components: { FAQS },
+	components: { FAQS, Footer },
 	mounted() {
 		this.initParticles()
 	},
@@ -249,14 +254,14 @@ export default {
 <style>
 .about-section {
 	width: 100vw;
-	background-color: #19192a;
+	background-color: var(--primary_bg_col);
 }
 
 .about {
 	overflow-x: hidden;
-	color: #fff;
+	color: var(--font_col);
 	height: 100vh;
-	width: 72%;
+	width: 90%;
 	text-align: left;
 	display: flex;
 	flex-direction: column;
@@ -265,7 +270,8 @@ export default {
 }
 
 .about-heading {
-	font-family: Stargaze, sans-serif;
+	font-family: var(--fontstyle), sans-serif;
+	color: var(--secondary_bg_col);
 	margin: 0;
 	padding: 5vh 0;
 	font-style: normal;
@@ -273,17 +279,28 @@ export default {
 	font-size: 5.5vw;
 	line-height: 10.6vh;
 	align-items: center;
-	text-align: center;
+	/* text-align: center; */
 }
 
 .about-content {
-	font-family: Poppins, sans-serif;
-	line-height: 4vh;
-	font-size: 1.2vw;
+	font-family: system-ui, Poppins, sans-serif;
+	line-height: 2vw;
+	font-size: 1.4vw;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+	grid-gap: 5vw;
+}
+
+.about-general {
+	align-self: end;
 }
 
 .about-content p {
 	padding: 10px 0;
+}
+
+.goals-list li {
+	margin-bottom: 1vw;
 }
 
 .highlight {
@@ -292,26 +309,26 @@ export default {
 }
 
 #start {
-	font-family: 'Poppins', sans-serif;
+	font-family: system-ui, Poppins, sans-serif;
 	font-size: 2vh;
-	color: #fffaff;
+	color: var(--font_col);
 	margin: 5vh 0 0 0;
 }
 
 .prize-section {
 	width: 100vw;
-	height: 100vh;
-	background-color: #19192a;
+	height: 68vh;
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	background-color: var(--secondary_bg_col);
 }
 
 .prize {
 	display: flex;
 	flex-direction: column;
-	height: 90vh;
-	width: 80vw;
+	height: 56vh;
+	width: 90%;
 	justify-content: space-evenly;
 }
 
@@ -321,36 +338,32 @@ export default {
 	font-size: 5.6vw;
 	letter-spacing: 2px;
 	line-height: 7.36vw;
-	font-family: Stargaze, sans-serif;
-	color: #fffaff;
+	font-family: var(--fontstyle), sans-serif;
+	color: var(--primary_bg_col);
 }
 
 .list {
-	width: 70%;
+	/* width: 70%; */
 	margin: auto;
 	text-align: left;
-	color: #fffaff;
+	color: var(--primary_bg_col);
 }
 
 .list p {
 	line-height: 2.6vw;
 	font-size: 1.8vw;
-	font-family: Poppins, sans-serif;
-}
-
-.bolder {
-	font-family: Stargaze, sans-serif;
+	font-family: system-ui, Poppins, sans-serif;
 }
 
 .countdown-timer {
 	text-align: center;
-	color: #fffaff;
-	font-family: 'Stargaze', monospace;
+	color: var(--font_col);
+	font-family: var(--fontstyle), monospace;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	background: #19192a;
-	padding-bottom: 100px;
+	background: var(--primary_bg_col);
+	padding: 100px 0;
 }
 .countdown-title {
 	font-size: 8vw;
@@ -362,11 +375,11 @@ export default {
 }
 .timer span {
 	font-size: 2vh;
-	color: #fffaff;
+	color: var(--font_col);
 }
 .timer span span {
 	font-family: monospace, Stargaze;
-	color: #fffaff;
+	color: var(--secondary_bg_col);
 	font-size: 8vh;
 }
 .final-text {
@@ -456,19 +469,6 @@ export default {
 	.final-text {
 		font-size: 5vw;
 	}
-	.about {
-		height: initial;
-	}
-
-	.about-heading {
-		margin: initial;
-		margin-top: 3rem;
-		font-size: 3rem;
-	}
-
-	.about-content p {
-		font-size: 1rem;
-	}
 
 	.prize-section {
 		height: initial;
@@ -484,7 +484,6 @@ export default {
 	.prizes .list {
 		width: initial;
 		margin-top: 3rem;
-		text-align: center;
 	}
 
 	.list p {
@@ -504,6 +503,33 @@ export default {
 
 	.accordion button {
 		font-size: 1rem;
+	}
+}
+
+@media (max-width: 1100px) {
+	.about {
+		height: 80vh;
+	}
+
+	.about-heading {
+		margin: initial;
+		margin-top: 3rem;
+		font-size: 3rem;
+	}
+
+	.about-content {
+		font-size: 1rem;
+		line-height: 2.6vh;
+	}
+}
+
+@media (max-width: 600px) {
+	.about {
+		height: 100vh;
+		align-items: center;
+	}
+	.prize-heading {
+		text-align: center;
 	}
 }
 

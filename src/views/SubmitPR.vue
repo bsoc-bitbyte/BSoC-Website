@@ -1,84 +1,92 @@
 <template>
-	<div class="content">
-		<div>
-			<h3 style="text-align: center; color: #fff; margin-bottom: 10px">
-				Select The Repository
-			</h3>
-			<select v-model="selectedRepo" class="custom-select" @change="fetchPRs">
-				<option value="" disabled>Select The Repository</option>
-				<option v-for="repo in repos" :key="repo" :value="repo">
-					{{ repo }}
-				</option>
-			</select>
-		</div>
-		<div class="inner">
-			<h3 v-if="loading" style="color: #fff; padding: 10px; text-align: center">
-				Getting the repos...
-			</h3>
-			<h3
-				v-else-if="selectedRepo === ''"
-				style="color: #fff; padding: 10px; text-align: center"
-			>
-				Please select a repo to get the Pull Requests
-			</h3>
-			<h3
-				v-else-if="fetchErr"
-				style="color: red; padding: 10px; text-align: center"
-			>
-				{{ fetchErr }}
-			</h3>
-			<div v-else class="pr-list">
-				<h3>
-					Pull Requests:
-					<span
-						v-if="prs.length === 0"
-						style="color: yellow; padding: 10px; text-align: center"
-						>No PRs found!</span
-					>
+	<div class="outer">
+		<div class="content">
+			<div>
+				<h3 style="text-align: center; color: #fff; margin-bottom: 10px">
+					Select The Repository
 				</h3>
-				<ul>
-					<li
-						v-for="pr in prs"
-						:key="pr.id"
-						@click="openModal(pr)"
-						class="hvr-grow"
-					>
-						<a :href="pr.html_url" target="_blank">{{ pr.title }}</a> by
-						{{ pr.user.login }}
-					</li>
-				</ul>
+				<select v-model="selectedRepo" class="custom-select" @change="fetchPRs">
+					<option value="" disabled>Select The Repository</option>
+					<option v-for="repo in repos" :key="repo" :value="repo">
+						{{ repo }}
+					</option>
+				</select>
 			</div>
-		</div>
+			<div class="inner">
+				<h3
+					v-if="loading"
+					style="color: #fff; padding: 10px; text-align: center"
+				>
+					Getting the repos...
+				</h3>
+				<h3
+					v-else-if="selectedRepo === ''"
+					style="color: #fff; padding: 10px; text-align: center"
+				>
+					Please select a repo to get the Pull Requests
+				</h3>
+				<h3
+					v-else-if="fetchErr"
+					style="color: red; padding: 10px; text-align: center"
+				>
+					{{ fetchErr }}
+				</h3>
+				<div v-else class="pr-list">
+					<h3>
+						Pull Requests:
+						<span
+							v-if="prs.length === 0"
+							style="color: yellow; padding: 10px; text-align: center"
+							>No PRs found!</span
+						>
+					</h3>
+					<ul>
+						<li
+							v-for="pr in prs"
+							:key="pr.id"
+							@click="openModal(pr)"
+							class="hvr-grow"
+						>
+							<a :href="pr.html_url" target="_blank">{{ pr.title }}</a> by
+							{{ pr.user.login }}
+						</li>
+					</ul>
+				</div>
+			</div>
 
-		<!-- Modal -->
-		<div v-if="showModal" class="modal-overlay">
-			<div class="confirm-pr">
-				<h3>Submit Your PR</h3>
-				<p>{{ selectedPR?.title }}</p>
-				<p>
-					Difficulty:
-					{{
-						selectedDifficulty ??
-						'Contact the maintainer to assign a difficulty label to the PR.'
-					}}
-				</p>
-				<p v-if="isBsoc24 !== true" style="color: yellow">
-					Not assigned the BSoC'24 Label
-				</p>
-				<div class="modal-actions">
-					<button @click="showModal = false" class="btn btn-secondary">
-						Close
-					</button>
-					<button
-						@click="handleClick"
-						class="btn btn-primary"
-						:disabled="loading"
-					>
-						Submit
-					</button>
+			<!-- Modal -->
+			<div v-if="showModal" class="modal-overlay">
+				<div class="confirm-pr">
+					<h3>Submit Your PR</h3>
+					<p>{{ selectedPR?.title }}</p>
+					<p>
+						Difficulty:
+						{{
+							selectedDifficulty ??
+							'Contact the maintainer to assign a difficulty label to the PR.'
+						}}
+					</p>
+					<p v-if="isBsoc24 !== true" style="color: yellow">
+						Not assigned the BSoC'24 Label
+					</p>
+					<div class="modal-actions">
+						<button @click="showModal = false" class="btn btn-secondary">
+							Close
+						</button>
+						<button
+							@click="handleClick"
+							class="btn btn-primary"
+							:disabled="loading"
+						>
+							Submit
+						</button>
+					</div>
 				</div>
 			</div>
 		</div>
+
+		<!-- Footer -->
+		<Footer></Footer>
 	</div>
 </template>
 
@@ -88,10 +96,11 @@ import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import axios from 'axios'
 import { addDoc, updateUserStats } from '../composables/useCollection'
+import Footer from '../components/Footer.vue'
 
 export default {
 	name: 'SubmitPR',
-
+	components: { Footer },
 	setup() {
 		const repos = [
 			'bsoc-bitbyte/BSoC-Website',
@@ -255,15 +264,21 @@ export default {
 </script>
 
 <style scoped>
+.outer {
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	background-color: var(--primary_bg_col);
+}
 .content {
 	width: 100vw;
-	min-height: 100vh;
+	min-height: 40vh;
 	display: flex;
 	flex-direction: column;
 	padding: 100px 10px 0 10px;
 	justify-content: center;
 	align-items: center;
-	background: #19192a;
 }
 
 .inner {
@@ -276,13 +291,13 @@ export default {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	background: #19192a;
-	box-shadow: 4px 4px 40px 2px #132e72;
+	background: var(--secondary_bg_col);
+	box-shadow: 4px 4px 40px 2px var(--secondary_bg_col);
 	border-radius: 8px;
 }
 
 .hvr-grow {
-	border: 1px dotted #466ed1;
+	border: 1px dotted var(--secondary_bg_col);
 	transform: translateZ(0);
 	box-shadow: 0 0 1px rgba(0, 0, 0, 0);
 	backface-visibility: hidden;
@@ -295,21 +310,21 @@ export default {
 .hvr-grow:focus,
 .hvr-grow:active {
 	transform: scale(1.03);
-	box-shadow: 4px 4px 40px 4px #466ed1;
+	box-shadow: 4px 4px 40px 4px var(--secondary_bg_col);
 }
 
 .pr-list {
 	width: 90%;
-	background: #2e2e3e;
+	background: rgb(46, 44, 44);
 	border-radius: 8px;
 	padding: 20px;
 	margin-top: 20px;
-	color: #e5e6eb;
+	color: var(--font_col);
 }
 
 .pr-list h3 {
 	margin-bottom: 10px;
-	color: #e5e6eb;
+	color: var(--font_col);
 }
 
 .pr-list ul {
@@ -327,18 +342,17 @@ export default {
 }
 
 .pr-list li:hover {
-	background: #1e1e2e;
+	background: var(--primary_bg_col);
 }
 
 .pr-list a {
-	color: #66d9ef;
+	color: var(--secondary_bg_col);
 	text-decoration: none;
 	font-weight: 500;
 	transition: color 0.3s;
 }
 
 .pr-list a:hover {
-	color: #66c5ef;
 	text-decoration: underline;
 }
 
@@ -357,18 +371,18 @@ export default {
 .confirm-pr {
 	width: 95%;
 	max-width: 500px;
-	background-color: #1e1e2e;
+	background-color: var(--primary_bg_col);
 	padding: 50px;
 	border-radius: 10px;
 }
 
 .confirm-pr h3 {
 	margin-bottom: 20px;
-	color: #e5e6eb;
+	color: var(--font_col);
 }
 .confirm-pr p {
 	margin-bottom: 20px;
-	color: #e5e6eb;
+	color: var(--font_col);
 }
 
 .custom-select {
@@ -396,13 +410,13 @@ export default {
 }
 
 .btn-secondary {
-	background: #e5e6eb;
-	color: #19192a;
+	background: var(--font_col);
+	color: var(--primary_bg_col);
 }
 
 .btn-primary {
-	background: #466ed1;
-	color: #fff;
+	background: var(--secondary_bg_col);
+	color: var(--font_col);
 }
 
 @media (max-width: 900px) {

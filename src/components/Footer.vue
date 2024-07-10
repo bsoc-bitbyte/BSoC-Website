@@ -1,0 +1,189 @@
+<template>
+	<div class="footer">
+		<div class="upper">
+			<div class="sub-container">
+				<div class="bitbyte">
+					BITBYTE
+					<div class="icons">
+						<a href=""><img src="../assets/instagram.svg" alt="instagram" /></a>
+						<a href=""><img src="../assets/Discord.svg" alt="discord" /></a>
+						<a href=""><img src="../assets/Github.svg" alt="github" /></a>
+					</div>
+				</div>
+				<div class="bsoc">
+					BSOC
+					<div class="icons">
+						<a href=""><img src="../assets/instagram.svg" alt="instagram" /></a>
+						<a href=""><img src="../assets/Discord.svg" alt="discord" /></a>
+					</div>
+				</div>
+			</div>
+			<div class="tpc-icons">
+				<img class="tpc-logo" src="../assets/TPC logo.svg" alt="instagram" />
+				<img class="bsoc-logo" src="../assets/BsoC logo.svg" alt="instagram" />
+			</div>
+		</div>
+		<div class="tpc">
+			Contact us at
+			<a
+				href="https://www.iiitdmj.ac.in/webix.iiitdmj.ac.in/#/team"
+				target="_blank"
+				style="text-decoration: none"
+				>tpc.iiitdmj.ac.in</a
+			>
+			<div>(C) The Programming Club, IIITDMJ, 2024</div>
+		</div>
+	</div>
+</template>
+
+<script>
+export default {
+	name: 'Footer',
+}
+</script>
+
+<style scoped>
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+.footer {
+	background-color: var(--primary_bg_col);
+	padding: 2vw;
+	width: 100%;
+	background-image: linear-gradient(
+		to top,
+		rgb(24, 22, 22) 70%,
+		rgba(0, 0, 0, 0) 35%
+	);
+}
+.upper {
+	display: flex;
+	justify-content: space-between;
+}
+.sub-container {
+	background-color: var(--secondary_bg_col);
+	width: 68%;
+	border-radius: 20px;
+	padding: 2vw;
+	font-family: var(--fontstyle), serif;
+	font-size: 72px;
+	line-height: 56px;
+	color: black;
+	display: flex;
+	justify-content: center;
+	box-shadow: 6px 6px 4px var(--animation_col);
+	transition: all 0.4s ease;
+}
+@media (min-width: 750px) {
+	.sub-container:hover {
+		box-shadow: 14px 14px 4px var(--animation_col);
+		transform: translate(-8px, -8px);
+	}
+}
+
+.bitbyte {
+	border-right: 2px solid var(--primary_bg_col);
+	padding-right: 8vw;
+}
+.bsoc {
+	padding-left: 8vw;
+}
+.icons img {
+	width: 38px;
+	height: 38px;
+	margin: 8px;
+	border-radius: 8px;
+	transition: all 0.4s ease;
+}
+.icons img:hover {
+	background-color: var(--animation_col);
+	border-radius: 8px;
+	padding: 4px;
+}
+.tpc-icons {
+	align-self: end;
+	padding-right: 2vw;
+}
+.tpc-icons img {
+	margin: 8px;
+}
+.tpc-logo {
+	width: 80px;
+}
+.bsoc-logo {
+	width: 60px;
+}
+.tpc {
+	color: var(--font_col);
+	text-align: end;
+	position: relative;
+	font-size: 1.4vw;
+	padding-right: 2vw;
+	font-family: system-ui;
+}
+@media (max-width: 850px) {
+	.sub-container {
+		font-size: 8vw;
+	}
+	.bitbyte {
+		padding-right: 4vw;
+	}
+	.bsoc {
+		padding-left: 4vw;
+	}
+	.icons img {
+		width: 28px;
+		height: 28px;
+		margin: 4px;
+	}
+	.tpc-logo {
+		width: 64px;
+	}
+	.bsoc-logo {
+		width: 52px;
+	}
+}
+@media (max-width: 600px) {
+	.upper {
+		flex-direction: column;
+		align-items: center;
+	}
+	.sub-container {
+		flex-direction: column;
+		max-width: 300px;
+		width: 80%;
+		line-height: 60px;
+		font-size: 52px;
+		box-shadow: 14px 14px 4px var(--animation_col);
+	}
+	.bitbyte {
+		border-bottom: 2px solid var(--primary_bg_col);
+		border-image: linear-gradient(
+				to right,
+				var(--primary_bg_col) 240px,
+				transparent 50%
+			)
+			100% 1;
+		border-right: none;
+		padding-left: 2vw;
+	}
+	.bsoc {
+		padding-left: 2vw;
+	}
+	.icons img {
+		background-color: var(--animation_col);
+		border-radius: 8px;
+		padding: 2px;
+	}
+	.tpc-icons {
+		margin-top: 32px;
+		padding-right: 6vw;
+	}
+	.tpc {
+		font-size: 0.8rem;
+		padding-right: 8vw;
+	}
+}
+</style>

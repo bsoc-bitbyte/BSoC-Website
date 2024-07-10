@@ -1,26 +1,34 @@
 <template>
-	<div class="projects">
-		<h1>PROJECTS</h1>
-		<div class="project-container">
-			<ProjectsCard
-				v-for="item in items"
-				:key="item.id"
-				:projectName="item.projectName"
-				:name="item.name"
-				:link="item.link"
-				:techStack="item.techStack"
-				:description="item.description"
-			/>
+	<div class="projects-outer">
+		<div class="projects">
+			<h1>PROJECTS</h1>
+			<div class="project-container">
+				<ProjectsCard
+					v-for="item in items"
+					:key="item.id"
+					:projectName="item.projectName"
+					:name="item.name"
+					:link="item.link"
+					:techStack="item.techStack"
+					:description="item.description"
+				/>
+			</div>
 		</div>
+
+		<!-- Footer -->
+		<Footer></Footer>
 	</div>
 </template>
 
 <script>
 import ProjectsCard from '@/components/ProjectsCard.vue'
 import Nav from '@/components/Nav'
+import Footer from '../components/Footer.vue'
+
 export default {
 	components: {
 		ProjectsCard,
+		Footer,
 	},
 	data() {
 		return {
@@ -104,9 +112,16 @@ export default {
 </script>
 
 <style scoped>
+.projects-outer {
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	background-color: var(--primary_bg_col);
+}
 .projects {
 	width: 100vw;
-	background-color: #19192a;
+	background-color: var(--primary_bg_col);
 	height: 100%;
 	padding: 6vh;
 	text-align: center;
@@ -120,9 +135,9 @@ export default {
 }
 
 .projects h1 {
-	font-size: 3vw;
-	color: #fff;
-	font-family: Stargaze, sans-serif;
+	font-size: 4vw;
+	color: var(--secondary_bg_col);
+	font-family: var(--fontstyle), sans-serif;
 	margin-top: 7vh;
 }
 @media (max-width: 768px) {

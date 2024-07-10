@@ -12,6 +12,10 @@
 	font-family: 'Stargaze';
 	src: url('./assets/fonts/StargazeStencil.otf');
 }
+@font-face {
+	font-family: 'Pricedown';
+	src: url('./assets/fonts/PricedownBl-Regular 900.ttf');
+}
 </style>
 <script>
 import PreLoader from '@/components/PreLoader'

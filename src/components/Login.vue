@@ -17,7 +17,9 @@
 			>
 				<div class="card-body p-5 text-center">
 					<div class="mb-md-5 mt-md-4 pb-5">
-						<h2 class="fw-bold text-uppercase mb-2">Login</h2>
+						<h2 class="fw-bold text-uppercase mb-2" id="login-heading">
+							Login
+						</h2>
 						<p class="text-white-50 mb-5">
 							Please enter your login and password!
 						</p>
@@ -135,6 +137,11 @@ export default {
 	width: 400px;
 	box-shadow: 0px 0px 24px black;
 	font-family: popins, sans-serif;
+}
+#login-heading {
+	font-family: var(--fontstyle), popins, sans-serif;
+	color: var(--secondary_bg_col);
+	font-size: 48px;
 }
 
 .container {

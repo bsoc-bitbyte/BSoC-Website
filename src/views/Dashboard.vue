@@ -63,6 +63,9 @@
 			<button class="nextPage" @click="nextPage">></button>
 		</div>
 		<div v-else class="no-results">No results found.</div>
+
+		<!-- Footer -->
+		<Footer></Footer>
 	</div>
 </template>
 
@@ -72,10 +75,11 @@ import { formatDistanceToNow } from 'date-fns'
 import { getAllUserStats } from '../composables/getCollection'
 import { projectAuth } from '../firebase/config'
 import Nav from '@/components/Nav.vue'
+import Footer from '../components/Footer.vue'
 
 export default {
 	name: 'Dashboard',
-
+	components: { Footer },
 	setup() {
 		const { documents } = getAllUserStats('userStats-2024')
 		const started = ref(true)
@@ -264,16 +268,17 @@ export default {
 }
 
 .pr-outer {
-	background: #19192a;
+	background: var(--primary_bg_col);
 	min-height: 100vh;
 	width: 100vw;
 	display: flex;
 	padding-top: 12vh;
 	flex-direction: column;
+	justify-content: space-between;
 }
 
 .pr-container {
-	min-height: 80vh;
+	min-height: 40vh;
 	width: 80vw;
 	margin: 40px auto;
 	border-radius: 16px;
@@ -281,17 +286,17 @@ export default {
 
 .table-heading {
 	display: grid;
-	background: #eaeaef;
+	background: var(--secondary_bg_col);
 	grid-template-columns: repeat(5, 1fr);
 	grid-column-gap: 1.5em;
 	padding: 25px 0;
 	border-top-left-radius: 15px;
 	border-top-right-radius: 15px;
-	font-family: Poppins, sans-serif;
+	font-family: system-ui, Poppins, sans-serif;
 	font-weight: 600;
 	font-size: 1.53vw;
-	color: #04325e;
-	border-bottom: 1px solid #04325e;
+	color: var(--primary_bg_col);
+	border-bottom: 1px solid var(--secondary_bg_col);
 	text-align: center;
 }
 
@@ -302,18 +307,17 @@ export default {
 	padding: 25px 0;
 	font-weight: 400;
 	font-size: 1.38vw;
-	color: #04325e;
+	color: var(--font_col);
 	text-align: center;
 }
 
 .menu__item {
-	color: white;
+	color: var(--font_col);
 	text-decoration: none;
 }
 
 .menu__item:hover {
-	color: #f8af1e;
-	background-color: #427bf624;
+	color: var(--secondary_bg_col);
 	border-radius: 4px;
 }
 .pagination {
@@ -327,8 +331,8 @@ export default {
 }
 .pagination * {
 	box-sizing: border-box;
-	border: 2px white solid;
-	background-color: #ffffff00;
+	border: 2px var(--secondary_bg_col) solid;
+	background-color: var(--primary_bg_col);
 	min-width: 35px;
 	padding: 5px;
 	display: flex;
@@ -336,7 +340,7 @@ export default {
 	justify-content: center;
 	font-weight: 600;
 	font-size: 1.1vw;
-	color: #ffffff;
+	color: var(--secondary_bg_col);
 	font-family: Poppins, sans-serif;
 	border-radius: 3px;
 	transition: all linear 0.26s;
@@ -350,42 +354,49 @@ export default {
 	font-size: 2vw;
 }
 .active {
-	border: #04325e;
-	color: #04325e;
-	background-color: white;
+	border: var(--primary_bg_col);
+	color: var(--primary_bg_col);
+	background-color: var(--secondary_bg_col);
 	font-size: 1.3vw;
 }
 .pagination *:hover {
-	background-color: white;
-	color: #04325e;
+	background-color: var(--secondary_bg_col);
+	color: var(--primary_bg_col);
 }
 .no-results {
-	color: white;
+	color: var(--font_col);
 	position: absolute;
-	top: 60%;
+	top: 50vh;
 	width: 100%;
 	text-align: center;
-	font-family: Poppins, sans-serif;
+	font-family: system-ui, Poppins, sans-serif;
 }
 .searchbar {
 	padding: 15px 0;
-	text-align: center;
+	text-align: end;
 }
 
 .search-input {
 	width: 50%;
 	padding: 10px 10px 10px 40px;
-	background-color: white;
-	border: 1px solid white;
+	background-color: var(--secondary_bg_col);
+	border: 1px solid var(--secondary_bg_col);
 	border-radius: 10vw;
-	font-family: Poppins, sans-serif;
+	font-family: system-ui, Poppins, sans-serif;
 	font-size: 1rem;
+	font-weight: 500;
+	outline: none;
+	color: var(--font_col);
 	position: relative;
-	background-image: url('../assets/searchicon.jpg');
-	background-size: 20px 20px;
+	background-image: url('../assets/search.svg');
+	background-size: 24px 24px;
 	background-repeat: no-repeat;
 	background-position: 10px center;
 	position: relative;
+}
+::placeholder {
+	color: lightgrey;
+	opacity: 0.8;
 }
 
 @media (max-width: 900px) {

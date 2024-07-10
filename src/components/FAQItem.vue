@@ -48,28 +48,28 @@ export default {
 <style scoped>
 * {
 	box-sizing: border-box;
-	background-color: #19192a;
-	color: white;
+	background-color: var(--primary_bg_col);
+	color: var(--font_col);
 }
 .question {
-	color: white;
+	color: var(--font_col);
 	font-size: 23px;
 	width: 80vw;
 }
 
 .answer {
-	color: white;
+	color: var(--font_col);
 }
 
 html,
 body {
-	font-family: 'Arial', sans-serif;
+	font-family: system-ui, Poppins, sans-serif;
 	font-size: 19px;
 	line-height: 1.5;
-	color: white;
+	color: var(--font_col);
 	width: 100%;
 	height: 100%;
-	background-color: #19192a;
+	background-color: var(--primary_bg_col);
 	margin: 0;
 	padding: 0;
 }
@@ -82,7 +82,7 @@ body {
 }
 
 h1 {
-	font-family: 'Nexa Black', sans-serif;
+	font-family: system-ui, Poppins, sans-serif;
 	font-weight: 700;
 	font-size: 1.8rem;
 	margin-bottom: 30px;
@@ -94,7 +94,7 @@ h1 {
 }
 
 .ani {
-	border-bottom: 1px white solid;
+	border-bottom: 1px var(--font_col) solid;
 	width: 50vw;
 }
 .accordion-item {
@@ -108,13 +108,13 @@ h1 {
 	align-items: center;
 
 	padding: 10px;
-	background-color: #19192a;
+	background-color: var(--primary_bg_col);
 	border: none;
 	text-align: left;
 	transition: background-color 0.4s ease;
-	font-family: 'Nexa XBold', sans-serif;
+	font-family: system-ui, Poppins, sans-serif;
 	font-size: 1rem;
-	color: white;
+	color: var(--font_col);
 	position: relative;
 }
 
@@ -149,12 +149,12 @@ h1 {
 
 .accordion-body {
 	padding: 15px 10px;
-	background-color: #19192a;
+	background-color: var(--primary_bg_col);
 }
 
 .answer {
 	font-size: 0.9rem;
-	color: white;
+	color: var(--font_col);
 }
 
 @keyframes expandAccordion {

@@ -58,6 +58,9 @@
 				</div>
 			</div>
 		</div>
+
+		<!-- Footer -->
+		<Footer></Footer>
 	</div>
 </template>
 
@@ -68,10 +71,11 @@ import { computed, ref } from 'vue'
 import { deletePr } from '../composables/deleteDocuments'
 import { getCollection } from '../composables/getCollection'
 import { projectAuth } from '../firebase/config'
+import Footer from '../components/Footer.vue'
 
 export default {
 	name: 'MyPR',
-
+	components: { Footer },
 	setup() {
 		const { documents } = getCollection('dashboard-2024')
 		const started = ref(true)
@@ -144,7 +148,7 @@ export default {
 	font-size: 28px;
 	line-height: 48px;
 
-	color: #04325e;
+	color: var(--primary_bg_col);
 }
 
 .inner {
@@ -152,7 +156,7 @@ export default {
 }
 
 .navi button {
-	background: #3770ff;
+	background: var(--secondary_bg_col);
 	border-radius: 8px;
 	width: fit-content;
 	margin: 1vh 1vw;
@@ -180,7 +184,6 @@ export default {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-
 	background: #f0f0f3;
 }
 
@@ -192,7 +195,7 @@ export default {
 }
 
 .joke-box button {
-	background: #3770ff;
+	background: var(--secondary_bg_col);
 	border-radius: 8px;
 	width: fit-content;
 	margin: 1vh 3vw;
@@ -219,16 +222,17 @@ export default {
 }
 
 .pr-outer {
-	background: #19192a;
+	background: var(--primary_bg_col);
 	min-height: 100vh;
 	width: 100vw;
 	display: flex;
 	padding-top: 12vh;
 	flex-direction: column;
+	justify-content: space-between;
 }
 
 .pr-container {
-	min-height: 80vh;
+	min-height: 10vh;
 	width: 80vw;
 	margin: 40px auto;
 	border-radius: 16px;
@@ -236,7 +240,7 @@ export default {
 
 .table-heading {
 	display: grid;
-	background: #eaeaef;
+	background: var(--secondary_bg_col);
 	grid-template-columns: repeat(4, 1fr);
 	grid-column-gap: 0px;
 	padding: 25px 0;
@@ -245,8 +249,8 @@ export default {
 	font-family: Poppins, sans-serif;
 	font-weight: 600;
 	font-size: 1.53vw;
-	color: #04325e;
-	border-bottom: 1px solid #04325e;
+	color: var(--primary_bg_col);
+	border-bottom: 1px solid var(--primary_bg_col);
 	text-align: center;
 }
 
@@ -257,7 +261,7 @@ export default {
 	padding: 25px 0;
 	font-weight: 400;
 	font-size: 1.38vw;
-	color: #04325e;
+	color: var(--primary_bg_col);
 	text-align: center;
 }
 
@@ -267,10 +271,10 @@ export default {
 
 .heading3 a {
 	text-decoration: none;
-	color: #04325e;
+	color: var(--primary_bg_col);
 }
 .no-prs-text {
-	color: white;
+	color: var(--font_col);
 	text-align: center;
 	margin-top: 2.6vh;
 }
@@ -280,7 +284,7 @@ export default {
 	left: 0;
 	width: 100%;
 	height: 4px;
-	background-color: #3770ff;
+	background-color: var(--secondary_bg_col);
 	animation: loadingAnimation 2s infinite;
 }
 @keyframes loadingAnimation {
@@ -298,7 +302,7 @@ export default {
 .loading-indicator {
 	text-align: center;
 	margin-top: 4vh;
-	color: white;
+	color: var(--font_col);
 	padding: 2rem;
 }
 @media (max-width: 900px) {
