@@ -38,11 +38,11 @@
 			</div>
 		</div>
 
-		<!--  Prize Section-->
-		<div class="prize-section" id="prize">
-			<div class="prize">
-				<h1 class="prize-heading">Benefits</h1>
-				<div class="prizes">
+		<!--  benefits Section-->
+		<div class="benefits-section" id="benefits">
+			<div class="benefits">
+				<h1 class="benefits-heading">Benefits</h1>
+				<div class="benefitss">
 					<div class="list">
 						<p>
 							Top contributors can get a chance to interview for the BitByte Dev
@@ -85,9 +85,6 @@
 
 		<!--  FAQ Section-->
 		<FAQS></FAQS>
-
-		<!-- Footer -->
-		<Footer></Footer>
 	</div>
 </template>
 
@@ -96,11 +93,10 @@ import { ref, onMounted } from 'vue'
 import Nav from '@/components/Nav'
 import FAQS from '../components/FAQS.vue'
 import { projectAuth } from '@/firebase/config'
-import Footer from '../components/Footer.vue'
 
 export default {
 	name: 'Home',
-	components: { FAQS, Footer },
+	components: { FAQS },
 	mounted() {
 		this.initParticles()
 	},
@@ -270,7 +266,7 @@ export default {
 }
 
 .about-heading {
-	font-family: var(--fontstyle), sans-serif;
+	font-family: var(--primary-font), sans-serif;
 	color: var(--secondary_bg_col);
 	margin: 0;
 	padding: 5vh 0;
@@ -279,7 +275,6 @@ export default {
 	font-size: 5.5vw;
 	line-height: 10.6vh;
 	align-items: center;
-	/* text-align: center; */
 }
 
 .about-content {
@@ -303,19 +298,7 @@ export default {
 	margin-bottom: 1vw;
 }
 
-.highlight {
-	padding: 0 3px;
-	position: relative;
-}
-
-#start {
-	font-family: system-ui, Poppins, sans-serif;
-	font-size: 2vh;
-	color: var(--font_col);
-	margin: 5vh 0 0 0;
-}
-
-.prize-section {
+.benefits-section {
 	width: 100vw;
 	height: 68vh;
 	display: flex;
@@ -324,7 +307,7 @@ export default {
 	background-color: var(--secondary_bg_col);
 }
 
-.prize {
+.benefits {
 	display: flex;
 	flex-direction: column;
 	height: 56vh;
@@ -332,13 +315,13 @@ export default {
 	justify-content: space-evenly;
 }
 
-.prize-heading {
+.benefits-heading {
 	padding: 0;
 	margin: 0;
 	font-size: 5.6vw;
 	letter-spacing: 2px;
 	line-height: 7.36vw;
-	font-family: var(--fontstyle), sans-serif;
+	font-family: var(--primary-font), sans-serif;
 	color: var(--primary_bg_col);
 }
 
@@ -352,13 +335,13 @@ export default {
 .list p {
 	line-height: 2.6vw;
 	font-size: 1.8vw;
-	font-family: system-ui, Poppins, sans-serif;
+	font-family: var(--secondary-font);
 }
 
 .countdown-timer {
 	text-align: center;
 	color: var(--font_col);
-	font-family: var(--fontstyle), monospace;
+	font-family: var(--primary-font), monospace;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -470,18 +453,18 @@ export default {
 		font-size: 5vw;
 	}
 
-	.prize-section {
+	.benefits-section {
 		height: initial;
 		padding: 4rem 1rem;
 	}
 
-	.prize-heading {
+	.benefits-heading {
 		margin: initial;
 		font-size: 3rem;
 		line-height: initial;
 	}
 
-	.prizes .list {
+	.benefitss .list {
 		width: initial;
 		margin-top: 3rem;
 	}
@@ -528,7 +511,7 @@ export default {
 		height: 100vh;
 		align-items: center;
 	}
-	.prize-heading {
+	.benefits-heading {
 		text-align: center;
 	}
 }

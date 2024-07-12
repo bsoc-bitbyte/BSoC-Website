@@ -52,11 +52,7 @@ export default {
 	background-color: var(--primary_bg_col);
 	padding: 2vw;
 	width: 100%;
-	background-image: linear-gradient(
-		to top,
-		rgb(24, 22, 22) 70%,
-		rgba(0, 0, 0, 0) 35%
-	);
+	background-image: linear-gradient(to top, black 70%, rgba(0, 0, 0, 0) 35%);
 }
 .upper {
 	display: flex;
@@ -67,18 +63,18 @@ export default {
 	width: 68%;
 	border-radius: 20px;
 	padding: 2vw;
-	font-family: var(--fontstyle), serif;
+	font-family: var(--primary-font), serif;
 	font-size: 72px;
 	line-height: 56px;
 	color: black;
 	display: flex;
 	justify-content: center;
-	box-shadow: 6px 6px 4px var(--animation_col);
+	box-shadow: 6px 6px 4px var(--minor_col);
 	transition: all 0.4s ease;
 }
 @media (min-width: 750px) {
 	.sub-container:hover {
-		box-shadow: 14px 14px 4px var(--animation_col);
+		box-shadow: 14px 14px 4px var(--minor_col);
 		transform: translate(-8px, -8px);
 	}
 }
@@ -98,7 +94,7 @@ export default {
 	transition: all 0.4s ease;
 }
 .icons img:hover {
-	background-color: var(--animation_col);
+	background-color: var(--minor_col);
 	border-radius: 8px;
 	padding: 4px;
 }
@@ -156,7 +152,7 @@ export default {
 		width: 80%;
 		line-height: 60px;
 		font-size: 52px;
-		box-shadow: 14px 14px 4px var(--animation_col);
+		box-shadow: 14px 14px 4px var(--minor_col);
 	}
 	.bitbyte {
 		border-bottom: 2px solid var(--primary_bg_col);
@@ -173,7 +169,7 @@ export default {
 		padding-left: 2vw;
 	}
 	.icons img {
-		background-color: var(--animation_col);
+		background-color: var(--minor_col);
 		border-radius: 8px;
 		padding: 2px;
 	}

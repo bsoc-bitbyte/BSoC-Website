@@ -7,11 +7,8 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Istok+Web:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
-@font-face {
-	font-family: 'Stargaze';
-	src: url('./assets/fonts/StargazeStencil.otf');
-}
 @font-face {
 	font-family: 'Pricedown';
 	src: url('./assets/fonts/PricedownBl-Regular 900.ttf');

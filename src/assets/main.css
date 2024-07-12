@@ -1,9 +1,10 @@
 :root{
-	--primary_bg_col: #242124;
+	--primary_bg_col: #121519;
 	--secondary_bg_col: #0890B2;
 	--font_col: #efefef;
-	--animation_col: #7904eb;
-	--fontstyle: Pricedown;
+	--minor_col: #7904eb;
+	--primary-font: Pricedown, serif;
+	--secondary-font: Istok web, sans-serif;
 }
 #app {
 	width: 100vw;

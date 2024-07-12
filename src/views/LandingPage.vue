@@ -1,13 +1,11 @@
 <template>
 	<div class="fixed-top">
 		<div class="home container">
-			<!-- <div class="details"> -->
 			<img src="../assets/Logo.svg" alt="BSoC Logo" id="bsoc-logo" />
 			<p id="heading">BitByte Summer Of Code</p>
 			<p id="subH">Event to begin your Open Source Journey</p>
 			<p id="text">Presented by</p>
 			<p id="text">The Programming Club, IIITDMJ</p>
-			<!-- </div> -->
 			<div class="buttonContainer">
 				<router-link to="/home" style="text-decoration: none; color: inherit">
 					<button class="button hvr-grow">
@@ -53,7 +51,7 @@ canvas {
 }
 #heading {
 	margin: 0;
-	font-family: var(--fontstyle), serif;
+	font-family: var(--primary-font), serif;
 	font-size: 6vw;
 	line-height: 14vh;
 	color: var(--font_col);

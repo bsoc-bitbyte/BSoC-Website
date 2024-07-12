@@ -2,8 +2,8 @@ import { projectAuth } from '@/firebase/config'
 import { createRouter, createWebHistory } from 'vue-router'
 
 import AuthLayout from '@/layouts/AuthLayout.vue'
-import DashboardLayout from '@/layouts/DashboardLayout.vue'
 import GeneralLayout from '@/layouts/GeneralLayout.vue'
+import LandingLayout from '@/layouts/LandingLayout.vue'
 
 import Login from '@/components/Login'
 import Signup from '@/components/Signup'
@@ -37,7 +37,7 @@ const requireNoAuth = (to, from, next) => {
 const routes = [
 	{
 		path: '/',
-		component: GeneralLayout,
+		component: LandingLayout,
 		children: [
 			{
 				path: '',
@@ -72,7 +72,7 @@ const routes = [
 	},
 	{
 		path: '/',
-		component: DashboardLayout,
+		component: GeneralLayout,
 		children: [
 			{
 				path: 'dashboard',

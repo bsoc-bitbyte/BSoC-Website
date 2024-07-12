@@ -114,7 +114,7 @@ export default {
 </script>
 <style>
 .FAQHEADING {
-	font-family: var(--fontstyle), serif;
+	font-family: var(--primary-font), serif;
 	font-size: 8vw;
 	margin: 0;
 	text-align: center;

@@ -146,7 +146,7 @@ export default {
 @import url('https://fonts.googleapis.com/css?family=Raleway:400,700');
 
 .screen {
-	background: rgb(19, 18, 17);
+	background: var(--primary_bg_col);
 	position: absolute;
 	top: 50%;
 	left: 50%;
@@ -159,7 +159,7 @@ export default {
 	font-family: popins, sans-serif;
 }
 #signUp-heading {
-	font-family: var(--fontstyle), popins, sans-serif;
+	font-family: var(--primary-font), popins, sans-serif;
 	color: var(--secondary_bg_col);
 	font-size: 48px;
 }

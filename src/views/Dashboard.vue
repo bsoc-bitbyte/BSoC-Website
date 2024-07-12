@@ -63,9 +63,6 @@
 			<button class="nextPage" @click="nextPage">></button>
 		</div>
 		<div v-else class="no-results">No results found.</div>
-
-		<!-- Footer -->
-		<Footer></Footer>
 	</div>
 </template>
 
@@ -75,11 +72,10 @@ import { formatDistanceToNow } from 'date-fns'
 import { getAllUserStats } from '../composables/getCollection'
 import { projectAuth } from '../firebase/config'
 import Nav from '@/components/Nav.vue'
-import Footer from '../components/Footer.vue'
 
 export default {
 	name: 'Dashboard',
-	components: { Footer },
+
 	setup() {
 		const { documents } = getAllUserStats('userStats-2024')
 		const started = ref(true)
@@ -173,108 +169,13 @@ export default {
 </script>
 
 <style scoped>
-.navi {
-	height: 10vh;
-	width: 100vw;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	border-bottom: 2px solid rgba(4, 50, 94, 0.2);
-
-	background: #f0f0f3;
-}
-
-.navi span {
-	margin: 0 3vw;
-
-	font-family: Poppins, sans-serif;
-	font-style: normal;
-	font-weight: 600;
-	font-size: 28px;
-	line-height: 48px;
-
-	color: #04325e;
-}
-
-.inner {
-	margin: 0 2vw;
-}
-
-.navi button {
-	background: #3770ff;
-	border-radius: 8px;
-	width: fit-content;
-	margin: 1vh 1vw;
-	font-size: 1.2vw;
-	padding: 1vh 2.5vw;
-	color: #ffffff;
-	display: flex;
-	font-family: 'Poppins', sans-serif;
-	text-align: center;
-	border: none;
-	outline: none;
-	cursor: pointer;
-}
-
-.navi button:hover {
-	transform: scale(1.03);
-	background-color: #0745e2;
-}
-
-.content {
-	height: 90vh;
-	width: 100vw;
-	padding: 1rem;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-
-	background: #f0f0f3;
-}
-
-.joke-box {
-	padding-bottom: 20vh;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-}
-
-.joke-box button {
-	background: #3770ff;
-	border-radius: 8px;
-	width: fit-content;
-	margin: 1vh 3vw;
-	font-size: 1.2vw;
-	padding: 1vh 2.5vw;
-	color: #ffffff;
-	display: flex;
-	font-family: 'Poppins', sans-serif;
-	text-align: center;
-	border: none;
-	outline: none;
-	cursor: pointer;
-}
-
-.joke-box p {
-	font-family: 'Poppins', sans-serif;
-	font-size: 2vh;
-	line-height: 3vh;
-}
-
-.inner {
-	display: flex;
-	align-items: center;
-}
-
 .pr-outer {
 	background: var(--primary_bg_col);
-	min-height: 100vh;
+	min-height: 40vh;
 	width: 100vw;
 	display: flex;
 	padding-top: 12vh;
 	flex-direction: column;
-	justify-content: space-between;
 }
 
 .pr-container {
@@ -400,18 +301,6 @@ export default {
 }
 
 @media (max-width: 900px) {
-	.navi span {
-		font-size: initial;
-	}
-
-	.navi button {
-		font-size: 70%;
-	}
-
-	.joke-box button {
-		font-size: initial;
-	}
-
 	.pr-container {
 		margin: auto;
 		width: 90%;

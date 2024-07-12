@@ -1,92 +1,84 @@
 <template>
-	<div class="outer">
-		<div class="content">
-			<div>
-				<h3 style="text-align: center; color: #fff; margin-bottom: 10px">
-					Select The Repository
+	<div class="content">
+		<div>
+			<h3 style="text-align: center; color: #fff; margin-bottom: 10px">
+				Select The Repository
+			</h3>
+			<select v-model="selectedRepo" class="custom-select" @change="fetchPRs">
+				<option value="" disabled>Select The Repository</option>
+				<option v-for="repo in repos" :key="repo" :value="repo">
+					{{ repo }}
+				</option>
+			</select>
+		</div>
+		<div class="inner">
+			<h3 v-if="loading" style="color: #fff; padding: 10px; text-align: center">
+				Getting the repos...
+			</h3>
+			<h3
+				v-else-if="selectedRepo === ''"
+				style="color: #fff; padding: 10px; text-align: center"
+			>
+				Please select a repo to get the Pull Requests
+			</h3>
+			<h3
+				v-else-if="fetchErr"
+				style="color: red; padding: 10px; text-align: center"
+			>
+				{{ fetchErr }}
+			</h3>
+			<div v-else class="pr-list">
+				<h3>
+					Pull Requests:
+					<span
+						v-if="prs.length === 0"
+						style="color: yellow; padding: 10px; text-align: center"
+						>No PRs found!</span
+					>
 				</h3>
-				<select v-model="selectedRepo" class="custom-select" @change="fetchPRs">
-					<option value="" disabled>Select The Repository</option>
-					<option v-for="repo in repos" :key="repo" :value="repo">
-						{{ repo }}
-					</option>
-				</select>
-			</div>
-			<div class="inner">
-				<h3
-					v-if="loading"
-					style="color: #fff; padding: 10px; text-align: center"
-				>
-					Getting the repos...
-				</h3>
-				<h3
-					v-else-if="selectedRepo === ''"
-					style="color: #fff; padding: 10px; text-align: center"
-				>
-					Please select a repo to get the Pull Requests
-				</h3>
-				<h3
-					v-else-if="fetchErr"
-					style="color: red; padding: 10px; text-align: center"
-				>
-					{{ fetchErr }}
-				</h3>
-				<div v-else class="pr-list">
-					<h3>
-						Pull Requests:
-						<span
-							v-if="prs.length === 0"
-							style="color: yellow; padding: 10px; text-align: center"
-							>No PRs found!</span
-						>
-					</h3>
-					<ul>
-						<li
-							v-for="pr in prs"
-							:key="pr.id"
-							@click="openModal(pr)"
-							class="hvr-grow"
-						>
-							<a :href="pr.html_url" target="_blank">{{ pr.title }}</a> by
-							{{ pr.user.login }}
-						</li>
-					</ul>
-				</div>
-			</div>
-
-			<!-- Modal -->
-			<div v-if="showModal" class="modal-overlay">
-				<div class="confirm-pr">
-					<h3>Submit Your PR</h3>
-					<p>{{ selectedPR?.title }}</p>
-					<p>
-						Difficulty:
-						{{
-							selectedDifficulty ??
-							'Contact the maintainer to assign a difficulty label to the PR.'
-						}}
-					</p>
-					<p v-if="isBsoc24 !== true" style="color: yellow">
-						Not assigned the BSoC'24 Label
-					</p>
-					<div class="modal-actions">
-						<button @click="showModal = false" class="btn btn-secondary">
-							Close
-						</button>
-						<button
-							@click="handleClick"
-							class="btn btn-primary"
-							:disabled="loading"
-						>
-							Submit
-						</button>
-					</div>
-				</div>
+				<ul>
+					<li
+						v-for="pr in prs"
+						:key="pr.id"
+						@click="openModal(pr)"
+						class="hvr-grow"
+					>
+						<a :href="pr.html_url" target="_blank">{{ pr.title }}</a> by
+						{{ pr.user.login }}
+					</li>
+				</ul>
 			</div>
 		</div>
 
-		<!-- Footer -->
-		<Footer></Footer>
+		<!-- Modal -->
+		<div v-if="showModal" class="modal-overlay">
+			<div class="confirm-pr">
+				<h3>Submit Your PR</h3>
+				<p>{{ selectedPR?.title }}</p>
+				<p>
+					Difficulty:
+					{{
+						selectedDifficulty ??
+						'Contact the maintainer to assign a difficulty label to the PR.'
+					}}
+				</p>
+				<p v-if="isBsoc24 !== true" style="color: yellow">
+					Not assigned the BSoC'24 Label
+				</p>
+				<div class="modal-actions">
+					<button @click="showModal = false" class="btn btn-secondary">
+						Close
+					</button>
+					<button
+						@click="handleClick"
+						class="btn btn-primary"
+						:disabled="loading"
+					>
+						Submit
+					</button>
+				</div>
+			</div>
+		</div>
 	</div>
 </template>
 
@@ -96,11 +88,9 @@ import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import axios from 'axios'
 import { addDoc, updateUserStats } from '../composables/useCollection'
-import Footer from '../components/Footer.vue'
 
 export default {
 	name: 'SubmitPR',
-	components: { Footer },
 	setup() {
 		const repos = [
 			'bsoc-bitbyte/BSoC-Website',
@@ -264,13 +254,6 @@ export default {
 </script>
 
 <style scoped>
-.outer {
-	min-height: 100vh;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	background-color: var(--primary_bg_col);
-}
 .content {
 	width: 100vw;
 	min-height: 40vh;

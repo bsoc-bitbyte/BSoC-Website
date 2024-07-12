@@ -14,21 +14,16 @@
 				/>
 			</div>
 		</div>
-
-		<!-- Footer -->
-		<Footer></Footer>
 	</div>
 </template>
 
 <script>
 import ProjectsCard from '@/components/ProjectsCard.vue'
 import Nav from '@/components/Nav'
-import Footer from '../components/Footer.vue'
 
 export default {
 	components: {
 		ProjectsCard,
-		Footer,
 	},
 	data() {
 		return {
@@ -113,7 +108,7 @@ export default {
 
 <style scoped>
 .projects-outer {
-	min-height: 100vh;
+	min-height: 40vh;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
@@ -137,7 +132,7 @@ export default {
 .projects h1 {
 	font-size: 4vw;
 	color: var(--secondary_bg_col);
-	font-family: var(--fontstyle), sans-serif;
+	font-family: var(--primary-font), sans-serif;
 	margin-top: 7vh;
 }
 @media (max-width: 768px) {
