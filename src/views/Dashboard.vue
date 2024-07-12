@@ -16,7 +16,11 @@
 				<div class="heading4"><span>No of PRs</span></div>
 				<div class="heading5"><span>Last Updated</span></div>
 			</div>
-			<div v-for="(doc, index) in paginatedDocuments" :doc="doc.time">
+			<div v-if="isLoading">
+				<!-- Loading Placeholder -->
+				<div class="loading-placeholder" v-for="n in 5" :key="n"></div>
+			</div>
+			<div v-else v-for="(doc, index) in paginatedDocuments" :doc="doc.time">
 				<div class="table-content">
 					<div class="heading1 text-white">
 						<span>{{ (pagenum - 1) * numofitems + index + 1 }}</span>
@@ -62,7 +66,7 @@
 
 			<button class="nextPage" @click="nextPage">></button>
 		</div>
-		<div v-else class="no-results">No results found.</div>
+		<div v-else-if="!isLoading" class="no-results">No results found.</div>
 	</div>
 </template>
 
@@ -78,6 +82,7 @@ export default {
 
 	setup() {
 		const { documents } = getAllUserStats('userStats-2024')
+		const isLoading = ref(true)
 		const started = ref(true)
 		const userPR = ref(false)
 		const numofitems = ref(10)
@@ -137,6 +142,7 @@ export default {
 			if (filteredDocuments.value && filteredDocuments.value.length > 0) {
 				const start = (pagenum.value - 1) * numofitems.value
 				const end = pagenum.value * numofitems.value
+				isLoading.value = false
 				return filteredDocuments.value.slice(start, end)
 			}
 			return []
@@ -150,6 +156,7 @@ export default {
 		})
 
 		return {
+			isLoading,
 			nextPage,
 			prevPage,
 			pagenum,
@@ -169,6 +176,118 @@ export default {
 </script>
 
 <style scoped>
+.loading-placeholder {
+	height: 70px;
+	margin: 10px 0;
+	background-color: grey;
+	border-radius: 4px;
+	animation: pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+	0%,
+	100% {
+		opacity: 1;
+	}
+	50% {
+		opacity: 0.5;
+	}
+}
+
+.navi {
+	height: 10vh;
+	width: 100vw;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	border-bottom: 2px solid rgba(4, 50, 94, 0.2);
+
+	background: #f0f0f3;
+}
+
+.navi span {
+	margin: 0 3vw;
+
+	font-family: Poppins, sans-serif;
+	font-style: normal;
+	font-weight: 600;
+	font-size: 28px;
+	line-height: 48px;
+
+	color: #04325e;
+}
+
+.inner {
+	margin: 0 2vw;
+}
+
+.navi button {
+	background: #3770ff;
+	border-radius: 8px;
+	width: fit-content;
+	margin: 1vh 1vw;
+	font-size: 1.2vw;
+	padding: 1vh 2.5vw;
+	color: #ffffff;
+	display: flex;
+	font-family: 'Poppins', sans-serif;
+	text-align: center;
+	border: none;
+	outline: none;
+	cursor: pointer;
+}
+
+.navi button:hover {
+	transform: scale(1.03);
+	background-color: #0745e2;
+}
+
+.content {
+	height: 90vh;
+	width: 100vw;
+	padding: 1rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+
+	background: #f0f0f3;
+}
+
+.joke-box {
+	padding-bottom: 20vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.joke-box button {
+	background: #3770ff;
+	border-radius: 8px;
+	width: fit-content;
+	margin: 1vh 3vw;
+	font-size: 1.2vw;
+	padding: 1vh 2.5vw;
+	color: #ffffff;
+	display: flex;
+	font-family: 'Poppins', sans-serif;
+	text-align: center;
+	border: none;
+	outline: none;
+	cursor: pointer;
+}
+
+.joke-box p {
+	font-family: 'Poppins', sans-serif;
+	font-size: 2vh;
+	line-height: 3vh;
+}
+
+.inner {
+	display: flex;
+	align-items: center;
+}
+
 .pr-outer {
 	background: var(--primary_bg_col);
 	min-height: 40vh;
