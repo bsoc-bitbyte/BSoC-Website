@@ -45,17 +45,19 @@
 				<div class="benefitss">
 					<div class="list">
 						<p>
-							Top contributors can get a chance to interview for the BitByte Dev
-							Wing.
+							Top contributors can get a chance to interview for the
+							<strong>BitByte Dev Wing</strong>.
 						</p>
-						<p style="margin: 0 0 4vw 2vw">
-							&bull; Every contributor who has got at least 3 easy-level and 1
-							medium-level PR merged to projects will get exclusive stickers and
-							swags.
+						<p style="margin: 0 0 40px 24px">
+							&bull; Every contributor who has got at least
+							<strong>3 easy-level and 1 medium-level PR</strong> merged to
+							projects will get exclusive <strong>stickers</strong> and
+							<strong>swags</strong>.
 						</p>
 						<p>Not enough ?</p>
-						<p style="margin-left: 2vw">
-							&bull; Top participants will get exclusive swags and merchandise
+						<p style="margin-left: 24px">
+							&bull; Top participants will get exclusive
+							<strong>swags</strong> and <strong>merchandise</strong>
 							for their exceptional performance in the event.
 						</p>
 					</div>
@@ -256,6 +258,7 @@ export default {
 .about {
 	overflow-x: hidden;
 	color: var(--font_col);
+	min-height: 500px;
 	height: 100vh;
 	width: 90%;
 	text-align: left;
@@ -300,6 +303,7 @@ export default {
 
 .benefits-section {
 	width: 100vw;
+	min-height: 600px;
 	height: 68vh;
 	display: flex;
 	justify-content: center;
@@ -310,6 +314,7 @@ export default {
 .benefits {
 	display: flex;
 	flex-direction: column;
+	min-height: 500px;
 	height: 56vh;
 	width: 90%;
 	justify-content: space-evenly;
@@ -326,7 +331,6 @@ export default {
 }
 
 .list {
-	/* width: 70%; */
 	margin: auto;
 	text-align: left;
 	color: var(--primary_bg_col);
@@ -491,7 +495,7 @@ export default {
 
 @media (max-width: 1100px) {
 	.about {
-		height: 80vh;
+		height: initial;
 	}
 
 	.about-heading {
@@ -502,14 +506,17 @@ export default {
 
 	.about-content {
 		font-size: 1rem;
-		line-height: 2.6vh;
+		line-height: 24px;
 	}
 }
 
 @media (max-width: 600px) {
 	.about {
-		height: 100vh;
+		height: initial;
 		align-items: center;
+	}
+	.benefits {
+		height: initial;
 	}
 	.benefits-heading {
 		text-align: center;

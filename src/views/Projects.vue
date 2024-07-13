@@ -1,18 +1,16 @@
 <template>
-	<div class="projects-outer">
-		<div class="projects">
-			<h1>PROJECTS</h1>
-			<div class="project-container">
-				<ProjectsCard
-					v-for="item in items"
-					:key="item.id"
-					:projectName="item.projectName"
-					:name="item.name"
-					:link="item.link"
-					:techStack="item.techStack"
-					:description="item.description"
-				/>
-			</div>
+	<div class="projects">
+		<h1>PROJECTS</h1>
+		<div class="project-container">
+			<ProjectsCard
+				v-for="item in items"
+				:key="item.id"
+				:projectName="item.projectName"
+				:name="item.name"
+				:link="item.link"
+				:techStack="item.techStack"
+				:description="item.description"
+			/>
 		</div>
 	</div>
 </template>
@@ -107,13 +105,6 @@ export default {
 </script>
 
 <style scoped>
-.projects-outer {
-	min-height: 40vh;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	background-color: var(--primary_bg_col);
-}
 .projects {
 	width: 100vw;
 	background-color: var(--primary_bg_col);

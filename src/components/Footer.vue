@@ -153,33 +153,33 @@ export default {
 		line-height: 60px;
 		font-size: 52px;
 		box-shadow: 14px 14px 4px var(--minor_col);
+		transform: translateX(-14px);
 	}
 	.bitbyte {
 		border-bottom: 2px solid var(--primary_bg_col);
 		border-image: linear-gradient(
 				to right,
-				var(--primary_bg_col) 240px,
+				var(--primary_bg_col) 200px,
 				transparent 50%
 			)
 			100% 1;
 		border-right: none;
-		padding-left: 2vw;
+		padding-left: 8px;
 	}
 	.bsoc {
-		padding-left: 2vw;
+		padding-left: 8px;
 	}
 	.icons img {
-		background-color: var(--minor_col);
 		border-radius: 8px;
 		padding: 2px;
 	}
 	.tpc-icons {
 		margin-top: 32px;
-		padding-right: 6vw;
+		padding-right: 12px;
 	}
 	.tpc {
 		font-size: 0.8rem;
-		padding-right: 8vw;
+		padding-right: 16px;
 	}
 }
 </style>
