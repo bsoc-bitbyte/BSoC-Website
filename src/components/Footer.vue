@@ -5,16 +5,23 @@
 				<div class="bitbyte">
 					BITBYTE
 					<div class="icons">
-						<a href=""><img src="../assets/instagram.svg" alt="instagram" /></a>
-						<a href=""><img src="../assets/Discord.svg" alt="discord" /></a>
-						<a href=""><img src="../assets/Github.svg" alt="github" /></a>
+						<a href="https://www.instagram.com/bitbyte.tpc/" target="_blank"
+							><img src="../assets/instagram.svg" alt="instagram"
+						/></a>
+						<a href="https://github.com/BitByte-TPC" target="_blank"
+							><img src="../assets/Github.svg" alt="github"
+						/></a>
 					</div>
 				</div>
 				<div class="bsoc">
 					BSOC
 					<div class="icons">
-						<a href=""><img src="../assets/instagram.svg" alt="instagram" /></a>
-						<a href=""><img src="../assets/Discord.svg" alt="discord" /></a>
+						<a href="https://discord.gg/9FeNzk4rZ5" target="_blank"
+							><img src="../assets/Discord.svg" alt="discord"
+						/></a>
+						<a href="https://github.com/bsoc-bitbyte" target="_blank"
+							><img src="../assets/Github.svg" alt="github"
+						/></a>
 					</div>
 				</div>
 			</div>
@@ -24,11 +31,8 @@
 			</div>
 		</div>
 		<div class="tpc">
-			Contact us at
-			<a
-				href="https://www.iiitdmj.ac.in/webix.iiitdmj.ac.in/#/team"
-				target="_blank"
-				style="text-decoration: none"
+			Contact us @
+			<a href="mailto:theprogclub@iiitdmj.ac.in" style="text-decoration: none"
 				>tpc.iiitdmj.ac.in</a
 			>
 			<div>(C) The Programming Club, IIITDMJ, 2024</div>
