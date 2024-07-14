@@ -243,7 +243,7 @@ export default {
 }
 
 .menu__item:hover {
-	color: var(--secondary_bg_col);
+	color: var(--minor_col);
 	border-radius: 4px;
 }
 .pagination {

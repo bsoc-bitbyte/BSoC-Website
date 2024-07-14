@@ -309,6 +309,8 @@ export default {
 	justify-content: center;
 	align-items: center;
 	background-color: var(--secondary_bg_col);
+	position: relative;
+	z-index: 2;
 }
 
 .benefits {
@@ -340,6 +342,7 @@ export default {
 	line-height: 2.6vw;
 	font-size: 1.8vw;
 	font-family: var(--secondary-font);
+	text-shadow: 0.4px 0 0;
 }
 
 .countdown-timer {
@@ -363,6 +366,7 @@ export default {
 .timer span {
 	font-size: 2vh;
 	color: var(--font_col);
+	font-family: var(--secondary-font);
 }
 .timer span span {
 	font-family: monospace, Stargaze;
@@ -535,5 +539,6 @@ export default {
 	position: absolute;
 	width: 100vw;
 	height: 100vh;
+	z-index: 1;
 }
 </style>
