@@ -253,6 +253,7 @@ export default {
 .about-section {
 	width: 100vw;
 	background-color: var(--primary_bg_col);
+	user-select: none;
 }
 
 .about {
