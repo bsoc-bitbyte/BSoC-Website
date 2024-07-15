@@ -71,7 +71,6 @@ import { projectAuth } from '../firebase/config'
 
 export default {
 	name: 'MyPR',
-
 	setup() {
 		const { documents } = getCollection('dashboard-2024')
 		const started = ref(true)
@@ -124,111 +123,18 @@ export default {
 </script>
 
 <style scoped>
-.navi {
-	height: 10vh;
-	width: 100vw;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	border-bottom: 2px solid rgba(4, 50, 94, 0.2);
-
-	background: #f0f0f3;
-}
-
-.navi span {
-	margin: 0 3vw;
-
-	font-family: Poppins, sans-serif;
-	font-style: normal;
-	font-weight: 600;
-	font-size: 28px;
-	line-height: 48px;
-
-	color: #04325e;
-}
-
-.inner {
-	margin: 0 2vw;
-}
-
-.navi button {
-	background: #3770ff;
-	border-radius: 8px;
-	width: fit-content;
-	margin: 1vh 1vw;
-	font-size: 1.2vw;
-	padding: 1vh 2.5vw;
-	color: #ffffff;
-	display: flex;
-	font-family: 'Poppins', sans-serif;
-	text-align: center;
-	border: none;
-	outline: none;
-	cursor: pointer;
-}
-
-.navi button:hover {
-	transform: scale(1.03);
-	background-color: #0745e2;
-}
-
-.content {
-	height: 90vh;
-	width: 100vw;
-	padding: 1rem;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-
-	background: #f0f0f3;
-}
-
-.joke-box {
-	padding-bottom: 20vh;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-}
-
-.joke-box button {
-	background: #3770ff;
-	border-radius: 8px;
-	width: fit-content;
-	margin: 1vh 3vw;
-	font-size: 1.2vw;
-	padding: 1vh 2.5vw;
-	color: #ffffff;
-	display: flex;
-	font-family: 'Poppins', sans-serif;
-	text-align: center;
-	border: none;
-	outline: none;
-	cursor: pointer;
-}
-
-.joke-box p {
-	font-family: 'Poppins', sans-serif;
-	font-size: 2vh;
-	line-height: 3vh;
-}
-
-.inner {
-	display: flex;
-	align-items: center;
-}
-
 .pr-outer {
-	background: #19192a;
-	min-height: 100vh;
+	background: var(--primary_bg_col);
+	min-height: 40vh;
 	width: 100vw;
 	display: flex;
 	padding-top: 12vh;
 	flex-direction: column;
+	justify-content: space-between;
 }
 
 .pr-container {
-	min-height: 80vh;
+	min-height: 40vh;
 	width: 80vw;
 	margin: 40px auto;
 	border-radius: 16px;
@@ -236,7 +142,7 @@ export default {
 
 .table-heading {
 	display: grid;
-	background: #eaeaef;
+	background: var(--secondary_bg_col);
 	grid-template-columns: repeat(4, 1fr);
 	grid-column-gap: 0px;
 	padding: 25px 0;
@@ -245,8 +151,8 @@ export default {
 	font-family: Poppins, sans-serif;
 	font-weight: 600;
 	font-size: 1.53vw;
-	color: #04325e;
-	border-bottom: 1px solid #04325e;
+	color: var(--primary_bg_col);
+	border-bottom: 1px solid var(--primary_bg_col);
 	text-align: center;
 }
 
@@ -257,7 +163,7 @@ export default {
 	padding: 25px 0;
 	font-weight: 400;
 	font-size: 1.38vw;
-	color: #04325e;
+	color: var(--primary_bg_col);
 	text-align: center;
 }
 
@@ -267,10 +173,10 @@ export default {
 
 .heading3 a {
 	text-decoration: none;
-	color: #04325e;
+	color: var(--primary_bg_col);
 }
 .no-prs-text {
-	color: white;
+	color: var(--font_col);
 	text-align: center;
 	margin-top: 2.6vh;
 }
@@ -280,7 +186,7 @@ export default {
 	left: 0;
 	width: 100%;
 	height: 4px;
-	background-color: #3770ff;
+	background-color: var(--secondary_bg_col);
 	animation: loadingAnimation 2s infinite;
 }
 @keyframes loadingAnimation {
@@ -298,7 +204,7 @@ export default {
 .loading-indicator {
 	text-align: center;
 	margin-top: 4vh;
-	color: white;
+	color: var(--font_col);
 	padding: 2rem;
 }
 @media (max-width: 900px) {

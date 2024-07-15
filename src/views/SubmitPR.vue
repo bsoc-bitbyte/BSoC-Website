@@ -91,7 +91,6 @@ import { addDoc, updateUserStats } from '../composables/useCollection'
 
 export default {
 	name: 'SubmitPR',
-
 	setup() {
 		const repos = [
 			'bsoc-bitbyte/BSoC-Website',
@@ -257,13 +256,12 @@ export default {
 <style scoped>
 .content {
 	width: 100vw;
-	min-height: 100vh;
+	min-height: 40vh;
 	display: flex;
 	flex-direction: column;
 	padding: 100px 10px 0 10px;
 	justify-content: center;
 	align-items: center;
-	background: #19192a;
 }
 
 .inner {
@@ -276,13 +274,13 @@ export default {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	background: #19192a;
-	box-shadow: 4px 4px 40px 2px #132e72;
+	background: var(--secondary_bg_col);
+	box-shadow: 4px 4px 40px 2px var(--secondary_bg_col);
 	border-radius: 8px;
 }
 
 .hvr-grow {
-	border: 1px dotted #466ed1;
+	border: 1px dotted var(--secondary_bg_col);
 	transform: translateZ(0);
 	box-shadow: 0 0 1px rgba(0, 0, 0, 0);
 	backface-visibility: hidden;
@@ -295,21 +293,21 @@ export default {
 .hvr-grow:focus,
 .hvr-grow:active {
 	transform: scale(1.03);
-	box-shadow: 4px 4px 40px 4px #466ed1;
+	box-shadow: 4px 4px 40px 4px var(--secondary_bg_col);
 }
 
 .pr-list {
 	width: 90%;
-	background: #2e2e3e;
+	background: rgb(46, 44, 44);
 	border-radius: 8px;
 	padding: 20px;
 	margin-top: 20px;
-	color: #e5e6eb;
+	color: var(--font_col);
 }
 
 .pr-list h3 {
 	margin-bottom: 10px;
-	color: #e5e6eb;
+	color: var(--font_col);
 }
 
 .pr-list ul {
@@ -327,18 +325,17 @@ export default {
 }
 
 .pr-list li:hover {
-	background: #1e1e2e;
+	background: var(--primary_bg_col);
 }
 
 .pr-list a {
-	color: #66d9ef;
+	color: var(--secondary_bg_col);
 	text-decoration: none;
 	font-weight: 500;
 	transition: color 0.3s;
 }
 
 .pr-list a:hover {
-	color: #66c5ef;
 	text-decoration: underline;
 }
 
@@ -357,18 +354,18 @@ export default {
 .confirm-pr {
 	width: 95%;
 	max-width: 500px;
-	background-color: #1e1e2e;
+	background-color: var(--primary_bg_col);
 	padding: 50px;
 	border-radius: 10px;
 }
 
 .confirm-pr h3 {
 	margin-bottom: 20px;
-	color: #e5e6eb;
+	color: var(--font_col);
 }
 .confirm-pr p {
 	margin-bottom: 20px;
-	color: #e5e6eb;
+	color: var(--font_col);
 }
 
 .custom-select {
@@ -396,13 +393,13 @@ export default {
 }
 
 .btn-secondary {
-	background: #e5e6eb;
-	color: #19192a;
+	background: var(--font_col);
+	color: var(--primary_bg_col);
 }
 
 .btn-primary {
-	background: #466ed1;
-	color: #fff;
+	background: var(--secondary_bg_col);
+	color: var(--font_col);
 }
 
 @media (max-width: 900px) {

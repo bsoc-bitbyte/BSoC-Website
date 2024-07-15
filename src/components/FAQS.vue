@@ -114,20 +114,20 @@ export default {
 </script>
 <style>
 .FAQHEADING {
-	font-family: Stargaze, serif;
-	font-size: 6vw;
+	font-family: var(--primary-font), serif;
+	font-size: 8vw;
 	margin: 0;
 	text-align: center;
 	padding-top: 7vh;
-	color: #fffaff;
+	color: var(--secondary_bg_col);
 	padding-bottom: 60px;
-	background-color: #19192a;
+	background-color: var(--primary_bg_col);
 	padding-top: 30px;
 	padding-bottom: 50px;
 }
 .faqitems {
 	padding-bottom: 100px;
-	background-color: #19192a;
+	background-color: var(--primary_bg_col);
 }
 
 @media (max-width: 500px) {

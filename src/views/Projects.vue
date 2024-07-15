@@ -18,6 +18,7 @@
 <script>
 import ProjectsCard from '@/components/ProjectsCard.vue'
 import Nav from '@/components/Nav'
+
 export default {
 	components: {
 		ProjectsCard,
@@ -106,7 +107,7 @@ export default {
 <style scoped>
 .projects {
 	width: 100vw;
-	background-color: #19192a;
+	background-color: var(--primary_bg_col);
 	height: 100%;
 	padding: 6vh;
 	text-align: center;
@@ -120,9 +121,9 @@ export default {
 }
 
 .projects h1 {
-	font-size: 3vw;
-	color: #fff;
-	font-family: Stargaze, sans-serif;
+	font-size: 4vw;
+	color: var(--secondary_bg_col);
+	font-family: var(--primary-font), sans-serif;
 	margin-top: 7vh;
 }
 @media (max-width: 768px) {
