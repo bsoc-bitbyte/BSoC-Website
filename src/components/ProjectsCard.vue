@@ -1,12 +1,26 @@
 <template>
 	<div class="card-container">
-		<div class="card">
-			<div class="box">
+		<div class="card" @mouseover="hover = true" @mouseleave="hover = false">
+			<div class="box" :class="{ hovered: hover }">
 				<div class="content">
-					<h2>{{ projectName }}</h2>
-					<h3>{{ projectName }}</h3>
-					<p>{{ description }}</p>
-					<a :href="link" target="_blank">Explore</a>
+					<div v-if="!hover">
+						<div class="header">
+							<p class="outerh2">{{ projectName }}</p>
+						</div>
+						<p class="outerp">{{ name }}</p>
+						<div class="techstack">
+							<h4 class="techstack">{{ techStack }}</h4>
+						</div>
+					</div>
+					<div v-else>
+						<h2 class="innerh2">{{ projectName }}</h2>
+
+						<div class="inner-box">
+							<p class="innerp">{{ description }}</p>
+						</div>
+						<h3 class="innerh3">Maintainers: {{ name }}</h3>
+						<a :href="link" target="_blank">{{ 'Explore' }}</a>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -17,10 +31,6 @@
 export default {
 	props: {
 		projectName: {
-			type: String,
-			required: true,
-		},
-		name: {
 			type: String,
 			required: true,
 		},
@@ -36,6 +46,15 @@ export default {
 			type: String,
 			required: true,
 		},
+		name: {
+			type: String,
+			required: true,
+		},
+	},
+	data() {
+		return {
+			hover: false,
+		}
 	},
 }
 </script>
@@ -43,122 +62,134 @@ export default {
 <style scoped>
 .card-container {
 	display: flex;
-	justify-content: center;
-	align-items: center;
 	flex-wrap: wrap;
-	max-width: 1200px;
-	margin: 40px 0;
+	justify-content: center;
 }
 
-.card-container .card {
+.card {
 	position: relative;
-	min-width: 320px;
-	height: 440px;
-	box-shadow:
-		inset 5px 5px 5px rgba(0, 0, 0, 0.2),
-		inset -5px -5px 15px rgba(255, 255, 255, 0.1),
-		5px 5px 15px rgba(0, 0, 0, 0.3),
-		-5px -5px 15px rgba(255, 255, 255, 0.1);
+	height: 40vh;
+	width: 37vw;
 	border-radius: 15px;
-	margin: 30px;
+	margin: 15px;
 	transition: 0.5s;
-}
-
-.card-container .card:nth-child(1) .box .content a {
-	background: #cfbe06;
-	color: #fff;
-}
-
-.card-container .card:nth-child(2) .box .content a {
-	background: #e91e63;
-}
-
-.card-container .card:nth-child(3) .box .content a {
-	background: #23c186;
-}
-.content {
-	display: flex;
-	height: 315px;
-	flex-direction: column;
-	justify-content: center;
-}
-
-.card-container .card .box {
-	position: absolute;
-	top: 20px;
-	left: 20px;
-	right: 20px;
-	bottom: 20px;
-	background: #2a2b2f;
-	border-radius: 15px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
 	overflow: hidden;
-	transition: 0.5s;
+	border: 2px solid var(--secondary_bg_col);
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-.card-container .card .box:hover {
-	transform: translateY(-50px);
-}
-
-.card-container .card .box:before {
-	content: '';
+.card .box {
 	position: absolute;
-	top: 0;
-	left: 0;
-	width: 50%;
 	height: 100%;
-	background: rgba(255, 255, 255, 0.03);
+	width: 100%;
+	background-color: var(--secondary_bg_col);
+	border: 2px solid var(--secondary_bg_col);
+	box-shadow: none;
+	outline: none;
+	transition:
+		background-color 0.5s,
+		border-color 0.5s;
 }
 
-.card-container .card .box .content {
-	padding: 20px;
-	text-align: center;
+.card .box.hovered {
+	background-color: var(--primary_bg_col);
+	border-color: var(--primary_bg_col);
 }
 
-.card-container .card .box .content h2 {
+.card .content {
 	position: absolute;
-	top: -10px;
-	right: 30px;
-	font-size: 8rem;
-	color: rgba(255, 255, 255, 0.1);
+	top: 50%;
+	left: 48%;
+	transform: translate(-50%, -50%);
+	width: 90%;
+	height: 90%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	text-align: left;
 }
 
-.card-container .card .box .content h3 {
-	font-size: 1.8rem;
-	color: #fff;
-	z-index: 1;
-	transition: 0.5s;
-	margin-bottom: 15px;
-}
-
-.card-container .card .box .content p {
-	font-size: 1rem;
-	font-weight: 300;
-	color: rgba(255, 255, 255, 0.9);
-	z-index: 1;
-	transition: 0.5s;
-}
-
-.card-container .card .box .content a {
-	/* position: relative; */
-	display: inline-block;
-	align-self: start;
-	margin-top: auto;
-	padding: 8px 20px;
-	background: black;
-	border-radius: 5px;
+.card .content a {
 	text-decoration: none;
-	color: white;
-	margin-left: 4.2em;
-	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-	transition: 0.5s;
+	color: var(--primary_bg_col);
+	background-color: var(--secondary_bg_col);
+	padding: 0.3vw 1.7vw 0.5vw 1.7vw;
+	border-radius: 25px;
+	transition: background-color 0.3s;
+	font-family: var(--primary-font), sans-serif;
 }
 
-.card-container .card .box .content a:hover {
-	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.6);
-	background: #fff;
-	color: #000;
+.card .content a:hover {
+	background-color: #333;
+}
+
+.outerh2 {
+	font-family: var(--primary-font), sans-serif;
+	font-size: 400%;
+	color: var(--font_col);
+}
+
+.innerh2 {
+	font-size: 2vw;
+	color: var(--font_col);
+}
+
+.outerp,
+.innerh3 {
+	color: var(--font_col);
+	margin-bottom: 10px;
+	font-weight: bold;
+}
+
+.inner-box {
+	background-color: var(--primary_bg_col);
+	border: 2px solid var(--secondary_bg_col);
+	color: var(--font_col);
+	border-radius: 10px;
+	padding: 0.3vw;
+	width: 100%;
+}
+
+.innerp {
+	font-size: 100%;
+}
+
+.outerp {
+	position: absolute;
+	bottom: 10px;
+
+	font-size: 120%;
+}
+
+.innerh3 {
+	margin-top: 10px;
+	font-size: 100%;
+	padding-bottom: 10px;
+}
+
+.header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.techstack {
+	font-size: 100%;
+	color: var(--font_col);
+}
+
+@media (max-width: 768px) {
+	.card-container {
+		flex-direction: column;
+	}
+
+	.card {
+		width: 90vw;
+	}
+
+	.outerh2,
+	.innerh2 {
+		font-size: 4vw;
+	}
 }
 </style>

@@ -28,7 +28,7 @@ export default {
 			items: [
 				{
 					id: 1,
-					projectName: 'BSoC Website',
+					projectName: 'BSOC WEBSITE',
 					name: 'Parth Singh, Ramgopal Reddy',
 					link: 'https://github.com/bsoc-bitbyte/BSoC-Website',
 					techStack: 'Vue, Firebase, Bootstrap',
@@ -37,7 +37,7 @@ export default {
 				},
 				{
 					id: 2,
-					projectName: 'GetIt',
+					projectName: 'GETIT',
 					name: 'Akash Paloju, Kushagra Gupta',
 					link: 'https://github.com/bsoc-bitbyte/GetIt',
 					techStack: 'Vue, Firebase, Redis, MongoDB, Python',
@@ -46,7 +46,7 @@ export default {
 				},
 				{
 					id: 3,
-					projectName: 'Busify Web',
+					projectName: 'BUSIFY WEB',
 					name: 'Pratik Solanki, Rishikesh Kupalla',
 					link: 'https://github.com/bsoc-bitbyte/busify',
 					techStack: 'React, Typescript, MUI, SCSS, NESTJS, Postgres, REDIS',
@@ -55,7 +55,7 @@ export default {
 				},
 				{
 					id: 4,
-					projectName: 'Alumni Website',
+					projectName: 'ALUMNI WEBSITE',
 					name: 'Eshaan Modi, Samaksh Agarwal ',
 					link: 'https://github.com/BitByte-TPC/alumni',
 					techStack: 'HTML, CSS, Javascript, Python',
@@ -64,7 +64,7 @@ export default {
 				},
 				{
 					id: 5,
-					projectName: 'myLeave',
+					projectName: 'MYLEAVE',
 					name: 'Agrim Gupta',
 					link: 'https://github.com/bsoc-bitbyte/myLeave',
 					techStack: 'Kotlin, Architecture',
@@ -73,7 +73,7 @@ export default {
 				},
 				{
 					id: 6,
-					projectName: 'DigiGate',
+					projectName: 'DIGIGATE',
 					name: 'Aarav Jain',
 					link: 'https://github.com/bsoc-bitbyte/DigiGate',
 					techStack: 'Kotlin, Architecture',
@@ -82,7 +82,7 @@ export default {
 				},
 				{
 					id: 7,
-					projectName: 'Summer Analytics',
+					projectName: 'SUMMER ANALYTICS',
 					name: 'Joyee Biswas, Shreyans Katariya',
 					link: 'https://github.com/bsoc-bitbyte/Summer_of_ML',
 					techStack: 'Tensorflow, Seaborn, Matplotlib, Pandas, Numpy ',
@@ -91,7 +91,7 @@ export default {
 				},
 				{
 					id: 8,
-					projectName: 'Dreamyard',
+					projectName: 'DREAMYARD',
 					name: 'Akshay Bhel, Prince Bhujetia',
 					link: 'https://github.com/bsoc-bitbyte/Dreamyard',
 					techStack: 'Unity Engine, C#',
