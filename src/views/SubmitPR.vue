@@ -184,8 +184,9 @@ export default {
 				const allPRs = response.data.filter((pr) => pr.merged_at != null)
 				prs.value = allPRs.filter(
 					(pr) =>
+						!submittedPRs.value.includes(pr.html_url) ||
 						submittedPRs.value.filter((item) => item === pr.html_url).length <
-						pr.assignees.length
+							pr.assignees.length
 				)
 				console.log('Filtered PRs:', prs.value)
 				fetchErr.value = null
