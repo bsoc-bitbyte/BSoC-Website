@@ -1,11 +1,11 @@
 <template>
 	<div class="fixed-top">
 		<div class="home container">
-			<div>
-				<p id="heading">BitByte Summer Of Code</p>
-				<p id="subH">Event to begin your Open Source Journey</p>
-				<p id="text">Presented by The Programming Club, IIITDMJ</p>
-			</div>
+			<img src="../assets/Logo.svg" alt="BSoC Logo" id="bsoc-logo" />
+			<p id="heading">BitByte Summer Of Code</p>
+			<p id="subH">Event to begin your Open Source Journey</p>
+			<p id="text">Presented by</p>
+			<p id="text">The Programming Club, IIITDMJ</p>
 			<div class="buttonContainer">
 				<router-link to="/home" style="text-decoration: none; color: inherit">
 					<button class="button hvr-grow">
@@ -17,17 +17,6 @@
 						<p>Explore</p>
 					</button>
 				</router-link>
-				<a
-					href="https://discord.gg/C72FYTYYcZ"
-					target="_blank"
-					style="text-decoration: none"
-				>
-					<button class="button hvr-grow">
-						<img src="../assets/discord.svg" alt="discord" />
-						<p>Discord</p>
-						<span></span>
-					</button>
-				</a>
 			</div>
 		</div>
 	</div>
@@ -44,6 +33,7 @@ canvas {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	justify-content: center;
 }
 
 .container {
@@ -51,53 +41,58 @@ canvas {
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	gap: 60px;
-	height: 100%;
+	height: 80%;
 	width: 100%;
-	color: #fffaff;
+	color: var(--font_col);
 }
 
+#bsoc-logo {
+	filter: drop-shadow(4px 4px 8px var(--secondary_bg_col));
+}
 #heading {
 	margin: 0;
-	font-family: 'Stargaze', serif;
-	font-size: 9vh;
+	font-family: var(--primary-font), serif;
+	font-size: 6vw;
 	line-height: 14vh;
-	color: #fffaff;
+	color: var(--font_col);
 	background: none;
 	text-align: center;
 }
 
 #subH {
-	font-family: 'Stargaze', sans-serif;
+	font-family: 'system-ui', sans-serif;
 	font-size: 4.2vh;
 	line-height: 5.2vh;
-	color: #fffaff;
+	color: var(--font_col);
 	font-weight: initial;
 	text-align: center;
-	margin: 2vh 0 0 0;
+	margin: 2vh 0;
 }
 
 #text {
 	font-family: 'Poppins', sans-serif;
 	font-size: 2.3vh;
 	font-weight: 200;
-	line-height: 3.3vh;
-	color: #fffaff;
+	line-height: 2.4vh;
+	color: var(--font_col);
 	text-align: center;
 	margin: 1.2vh 0 0 0;
 }
 
 .button {
-	background: linear-gradient(45deg, transparent 5%, #e2c836 5%);
+	background-color: var(--secondary_bg_col);
 	padding: 7px 2em;
-	color: #fffaff;
+	margin-top: 4vh;
+	color: var(--font_col);
 	font-size: 1.5em;
+	font-weight: 500;
 	display: flex;
-	font-family: 'Poppins', sans-serif;
+	font-family: System-ui, sans-serif;
 	align-items: center;
+	justify-content: center;
 	cursor: pointer;
 	border: 0;
-	box-shadow: 1.6px 0px 0px #ff003c;
+	border-radius: 36px;
 	outline: transparent;
 }
 .buttonContainer button p {
@@ -133,20 +128,25 @@ canvas {
 
 @media (max-width: 900px) {
 	.container {
-		margin-left: 0;
-		margin-right: 0;
-		text-align: center;
+		padding: 0;
+		margin: 0;
+	}
+
+	#bsoc-logo {
+		width: 24vw;
+		height: auto;
 	}
 
 	#heading {
-		text-align: center;
-		font-size: 3.5rem;
+		font-size: 3rem;
 		line-height: initial;
+		margin: 4vh 0;
 	}
 
 	#subH {
 		font-size: 1.5rem;
-		text-align: center;
+		line-height: 3vh;
+		margin: 2vh 0;
 	}
 
 	#text {
@@ -161,17 +161,11 @@ canvas {
 		margin: auto;
 		font-size: 0.9rem;
 	}
-	.buttonContainer {
-		flex-direction: column;
-		gap: 30px;
-	}
+}
 
-	.timer {
-		width: initial;
-	}
-
-	.timer span span {
-		font-size: 3rem;
+@media (max-width: 500px) {
+	#bsoc-logo {
+		width: 172px;
 	}
 }
 

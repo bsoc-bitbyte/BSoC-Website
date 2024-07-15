@@ -207,7 +207,7 @@ export default {
 		color: #fff;
 	}
 	100% {
-		color: #e0c948;
+		color: var(--secondary_bg_col);
 	}
 }
 
@@ -216,7 +216,7 @@ export default {
 		color: #fff;
 	}
 	100% {
-		color: #e0c948;
+		color: var(--secondary_bg_col);
 	}
 }
 
@@ -225,7 +225,7 @@ export default {
 		color: #fff;
 	}
 	100% {
-		color: #e0c948;
+		color: var(--secondary_bg_col);
 	}
 }
 
@@ -234,7 +234,7 @@ export default {
 		color: #fff;
 	}
 	100% {
-		color: #e0c948;
+		color: var(--secondary_bg_col);
 	}
 }
 
@@ -245,10 +245,10 @@ html {
 body {
 	margin: 0;
 	padding: 0;
-	font-family: 'Open Sans', sans-serif;
+	font-family: var(--secondary-font);
 	width: 100vw;
 	height: 100vh;
-	background: #19192a;
+	background: var(--primary_bg_col);
 }
 
 .e-loadholder {
@@ -262,7 +262,7 @@ body {
 	transform: translate(-51%, -50%);
 	width: 240px;
 	height: 240px;
-	border: 5px solid #ffad01;
+	border: 5px solid var(--secondary_bg_col);
 	border-radius: 120px;
 	box-sizing: border-box;
 }
@@ -278,7 +278,7 @@ body {
 	transform: translate(-51%, -50%);
 	content: ' ';
 	display: block;
-	background: #19192a;
+	background: var(--primary_bg_col);
 	transform-origin: center;
 	z-index: 0;
 }
@@ -305,7 +305,7 @@ body {
 	height: 200px;
 	color: #888;
 	text-align: center;
-	border: 5px solid #ffc30b;
+	border: 5px solid var(--secondary_bg_col);
 	border-radius: 100px;
 	box-sizing: border-box;
 	z-index: 20;
@@ -323,7 +323,7 @@ body {
 	transform: translate(-51%, -50%);
 	content: ' ';
 	display: block;
-	background: #19192a;
+	background: var(--primary_bg_col);
 	transform-origin: center;
 	z-index: -1;
 }
@@ -356,7 +356,7 @@ body {
 	width: 140px;
 	height: 140px;
 	text-align: center;
-	border: 5px solid #fede17;
+	border: 5px solid var(--secondary_bg_col);
 	border-radius: 70px;
 	box-sizing: border-box;
 	z-index: 20;
@@ -374,7 +374,7 @@ body {
 	transform: translate(-51%, -50%);
 	content: ' ';
 	display: block;
-	background: #19192a;
+	background: var(--primary_bg_col);
 	transform-origin: center;
 	z-index: -1;
 }
@@ -411,7 +411,7 @@ body {
 }
 
 .bg {
-	background: #19192a;
+	background: var(--primary_bg_col);
 	height: 100vh;
 	width: 100vw;
 }
