@@ -125,7 +125,7 @@ export default {
 
 .outerh2 {
 	font-family: var(--primary-font), sans-serif;
-	font-size: 400%;
+	font-size: 350%;
 	color: var(--font_col);
 }
 
@@ -151,7 +151,7 @@ export default {
 }
 
 .innerp {
-	font-size: 100%;
+	font-size: 90%;
 }
 
 .outerp {
@@ -162,9 +162,8 @@ export default {
 }
 
 .innerh3 {
-	margin-top: 10px;
-	font-size: 100%;
-	padding-bottom: 10px;
+	margin-top: 5px;
+	font-size: 95%;
 }
 
 .header {
@@ -178,7 +177,7 @@ export default {
 	color: var(--font_col);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 940px) {
 	.card-container {
 		flex-direction: column;
 	}
@@ -186,8 +185,12 @@ export default {
 	.card {
 		width: 90vw;
 	}
-
-	.outerh2,
+	.innerp {
+		font-size: 75%;
+	}
+	.outerh2 {
+		font-size: 150%;
+	}
 	.innerh2 {
 		font-size: 4vw;
 	}
