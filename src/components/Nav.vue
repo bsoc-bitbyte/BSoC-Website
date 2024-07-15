@@ -39,8 +39,8 @@
 									<router-link
 										class="menu__item"
 										to="/myPR"
-										v-if="isloggedIn && !userPR"
-										v-on:click="handleMyPR()"
+										v-if="isloggedIn"
+										v-on:click="handleMyPR"
 									>
 										My PR's
 									</router-link>
@@ -86,8 +86,8 @@
 									<div
 										class="navbar-nav auth menu__item"
 										style="cursor: pointer; margin-left: 2em"
-										v-on:click="handleLogout()"
-										v-if="isloggedIn && !userPR"
+										v-on:click="handleLogout"
+										v-if="isloggedIn"
 									>
 										LogOut
 									</div>
@@ -109,7 +109,7 @@
 							<div class="d-flex align-item-center" v-if="isloggedIn">
 								<router-link
 									class="nav-link px-2 text-white"
-									to="/dashboard"
+									:to="isHome ? '/dashboard' : '/home'"
 									style="
 										text-decoration: none;
 										float: left;
@@ -117,53 +117,22 @@
 										margin-left: 0px;
 										margin-top: 23px;
 									"
-									v-if="isHome"
+									v-on:click="toggleHomeDashboard"
 								>
-									Dashboard
+									{{ isHome ? 'Dashboard' : 'Home' }}
 								</router-link>
 
 								<router-link
-									class="nav-link px-4 text-white"
-									to="/home"
+									class="nav-link mt-4 px-4 text-white"
+									to="/myPR"
 									style="
 										text-decoration: none;
 										margin-top: 22px;
 										color: inherit;
 									"
-									v-if="!isHome"
+									v-if="isloggedIn"
 								>
-									Home
-								</router-link>
-
-								<router-link
-									class="nav-link px-4 text-white"
-									to="/dashboard"
-									style="text-decoration: none; color: inherit"
-								>
-									<button
-										class="nav-button"
-										style="float: left; margin-top: 23px; margin-left: 0px"
-										v-on:click="handleMyPR()"
-										v-if="isloggedIn && userPR"
-									>
-										Dashboard
-									</button>
-								</router-link>
-
-								<router-link
-									class="nav-link px-4 text-white"
-									to="/myPR"
-									style="text-decoration: none; color: inherit"
-									v-if="isloggedIn && !userPR"
-								>
-									<button
-										class="nav-button"
-										style="margin-top: 23px"
-										v-on:click="handleMyPR()"
-										v-if="isloggedIn && !userPR"
-									>
-										My PR's
-									</button>
+									My PR's
 								</router-link>
 
 								<router-link
@@ -175,8 +144,9 @@
 										color: inherit;
 									"
 									v-if="isloggedIn"
-									>SubmitPR</router-link
 								>
+									SubmitPR
+								</router-link>
 							</div>
 							<div v-else class="hii" style="float: left">
 								<button
@@ -187,7 +157,7 @@
 										padding-left: -100%;
 										margin-top: 23px !important;
 									"
-									v-on:click="handleLogin()"
+									v-on:click="handleLogin"
 								>
 									Dashboard
 								</button>
@@ -228,8 +198,7 @@
 					<button
 						class="nav-button hambur2"
 						style="margin-right: 80px; margin-top: 22px"
-						v-on:click="handleLogout()"
-						v-if="isloggedIn && !userPR"
+						v-on:click="handleLogout"
 					>
 						LogOut
 					</button>
@@ -238,6 +207,7 @@
 		</nav>
 	</div>
 </template>
+
 <script>
 import useLogout from '@/composables/useLogout'
 import { ref } from 'vue'
@@ -257,7 +227,7 @@ export default {
 
 	created() {
 		this.checkAuth()
-		this.isHonePage()
+		this.isHomePage()
 	},
 	components: {
 		Login,
@@ -268,19 +238,20 @@ export default {
 	methods: {
 		handleLogin() {
 			this.$store.state.login = !this.$store.state.login
-			this.$store.state.signup = false
 			this.showHamburger = !this.showHamburger
 		},
 		handleSignup() {
-			this.$store.state.login = false
 			this.$store.state.signup = !this.$store.state.signup
 		},
 		toggleHamburger() {
 			this.showHamburger = !this.showHamburger
 		},
+		toggleHomeDashboard() {
+			this.isHome = !this.isHome
+		},
 	},
 	beforeRouteLeave(to, from, next) {
-		this.isHonePage()
+		this.isHomePage()
 		next()
 	},
 	setup() {
@@ -301,9 +272,8 @@ export default {
 			})
 		}
 
-		const isHonePage = () => {
+		const isHomePage = () => {
 			if (window.location.pathname === '/home') {
-				console.log('home')
 				isHome.value = true
 			} else {
 				isHome.value = false
@@ -323,11 +293,7 @@ export default {
 		}
 
 		const handleMyPR = () => {
-			if (userPR.value) {
-				userPR.value = false
-			} else {
-				userPR.value = true
-			}
+			userPR.value = !userPR.value
 		}
 
 		return {
@@ -335,7 +301,7 @@ export default {
 			userPR,
 			isloggedIn,
 			checkAuth,
-			isHonePage,
+			isHomePage,
 			handleLogout,
 			isHome,
 			collapse11,
