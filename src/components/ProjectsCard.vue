@@ -7,7 +7,7 @@
 						<div class="header">
 							<p class="outerh2">{{ projectName }}</p>
 						</div>
-						<p class="outerp">{{ name }}</p>
+						<p class="outerp">Maintained by<br />{{ name }}</p>
 						<div class="techstack">
 							<h4 class="techstack">{{ techStack }}</h4>
 						</div>
@@ -113,19 +113,23 @@ export default {
 	text-decoration: none;
 	color: var(--primary_bg_col);
 	background-color: var(--secondary_bg_col);
-	padding: 0.3vw 1.7vw 0.5vw 1.7vw;
-	border-radius: 25px;
+	padding: 0.4vw 1.8vw 0.6vw 1.8vw;
+	border-radius: 45px;
 	transition: background-color 0.3s;
 	font-family: var(--primary-font), sans-serif;
+	position: absolute;
+	font-size: 180%;
+	right: 1px;
+	bottom: 5px;
 }
 
 .card .content a:hover {
-	background-color: #333;
+	background-color: var(--minor_col);
 }
 
 .outerh2 {
 	font-family: var(--primary-font), sans-serif;
-	font-size: 350%;
+	font-size: 320%;
 	color: var(--font_col);
 }
 
@@ -146,12 +150,14 @@ export default {
 	border: 2px solid var(--secondary_bg_col);
 	color: var(--font_col);
 	border-radius: 10px;
-	padding: 0.3vw;
+	padding: 0.3vw 0.1vw 0.3vw 0.3vw;
 	width: 100%;
+	height: 13.5vh;
+	overflow-y: auto;
 }
 
 .innerp {
-	font-size: 90%;
+	font-size: 110%;
 }
 
 .outerp {
@@ -163,7 +169,7 @@ export default {
 
 .innerh3 {
 	margin-top: 5px;
-	font-size: 95%;
+	font-size: 100%;
 }
 
 .header {
@@ -173,11 +179,16 @@ export default {
 }
 
 .techstack {
-	font-size: 100%;
+	font-size: 110%;
 	color: var(--font_col);
 }
+@media (max-width: 1280px) {
+	.outerh2 {
+		font-size: 250%;
+	}
+}
 
-@media (max-width: 940px) {
+@media (max-width: 980px) {
 	.card-container {
 		flex-direction: column;
 	}
@@ -186,13 +197,13 @@ export default {
 		width: 90vw;
 	}
 	.innerp {
-		font-size: 75%;
+		font-size: 105%;
 	}
 	.outerh2 {
-		font-size: 150%;
+		font-size: 200%;
 	}
 	.innerh2 {
-		font-size: 4vw;
+		font-size: 6vw;
 	}
 }
 </style>
