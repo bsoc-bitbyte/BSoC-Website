@@ -99,7 +99,7 @@ export default {
 .card .content {
 	position: absolute;
 	top: 50%;
-	left: 48%;
+	left: 50%;
 	transform: translate(-50%, -50%);
 	width: 90%;
 	height: 90%;
@@ -158,6 +158,7 @@ export default {
 
 .innerp {
 	font-size: 110%;
+	padding: 6px;
 }
 
 .outerp {
@@ -204,6 +205,9 @@ export default {
 	}
 	.innerh2 {
 		font-size: 6vw;
+	}
+	.card .content a {
+		padding: 0.4vw 3.5vw 0.6vw 3.5vw;
 	}
 }
 </style>
