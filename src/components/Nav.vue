@@ -1,543 +1,1077 @@
 <template>
-	<div id="ody" :style="{ backgroundColor: bodyBackgroundColor }">
-		<nav class="navbar navbar-expand-lg text-white">
-			<div class="container-fluid nav-container" style="display: flex">
-				<div class="logo" style="margin-left: 10px; margin-top: 10px">
-					<router-link
-						to="/"
-						class="text-white"
-						style="margin-right: 0%"
-						href="#"
-					>
-						<img src="../assets/logo.png" alt="logo" />
-						<h2 style="margin-top: 2.5px; margin-left: 10px">BSOC</h2>
-					</router-link>
-				</div>
+	<header :class="{ 'scrolled-nav': scrollNav }">
+		<nav>
+			<div class="branding" v-show="!mobile">
+				<router-link to="/">
+					<img src="../assets/BsoC logo.svg" alt="img" />
+				</router-link>
 
-				<div id="nav">
-					<section class="mb-3" id="hambur">
-						<div id="tension">
-							<div class="hamburger-menu">
-								<input id="menu__toggle" type="checkbox" />
-								<label class="menu__btn" for="menu__toggle">
-									<span></span>
-								</label>
+				<b><router-link to="/" class="text">BSOC</router-link></b>
+			</div>
 
-								<ul class="menu__box">
-									<router-link
-										v-if="isloggedIn"
-										class="menu__item"
-										to="/dashboard"
-									>
-										Dashboard
-									</router-link>
+			<div class="brand" v-show="mobile">
+				<router-link to="/">
+					<img src="../assets/BsoC logo.svg" alt="img" />
+				</router-link>
 
-									<router-link class="menu__item" to="/home">
-										Home
-									</router-link>
+				<b><router-link to="/" class="txt">BSOC</router-link></b>
+			</div>
 
-									<router-link
-										class="menu__item"
-										to="/myPR"
-										v-if="isloggedIn && !userPR"
-										v-on:click="handleMyPR()"
-									>
-										My PR's
-									</router-link>
-
-									<router-link
-										class="menu__item"
-										to="/submit"
-										v-if="isloggedIn"
-									>
-										SubmitPR
-									</router-link>
-
-									<router-link class="menu__item" to="/projects">
-										Projects
-									</router-link>
-
-									<router-link
-										to="/projects"
-										v-if="!isloggedIn"
-										class="navbar-nav auth menu__item"
-										v-on:click="handleLogin"
-										style="
-											cursor: pointer;
-											text-align: center;
-											margin-left: 2em;
-										"
-									>
-										Login
-									</router-link>
-									<Login v-if="$store.state.login" :toggle="handleLogin" />
-
-									<router-link
-										to="/projects"
-										v-if="!isloggedIn"
-										class="navbar-nav auth menu__item"
-										v-on:click="handleSignup"
-										style="cursor: pointer; margin-left: 2em"
-									>
-										Signup
-									</router-link>
-									<Signup v-if="$store.state.signup" :toggle="handleSignup" />
-
-									<div
-										class="navbar-nav auth menu__item"
-										style="cursor: pointer; margin-left: 2em"
-										v-on:click="handleLogout()"
-										v-if="isloggedIn && !userPR"
-									>
-										LogOut
-									</div>
-								</ul>
-							</div>
-						</div>
-					</section>
-
-					<div class="navbar-collapse collapse" id="Yahoo">
-						<div
-							class="navbarhh"
-							style="
-								float: left !important;
-								margin-left: 0px;
-								display: flex;
-								margin-right: 40px;
-							"
+			<!-- Navbar -->
+			<div class="nav-div">
+				<ul v-show="!mobile" class="navigations">
+					<li>
+						<router-link
+							class="link"
+							to="/home"
+							@click.native="setActiveMenuItemAndCloseNav('home')"
 						>
-							<div class="d-flex align-item-center" v-if="isloggedIn">
-								<router-link
-									class="nav-link px-2 text-white"
-									to="/dashboard"
-									style="
-										text-decoration: none;
-										float: left;
-										color: inherit;
-										margin-left: 0px;
-										margin-top: 23px;
-									"
-									v-if="isHome"
-								>
-									Dashboard
-								</router-link>
+							Home
+						</router-link>
+					</li>
 
-								<router-link
-									class="nav-link px-4 text-white"
-									to="/home"
-									style="
-										text-decoration: none;
-										margin-top: 22px;
-										color: inherit;
-									"
-									v-if="!isHome"
-								>
-									Home
-								</router-link>
+					<li>
+						<router-link
+							class="link"
+							to="/dashboard"
+							@click.native="setActiveMenuItemAndCloseNav('dashboard')"
+						>
+							Dashboard
+						</router-link>
+					</li>
 
-								<router-link
-									class="nav-link px-4 text-white"
-									to="/dashboard"
-									style="text-decoration: none; color: inherit"
-								>
-									<button
-										class="nav-button"
-										style="float: left; margin-top: 23px; margin-left: 0px"
-										v-on:click="handleMyPR()"
-										v-if="isloggedIn && userPR"
-									>
-										Dashboard
-									</button>
-								</router-link>
+					<li>
+						<router-link
+							class="link"
+							to="/projects"
+							@click.native="setActiveMenuItemAndCloseNav('projects')"
+						>
+							Projects
+						</router-link>
+					</li>
 
-								<router-link
-									class="nav-link px-4 text-white"
-									to="/myPR"
-									style="text-decoration: none; color: inherit"
-									v-if="isloggedIn && !userPR"
-								>
-									<button
-										class="nav-button"
-										style="margin-top: 23px"
-										v-on:click="handleMyPR()"
-										v-if="isloggedIn && !userPR"
-									>
-										My PR's
-									</button>
-								</router-link>
-
-								<router-link
-									class="nav-link mt-4 px-4 text-white"
-									to="/submit"
-									style="
-										text-decoration: none;
-										margin-top: 22px;
-										color: inherit;
-									"
-									v-if="isloggedIn"
-									>SubmitPR</router-link
-								>
-							</div>
-							<div v-else class="hii" style="float: left">
-								<button
-									class="nav-button hii mt-1"
-									style="
-										display: flex;
-										float: left;
-										padding-left: -100%;
-										margin-top: 23px !important;
-									"
-									v-on:click="handleLogin()"
-								>
-									Dashboard
-								</button>
-							</div>
+					<template v-if="isLoggedIn">
+						<li>
 							<router-link
-								class="nav-link mz-0 mx-0 my-0 mt-4 px-4 text-white"
+								class="link"
+								to="/submit"
+								@click.native="setActiveMenuItemAndCloseNav('submit')"
+							>
+								Submit PR
+							</router-link>
+						</li>
+
+						<li>
+							<router-link
+								class="link"
+								to="/myPR"
+								@click.native="setActiveMenuItemAndCloseNav('myPR')"
+							>
+								My PR
+							</router-link>
+						</li>
+
+						<div class="animation start-home"></div>
+					</template>
+					<div class="animation1 start-home1" v-if="!isLoggedIn"></div>
+					<div class="line"></div>
+				</ul>
+			</div>
+
+			<div class="auth-div">
+				<ul v-show="!mobile" class="authnavigations">
+					<template v-if="!isLoggedIn">
+						<li>
+							<div class="auth2" @click="login">Login</div>
+						</li>
+
+						<li>
+							<div class="auth2" @click="signup">Sign Up</div>
+						</li>
+					</template>
+
+					<template v-else>
+						<li @click="logout" class="auth">Log Out</li>
+					</template>
+				</ul>
+			</div>
+			<Login
+				v-if="showLogin && !isLoggedIn"
+				:toggle="toggleLogin"
+				@loginSuccess="handleLoginSuccess"
+			/>
+			<Signup
+				v-if="showSignup && !isLoggedIn"
+				:toggle="toggleSignup"
+				@signupSuccess="handleSignupSuccess"
+			/>
+
+			<!-- Hamburger -->
+
+			<div class="icon" @click="toggleMobileNav">
+				<i
+					v-show="mobile && !mobileNav"
+					class="fas fa-bars"
+					:class="{ 'icon-active': mobileNav }"
+					style="
+						font-size: 1.5rem;
+						position: fixed;
+						top: 20px;
+						right: 25px;
+						cursor: pointer;
+						z-index: 100;
+					"
+				></i>
+			</div>
+
+			<div class="icon" @click="toggleMobileNav">
+				<i
+					v-show="mobile && mobileNav"
+					class="fas fa-times"
+					:class="{ 'icon-active': mobileNav }"
+					style="
+						font-size: 1.5rem;
+						position: fixed;
+						top: 20px;
+						right: 25px;
+						cursor: pointer;
+						z-index: 100;
+					"
+				></i>
+			</div>
+
+			<transition name="mobile-nav">
+				<div v-show="mobileNav" class="dropdown-nav">
+					<ul class="hamnav">
+						<li class="link1">
+							<router-link
+								class="link2"
+								:class="{ active: activeMenuItem === 'home' }"
+								to="/home"
+								@click.native="setActiveMenuItemAndCloseNav('home')"
+							>
+								Home
+							</router-link>
+						</li>
+
+						<li class="link1">
+							<router-link
+								class="link2"
+								:class="{ active: activeMenuItem === 'dashboard' }"
+								to="/dashboard"
+								@click.native="setActiveMenuItemAndCloseNav('dashboard')"
+							>
+								Dashboard
+							</router-link>
+						</li>
+
+						<li class="link1">
+							<router-link
+								class="link2"
+								:class="{ active: activeMenuItem === 'projects' }"
 								to="/projects"
+								@click.native="setActiveMenuItemAndCloseNav('projects')"
 							>
 								Projects
 							</router-link>
-						</div>
-					</div>
+						</li>
+
+						<template v-if="isLoggedIn">
+							<li class="link1">
+								<router-link
+									class="link2"
+									:class="{ active: activeMenuItem === 'myPR' }"
+									to="/mypr"
+									@click.native="setActiveMenuItemAndCloseNav('myPR')"
+								>
+									My PR
+								</router-link>
+							</li>
+
+							<li class="link1">
+								<router-link
+									class="link2"
+									:class="{ active: activeMenuItem === 'submit' }"
+									to="/submit"
+									@click.native="setActiveMenuItemAndCloseNav('submit')"
+								>
+									Submit PR
+								</router-link>
+							</li>
+
+							<li @click="logout" class="link1">Logout</li>
+						</template>
+
+						<template v-else>
+							<li class="link1">
+								<router-link
+									class="link2"
+									:class="{ active: activeMenuItem === 'signup' }"
+									@click="signup"
+								>
+									Sign Up
+								</router-link>
+							</li>
+							<li class="link1">
+								<div
+									:class="{ active: activeMenuItem === 'auth' }"
+									@click="login"
+								>
+									Login
+								</div>
+							</li>
+						</template>
+					</ul>
 				</div>
-				<div v-if="!isloggedIn" class="navbar-nav auth">
-					<div
-						class="hambur2"
-						v-on:click="handleLogin"
-						style="
-							padding-right: 0em;
-							cursor: pointer;
-							margin-right: 20px;
-							margin-top: 14px;
-						"
-					>
-						Login
-					</div>
-					<Login v-if="$store.state.login" :toggle="handleLogin" />
-					<span
-						class="hambur2"
-						v-on:click="handleSignup"
-						style="cursor: pointer; margin-right: 0px; margin-top: 14px"
-					>
-						Sign Up
-					</span>
-					<Signup v-if="$store.state.signup" :toggle="handleSignup" />
-				</div>
-				<div v-if="isloggedIn" class="navbar-nav auth">
-					<button
-						class="nav-button hambur2"
-						style="margin-right: 80px; margin-top: 22px"
-						v-on:click="handleLogout()"
-						v-if="isloggedIn && !userPR"
-					>
-						LogOut
-					</button>
-				</div>
-			</div>
+			</transition>
 		</nav>
-	</div>
+	</header>
 </template>
+
 <script>
-import useLogout from '@/composables/useLogout'
-import { ref } from 'vue'
-import { useRouter } from 'vue-router'
 import { projectAuth } from '../firebase/config'
-import Login from './Login.vue'
-import Signup from './Signup.vue'
+import Login from '@/components/Login'
+import Signup from '@/components/Signup'
+import { successToast, errorToast } from '../composables/useToast'
+import SubmitPR from './../views/SubmitPR.vue'
+
 export default {
 	name: 'Nav',
-	data() {
-		return {
-			login: false,
-			signup: false,
-			showHamburger: false,
-		}
-	},
-
-	created() {
-		this.checkAuth()
-		this.isHonePage()
-	},
 	components: {
 		Login,
 		Signup,
-		Login,
-		Signup,
+		SubmitPR,
+	},
+	data() {
+		return {
+			scrollNav: false,
+			mobile: false,
+			mobileNav: false,
+			windowWidth: null,
+			isLoggedIn: false,
+			showLogin: false,
+			showSignup: false,
+			activeMenuItem: '',
+		}
+	},
+	created() {
+		window.addEventListener('resize', this.checkScreen)
+		this.checkScreen()
+		this.checkUserLoggedIn()
+	},
+	mounted() {
+		window.addEventListener('scroll', this.updateScroll)
 	},
 	methods: {
-		handleLogin() {
+		toggleMobileNav() {
+			this.mobileNav = !this.mobileNav
+		},
+		closeMobileNav() {
+			this.mobileNav = false
+		},
+		toggleLogin() {
+			this.showLogin = !this.showLogin
 			this.$store.state.login = !this.$store.state.login
-			this.$store.state.signup = false
-			this.showHamburger = !this.showHamburger
 		},
-		handleSignup() {
-			this.$store.state.login = false
-			this.$store.state.signup = !this.$store.state.signup
+		toggleSignup() {
+			this.showSignup = !this.showSignup
 		},
-		toggleHamburger() {
-			this.showHamburger = !this.showHamburger
+		checkScreen() {
+			this.windowWidth = window.innerWidth
+			if (this.windowWidth <= 850) {
+				this.mobile = true
+			} else {
+				this.mobile = false
+				this.mobileNav = false
+			}
 		},
-	},
-	beforeRouteLeave(to, from, next) {
-		this.isHonePage()
-		next()
-	},
-	setup() {
-		const { error, logout } = useLogout()
-		let isloggedIn = ref(false)
-		let isHome = ref(true)
-		const userPR = ref(false)
-		const router = useRouter()
-		const collapse11 = ref(false)
-
-		const checkAuth = () => {
+		updateScroll() {
+			const scrollPosition = window.scrollY
+			this.scrollNav = scrollPosition > 50
+		},
+		async checkUserLoggedIn() {
 			projectAuth.onAuthStateChanged((user) => {
-				if (user) {
-					isloggedIn.value = true
-				} else {
-					isloggedIn.value = false
-				}
+				this.isLoggedIn = !!user
 			})
-		}
+		},
+		async logout() {
+			try {
+				await projectAuth.signOut()
+				this.isLoggedIn = false
+				successToast('Success', 'Logout successful')
+			} catch (error) {
+				errorToast('Error', 'Logout failed')
+				console.error('Logout error:', error.message)
+			}
+		},
 
-		const isHonePage = () => {
-			if (window.location.pathname === '/home') {
-				console.log('home')
-				isHome.value = true
+		async login() {
+			try {
+				this.toggleLogin()
+			} catch (error) {
+				errorToast('Error', 'Login failed')
+				console.error('Logout error:', error.message)
+			}
+		},
+		async signup() {
+			try {
+				this.toggleSignup()
+			} catch (error) {
+				errorToast('Error', 'Login failed')
+				console.error('Logout error:', error.message)
+			}
+		},
+		setActiveMenuItemAndCloseNav(item) {
+			const data = document.querySelector('.animation')
+			this.activeMenuItem = item
+
+			const screenWidth = window.innerWidth
+
+			if (screenWidth <= 992) {
+				switch (item) {
+					case 'home':
+						data.style.left = '26.2%'
+						data.style.width = '7%'
+						break
+					case 'dashboard':
+						data.style.left = '34.5%'
+						data.style.width = '10%'
+						break
+					case 'projects':
+						data.style.left = '46.4%'
+						data.style.width = '7%'
+						break
+					case 'submit':
+						data.style.left = '55.8%'
+						data.style.width = '9%'
+						break
+					case 'myPR':
+						data.style.left = '66%'
+						data.style.width = '7%'
+						break
+					default:
+						this.activeMenuItem = ''
+						break
+				}
+			} else if (screenWidth > 992 && screenWidth <= 1256) {
+				switch (item) {
+					case 'home':
+						data.style.left = '24.4%'
+						data.style.width = '8%'
+						break
+					case 'dashboard':
+						data.style.left = '34%'
+						data.style.width = '10%'
+						break
+					case 'projects':
+						data.style.left = '46.2%'
+						data.style.width = '7%'
+						break
+					case 'submit':
+						data.style.left = '56.2%'
+						data.style.width = '9%'
+						break
+					case 'myPR':
+						data.style.left = '67.4%'
+						data.style.width = '7%'
+						break
+					default:
+						break
+				}
 			} else {
-				isHome.value = false
-			}
-			if (window.location.pathname === '/myPR') {
-				userPR.value = true
-			}
-		}
+				switch (item) {
+					case 'home':
+						data.style.left = '24.9%'
+						data.style.width = '7%'
+						break
 
-		const handleLogout = () => {
-			logout()
-			if (!error.value) {
-				router.push({ name: 'Home' })
-			} else {
-				console.log(error.value)
-			}
-		}
+					case 'dashboard':
+						data.style.left = '34%'
+						data.style.width = '10%'
+						break
 
-		const handleMyPR = () => {
-			if (userPR.value) {
-				userPR.value = false
-			} else {
-				userPR.value = true
-			}
-		}
+					case 'projects':
+						data.style.left = '46.1%'
+						data.style.width = '7%'
+						break
 
-		return {
-			handleMyPR,
-			userPR,
-			isloggedIn,
-			checkAuth,
-			isHonePage,
-			handleLogout,
-			isHome,
-			collapse11,
-		}
+					case 'submit':
+						data.style.left = '56.2%'
+						data.style.width = '9%'
+						break
+
+					case 'myPR':
+						data.style.left = '67.4%'
+						data.style.width = '7%'
+						break
+
+					default:
+						break
+				}
+			}
+
+			this.mobileNav = false
+		},
 	},
 }
 </script>
 
 <style scoped>
-@media (min-width: 991px) {
-	#hambur {
-		display: none !important;
-	}
-}
-
-@media (max-width: 991px) {
-	.hambur2 {
-		display: none !important;
-		/* display:none !important; */
-	}
-}
-
-@media (min-width: 992px) {
-	.hii {
-		display: contents;
-		float: left;
-		/* margin-left: 0px !important; */
-		margin-left: -25vw !important;
-		margin-top: 1px !important;
-	}
-}
-
-@media (min-width: 1300px) {
-	.hii {
-		display: contents;
-		float: left;
-		/* margin-left: 0px !important; */
-		margin-left: -33vw !important;
-	}
-}
-
-@media (min-width: 1800px) {
-	.hii {
-		display: contents;
-		float: left;
-		/* margin-left: 0px !important; */
-		margin-left: -38vw !important;
-	}
-}
-
-#menu__toggle {
-	opacity: 0;
-}
-
-#menu__toggle:checked ~ .menu__btn > span {
-	transform: rotate(45deg);
-}
-
-#menu__toggle:checked ~ .menu__btn > span::before {
-	top: 0;
-	transform: rotate(0);
-}
-
-#menu__toggle:checked ~ .menu__btn > span::after {
-	top: 0;
-	transform: rotate(90deg);
-}
-
-#menu__toggle:checked ~ .menu__box {
-	visibility: visible;
-	left: 0;
-}
-
-.menu__btn {
-	display: flex;
-	align-items: center;
+header {
+	z-index: 99;
 	position: fixed;
-	top: 30px;
-	/* left: 20px; */
-	right: 70px;
-	margin-left: auto;
-	width: 26px;
-	height: 26px;
-	/* color: white; */
-
-	cursor: pointer;
-	z-index: 1;
-}
-
-.menu__btn > span,
-.menu__btn > span::before,
-.menu__btn > span::after {
-	display: block;
-	position: absolute;
-
 	width: 100%;
-	height: 2px;
-
-	background-color: rgb(245, 235, 235) !important;
-
-	transition-duration: 0.25s;
-}
-
-.menu__btn > span::before {
-	content: '';
-	top: -8px;
-}
-
-.menu__btn > span::after {
-	content: '';
-	top: 8px;
-}
-
-.menu__box {
-	display: block;
-	position: fixed;
-	visibility: hidden;
-	top: 0;
-	left: -100%;
-
-	width: 100vw;
-	height: 100vh;
-
-	margin: 0;
-	padding: 150px 0px;
-
-	list-style: none;
-
-	background-color: #19192a;
-	box-shadow: 1px 0px 6px rgba(0, 0, 0, 0.2);
-
-	transition-duration: 0.25s;
-}
-
-.menu__item {
-	display: flex;
-	justify-content: center;
-	text-align: center;
-	display: block;
-	padding: 12px 24px;
-
+	transition: 0.5s ease all;
 	color: white;
-	background-color: #19192a;
-
-	font-family: 'Roboto', sans-serif;
-	font-size: 20px;
-	font-weight: 600;
-
-	text-decoration: none;
-
-	transition-duration: 0.25s;
 }
 
-.menu__item:hover {
-	background-color: rgb(141, 141, 178);
-}
-
-.navbar {
-	position: fixed;
-	height: 8vh;
-	width: 100vw;
-	z-index: 10;
-	-webkit-backdrop-filter: blur(8px);
-	backdrop-filter: blur(8px);
-}
-
-.nav-container {
+nav {
 	display: flex;
-	align-items: center;
-	gap: 2em;
-}
+	width: 100%;
+	box-sizing: border-box;
+	margin-top: 0.6%;
 
-.logo {
-	margin: -10px 0;
-}
+	ul,
+	.link {
+		font-weight: 500;
+		color: white;
+		list-style: none;
+		align-items: center;
+		text-align: center;
+		text-decoration: none;
+	}
 
-.logo a {
-	display: flex;
-	gap: 0.4em;
-	text-decoration: none;
-}
+	li {
+		margin-top: 3.5%;
+		margin-left: 4%;
+		width: 60%;
+		z-index: 100;
+	}
 
-.logo h2 {
-	top: 0.15em;
-	position: relative;
-}
+	.link {
+		font-size: 130%;
+		transition: 0.5s ease all;
+		padding-bottom: 0.2%;
+		border-bottom: 0.1rem solid transparent;
+		cursor: pointer;
+		width: 20%;
+		text-align: center;
 
-.logo img {
-	position: relative;
-	object-fit: contain;
-	height: 3em;
-	width: 3em;
-}
+		&:hover {
+			color: black;
+			z-index: 100;
+		}
+	}
 
-.auth {
-	margin-right: 2em;
-}
+	.branding {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 10%;
+		margin-top: 20px;
 
-.nav-button {
-	background: none;
-	border: none;
-	color: white;
-	margin-left: 0%;
+		img {
+			width: 95%;
+			transition: 0.5s ease all;
+		}
+
+		.text {
+			color: white;
+			text-decoration: none;
+			font-size: 130%;
+		}
+	}
+
+	.brand {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 25%;
+		margin-top: 10px;
+		text-decoration: none;
+
+		img {
+			width: 60px;
+			padding-right: 0.5rem;
+			transition: 0.5s ease all;
+		}
+
+		.txt {
+			text-decoration: none;
+			color: white;
+			transition: color 0.3s ease;
+
+			&:hover {
+				z-index: 100;
+				color: #0891b3;
+			}
+
+			&:active {
+				color: #0891b3;
+			}
+		}
+	}
+
+	.nav-div {
+		position: relative;
+		width: 70%;
+		padding-left: 4%;
+		justify-content: center;
+		align-items: center;
+	}
+
+	.navigations {
+		position: relative;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		list-style-type: none;
+	}
+
+	.navigations .animation {
+		position: fixed;
+		height: 7%;
+		top: 3%;
+		z-index: 0;
+		text-align: center;
+		justify-content: center;
+		background-color: #0891b3;
+		border-radius: 0.5rem;
+		transition: all 0.5s ease 0s;
+	}
+	.line {
+		position: fixed;
+		width: 200vw;
+		height: 3%;
+		top: 0;
+		background-color: #0891b3;
+	}
+
+	.navigations li:nth-child(1) {
+		width: 13%;
+	}
+	.navigations .start-home,
+	li:nth-child(1):hover ~ .animation {
+		width: 7%;
+		left: 24.9%;
+	}
+	.navigations li:nth-child(2) {
+		width: 12%;
+	}
+	.navigations li:nth-child(2):hover ~ .animation {
+		width: 10%;
+		left: 34%;
+	}
+	.navigations li:nth-child(3) {
+		width: 13.7%;
+	}
+	.navigations li:nth-child(3):hover ~ .animation {
+		width: 7%;
+		left: 46.1%;
+	}
+	.navigations li:nth-child(4) {
+		width: 13%;
+	}
+	.navigations li:nth-child(4):hover ~ .animation {
+		width: 9%;
+		left: 56.2%;
+	}
+	.navigations li:nth-child(5) {
+		width: 11%;
+	}
+	.navigations li:nth-child(5):hover ~ .animation {
+		width: 7%;
+		left: 67.4%;
+	}
+
+	.navigations .animation1 {
+		position: fixed;
+		height: 7%;
+		top: 3%;
+		z-index: 0;
+		text-align: center;
+		justify-content: center;
+		background-color: #0891b3;
+		border-radius: 0.5rem;
+		transition: all 0.5s ease 0s;
+	}
+
+	.navigations li:nth-child(1) {
+		width: 13%;
+	}
+	.navigations .start-home1,
+	li:nth-child(1):hover ~ .animation1 {
+		width: 7%;
+		left: 35%;
+	}
+	.navigations li:nth-child(2) {
+		width: 12%;
+	}
+	.navigations li:nth-child(2):hover ~ .animation1 {
+		width: 10%;
+		left: 44.1%;
+	}
+	.navigations li:nth-child(3) {
+		width: 13.7%;
+	}
+	.navigations li:nth-child(3):hover ~ .animation1 {
+		width: 7%;
+		left: 56.3%;
+	}
+
+	.auth-div {
+		width: 20%;
+		top: 10%;
+		padding-right: 60px;
+		padding-left: 40px;
+	}
+	.authnavigations {
+		display: flex;
+	}
+
+	.icon {
+		position: absolute;
+		left: 50px;
+		display: flex;
+		align-items: center;
+		height: 100%;
+		cursor: pointer;
+		font-size: 1.5rem;
+		transition: 0.5s ease all;
+	}
+
+	.icon-active {
+		transform: rotate(180deg);
+	}
+
+	.dropdown-nav {
+		display: flex;
+		flex-direction: column;
+		position: fixed;
+		width: 100%;
+		max-width: 15.62rem;
+		height: 100%;
+		background-color: #18181b;
+		top: 0;
+		right: 0;
+	}
+
+	.hamnav {
+		position: fixed;
+		top: 7rem;
+	}
+
+	.link2 {
+		color: #0891b3;
+		text-decoration: none;
+	}
+
+	.link1 {
+		padding-top: 1rem;
+		font-size: 120%;
+		padding: auto;
+		transition: 0.5s ease all;
+		cursor: pointer;
+		width: 100%;
+		text-decoration: none;
+		text-align: left;
+		color: #0891b3;
+
+		&:hover {
+			color: black;
+			z-index: 100;
+		}
+	}
+
+	.dropdown-nav .link2.active {
+		display: block;
+		background-color: #0891b3;
+		border-radius: 1.25rem;
+		text-align: left;
+		color: white;
+		height: 1.8rem;
+		padding: 0rem 2rem;
+		transition: background-color 0.7s ease;
+	}
+
+	.dropdown-nav .link2.active:hover {
+		background-color: #0891b3;
+	}
+
+	.mobile-nav-enter-active,
+	.mobile-nav-leave-active {
+		transition: 1s ease all;
+	}
+
+	.mobile-nav-enter-from,
+	.mobile-nav-leave-to {
+		transform: translateX(15.625rem);
+	}
+
+	.mobile-nav-enter-to {
+		transform: translateX(0);
+	}
+
+	.auth {
+		color: #0891b3;
+		border: #0891b3 1px solid;
+		font-size: 140%;
+		border-radius: 6rem;
+		cursor: pointer;
+		text-align: center;
+		width: 70%;
+		text-decoration: none;
+		margin-top: 20%;
+		margin-left: 35%;
+		&:hover {
+			color: white;
+		}
+	}
+
+	.auth2 {
+		position: fixed;
+		color: #0891b3;
+		border: #0891b3 1px solid;
+		font-size: 110%;
+		border-radius: 4rem;
+		cursor: pointer;
+		text-align: center;
+		text-decoration: none;
+		top: 5%;
+		padding: 3px;
+
+		&:hover {
+			color: white;
+		}
+	}
+
+	.scrolled-nav {
+		background-color: black;
+		box-shadow:
+			0 4px 6px -1px rgba(0, 0, 0, 0.1),
+			0 2px 4px -1px rgba(0, 0, 0, 0.6);
+
+		> nav {
+			padding: 8px 5%;
+
+			.branding {
+				img {
+					width: 40px;
+					box-shadow:
+						0 4px 6px -1px rgba(0, 0, 0, 0.1),
+						0 2px 4px -1px rgba(0, 0, 0, 0.6);
+				}
+			}
+		}
+	}
+
+	@media (max-width: 1374px) {
+		.navigations .animation {
+			position: fixed;
+			height: 6%;
+			top: 2%;
+			z-index: 0;
+			background-color: #0891b3;
+			border-radius: 0.5rem;
+			transition: all 0.5s ease 0s;
+		}
+	}
+
+	@media (max-width: 1256px) and (min-width: 992px) {
+		.auth-div {
+			width: 20%;
+			top: 10%;
+			padding-right: 50px;
+			padding-left: 30px;
+		}
+
+		.branding {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			width: 10%;
+			margin-top: 18px;
+
+			img {
+				width: 85%;
+				transition: 0.5s ease all;
+			}
+
+			.text {
+				text-decoration: none;
+				color: white;
+				font-size: 100%;
+			}
+		}
+
+		.auth {
+			color: #0891b3;
+			border: #0891b3 1px solid;
+			font-size: 89%;
+			border-radius: 6rem;
+			cursor: pointer;
+			text-align: center;
+			text-decoration: none;
+
+			margin-left: 35%;
+			margin-top: 29px;
+			&:hover {
+				color: white;
+			}
+		}
+
+		li {
+			font-size: 70%;
+			margin-left: 4%;
+			margin-top: 15%;
+			width: 80%;
+			z-index: 100;
+			margin-top: 4%;
+		}
+
+		.navigations .animation {
+			position: fixed;
+			height: 7%;
+			top: 2.3%;
+			z-index: 0;
+			background-color: #0891b3;
+			border-radius: 0.5rem;
+			transition: all 0.5s ease 0s;
+		}
+		.navigations li:nth-child(1) {
+			width: 12%;
+		}
+		.navigations .start-home,
+		li:nth-child(1):hover ~ .animation {
+			width: 8%;
+			left: 24.6%;
+		}
+		.navigations li:nth-child(2) {
+			width: 13%;
+		}
+		.navigations li:nth-child(2):hover ~ .animation {
+			width: 10%;
+			left: 34.1%;
+		}
+		.navigations li:nth-child(3) {
+			width: 13.7%;
+		}
+		.navigations li:nth-child(3):hover ~ .animation {
+			width: 7%;
+			left: 46.2%;
+		}
+		.navigations li:nth-child(4) {
+			width: 13%;
+		}
+		.navigations li:nth-child(4):hover ~ .animation {
+			width: 9%;
+			left: 56.2%;
+		}
+		.navigations li:nth-child(5) {
+			width: 11%;
+		}
+		.navigations li:nth-child(5):hover ~ .animation {
+			width: 7%;
+			left: 67.4%;
+		}
+
+		.navigations .animation1 {
+			position: fixed;
+			height: 7%;
+			top: 2.9%;
+			z-index: 0;
+			text-align: center;
+			justify-content: center;
+			background-color: #0891b3;
+			border-radius: 0.5rem;
+			transition: all 0.5s ease 0s;
+		}
+
+		.navigations li:nth-child(1) {
+			width: 13%;
+		}
+		.navigations .start-home1,
+		li:nth-child(1):hover ~ .animation1 {
+			width: 7%;
+			left: 35.3%;
+		}
+		.navigations li:nth-child(2) {
+			width: 12%;
+		}
+		.navigations li:nth-child(2):hover ~ .animation1 {
+			width: 10%;
+			left: 44.1%;
+		}
+		.navigations li:nth-child(3) {
+			width: 13.7%;
+		}
+		.navigations li:nth-child(3):hover ~ .animation1 {
+			width: 7%;
+			left: 56.5%;
+		}
+	}
+
+	@media (max-width: 851) {
+		.branding {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			width: 30%;
+			margin-top: 1.4%;
+
+			img {
+				width: 50%;
+				transition: 0.5s ease all;
+			}
+		}
+	}
+
+	@media (max-width: 992px) and (min-width: 850px) {
+		.auth-div {
+			width: 20%;
+			top: 10%;
+			padding-right: 40px;
+			padding-left: 20px;
+		}
+
+		.branding {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			width: 10%;
+			margin-top: 13px;
+
+			img {
+				width: 80%;
+				transition: 0.5s ease all;
+			}
+			.text {
+				text-decoration: none;
+				color: white;
+				font-size: 80%;
+			}
+		}
+
+		.auth {
+			color: #0891b3;
+			border: #0891b3 1px solid;
+			font-size: 70%;
+			border-radius: 6rem;
+			cursor: pointer;
+			text-align: center;
+			text-decoration: none;
+
+			margin-top: 31%;
+			&:hover {
+				color: white;
+			}
+		}
+		.auth2 {
+			position: fixed;
+			color: #0891b3;
+			border: #0891b3 1px solid;
+			font-size: 110%;
+			border-radius: 4rem;
+			cursor: pointer;
+			text-align: center;
+			text-decoration: none;
+			top: 4%;
+			padding: 3px;
+
+			&:hover {
+				color: white;
+			}
+		}
+
+		li {
+			font-size: 67%;
+			margin-left: 3%;
+			top: 10%;
+			width: 60%;
+			z-index: 100;
+			margin-top: 5%;
+		}
+
+		.navigations .animation {
+			position: fixed;
+			height: 6%;
+			top: 2%;
+			z-index: 0;
+			background-color: #0891b3;
+			border-radius: 0.5rem;
+			transition: all 0.5s ease 0s;
+		}
+		.navigations li:nth-child(1) {
+			width: 12%;
+		}
+		.navigations .start-home,
+		li:nth-child(1):hover ~ .animation {
+			width: 7%;
+			left: 26.9%;
+		}
+		.navigations li:nth-child(2) {
+			width: 13%;
+		}
+		.navigations li:nth-child(2):hover ~ .animation {
+			width: 10%;
+			left: 35.3%;
+		}
+		.navigations li:nth-child(3) {
+			width: 13.7%;
+		}
+		.navigations li:nth-child(3):hover ~ .animation {
+			width: 7%;
+			left: 46.4%;
+		}
+		.navigations li:nth-child(4) {
+			width: 13%;
+		}
+		.navigations li:nth-child(4):hover ~ .animation {
+			width: 9%;
+			left: 55.8%;
+		}
+		.navigations li:nth-child(5) {
+			width: 11%;
+		}
+		.navigations li:nth-child(5):hover ~ .animation {
+			width: 7%;
+			left: 66%;
+		}
+
+		.navigations .animation1 {
+			position: fixed;
+			height: 6%;
+			top: 2.9%;
+			z-index: 0;
+			text-align: center;
+			justify-content: center;
+			background-color: #0891b3;
+			border-radius: 0.5rem;
+			transition: all 0.5s ease 0s;
+		}
+
+		.navigations li:nth-child(1) {
+			width: 13%;
+		}
+		.navigations .start-home1,
+		li:nth-child(1):hover ~ .animation1 {
+			width: 7%;
+			left: 36.3%;
+		}
+		.navigations li:nth-child(2) {
+			width: 12%;
+		}
+		.navigations li:nth-child(2):hover ~ .animation1 {
+			width: 10%;
+			left: 44.6%;
+		}
+		.navigations li:nth-child(3) {
+			width: 13.7%;
+		}
+		.navigations li:nth-child(3):hover ~ .animation1 {
+			width: 7%;
+			left: 55.8%;
+		}
+	}
 }
 </style>
