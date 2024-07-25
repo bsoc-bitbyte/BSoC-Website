@@ -19,7 +19,9 @@
 							<p class="innerp">{{ description }}</p>
 						</div>
 						<h3 class="innerh3">Maintainers: {{ name }}</h3>
-						<a :href="link" target="_blank">{{ 'Explore' }}</a>
+						<a :href="link" target="_blank" :disabled="!hover">{{
+							'Explore'
+						}}</a>
 					</div>
 				</div>
 			</div>
