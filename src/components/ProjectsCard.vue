@@ -19,7 +19,7 @@
 							<p class="innerp">{{ description }}</p>
 						</div>
 						<h3 class="innerh3">Maintainers: {{ name }}</h3>
-						<a :href="link" target="_blank" :disabled="!hover">{{
+						<a :href="link" target="_blank" :class="{ disabled: !hover }">{{
 							'Explore'
 						}}</a>
 					</div>
@@ -96,6 +96,9 @@ export default {
 .card .box.hovered {
 	background-color: var(--primary_bg_col);
 	border-color: var(--primary_bg_col);
+}
+.card .content a.disabled {
+	pointer-events: none;
 }
 
 .card .content {
