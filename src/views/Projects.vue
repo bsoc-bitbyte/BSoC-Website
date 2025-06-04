@@ -29,7 +29,7 @@ export default {
 				{
 					id: 1,
 					projectName: 'BSoC Website',
-					name: 'Parth Singh, Ramgopal Reddy',
+					maintainerName: 'Parth Singh, Ramgopal Reddy',
 					link: 'https://github.com/bsoc-bitbyte/BSoC-Website',
 					techStack: 'Vue, Firebase, Bootstrap',
 					description:
@@ -38,7 +38,7 @@ export default {
 				{
 					id: 2,
 					projectName: 'GetIt',
-					name: 'Akash Paloju, Kushagra Gupta',
+					maintainerName: 'Akash Paloju, Kushagra Gupta',
 					link: 'https://github.com/bsoc-bitbyte/GetIt',
 					techStack: 'Vue, Firebase, Redis, MongoDB, Python',
 					description:
@@ -47,7 +47,7 @@ export default {
 				{
 					id: 3,
 					projectName: 'Busify Web',
-					name: 'Pratik Solanki, Rishikesh Kupalla',
+					maintainerName: 'Pratik Solanki, Rishikesh Kupalla',
 					link: 'https://github.com/bsoc-bitbyte/busify',
 					techStack: 'React, Typescript, MUI, SCSS, NESTJS, Postgres, REDIS',
 					description:
@@ -56,7 +56,7 @@ export default {
 				{
 					id: 4,
 					projectName: 'Alumni Website',
-					name: 'Eshaan Modi, Samaksh Agarwal ',
+					maintainerName: 'Eshaan Modi, Samaksh Agarwal ',
 					link: 'https://github.com/BitByte-TPC/alumni',
 					techStack: 'HTML, CSS, Javascript, Python',
 					description:
@@ -65,7 +65,7 @@ export default {
 				{
 					id: 5,
 					projectName: 'myLeave',
-					name: 'Agrim Gupta',
+					maintainerName: 'Agrim Gupta',
 					link: 'https://github.com/bsoc-bitbyte/myLeave',
 					techStack: 'Kotlin, Architecture',
 					description:
@@ -74,7 +74,7 @@ export default {
 				{
 					id: 6,
 					projectName: 'DigiGate',
-					name: 'Aarav Jain',
+					maintainerName: 'Aarav Jain',
 					link: 'https://github.com/bsoc-bitbyte/DigiGate',
 					techStack: 'Kotlin, Architecture',
 					description:
@@ -83,7 +83,7 @@ export default {
 				{
 					id: 7,
 					projectName: 'Summer Analytics',
-					name: 'Joyee Biswas, Shreyans Katariya',
+					maintainerName: 'Joyee Biswas, Shreyans Katariya',
 					link: 'https://github.com/bsoc-bitbyte/Summer_of_ML',
 					techStack: 'Tensorflow, Seaborn, Matplotlib, Pandas, Numpy ',
 					description:
@@ -92,7 +92,7 @@ export default {
 				{
 					id: 8,
 					projectName: 'Dreamyard',
-					name: 'Akshay Bhel, Prince Bhujetia',
+					maintainerName: 'Akshay Bhel, Prince Bhujetia',
 					link: 'https://github.com/bsoc-bitbyte/Dreamyard',
 					techStack: 'Unity Engine, C#',
 					description:
