@@ -47,11 +47,11 @@ export default {
 				{
 					id: 3,
 					projectName: 'BSoC Website',
-					name: 'Rohan Sen, Abhijeet Waghmere',
+					name: 'Rohan Sen, Abhijeet Whaghmare',
 					link: 'https://github.com/bsoc-bitbyte/BSoC-Website',
 					techStack: 'HTML5, CSS, Vue.js, Firebase',
 					description:
-						'This website helps to connect you with open-source, free software, and tech-related initiatives where you can learn, contribute, and grow as a developer.',
+						'A website for BSoC to showcase all the projects and events that are being conducted under BSoC.',
 				},
 				{
 					id: 4,
