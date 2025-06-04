@@ -28,75 +28,76 @@ export default {
 			items: [
 				{
 					id: 1,
+					projectName: 'YDO',
+					maintainerName: 'Om Thorat, Tanmay Deobhankar',
+					link: 'https://github.com/bsoc-bitbyte/YDO',
+					techStack: 'Javascript, CSS, React, Python, Flask, Supabase',
+					description:
+						'A simple, exclusive and private matchmaking platform where mutual choices reveal a perfect match.',
+				},
+				{
+					id: 2,
+					projectName: 'Exam-Bud',
+					maintainerName: 'Ritankar Saha, Harshil Khandelwal',
+					link: 'https://github.com/bsoc-bitbyte/Exam-Bud',
+					techStack: 'React, TailWind CSS, Node js, PostgreSQL, Express js',
+					description:
+						'A student-friendly platform to view and upload Notes, Lab Materials, and other Academic resources with discussion forum.',
+				},
+				{
+					id: 3,
 					projectName: 'BSoC Website',
-					maintainerName: 'Parth Singh, Ramgopal Reddy',
+					maintainerName: 'Rohan Sen, Abhijeet',
 					link: 'https://github.com/bsoc-bitbyte/BSoC-Website',
-					techStack: 'Vue, Firebase, Bootstrap',
+					techStack: 'Vue, Firebase, CSS',
 					description:
 						'A website for BSoC to showcase all the projects and events that are being conducted under BSoC.',
 				},
 				{
-					id: 2,
-					projectName: 'GetIt',
-					maintainerName: 'Akash Paloju, Kushagra Gupta',
-					link: 'https://github.com/bsoc-bitbyte/GetIt',
-					techStack: 'Vue, Firebase, Redis, MongoDB, Python',
-					description:
-						'A single Platform where merchandise of every club of college can be found and will be made available for everyone to buy.',
-				},
-				{
-					id: 3,
-					projectName: 'Busify Web',
-					maintainerName: 'Pratik Solanki, Rishikesh Kupalla',
-					link: 'https://github.com/bsoc-bitbyte/busify',
-					techStack: 'React, Typescript, MUI, SCSS, NESTJS, Postgres, REDIS',
-					description:
-						'A centralised bus ticket booking system that will allow the students to book tickets in advance through an online website, saving time and effort.',
-				},
-				{
 					id: 4,
-					projectName: 'Alumni Website',
-					maintainerName: 'Eshaan Modi, Samaksh Agarwal ',
-					link: 'https://github.com/BitByte-TPC/alumni',
-					techStack: 'HTML, CSS, Javascript, Python',
+					projectName: 'GetIt',
+					maintainerName: 'Vaibhav Sahu, Yash Patil',
+					link: 'https://github.com/bsoc-bitbyte/GetIt',
+					techStack: 'Vue, Nuxt, Pinia, Django REST Framework, Python',
 					description:
-						'This web application aims to facilitate the Alumni Affairs of IIITDM Jabalpur',
+						'A single Platform where merchandise of every club of college and events tickets can be found and will be made available for everyone to buy.',
 				},
 				{
 					id: 5,
-					projectName: 'myLeave',
-					maintainerName: 'Agrim Gupta',
-					link: 'https://github.com/bsoc-bitbyte/myLeave',
-					techStack: 'Kotlin, Architecture',
+					projectName: 'Nudj',
+					maintainerName: 'Ayush Saksena, Hemang Mishra',
+					link: 'https://github.com/bsoc-bitbyte/Nudj',
+					techStack: 'Kotlin, Jetpack Compose, Firebase',
 					description:
-						'myLeave is a user-friendly application designed to streamline and simplify the process of submitting and managing leave requests within an organization',
+						'Nudj provides seamless connection between hosts and students for live events, instant RSVP and easy tickets!',
 				},
 				{
 					id: 6,
 					projectName: 'DigiGate',
-					maintainerName: 'Aarav Jain',
+					maintainerName: 'Sujal Agrawal, Harsh Singh',
 					link: 'https://github.com/bsoc-bitbyte/DigiGate',
-					techStack: 'Kotlin, Architecture',
+					techStack: 'Kotlin, Jetpack-Compose, Firebase',
 					description:
-						'This project aims to enhance gate entry and exit management for better security and entry management, by implementing a QR-based system',
+						'This project aims to enhance gate entry and exit management for better security and entry management, with automatic record creation with timestamp and location.',
 				},
 				{
 					id: 7,
-					projectName: 'Summer Analytics',
-					maintainerName: 'Joyee Biswas, Shreyans Katariya',
-					link: 'https://github.com/bsoc-bitbyte/Summer_of_ML',
-					techStack: 'Tensorflow, Seaborn, Matplotlib, Pandas, Numpy ',
+					projectName: 'Summer of ML',
+					maintainerName: 'Prince Deepak Siddharth, Vishal Painjane',
+					link: 'https://github.com/bsoc-bitbyte/Summer-of-ML',
+					techStack:
+						'Python, Tensorflow, Seaborn, Matplotlib, Pandas, Numpy, PyTorch',
 					description:
 						'Machine Learning made simple. Going right from the traditional Linear Regression to building Neural Networks, including all the nitty gritty optimizations, regularizations and loss functions.',
 				},
 				{
 					id: 8,
-					projectName: 'Dreamyard',
-					maintainerName: 'Akshay Bhel, Prince Bhujetia',
-					link: 'https://github.com/bsoc-bitbyte/Dreamyard',
+					projectName: 'Assassins Greed',
+					maintainerName: 'Divyanshu Singh, Kumar Sshalabh, Aadarsh Nayak',
+					link: 'https://github.com/bsoc-bitbyte',
 					techStack: 'Unity Engine, C#',
 					description:
-						'An exhilarating 2D platform game that combines intense platforming challenges with thrilling combat encounters. where you have to fight and tackle enemies to complete the platform.',
+						'A 2D stealth platformer game, where players control a ninja assassin sneaking through patrols, climbing walls, and executing silent takedowns.',
 				},
 			],
 		}
