@@ -1,0 +1,59 @@
+name: Notify Discord
+
+on:
+  issues:
+    types: [opened, closed]
+  pull_request:
+    types: [opened, closed]
+  watch:   # for stars
+  fork:
+  repository_dispatch:
+  push:
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Send Discord Notification
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }} # Set the Discord webhook URL in Repository Secrets
+        run: |
+          EVENT_NAME="${{ github.event_name }}"
+          ACTION="${{ github.event.action }}"
+          REPO="${{ github.repository }}"
+          ACTOR="${{ github.actor }}"
+          ISSUE_TITLE="${{ github.event.issue.title }}"
+          PR_TITLE="${{ github.event.pull_request.title }}"
+          COMMIT_MESSAGE="${{ github.event.head_commit.message }}"
+          
+          if [[ "$EVENT_NAME" == "issues" ]]; then
+            ISSUE_URL="https://github.com/$REPO/issues/${{ github.event.issue.number }}"
+            if [[ "$ACTION" == "opened" ]]; then
+              MESSAGE="New Issue Created: **[$ISSUE_TITLE]($ISSUE_URL)** by **$ACTOR**"
+            elif [[ "$ACTION" == "closed" ]]; then
+              MESSAGE="Issue Closed: **[$ISSUE_TITLE]($ISSUE_URL)** by **$ACTOR**"
+            fi
+          elif [[ "$EVENT_NAME" == "pull_request" ]]; then
+            PR_URL="https://github.com/$REPO/pull/${{ github.event.pull_request.number }}"
+            if [[ "$ACTION" == "opened" ]]; then
+              MESSAGE="New Pull Request: **[$PR_TITLE]($PR_URL)** by **$ACTOR**"
+            elif [[ "$ACTION" == "closed" ]]; then
+              MESSAGE="Pull Request Closed: **[$PR_TITLE]($PR_URL)** by **$ACTOR**"
+            fi
+          elif [[ "$EVENT_NAME" == "watch" ]]; then
+            MESSAGE="⭐ Repo Starred by **$ACTOR**"
+          elif [[ "$EVENT_NAME" == "fork" ]]; then
+            MESSAGE="Repo Forked by **$ACTOR**"
+          elif [[ "$EVENT_NAME" == "push" ]]; then
+            COMMIT_URL="https://github.com/$REPO/commit/${{ github.sha }}"
+            if [[ -n "$COMMIT_MESSAGE" ]]; then
+              MESSAGE="New Push to **$REPO** by **$ACTOR**\n**Commit:** [$COMMIT_MESSAGE]($COMMIT_URL)\n"
+            else
+              MESSAGE="New Push to **$REPO** by **$ACTOR**"
+            fi
+          fi
+          
+          curl -H "Content-Type: application/json" \
+               -X POST \
+               -d "{\"content\": \"$MESSAGE\"}" \
+               $DISCORD_WEBHOOK
