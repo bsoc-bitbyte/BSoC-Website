@@ -57,31 +57,17 @@
 										Projects
 									</router-link>
 
-									<router-link
-										to="/projects"
+									<span
 										v-if="!isloggedIn"
 										class="navbar-nav auth menu__item"
-										v-on:click="handleLogin"
-										style="
-											cursor: pointer;
-											text-align: center;
-											margin-left: 2em;
-										"
+										@click="handleGithubAuth"
+										style="cursor: pointer; margin-left: 1.3em"
 									>
-										Login
-									</router-link>
-									<Login v-if="$store.state.login" :toggle="handleLogin" />
-
-									<router-link
-										to="/projects"
-										v-if="!isloggedIn"
-										class="navbar-nav auth menu__item"
-										v-on:click="handleSignup"
-										style="cursor: pointer; margin-left: 2em"
-									>
-										Signup
-									</router-link>
-									<Signup v-if="$store.state.signup" :toggle="handleSignup" />
+										<img
+											src="../assets/githublogo.svg"
+											alt="github logo"
+										/>Login
+									</span>
 
 									<div
 										class="navbar-nav auth menu__item"
@@ -202,27 +188,13 @@
 					</div>
 				</div>
 				<div v-if="!isloggedIn" class="navbar-nav auth">
-					<div
-						class="hambur2"
-						v-on:click="handleLogin"
-						style="
-							padding-right: 0em;
-							cursor: pointer;
-							margin-right: 20px;
-							margin-top: 14px;
-						"
-					>
-						Login
-					</div>
-					<Login v-if="$store.state.login" :toggle="handleLogin" />
 					<span
 						class="hambur2"
-						v-on:click="handleSignup"
+						@click="handleGithubAuth"
 						style="cursor: pointer; margin-right: 0px; margin-top: 14px"
 					>
-						Sign Up
+						<img src="../assets/githublogo.svg" alt="github logo" />
 					</span>
-					<Signup v-if="$store.state.signup" :toggle="handleSignup" />
 				</div>
 				<div v-if="isloggedIn" class="navbar-nav auth">
 					<button
@@ -240,56 +212,71 @@
 </template>
 <script>
 import useLogout from '@/composables/useLogout'
+import addUsers from '@/composables/addUsers'
 import { ref } from 'vue'
-import { useRouter } from 'vue-router'
+import { RouterLink, useRouter } from 'vue-router'
 import { projectAuth } from '../firebase/config'
-import Login from './Login.vue'
-import Signup from './Signup.vue'
+import useSignInGithub from '../composables/useSignInGithub'
+import { errorToast } from '../composables/useToast'
+
 export default {
 	name: 'Nav',
-	data() {
-		return {
-			login: false,
-			signup: false,
-			showHamburger: false,
-		}
-	},
 
 	created() {
 		this.checkAuth()
 		this.isHonePage()
 	},
-	components: {
-		Login,
-		Signup,
-		Login,
-		Signup,
-	},
-	methods: {
-		handleLogin() {
-			this.$store.state.login = !this.$store.state.login
-			this.$store.state.signup = false
-			this.showHamburger = !this.showHamburger
-		},
-		handleSignup() {
-			this.$store.state.login = false
-			this.$store.state.signup = !this.$store.state.signup
-		},
-		toggleHamburger() {
-			this.showHamburger = !this.showHamburger
-		},
-	},
+
 	beforeRouteLeave(to, from, next) {
 		this.isHonePage()
 		next()
 	},
-	setup() {
+	setup(props, { emit }) {
 		const { error, logout } = useLogout()
 		let isloggedIn = ref(false)
 		let isHome = ref(true)
 		const userPR = ref(false)
 		const router = useRouter()
 		const collapse11 = ref(false)
+
+		const { e, addDoc } = addUsers('Users')
+
+		const { errr, githubLogin } = useSignInGithub()
+		const handleGithubAuth = async () => {
+			try {
+				const user = await githubLogin()
+
+				if (user && !errr.value) {
+					const data = {
+						uid: user.uid,
+						displayName: user.displayName || '',
+						email: user.email || '',
+						photoURL: user.photoURL || '',
+						score: 0,
+					}
+
+					await addDoc(data)
+					emit('login')
+				} else {
+					if (errr.value?.code === 'auth/popup-closed-by-user') {
+						errorToast('Login was cancelled. Please try again.')
+					} else {
+						console.log(errr.value)
+						errorToast(
+							'Github login failed',
+							errr.value?.message || 'Unknown error'
+						)
+					}
+				}
+			} catch (err) {
+				if (err.code === 'auth/popup-closed-by-user') {
+					errorToast('Login was cancelled.')
+				} else {
+					console.log('Github login failed: ', err)
+					errorToast('Login failed', err.message || 'something went wrong')
+				}
+			}
+		}
 
 		const checkAuth = () => {
 			projectAuth.onAuthStateChanged((user) => {
@@ -339,6 +326,7 @@ export default {
 			handleLogout,
 			isHome,
 			collapse11,
+			handleGithubAuth,
 		}
 	},
 }
