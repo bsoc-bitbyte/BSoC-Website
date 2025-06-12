@@ -1,0 +1,64 @@
+name: Bug Report
+description: Something not working as expected? Let us know here.
+title: "[Bug] <brief description>"
+labels: [bug, needs-triage]
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report a bug. Please fill in the details below to help us understand the issue better.
+
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: What system or setup were you using?
+      placeholder: OS, browser, etc.
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to Reproduce
+      description: A clear list of steps to trigger the issue.
+      placeholder: |
+        1. Go to...
+        2. Click on...
+        3. Scroll down...
+        4. See error
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect to happen?
+      description: Tell us what you thought should happen.
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: What actually happened?
+      description: Describe what really occurred.
+    validations:
+      required: true
+
+  - type: textarea
+    id: media
+    attributes:
+      label: Screenshots or Logs (if any)
+      description: This helps a lot. You can drag and drop files here.
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: How serious is this?
+      options:
+        - Minor – doesn't affect functionality
+        - Moderate – needs fixing but not urgent
+        - High – blocks key features or user flow
+        - Critical – must be fixed ASAP
