@@ -5,10 +5,11 @@ on:
     types: [opened, closed]
   pull_request:
     types: [opened, closed]
-  watch:   # for stars
+  watch:
   fork:
   repository_dispatch:
   push:
+
 jobs:
   notify:
     runs-on: ubuntu-latest
@@ -16,44 +17,56 @@ jobs:
     steps:
       - name: Send Discord Notification
         env:
-          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }} # Set the Discord webhook URL in Repository Secrets
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         run: |
           EVENT_NAME="${{ github.event_name }}"
           ACTION="${{ github.event.action }}"
           REPO="${{ github.repository }}"
           ACTOR="${{ github.actor }}"
-          ISSUE_TITLE="${{ github.event.issue.title }}"
-          PR_TITLE="${{ github.event.pull_request.title }}"
-          COMMIT_MESSAGE="${{ github.event.head_commit.message }}"
-          
+          MESSAGE=""
+
           if [[ "$EVENT_NAME" == "issues" ]]; then
-            ISSUE_URL="https://github.com/$REPO/issues/${{ github.event.issue.number }}"
+            ISSUE_TITLE="${{ github.event.issue.title }}"
+            ISSUE_NUMBER="${{ github.event.issue.number }}"
+            ISSUE_URL="https://github.com/$REPO/issues/$ISSUE_NUMBER"
             if [[ "$ACTION" == "opened" ]]; then
-              MESSAGE="New Issue Created: **[$ISSUE_TITLE]($ISSUE_URL)** by **$ACTOR**"
+              MESSAGE="📝 New Issue Created: **[$ISSUE_TITLE]($ISSUE_URL)** by **$ACTOR**"
             elif [[ "$ACTION" == "closed" ]]; then
-              MESSAGE="Issue Closed: **[$ISSUE_TITLE]($ISSUE_URL)** by **$ACTOR**"
+              MESSAGE="✅ Issue Closed: **[$ISSUE_TITLE]($ISSUE_URL)** by **$ACTOR**"
             fi
+
           elif [[ "$EVENT_NAME" == "pull_request" ]]; then
-            PR_URL="https://github.com/$REPO/pull/${{ github.event.pull_request.number }}"
+            PR_TITLE="${{ github.event.pull_request.title }}"
+            PR_NUMBER="${{ github.event.pull_request.number }}"
+            PR_URL="https://github.com/$REPO/pull/$PR_NUMBER"
             if [[ "$ACTION" == "opened" ]]; then
-              MESSAGE="New Pull Request: **[$PR_TITLE]($PR_URL)** by **$ACTOR**"
+              MESSAGE="🚀 New Pull Request: **[$PR_TITLE]($PR_URL)** by **$ACTOR**"
             elif [[ "$ACTION" == "closed" ]]; then
-              MESSAGE="Pull Request Closed: **[$PR_TITLE]($PR_URL)** by **$ACTOR**"
+              MESSAGE="🔒 Pull Request Closed: **[$PR_TITLE]($PR_URL)** by **$ACTOR**"
             fi
+
           elif [[ "$EVENT_NAME" == "watch" ]]; then
-            MESSAGE="⭐ Repo Starred by **$ACTOR**"
+            MESSAGE="⭐ Repository starred by **$ACTOR**"
+
           elif [[ "$EVENT_NAME" == "fork" ]]; then
-            MESSAGE="Repo Forked by **$ACTOR**"
+            MESSAGE="🍴 Repository forked by **$ACTOR**"
+
           elif [[ "$EVENT_NAME" == "push" ]]; then
-            COMMIT_URL="https://github.com/$REPO/commit/${{ github.sha }}"
+            COMMIT_MESSAGE="${{ github.event.head_commit.message }}"
+            COMMIT_SHA="${{ github.sha }}"
+            COMMIT_URL="https://github.com/$REPO/commit/$COMMIT_SHA"
             if [[ -n "$COMMIT_MESSAGE" ]]; then
-              MESSAGE="New Push to **$REPO** by **$ACTOR**\n**Commit:** [$COMMIT_MESSAGE]($COMMIT_URL)\n"
+              MESSAGE="📦 New Push to **$REPO** by **$ACTOR**\n**Commit:** [$COMMIT_MESSAGE]($COMMIT_URL)"
             else
-              MESSAGE="New Push to **$REPO** by **$ACTOR**"
+              MESSAGE="📦 New Push to **$REPO** by **$ACTOR**"
             fi
           fi
-          
-          curl -H "Content-Type: application/json" \
-               -X POST \
-               -d "{\"content\": \"$MESSAGE\"}" \
-               $DISCORD_WEBHOOK
+
+          if [[ -n "$MESSAGE" ]]; then
+            curl -H "Content-Type: application/json" \
+                 -X POST \
+                 -d "{\"content\": \"$MESSAGE\"}" \
+                 "$DISCORD_WEBHOOK"
+          else
+            echo "No valid event or message to send."
+          fi
