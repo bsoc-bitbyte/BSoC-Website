@@ -27,9 +27,9 @@
 									<router-link
 										v-if="isloggedIn"
 										class="menu__item"
-										to="/dashboard"
+										to="/scoreboard"
 									>
-										Dashboard
+										Scoreboard
 									</router-link>
 
 									<router-link class="menu__item" to="/home">
@@ -39,7 +39,7 @@
 									<router-link
 										class="menu__item"
 										to="/myPR"
-										v-if="isloggedIn && !userPR"
+										v-if="isloggedIn"
 										v-on:click="handleMyPR()"
 									>
 										My PR's
@@ -73,7 +73,7 @@
 										class="navbar-nav auth menu__item"
 										style="cursor: pointer; margin-left: 2em"
 										v-on:click="handleLogout()"
-										v-if="isloggedIn && !userPR"
+										v-if="isloggedIn"
 									>
 										LogOut
 									</div>
@@ -94,8 +94,21 @@
 						>
 							<div class="d-flex align-item-center" v-if="isloggedIn">
 								<router-link
-									class="nav-link px-2 text-white"
-									to="/dashboard"
+									class="nav-link px-4 text-white"
+									to="/home"
+									active-class="active-link"
+									style="
+										text-decoration: none;
+										margin-top: 23px;
+										color: inherit;
+									"
+									>Home
+								</router-link>
+
+								<router-link
+									class="nav-link px-4 text-white"
+									to="/scoreboard"
+									active-class="active-link"
 									style="
 										text-decoration: none;
 										float: left;
@@ -103,66 +116,68 @@
 										margin-left: 0px;
 										margin-top: 23px;
 									"
-									v-if="isHome"
-								>
-									Dashboard
-								</router-link>
-
-								<router-link
-									class="nav-link px-4 text-white"
-									to="/home"
-									style="
-										text-decoration: none;
-										margin-top: 22px;
-										color: inherit;
-									"
-									v-if="!isHome"
-								>
-									Home
-								</router-link>
-
-								<router-link
-									class="nav-link px-4 text-white"
-									to="/dashboard"
-									style="text-decoration: none; color: inherit"
-								>
-									<button
-										class="nav-button"
-										style="float: left; margin-top: 23px; margin-left: 0px"
-										v-on:click="handleMyPR()"
-										v-if="isloggedIn && userPR"
-									>
-										Dashboard
-									</button>
+									v-if="isloggedIn"
+									>Scoreboard
 								</router-link>
 
 								<router-link
 									class="nav-link px-4 text-white"
 									to="/myPR"
-									style="text-decoration: none; color: inherit"
-									v-if="isloggedIn && !userPR"
+									active-class="active-link"
+									@click.native="handleMyPR"
+									style="
+										text-decoration: none;
+										float: left;
+										color: inherit;
+										margin-left: 0px;
+										margin-top: 23px;
+									"
+									>My PR's
+								</router-link>
+
+								<!-- <router-link
+									class="nav-link px-4 text-white"
+									to="/myPR"
+									
+									style="text-decoration: none; color: inherit;"
+									v-if="isloggedIn"
 								>
 									<button
 										class="nav-button"
-										style="margin-top: 23px"
-										v-on:click="handleMyPR()"
-										v-if="isloggedIn && !userPR"
+										style="float: left; margin-top: 23px; margin-left: 0px"
+										
+										v-if="isloggedIn"
 									>
 										My PR's
 									</button>
-								</router-link>
+								</router-link> -->
 
 								<router-link
 									class="nav-link mt-4 px-4 text-white"
 									to="/submit"
+									active-class="active-link"
 									style="
 										text-decoration: none;
-										margin-top: 22px;
+										margin-top: 23px;
 										color: inherit;
 									"
 									v-if="isloggedIn"
-									>SubmitPR</router-link
-								>
+									>SubmitPR
+								</router-link>
+
+								<router-link
+									class="nav-link px-4 text-white"
+									to="/projects"
+									active-class="active-link"
+									style="
+										text-decoration: none;
+										float: left;
+										color: inherit;
+										margin-left: 0px;
+										margin-top: 23px;
+									"
+									>Projects
+								</router-link>
 							</div>
 							<div v-else class="hii" style="float: left">
 								<button
@@ -175,15 +190,9 @@
 									"
 									v-on:click="handleLogin()"
 								>
-									Dashboard
+									Scoreboard
 								</button>
 							</div>
-							<router-link
-								class="nav-link mz-0 mx-0 my-0 mt-4 px-4 text-white"
-								to="/projects"
-							>
-								Projects
-							</router-link>
 						</div>
 					</div>
 				</div>
@@ -201,7 +210,7 @@
 						class="nav-button hambur2"
 						style="margin-right: 80px; margin-top: 22px"
 						v-on:click="handleLogout()"
-						v-if="isloggedIn && !userPR"
+						v-if="isloggedIn"
 					>
 						LogOut
 					</button>
@@ -224,7 +233,6 @@ export default {
 
 	created() {
 		this.checkAuth()
-		this.isHonePage()
 	},
 
 	beforeRouteLeave(to, from, next) {
@@ -234,8 +242,7 @@ export default {
 	setup(props, { emit }) {
 		const { error, logout } = useLogout()
 		let isloggedIn = ref(false)
-		let isHome = ref(true)
-		const userPR = ref(false)
+		let userPR = ref(false)
 		const router = useRouter()
 		const collapse11 = ref(false)
 
@@ -288,18 +295,6 @@ export default {
 			})
 		}
 
-		const isHonePage = () => {
-			if (window.location.pathname === '/home') {
-				console.log('home')
-				isHome.value = true
-			} else {
-				isHome.value = false
-			}
-			if (window.location.pathname === '/myPR') {
-				userPR.value = true
-			}
-		}
-
 		const handleLogout = () => {
 			logout()
 			if (!error.value) {
@@ -322,9 +317,7 @@ export default {
 			userPR,
 			isloggedIn,
 			checkAuth,
-			isHonePage,
 			handleLogout,
-			isHome,
 			collapse11,
 			handleGithubAuth,
 		}
@@ -527,5 +520,17 @@ export default {
 	border: none;
 	color: white;
 	margin-left: 0%;
+}
+
+/* Controls the border below navbar */
+.active-link {
+	border-bottom: 2px solid white;
+	color: white;
+}
+.nav-link,
+.nav-button {
+	height: 100%;
+	display: flex;
+	align-items: center;
 }
 </style>
