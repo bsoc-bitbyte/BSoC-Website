@@ -8,7 +8,7 @@ import LandingLayout from '@/layouts/LandingLayout.vue'
 import Login from '@/components/Login'
 import Signup from '@/components/Signup'
 import Auth from '@/views/Auth'
-import Dashboard from '@/views/Dashboard'
+import Scoreboard from '@/views/Scoreboard'
 import Home from '@/views/Home'
 import LandingPage from '@/views/LandingPage'
 import MyPR from '@/views/MyPR'
@@ -28,7 +28,7 @@ const requireAuth = (to, from, next) => {
 const requireNoAuth = (to, from, next) => {
 	let user = projectAuth.currentUser
 	if (user) {
-		next({ path: '/dashboard' })
+		next({ path: '/scoreboard' })
 	} else {
 		next()
 	}
@@ -75,9 +75,9 @@ const routes = [
 		component: GeneralLayout,
 		children: [
 			{
-				path: 'dashboard',
-				name: 'Dashboard',
-				component: Dashboard,
+				path: 'scoreboard',
+				name: 'Scoreboard',
+				component: Scoreboard,
 				beforeEnter: requireAuth,
 			},
 
