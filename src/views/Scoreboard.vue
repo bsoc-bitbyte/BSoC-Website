@@ -78,7 +78,7 @@ import { projectAuth } from '../firebase/config'
 import Nav from '@/components/Nav.vue'
 
 export default {
-	name: 'Dashboard',
+	name: 'Scoreboard',
 
 	setup() {
 		const { documents } = getAllUserStats('userStats-2024')

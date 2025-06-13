@@ -22,7 +22,7 @@ export default {
 		const router = useRouter()
 
 		const handleLogin = () => {
-			router.push({ name: 'Dashboard' })
+			router.push({ name: 'Scoreboard' })
 		}
 
 		return { toggle, toggleAuth, handleLogin }
