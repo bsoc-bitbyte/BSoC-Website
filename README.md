@@ -42,3 +42,6 @@ The Programming Club, IIITDM Jabalpur
 
 ## Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+## Figma Design
+See [Figma](https://www.figma.com/design/K7vcpjWe9TJXxEahPe1JcC/BSoc-Website?node-id=102-340&p=f&t=jQ3uerNbP5IDbCaU-0)
