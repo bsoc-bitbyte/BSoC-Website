@@ -5,9 +5,6 @@ import AuthLayout from '@/layouts/AuthLayout.vue'
 import GeneralLayout from '@/layouts/GeneralLayout.vue'
 import LandingLayout from '@/layouts/LandingLayout.vue'
 
-import Login from '@/components/Login'
-import Signup from '@/components/Signup'
-import Auth from '@/views/Auth'
 import Scoreboard from '@/views/Scoreboard'
 import Home from '@/views/Home'
 import LandingPage from '@/views/LandingPage'
@@ -19,7 +16,7 @@ import User from '@/views/User'
 const requireAuth = (to, from, next) => {
 	let user = projectAuth.currentUser
 	if (!user) {
-		next({ path: '/auth' })
+		next(false)
 	} else {
 		next()
 	}
@@ -43,30 +40,6 @@ const routes = [
 				path: '',
 				name: 'LandingPage',
 				component: LandingPage,
-			},
-		],
-	},
-	{
-		path: '/auth',
-		component: AuthLayout,
-		children: [
-			{
-				path: '',
-				name: 'Auth',
-				component: Auth,
-				beforeEnter: requireNoAuth,
-			},
-			{
-				path: 'login',
-				name: 'Login',
-				component: Login,
-				beforeEnter: requireNoAuth,
-			},
-			{
-				path: 'signup',
-				name: 'Signup',
-				component: Signup,
-				beforeEnter: requireNoAuth,
 			},
 		],
 	},
