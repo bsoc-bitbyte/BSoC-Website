@@ -168,7 +168,7 @@ export default {
 				uid: projectAuth.currentUser.uid,
 			}
 
-			await updateUserStats('userStats-2024', doc, projectAuth.currentUser.uid)
+			await updateUserStats('userStats-2025', doc, projectAuth.currentUser.uid)
 			await addDoc('dashboard-2024', doc)
 			loading.value = false
 			await router.push('/dashboard')

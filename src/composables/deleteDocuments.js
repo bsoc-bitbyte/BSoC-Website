@@ -41,7 +41,7 @@ const deletePr = async (id, doc, difficulty, uid) => {
 		var new_prs = 0
 
 		await projectFirestore
-			.collection('userStats-2024')
+			.collection('userStats-2025')
 			.doc(uid)
 			.get()
 			.then((snapshot) => {
@@ -55,7 +55,7 @@ const deletePr = async (id, doc, difficulty, uid) => {
 			})
 
 		await projectFirestore
-			.collection('userStats-2024')
+			.collection('userStats-2025')
 			.doc(uid)
 			.update({ score: new_score, numberOfPRs: new_prs })
 

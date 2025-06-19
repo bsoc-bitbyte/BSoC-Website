@@ -81,7 +81,7 @@ export default {
 	name: 'Scoreboard',
 
 	setup() {
-		const { documents } = getAllUserStats('userStats-2024')
+		const { documents } = getAllUserStats('userStats-2025')
 		const isLoading = ref(true)
 		const started = ref(true)
 		const userPR = ref(false)
