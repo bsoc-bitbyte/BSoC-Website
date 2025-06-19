@@ -26,7 +26,7 @@ const deletePr = async (id, doc, difficulty, uid) => {
 			'Are you sure you want to delete ? \nThis action can not be undone.'
 		)
 	) {
-		const colRef = await projectFirestore.collection('dashboard-2024')
+		const colRef = await projectFirestore.collection('dashboard-2025')
 		const docRef = colRef.doc(doc.id)
 		docRef
 			.delete()
