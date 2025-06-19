@@ -72,7 +72,7 @@ import { projectAuth } from '../firebase/config'
 export default {
 	name: 'MyPR',
 	setup() {
-		const { documents } = getCollection('dashboard-2024')
+		const { documents } = getCollection('dashboard-2025')
 		const started = ref(true)
 		const userPR = ref(false)
 		var userData = new Map()

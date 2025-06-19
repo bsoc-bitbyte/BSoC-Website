@@ -26,7 +26,7 @@ const deletePr = async (id, doc, difficulty, uid) => {
 			'Are you sure you want to delete ? \nThis action can not be undone.'
 		)
 	) {
-		const colRef = await projectFirestore.collection('dashboard-2024')
+		const colRef = await projectFirestore.collection('dashboard-2025')
 		const docRef = colRef.doc(doc.id)
 		docRef
 			.delete()
@@ -41,7 +41,7 @@ const deletePr = async (id, doc, difficulty, uid) => {
 		var new_prs = 0
 
 		await projectFirestore
-			.collection('userStats-2024')
+			.collection('userStats-2025')
 			.doc(uid)
 			.get()
 			.then((snapshot) => {
@@ -55,7 +55,7 @@ const deletePr = async (id, doc, difficulty, uid) => {
 			})
 
 		await projectFirestore
-			.collection('userStats-2024')
+			.collection('userStats-2025')
 			.doc(uid)
 			.update({ score: new_score, numberOfPRs: new_prs })
 
