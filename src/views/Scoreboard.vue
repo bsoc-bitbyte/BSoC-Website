@@ -1,7 +1,11 @@
 <template>
 	<div v-if="started && !userPR" class="pr-outer">
 		<div class="pr-container">
-			<div class="searchbar">
+			<div class="controls">
+				<select v-model="selectedYear">
+					<option value="2024">BSoC 2024</option>
+					<option value="2025">BSoC 2025</option>
+				</select>
 				<input
 					type="text"
 					v-model="searchQuery"
@@ -17,13 +21,23 @@
 				<div class="heading5"><span>Last Updated</span></div>
 			</div>
 			<div v-if="isLoading">
-				<!-- Loading Placeholder -->
 				<div class="loading-placeholder" v-for="n in 5" :key="n"></div>
 			</div>
-			<div v-else v-for="(doc, index) in paginatedDocuments" :doc="doc.time">
+			<div v-for="(doc, index) in paginatedDocuments" :doc="doc.time">
 				<div class="table-content">
 					<div class="heading1 text-white">
-						<span>{{ (pagenum - 1) * numofitems + index + 1 }}</span>
+						<span>
+							<template v-if="(pagenum - 1) * numofitems + index === 0"
+								>🥇</template
+							>
+							<template v-if="(pagenum - 1) * numofitems + index === 1"
+								>🥈</template
+							>
+							<template v-if="(pagenum - 1) * numofitems + index === 2"
+								>🥉</template
+							>
+							{{ (pagenum - 1) * numofitems + index + 1 }}
+						</span>
 					</div>
 					<div class="heading1 text-white">
 						<router-link
@@ -66,12 +80,14 @@
 
 			<button class="nextPage" @click="nextPage">></button>
 		</div>
-		<div v-else-if="!isLoading" class="no-results">No results found.</div>
+		<div v-else-if="!isLoading" class="no-results">
+			<h1>Coming Soon...!!</h1>
+		</div>
 	</div>
 </template>
 
 <script>
-import { computed, ref } from 'vue'
+import { computed, ref, onMounted, watch } from 'vue'
 import { formatDistanceToNow } from 'date-fns'
 import { getAllUserStats } from '../composables/getCollection'
 import { projectAuth } from '../firebase/config'
@@ -81,16 +97,36 @@ export default {
 	name: 'Scoreboard',
 
 	setup() {
-		const { documents } = getAllUserStats('userStats-2025')
+		const documents = ref([])
 		const isLoading = ref(true)
 		const started = ref(true)
 		const userPR = ref(false)
 		const numofitems = ref(10)
 		const pagenum = ref(1)
 		const searchQuery = ref('')
+		const selectedYear = ref('2025')
 
 		var userData = new Map()
 		var userPRData = new Map()
+
+		const fetchData = () => {
+			isLoading.value = true
+			const { documents: yearDocs } = getAllUserStats(
+				`userStats-${selectedYear.value}`
+			)
+			watch(yearDocs, (newVal) => {
+				documents.value = newVal
+				isLoading.value = false
+			})
+		}
+
+		onMounted(() => {
+			fetchData()
+		})
+
+		watch(selectedYear, () => {
+			fetchData()
+		})
 
 		const formattedUserPRData = computed(() => {
 			if (userPRData) {
@@ -170,6 +206,8 @@ export default {
 			formattedUserPRData,
 			searchQuery,
 			filteredDocuments,
+			selectedYear,
+			documents,
 		}
 	},
 }
@@ -292,16 +330,33 @@ export default {
 .no-results {
 	color: var(--font_col);
 	position: absolute;
+	font-size: 30px;
 	top: 50vh;
 	width: 100%;
 	text-align: center;
 	font-family: system-ui, Poppins, sans-serif;
 }
-.searchbar {
-	padding: 15px 0;
-	text-align: end;
+.controls {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 1rem;
+	gap: 1rem;
 }
-
+.controls select {
+	min-width: 150px;
+	border-radius: 2vw;
+	background-color: var(--secondary_bg_col);
+	font-family: system-ui, Poppins, sans-serif;
+	font-size: 1.3rem;
+	font-weight: 500;
+	color: var(--font_col);
+	outline: none;
+	background-repeat: no-repeat;
+	background-position: 10px center;
+	position: relative;
+	border: 1px solid var(--secondary_bg_col);
+	padding: 10px 10px 10px 10px;
+}
 .search-input {
 	width: 50%;
 	padding: 10px 10px 10px 40px;
