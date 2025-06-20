@@ -171,7 +171,7 @@ export default {
 			await updateUserStats('userStats-2025', doc, projectAuth.currentUser.uid)
 			await addDoc('dashboard-2025', doc)
 			loading.value = false
-			await router.push('/dashboard')
+			await router.push('/scoreboard')
 		}
 
 		const fetchPRs = async () => {

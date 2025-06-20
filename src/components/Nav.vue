@@ -180,18 +180,20 @@
 								</router-link>
 							</div>
 							<div v-else class="hii" style="float: left">
-								<button
+								<router-link
+									to="/scoreboard"
 									class="nav-button hii mt-1"
 									style="
 										display: flex;
 										float: left;
 										padding-left: -100%;
 										margin-top: 23px !important;
+										color: white;
+										text-decoration: none;
 									"
-									v-on:click="handleLogin()"
 								>
 									Scoreboard
-								</button>
+								</router-link>
 							</div>
 						</div>
 					</div>
