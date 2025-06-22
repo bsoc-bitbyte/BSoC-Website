@@ -63,7 +63,7 @@
 					}}
 				</p>
 				<p v-if="isBsoc24 !== true" style="color: yellow">
-					Not assigned the BSoC'24 Label
+					Not assigned the BSoC'25 Label
 				</p>
 				<div class="modal-actions">
 					<button @click="showModal = false" class="btn btn-secondary">
@@ -145,7 +145,7 @@ export default {
 				return
 			}
 			if (!isBsoc24.value) {
-				alert("Please ask the maintainer to assign the BSoC'24 tag to the PR!")
+				alert("Please ask the maintainer to assign the BSoC'25 tag to the PR!")
 				return
 			}
 
@@ -211,7 +211,7 @@ export default {
 				)
 			}
 
-			if (containsName(pr.labels, "BSoC'24")) {
+			if (containsName(pr.labels, "BSoC'25")) {
 				isBsoc24.value = true
 				console.log('BSOC24')
 			} else {
