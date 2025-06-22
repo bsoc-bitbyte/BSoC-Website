@@ -95,12 +95,11 @@ export default {
 		const repos = [
 			'bsoc-bitbyte/BSoC-Website',
 			'bsoc-bitbyte/GetIt',
-			'bsoc-bitbyte/busify',
-			'BitByte-TPC/alumni',
-			'bsoc-bitbyte/myLeave',
+			'bsoc-bitbyte/Exam-Bud',
+			'bsoc-bitbyte/Nudj',
 			'bsoc-bitbyte/DigiGate',
 			'bsoc-bitbyte/Summer_of_ML',
-			'bsoc-bitbyte/Dreamyard',
+			'bsoc-bitbyte/YDO',
 		]
 		const message = ref('')
 		const link = ref('')
