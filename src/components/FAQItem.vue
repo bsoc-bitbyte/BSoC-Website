@@ -144,7 +144,11 @@ h1 {
 
 .show {
 	max-height: 1000px;
-	animation: expandAccordion ease 3s;
+}
+
+.collapse {
+	max-height: 0;
+	transition: max-height 0.4s ease;
 }
 
 .accordion-body {
@@ -157,14 +161,6 @@ h1 {
 	color: var(--font_col);
 }
 
-@keyframes expandAccordion {
-	from {
-		max-height: 0;
-	}
-	to {
-		max-height: 1000px;
-	}
-}
 @media (max-width: 520px) {
 	.ani {
 		width: 90%;

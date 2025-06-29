@@ -228,7 +228,7 @@ import { ref } from 'vue'
 import { RouterLink, useRouter } from 'vue-router'
 import { projectAuth } from '../firebase/config'
 import useSignInGithub from '../composables/useSignInGithub'
-import { errorToast } from '../composables/useToast'
+import { errorToast, successToast } from '../composables/useToast'
 
 export default {
 	name: 'Nav',
@@ -265,6 +265,7 @@ export default {
 					}
 
 					await addDoc(data)
+					successToast('Success', 'Logged in successfully!')
 					emit('login')
 				} else {
 					if (errr.value?.code === 'auth/popup-closed-by-user') {
@@ -300,6 +301,7 @@ export default {
 		const handleLogout = () => {
 			logout()
 			if (!error.value) {
+				successToast('Success', 'Logged out successfully!')
 				router.push({ name: 'Home' })
 			} else {
 				console.log(error.value)

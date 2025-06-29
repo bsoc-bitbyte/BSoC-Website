@@ -1,5 +1,6 @@
 import { projectAuth } from '@/firebase/config'
 import { createRouter, createWebHistory } from 'vue-router'
+import { errorToast } from '@/composables/useToast'
 
 import AuthLayout from '@/layouts/AuthLayout.vue'
 import GeneralLayout from '@/layouts/GeneralLayout.vue'
@@ -16,6 +17,7 @@ import User from '@/views/User'
 const requireAuth = (to, from, next) => {
 	let user = projectAuth.currentUser
 	if (!user) {
+		errorToast('Authentication Required', 'Please log in to access this page.')
 		next(false)
 	} else {
 		next()
