@@ -88,6 +88,7 @@ import { ref, onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import axios from 'axios'
 import { addDoc, updateUserStats } from '../composables/useCollection'
+import { successToast } from '../composables/useToast'
 
 export default {
 	name: 'SubmitPR',
@@ -170,6 +171,7 @@ export default {
 			await updateUserStats('userStats-2025', doc, projectAuth.currentUser.uid)
 			await addDoc('dashboard-2025', doc)
 			loading.value = false
+			successToast('Success', 'PR submitted successfully!')
 			await router.push('/scoreboard')
 		}
 
