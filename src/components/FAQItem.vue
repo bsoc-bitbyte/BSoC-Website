@@ -139,16 +139,17 @@ h1 {
 	border: none;
 	max-height: 0;
 	overflow: hidden;
-	transition: max-height 0.4s ease;
+	transition: none;
 }
 
 .show {
 	max-height: 1000px;
+	animation: expandAccordion ease-out 0.4s;
 }
 
 .collapse {
 	max-height: 0;
-	transition: max-height 0.4s ease;
+	animation: collapseAccordion ease-in 0.5s;
 }
 
 .accordion-body {
@@ -161,6 +162,27 @@ h1 {
 	color: var(--font_col);
 }
 
+@keyframes expandAccordion {
+	from {
+		max-height: 0;
+		opacity: 0;
+	}
+	to {
+		max-height: 1000px;
+		opacity: 1;
+	}
+}
+
+@keyframes collapseAccordion {
+	from {
+		max-height: 1000px;
+		opacity: 1;
+	}
+	to {
+		max-height: 0;
+		opacity: 0;
+	}
+}
 @media (max-width: 520px) {
 	.ani {
 		width: 90%;
