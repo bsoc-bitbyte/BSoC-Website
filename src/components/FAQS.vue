@@ -99,26 +99,15 @@ export default {
 
 	methods: {
 		toggleOpen: function (index) {
-			const clickedFaq = this.faqs[index]
-			const hasOpenFaq = this.faqs.some((faq) => faq.open)
+			this.faqs = this.faqs.map((faq, i) => {
+				if (index === i) {
+					faq.open = !faq.open
+				} else {
+					faq.open = false
+				}
 
-			if (clickedFaq.open) {
-				this.faqs[index].open = false
-				return
-			}
-
-			if (hasOpenFaq) {
-				this.faqs = this.faqs.map((faq) => ({
-					...faq,
-					open: false,
-				}))
-
-				setTimeout(() => {
-					this.faqs[index].open = true
-				}, 300)
-			} else {
-				this.faqs[index].open = true
-			}
+				return faq
+			})
 		},
 	},
 }
