@@ -411,6 +411,9 @@ export default {
 	.prevPage {
 		font-size: 3vw;
 	}
+	.no-results {
+		top: 44vh;
+	}
 }
 
 @media (max-width: 550px) {
@@ -423,6 +426,9 @@ export default {
 	.nextPage,
 	.prevPage {
 		font-size: 4vw;
+	}
+	.no-results {
+		top: 44vh;
 	}
 }
 </style>
