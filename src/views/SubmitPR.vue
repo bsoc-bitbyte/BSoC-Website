@@ -84,7 +84,7 @@
 				<h3>
 					Pull Requests:
 					<span
-						v-if="prs.length === 0"
+						v-if="filteredPR.length === 0"
 						style="color: yellow; padding: 10px; text-align: center"
 						>No PRs found!</span
 					>
@@ -487,7 +487,6 @@ export default {
 	background-size: 24px 24px;
 	background-repeat: no-repeat;
 	background-position: 10px center;
-	position: relative;
 }
 ::placeholder {
 	color: lightgrey;
