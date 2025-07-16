@@ -28,20 +28,73 @@
 				{{ fetchErr }}
 			</h3>
 			<div v-else class="pr-list">
+				<div class="pr-container">
+					<div class="dropdown" ref="dropdownRef">
+						<button
+							class="dropdown-toggle"
+							@click="showDropdown = !showDropdown"
+						>
+							Filter by Difficulty
+						</button>
+						<div class="dropdown-menu" v-if="showDropdown">
+							<div class="dropdown-item dropdown-easy">
+								<label>Easy</label>
+								<input
+									type="checkbox"
+									value="Easy"
+									v-model="difficultyFilters.Easy"
+								/>
+							</div>
+
+							<div class="dropdown-item dropdown-medium">
+								<label>Medium</label>
+								<input
+									type="checkbox"
+									value="Medium"
+									v-model="difficultyFilters.Medium"
+								/>
+							</div>
+
+							<div class="dropdown-item dropdown-hard">
+								<label>Hard</label>
+								<input
+									type="checkbox"
+									value="Hard"
+									v-model="difficultyFilters.Hard"
+								/>
+							</div>
+
+							<div class="dropdown-item dropdown-unassigned">
+								<label>Unassigned</label>
+								<input
+									type="checkbox"
+									value="Unassigned"
+									v-model="difficultyFilters.Unassigned"
+								/>
+							</div>
+						</div>
+					</div>
+					<input
+						type="text"
+						v-model="searchQuery"
+						placeholder="Search PR..."
+						class="search-input"
+					/>
+				</div>
 				<h3>
 					Pull Requests:
 					<span
-						v-if="prs.length === 0"
+						v-if="filteredPR.length === 0"
 						style="color: yellow; padding: 10px; text-align: center"
 						>No PRs found!</span
 					>
 				</h3>
 				<ul>
 					<li
-						v-for="pr in prs"
+						v-for="pr in filteredPR"
 						:key="pr.id"
 						@click="openModal(pr)"
-						class="hvr-grow"
+						:class="['hvr-grow', getDifficulty(pr)]"
 					>
 						<a :href="pr.html_url" target="_blank">{{ pr.title }}</a> by
 						{{ pr.user.login }}
@@ -84,7 +137,7 @@
 
 <script>
 import { projectFirestore, projectAuth, timestamp } from '@/firebase/config'
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed, onUnmounted } from 'vue'
 import { useRouter } from 'vue-router'
 import axios from 'axios'
 import { addDoc, updateUserStats } from '../composables/useCollection'
@@ -116,6 +169,9 @@ export default {
 		const displayName = projectAuth.currentUser.displayName
 		const router = useRouter()
 		const submittedPRs = ref([])
+		const searchQuery = ref('')
+		const showDropdown = ref(false)
+		const dropdownRef = ref(null)
 
 		const difficultyOptions = {
 			Easy: '15',
@@ -236,6 +292,55 @@ export default {
 			await fetchSubmittedPRs()
 		})
 
+		const difficultyFilters = ref({
+			Easy: true,
+			Medium: true,
+			Hard: true,
+			Unassigned: true,
+		})
+
+		const filteredPR = computed(() => {
+			return prs.value.filter((pr) => {
+				//search Filter
+				const matchSearch =
+					pr.title.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
+					pr.user.login.toLowerCase().includes(searchQuery.value.toLowerCase())
+
+				//diffculty Filter
+				const labels = pr.labels.map((label) => label.name.toLowerCase())
+				let diffculty = 'Unassigned'
+				if (labels.some((l) => l.includes('easy'))) diffculty = 'Easy'
+				else if (labels.some((l) => l.includes('medium'))) diffculty = 'Medium'
+				else if (labels.some((l) => l.includes('hard'))) diffculty = 'Hard'
+
+				const matchDifficulty = difficultyFilters.value[diffculty]
+
+				return matchDifficulty && matchSearch
+			})
+		})
+
+		const getDifficulty = (pr) => {
+			const labels = pr.labels.map((label) => label.name.toLowerCase())
+			if (labels.some((l) => l.includes('easy'))) return 'pr-easy'
+			if (labels.some((l) => l.includes('medium'))) return 'pr-medium'
+			if (labels.some((l) => l.includes('hard'))) return 'pr-hard'
+			return 'pr-unassigned'
+		}
+
+		const handleClickOutside = (event) => {
+			if (dropdownRef.value && !dropdownRef.value.contains(event.target)) {
+				showDropdown.value = false
+			}
+		}
+
+		onMounted(() => {
+			document.addEventListener('click', handleClickOutside)
+		})
+
+		onUnmounted(() => {
+			document.removeEventListener('click', handleClickOutside)
+		})
+
 		return {
 			message,
 			link,
@@ -252,6 +357,12 @@ export default {
 			selectedRepo,
 			selectedDifficulty,
 			openModal,
+			difficultyFilters,
+			filteredPR,
+			searchQuery,
+			getDifficulty,
+			showDropdown,
+			dropdownRef,
 		}
 	},
 }
@@ -298,6 +409,103 @@ export default {
 .hvr-grow:active {
 	transform: scale(1.03);
 	box-shadow: 4px 4px 40px 4px var(--secondary_bg_col);
+}
+.dropdown {
+	position: relative;
+}
+.dropdown-toggle {
+	padding: 10px 14px;
+	border-radius: 10vw;
+	border: 1px solid var(--secondary_bg_col);
+	background-color: var(--secondary_bg_col);
+	color: var(--font_col);
+	font-size: 1rem;
+	font-weight: 500;
+	cursor: pointer;
+}
+.dropdown-item {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+	padding: 4px 4px;
+	border: 2px solid #000000;
+	border-radius: 8px;
+	color: var(--font_col);
+}
+.dropdown-item:hover {
+	background-color: var(--secondary_bg_col);
+}
+.dropdown-easy {
+	border-left: 4px solid #4caf50;
+}
+.dropdown-medium {
+	border-left: 4px solid #ffc107;
+}
+.dropdown-hard {
+	border-left: 4px solid #f44336;
+}
+.dropdown-unassigned {
+	border-left: 4px solid grey;
+}
+.dropdown-menu {
+	position: absolute;
+	top: 110%;
+	background-color: var(--secondary_bg_col);
+	border: 1px solid #ccc;
+	border-radius: 8px;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+	padding: 10px;
+	z-index: 1000;
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+.pr-container {
+	display: flex;
+	width: 100%;
+	height: auto;
+	justify-content: space-between;
+	margin-bottom: 1rem;
+	gap: 1rem;
+	align-items: center;
+	position: relative;
+}
+.search-input {
+	width: 50%;
+	padding: 10px 10px 10px 40px;
+	background-color: var(--secondary_bg_col);
+	border: 1px solid var(--secondary_bg_col);
+	border-radius: 10vw;
+	font-family: system-ui, Poppins, sans-serif;
+	font-size: 1rem;
+	font-weight: 500;
+	outline: none;
+	color: var(--font_col);
+	position: relative;
+	background-image: url('../assets/search.svg');
+	background-size: 24px 24px;
+	background-repeat: no-repeat;
+	background-position: 10px center;
+}
+::placeholder {
+	color: lightgrey;
+	opacity: 0.8;
+}
+.pr-easy {
+	border-left: 5px solid #4caf50;
+}
+
+.pr-medium {
+	border-left: 5px solid #ffc107;
+}
+
+.pr-hard {
+	border-left: 5px solid #f44336;
+}
+
+.pr-unassigned {
+	border-left: 5px solid grey;
 }
 
 .pr-list {
