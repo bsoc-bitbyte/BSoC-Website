@@ -36,7 +36,7 @@
 							<template v-if="(pagenum - 1) * numofitems + index === 2"
 								>🥉</template
 							>
-							{{ (pagenum - 1) * numofitems + index + 1 }}
+							{{ doc.rank }}
 						</span>
 					</div>
 					<div class="heading1 text-white">
@@ -146,6 +146,20 @@ export default {
 				})
 				userData = userData.filter((doc) => {
 					return doc.score > 0
+				})
+				let currentRank = 1
+				let rank = 1
+				let prevScore = null
+
+				userData.forEach((doc, i) => {
+					if (doc.score === prevScore) {
+						doc.rank = currentRank
+					} else {
+						doc.rank = rank
+						currentRank = rank
+						prevScore = doc.score
+					}
+					rank++
 				})
 				return userData
 			}
