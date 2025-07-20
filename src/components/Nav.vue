@@ -24,16 +24,17 @@
 								</label>
 
 								<ul class="menu__box">
+									<router-link class="menu__item" to="/home" @click="closeNav">
+										Home
+									</router-link>
+
 									<router-link
 										v-if="isloggedIn"
 										class="menu__item"
 										to="/scoreboard"
+										@click="closeNav"
 									>
 										Scoreboard
-									</router-link>
-
-									<router-link class="menu__item" to="/home">
-										Home
 									</router-link>
 
 									<router-link
@@ -41,6 +42,7 @@
 										to="/myPR"
 										v-if="isloggedIn"
 										v-on:click="handleMyPR()"
+										@click="closeNav"
 									>
 										My PR's
 									</router-link>
@@ -48,12 +50,17 @@
 									<router-link
 										class="menu__item"
 										to="/submit"
+										@click="closeNav"
 										v-if="isloggedIn"
 									>
 										SubmitPR
 									</router-link>
 
-									<router-link class="menu__item" to="/projects">
+									<router-link
+										class="menu__item"
+										to="/projects"
+										@click="closeNav"
+									>
 										Projects
 									</router-link>
 
@@ -73,6 +80,7 @@
 										class="navbar-nav auth menu__item"
 										style="cursor: pointer; margin-left: 2em"
 										v-on:click="handleLogout()"
+										@click="closeNav"
 										v-if="isloggedIn"
 									>
 										LogOut
@@ -250,6 +258,11 @@ export default {
 
 		const { e, addDoc } = addUsers('Users')
 
+		const closeNav = () => {
+			const checkbox = document.querySelector('#menu__toggle')
+			if (checkbox) checkbox.checked = false
+		}
+
 		const { errr, githubLogin } = useSignInGithub()
 		const handleGithubAuth = async () => {
 			try {
@@ -324,6 +337,7 @@ export default {
 			handleLogout,
 			collapse11,
 			handleGithubAuth,
+			closeNav,
 		}
 	},
 }
@@ -452,7 +466,7 @@ export default {
 	background-color: #19192a;
 	box-shadow: 1px 0px 6px rgba(0, 0, 0, 0.2);
 
-	transition-duration: 0.25s;
+	transition: 0.4s ease-in-out;
 }
 
 .menu__item {
