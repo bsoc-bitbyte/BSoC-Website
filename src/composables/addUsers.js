@@ -12,6 +12,7 @@ const addUsers = (collection) => {
 			const safeUser = {
 				uid: user.uid,
 				displayName: user.displayName || '',
+				githubUsername: user.githubUsername || '',
 				email: user.email || '',
 				photoURL: user.photoURL || '',
 				score: user.score || 0,
@@ -20,7 +21,7 @@ const addUsers = (collection) => {
 			await projectFirestore
 				.collection(collection)
 				.doc(safeUser.uid)
-				.set(safeUser)
+				.set(safeUser, { merge: true })
 		} catch (err) {
 			console.log('Firestore error', err.message)
 			error.value = 'could not save user!'

@@ -266,12 +266,15 @@ export default {
 		const { errr, githubLogin } = useSignInGithub()
 		const handleGithubAuth = async () => {
 			try {
-				const user = await githubLogin()
+				const result = await githubLogin()
 
-				if (user && !errr.value) {
+				if (result && !errr.value) {
+					const { user, githubUsername } = result
+
 					const data = {
 						uid: user.uid,
-						displayName: user.displayName || '',
+						displayName: user.displayName || githubUsername || '',
+						githubUsername: githubUsername || '',
 						email: user.email || '',
 						photoURL: user.photoURL || '',
 						score: 0,

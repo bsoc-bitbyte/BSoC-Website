@@ -1,5 +1,6 @@
 import firebase from 'firebase/compat/app'
 import { ref } from 'vue'
+import { projectFirestore } from '@/firebase/config'
 
 const errr = ref(null)
 const githubLogin = async () => {
@@ -7,7 +8,10 @@ const githubLogin = async () => {
 	const provider = new firebase.auth.GithubAuthProvider()
 	try {
 		const result = await firebase.auth().signInWithPopup(provider)
-		return result.user
+		const user = result.user
+		const githubUsername = result.additionalUserInfo.username
+
+		return { user, githubUsername }
 	} catch (error) {
 		errr.value = error.message
 	}
