@@ -4,13 +4,13 @@ import 'firebase/compat/auth'
 import 'firebase/compat/storage'
 
 const firebaseConfig = {
-	apiKey: 'AIzaSyAPzaHx3y5U9QoFncsROFbjmL3WPV7rcgw',
-	authDomain: 'bsoc-test-2feda.firebaseapp.com',
-	projectId: 'bsoc-test-2feda',
-	storageBucket: 'bsoc-test-2feda.firebasestorage.app',
-	messagingSenderId: '677503016218',
-	appId: '1:677503016218:web:858c5a2eeaf7532448e0a3',
-	measurementId: 'G-P27G0HV2Z0',
+	apiKey: 'AIzaSyCWl9sbMrykcl_yUTTQZQWTgXblZ6iUA8Y',
+	authDomain: 'bsoc-2025.firebaseapp.com',
+	projectId: 'bsoc-2025',
+	storageBucket: 'bsoc-2025.firebasestorage.app',
+	messagingSenderId: '27004164042',
+	appId: '1:27004164042:web:9285f98fb78ef653fce133',
+	measurementId: 'G-Y2S84X8CDP',
 }
 
 firebase.initializeApp(firebaseConfig)

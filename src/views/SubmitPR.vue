@@ -141,7 +141,7 @@ import { ref, onMounted, computed, onUnmounted } from 'vue'
 import { useRouter } from 'vue-router'
 import axios from 'axios'
 import { addDoc, updateUserStats } from '../composables/useCollection'
-import { successToast } from '../composables/useToast'
+import { errorToast, successToast } from '../composables/useToast'
 
 export default {
 	name: 'SubmitPR',
@@ -214,21 +214,43 @@ export default {
 			}
 
 			loading.value = true
+			const prAuthor = selectedPR.value.user.login
+			const uid = projectAuth.currentUser.uid
+			const docSnapshot = await projectFirestore
+				.collection('Users')
+				.doc(uid)
+				.get()
 
-			const doc = {
-				message: selectedPR.value.title,
-				link: selectedPR.value.html_url,
-				difficulty: difficultyOptions[selectedDifficulty.value],
-				displayName: displayName,
-				time: timestamp(),
-				uid: projectAuth.currentUser.uid,
+			if (!docSnapshot.exists) {
+				alert('Logged in user not found in database')
+				return
 			}
 
-			await updateUserStats('userStats-2025', doc, projectAuth.currentUser.uid)
-			await addDoc('dashboard-2025', doc)
-			loading.value = false
-			successToast('Success', 'PR submitted successfully!')
-			await router.push('/scoreboard')
+			const currentUser = docSnapshot.data().githubUsername
+			if (prAuthor !== currentUser) {
+				errorToast('Failed', 'PR can only be submitted by PR author.')
+				loading.value = false
+				await router.push('/scoreboard')
+			} else {
+				const doc = {
+					message: selectedPR.value.title,
+					link: selectedPR.value.html_url,
+					difficulty: difficultyOptions[selectedDifficulty.value],
+					displayName: displayName,
+					time: timestamp(),
+					uid: projectAuth.currentUser.uid,
+				}
+
+				await updateUserStats(
+					'userStats-2025',
+					doc,
+					projectAuth.currentUser.uid
+				)
+				await addDoc('dashboard-2025', doc)
+				loading.value = false
+				successToast('Success', 'PR submitted successfully!')
+				await router.push('/scoreboard')
+			}
 		}
 
 		const fetchPRs = async () => {
