@@ -116,7 +116,7 @@
 					}}
 				</p>
 				<p v-if="isBsoc24 !== true" style="color: yellow">
-					Not assigned the BSoC'25 Label
+					Not assigned the BSoC'26 Label
 				</p>
 				<div class="modal-actions">
 					<button @click="showModal = false" class="btn btn-secondary">
@@ -148,12 +148,12 @@ export default {
 	setup() {
 		const repos = [
 			'bsoc-bitbyte/BSoC-Website',
-			'bsoc-bitbyte/GetIt',
-			'bsoc-bitbyte/Exam-Bud',
+			'bsoc-bitbyte/rustats',
 			'bsoc-bitbyte/Nudj',
-			'bsoc-bitbyte/DigiGate',
-			'bsoc-bitbyte/Summer_of_ML',
-			'bsoc-bitbyte/YDO',
+			'bsoc-bitbyte/Splitt',
+			'bsoc-bitbyte/Summer-of-ML-26',
+			'bsoc-bitbyte/YDO_26',
+			'bsoc-bitbyte/GetIt',
 		]
 		const message = ref('')
 		const link = ref('')
@@ -201,7 +201,7 @@ export default {
 				return
 			}
 			if (!isBsoc24.value) {
-				alert("Please ask the maintainer to assign the BSoC'25 tag to the PR!")
+				alert("Please ask the maintainer to assign the BSoC'26 tag to the PR!")
 				return
 			}
 
@@ -268,7 +268,7 @@ export default {
 				)
 			}
 
-			if (containsName(pr.labels, "BSoC'25")) {
+			if (containsName(pr.labels, "BSoC'26")) {
 				isBsoc24.value = true
 				console.log('BSOC24')
 			} else {
