@@ -120,7 +120,7 @@ export default {
 				},
 				{
 					id: 8,
-					projectName: 'Assassins Greed',
+					projectName: 'Game Jam',
 					maintainer1: 'Divyanshu Singh',
 					maintainer2: 'Kumar Sshalabh,Aadarsh Nayak',
 					link: 'https://github.com/bsoc-bitbyte',
