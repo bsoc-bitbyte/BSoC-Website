@@ -21,6 +21,7 @@
 				<div class="maintainer-name">
 					<h4>{{ maintainer1 }}</h4>
 					<h4>{{ maintainer2 }}</h4>
+					<h4>{{ maintainer3 }}</h4>
 				</div>
 			</div>
 		</div>
@@ -39,6 +40,10 @@ export default {
 			required: true,
 		},
 		maintainer2: {
+			type: String,
+			required: true,
+		},
+		maintainer3: {
 			type: String,
 			required: true,
 		},
@@ -61,7 +66,7 @@ export default {
 <style scoped>
 .card-container {
 	display: flex;
-	height: 320px;
+	height: 330px;
 	width: 600px;
 	align-items: stretch;
 	background-color: #efefef;
