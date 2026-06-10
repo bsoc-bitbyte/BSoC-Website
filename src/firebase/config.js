@@ -12,7 +12,7 @@ const firebaseConfig = {
 	appId: process.env.VUE_APP_FIREBASE_APP_ID,
 	measurementId: process.env.VUE_APP_FIREBASE_MEASUREMENT_ID,
 }
-console.log('Firebase Config:', firebaseConfig)
+//console.log('Firebase Config:', firebaseConfig)
 firebase.initializeApp(firebaseConfig)
 
 const projectFirestore = firebase.firestore()
