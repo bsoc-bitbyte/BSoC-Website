@@ -45,7 +45,7 @@ export default {
 		},
 		maintainer3: {
 			type: String,
-			required: true,
+			required: false,
 		},
 		link: {
 			type: String,
