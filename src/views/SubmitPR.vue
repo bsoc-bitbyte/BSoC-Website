@@ -116,7 +116,7 @@
 					}}
 				</p>
 				<p v-if="isBsoc24 !== true" style="color: yellow">
-					Not assigned the BSoC'26 Label
+					Not assigned the BSoC&apos;26 Label
 				</p>
 				<div class="modal-actions">
 					<button @click="showModal = false" class="btn btn-secondary">
@@ -244,7 +244,7 @@ export default {
 						submittedPRs.value.filter((item) => item === pr.html_url).length <
 							pr.assignees.length
 				)
-				<!--console.log('Filtered PRs:', prs.value)-->
+				console.log('Filtered PRs:', prs.value)
 				fetchErr.value = null
 			} catch (error) {
 				if (error.response.status == 403) {
@@ -270,10 +270,10 @@ export default {
 
 			if (containsName(pr.labels, "BSoC'26")) {
 				isBsoc24.value = true
-				 <!-- console.log('BSOC24')-->
+				console.log('BSOC24')
 			} else {
 				isBsoc24.value = false
-				<!--console.log('not bsoc24')-->
+				console.log('not bsoc24')
 			}
 			if (containsName(pr.labels, 'easy')) {
 				selectedDifficulty.value = 'Easy'
