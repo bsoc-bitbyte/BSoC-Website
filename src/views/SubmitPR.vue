@@ -116,7 +116,7 @@
 					}}
 				</p>
 				<p v-if="isBsoc24 !== true" style="color: yellow">
-					Not assigned the BSoC'26 Label
+					Not assigned the BSoC&apos;26 Label
 				</p>
 				<div class="modal-actions">
 					<button @click="showModal = false" class="btn btn-secondary">
