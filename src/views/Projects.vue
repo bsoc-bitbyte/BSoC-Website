@@ -8,6 +8,7 @@
 				:projectName="item.projectName"
 				:maintainer1="item.maintainer1"
 				:maintainer2="item.maintainer2"
+				:maintainer3="item.maintainer3"
 				:link="item.link"
 				:techStack="item.techStack"
 				:description="item.description"
@@ -33,6 +34,10 @@ import Numpy from '@/assets/numpy.svg'
 import Unity from '@/assets/unity.svg'
 import Csharp from '@/assets/csharp.svg'
 import Figma from '@/assets/figma.svg'
+import NodeJS from '@/assets/nodejs.svg'
+import GitHub from '@/assets/githublogo.svg'
+import Rust from '@/assets/Rust.svg.png'
+import Notion from '@/assets/Notion.svg.png'
 
 export default {
 	components: {
@@ -44,30 +49,33 @@ export default {
 				{
 					id: 1,
 					projectName: 'YDO',
-					maintainer1: 'Om Thorat',
-					maintainer2: 'Tanmay Deobhankar',
-					link: 'https://github.com/bsoc-bitbyte/YDO',
+					maintainer1: 'Arunit Chakraborty',
+					maintainer2: 'Jnana Sampath',
+					maintainer3: '',
+					link: 'https://github.com/bsoc-bitbyte/YDO_26',
 					// techStack: 'React, Javascript, CSS, Python, Flask, Supabase',
 					techStack: [React, Python, Supabase],
 					description:
-						'A simple, exclusive and private matchmaking website. Users choose 5 choices each; If two users choose the same, they are revealed to be a match.',
+						'You Deserve One (YDO) bridges the gap of unspoken campus connections by offering a completely safe, anonymous matchmaking platform for students.',
 				},
 				{
 					id: 2,
-					projectName: 'Exam-Bud',
-					maintainer1: 'Ritankar Saha',
-					maintainer2: 'Harshil Khandelwal',
-					link: 'https://github.com/bsoc-bitbyte/Exam-Bud',
-					// techStack: 'React, Tailwind, Express, PostgreSQL, NodeJS, Cloudinary',
-					techStack: [React, NodeJs, PostgreSQL],
+					projectName: 'MindShift',
+					maintainer1: 'Nilanjan Sikdar',
+					maintainer2: 'Dharm Parmar',
+					maintainer3: 'Siddharth Kamble',
+					link: 'https://itch.io/jam/mindshift',
+					// techStack: 'Unity Engine, C#',
+					techStack: [Unity, Csharp],
 					description:
-						'A central hub for PYQs, lab materials, and notes, with a discussion forum to share, upload, and download course-related content.',
+						'A premium puzzle game where you manipulate perspective, shift rows and columns, and break endless cycles.',
 				},
 				{
 					id: 3,
 					projectName: 'BSoC Website',
-					maintainer1: 'Rohan Sen',
-					maintainer2: 'Abhijeet Whaghmare',
+					maintainer1: 'Rajvi Singh Rathore',
+					maintainer2: 'Atharv Sonje',
+					maintainer3: '',
 					link: 'https://github.com/bsoc-bitbyte/BSoC-Website',
 					// techStack: 'HTML5, CSS, Vue.js, Firebase',
 					techStack: [Vue, Firebase],
@@ -76,20 +84,10 @@ export default {
 				},
 				{
 					id: 4,
-					projectName: 'Getit',
-					maintainer1: 'Vaibhav Sahu',
-					maintainer2: 'Yash Patil',
-					link: 'https://github.com/bsoc-bitbyte/GetIt',
-					techStack: [Vue, DjangoRest],
-					// techStack: 'Vue.js, Nuxt.js, Pinia, Django REST Framework, Python',
-					description:
-						'A streamlined platform where students can buy and sell merchandise and event tickets within the college.',
-				},
-				{
-					id: 5,
 					projectName: 'Nudj',
-					maintainer1: 'Hemang Mishra',
-					maintainer2: 'Ayush Saksena',
+					maintainer1: 'Nirvan Jain',
+					maintainer2: 'Shlok Sharma',
+					maintainer3: '',
 					link: 'https://github.com/bsoc-bitbyte/Nudj',
 					// techStack: 'Kotlin, Jetpack-Compose, Firebase',
 					techStack: [Kotlin, Jetpack, Firebase],
@@ -97,47 +95,52 @@ export default {
 						'Hosts create events and manage them via email login; users follow hosts, RSVP for tickets (free or paid), and view all events with updates, announcements, and feedback in a calendar view.',
 				},
 				{
-					id: 6,
-					projectName: 'DigiGate',
-					maintainer1: 'Sujal Agrawal',
-					maintainer2: 'Harsh Singh',
-					link: 'https://github.com/bsoc-bitbyte/DigiGate',
-					// techStack: 'Kotlin, Jetpack-Compose, Firebase',
-					techStack: [Kotlin, Jetpack, Firebase],
+					id: 5,
+					projectName: 'RUST',
+					maintainer1: 'OM Barkare',
+					maintainer2: 'Sreehari Rathish',
+					maintainer3: '',
+					link: 'https://github.com/bsoc-bitbyte/rustats',
+					// techStack: 'Rust,github',
+					techStack: [Rust, GitHub],
 					description:
-						'This project aims to enhance gate entry and exit management for better security and entry management, by implementing a QR-based system',
+						'An open-source statistics library built in Rust. Simple to start, powerful to scale. Also learn about open source workflow.',
 				},
 				{
-					id: 7,
+					id: 6,
 					projectName: 'Summer of ML',
-					maintainer1: 'Prince Deepak Siddharth',
-					maintainer2: 'Vishal Painjane',
-					link: 'https://github.com/bsoc-bitbyte/Summer-of-ML',
+					maintainer1: 'Dhairya Pandya',
+					maintainer2: 'Aditya Poddar',
+					maintainer3: 'Kush Patel',
+					link: 'https://github.com/bsoc-bitbyte/Summer-of-ML-26',
 					// techStack: 'Python, Matplotlib, Pandas, Numpy',
 					techStack: [Python, Pandas, Numpy],
 					description:
-						'Explore Machine Learning, Data Science and Artificial Intelligence with our 6-week course. This course is designed to introduce you to the dynamic field of AI and ML.',
+						'Explore Machine Learning, Data Science and Artificial Intelligence with our 8-week course. This course is designed to introduce you to AI and ML.',
+				},
+				{
+					id: 7,
+					projectName: 'Splitt',
+					maintainer1: 'Pratyush Yadav',
+					maintainer2: 'Charan Sai',
+					maintainer3: '',
+					link: 'https://github.com/bsoc-bitbyte/Splitt',
+					// techStack: 'React,NodeJS,PostgreSQL,TailwindCSS,Express',
+					techStack: [React, PostgreSQL, NodeJS],
+					description:
+						'Auto ride-sharing for IIIT Jabalpur students. Split auto fares with batchmates going the same way.',
 				},
 				{
 					id: 8,
-					projectName: 'Game Jam',
-					maintainer1: 'Divyanshu Singh',
-					maintainer2: 'Kumar Sshalabh,Aadarsh Nayak',
-					link: 'https://github.com/bsoc-bitbyte',
-					// techStack: 'Unity Engine, C#',
-					techStack: [Unity, Csharp],
-					description:
-						'A 2D stealth platformer game built from scratch using Unity. Players control a ninja assassin sneaking through patrols, climbing walls, and executing silent takedowns.',
-				},
-				{
-					id: 9,
 					projectName: 'Design',
-					maintainer1: 'Piyush Shah',
-					maintainer2: 'Kumar Sshalabh',
+					maintainer1: 'Heramb Bhavsar',
+					maintainer2: 'Srilekshmi',
+					maintainer3: 'Parth Varshney',
 					link: 'https://github.com/bsoc-bitbyte',
 					// techStack: 'Figma, Adobe Creative Suite',
-					techStack: [Figma],
-					description: 'lorem ipsum',
+					techStack: [Figma, Notion],
+					description:
+						'Work like a real product design team from research and UX to branding, UI, systems and launch-ready experience',
 				},
 			],
 		}
