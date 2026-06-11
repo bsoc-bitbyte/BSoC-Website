@@ -84,18 +84,6 @@ export default {
 				},
 				{
 					id: 4,
-					projectName: 'Open Source Game',
-					maintainer1: 'Nilanjan Sikdar',
-					maintainer2: 'Dharm Parmar',
-					maintainer3: 'Siddharth Kamble',
-					link: 'https://github.com/bsoc-bitbyte',
-					// techStack: 'Unity Engine, C#',
-					techStack: [Unity, Csharp],
-					description:
-						'Experience real open-source collaboration through game development.',
-				},
-				{
-					id: 5,
 					projectName: 'Nudj',
 					maintainer1: 'Nirvan Jain',
 					maintainer2: 'Shlok Sharma',
@@ -107,7 +95,7 @@ export default {
 						'Hosts create events and manage them via email login; users follow hosts, RSVP for tickets (free or paid), and view all events with updates, announcements, and feedback in a calendar view.',
 				},
 				{
-					id: 6,
+					id: 5,
 					projectName: 'RUST',
 					maintainer1: 'OM Barkare',
 					maintainer2: 'Sreehari Rathish',
@@ -119,7 +107,7 @@ export default {
 						'An open-source statistics library built in Rust. Simple to start, powerful to scale. Also learn about open source workflow.',
 				},
 				{
-					id: 7,
+					id: 6,
 					projectName: 'Summer of ML',
 					maintainer1: 'Dhairya Pandya',
 					maintainer2: 'Aditya Poddar',
@@ -131,7 +119,7 @@ export default {
 						'Explore Machine Learning, Data Science and Artificial Intelligence with our 8-week course. This course is designed to introduce you to AI and ML.',
 				},
 				{
-					id: 8,
+					id: 7,
 					projectName: 'Splitt',
 					maintainer1: 'Pratyush Yadav',
 					maintainer2: 'Charan Sai',
@@ -143,7 +131,7 @@ export default {
 						'Auto ride-sharing for IIIT Jabalpur students. Split auto fares with batchmates going the same way.',
 				},
 				{
-					id: 9,
+					id: 8,
 					projectName: 'Design',
 					maintainer1: 'Heramb Bhavsar',
 					maintainer2: 'Srilekshmi',
