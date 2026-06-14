@@ -29,6 +29,7 @@
 									</router-link>
 
 									<router-link
+										v-if="isloggedIn"
 										class="menu__item"
 										to="/scoreboard"
 										@click="closeNav"
@@ -99,7 +100,7 @@
 								margin-right: 40px;
 							"
 						>
-							<div class="d-flex align-item-center">
+							<div class="d-flex align-items-center">
 								<router-link
 									class="nav-link px-4 text-white"
 									to="/home"
@@ -123,6 +124,7 @@
 										margin-left: 0px;
 										margin-top: 23px;
 									"
+									v-if="isloggedIn"
 									>Scoreboard
 								</router-link>
 
