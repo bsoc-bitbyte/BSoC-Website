@@ -53,6 +53,7 @@ const routes = [
 				path: 'scoreboard',
 				name: 'Scoreboard',
 				component: Scoreboard,
+				beforeEnter: requireAuth,
 			},
 
 			{

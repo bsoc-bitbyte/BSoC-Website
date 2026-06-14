@@ -114,16 +114,10 @@ export default {
 			const { documents: yearDocs } = getAllUserStats(
 				`userStats-${selectedYear.value}`
 			)
-			watch(
-				yearDocs,
-				(newVal) => {
-					if (newVal) {
-						documents.value = newVal
-						isLoading.value = false
-					}
-				},
-				{ immediate: true }
-			)
+			watch(yearDocs, (newVal) => {
+				documents.value = newVal
+				isLoading.value = false
+			})
 		}
 
 		onMounted(() => {
@@ -141,19 +135,15 @@ export default {
 		})
 
 		const formattedDocuments = computed(() => {
-			if (documents.value && documents.value.length > 0) {
-				const userUID = projectAuth.currentUser?.uid
+			if (documents.value) {
+				const userUID = projectAuth.currentUser.uid
 				userData = documents.value.map((doc) => {
 					let time = formatDistanceToNow(doc.time.toDate())
 					return { ...doc, time: time, time_sec: doc.time }
 				})
-				if (userUID) {
-					userPRData = userData.filter((doc) => {
-						return doc.uid == userUID
-					})
-				} else {
-					userPRData = []
-				}
+				userPRData = userData.filter((doc) => {
+					return doc.uid == userUID
+				})
 				userData = userData.filter((doc) => {
 					return doc.score > 0
 				})
@@ -173,7 +163,6 @@ export default {
 				})
 				return userData
 			}
-			return []
 		})
 		const changepage = (currentpage) => {
 			pagenum.value = currentpage
@@ -203,6 +192,7 @@ export default {
 			if (filteredDocuments.value && filteredDocuments.value.length > 0) {
 				const start = (pagenum.value - 1) * numofitems.value
 				const end = pagenum.value * numofitems.value
+				isLoading.value = false
 				return filteredDocuments.value.slice(start, end)
 			}
 			return []
