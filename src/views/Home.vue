@@ -82,7 +82,7 @@
 					<span class="timer-time">{{ seconds }}</span> Seconds
 				</span>
 			</div>
-			<p class="final-text" v-else>BSoC'24 has ended</p>
+			<p class="final-text" v-else>BSoC'26 has ended</p>
 		</div>
 
 		<!--  FAQ Section-->
@@ -218,7 +218,7 @@ export default {
 		const minutes = ref(0)
 		const seconds = ref(0)
 		const hasEnded = ref(false)
-		const countDownDate = new Date('July 31, 2024 00:00:00').getTime()
+		const countDownDate = new Date('July 31, 2026 00:00:00').getTime()
 
 		const updateCountdown = () => {
 			const now = new Date().getTime()

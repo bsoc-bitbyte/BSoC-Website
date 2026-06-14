@@ -35,7 +35,7 @@
 			<a href="mailto:theprogclub@iiitdmj.ac.in" style="text-decoration: none"
 				>tpc.iiitdmj.ac.in</a
 			>
-			<div>(C) The Programming Club, IIITDMJ, 2024</div>
+			<div>(C) The Programming Club, IIITDMJ, 2026</div>
 		</div>
 	</div>
 </template>
