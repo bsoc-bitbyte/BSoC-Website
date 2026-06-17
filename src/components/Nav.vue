@@ -100,7 +100,7 @@
 								margin-right: 40px;
 							"
 						>
-							<div class="d-flex align-item-center" v-if="isloggedIn">
+							<div class="d-flex align-items-center">
 								<router-link
 									class="nav-link px-4 text-white"
 									to="/home"
@@ -140,6 +140,7 @@
 										margin-left: 0px;
 										margin-top: 23px;
 									"
+									v-if="isloggedIn"
 									>My PR's
 								</router-link>
 
@@ -185,22 +186,6 @@
 										margin-top: 23px;
 									"
 									>Projects
-								</router-link>
-							</div>
-							<div v-else class="hii" style="float: left">
-								<router-link
-									to="/scoreboard"
-									class="nav-button hii mt-1"
-									style="
-										display: flex;
-										float: left;
-										padding-left: -100%;
-										margin-top: 23px !important;
-										color: white;
-										text-decoration: none;
-									"
-								>
-									Scoreboard
 								</router-link>
 							</div>
 						</div>
