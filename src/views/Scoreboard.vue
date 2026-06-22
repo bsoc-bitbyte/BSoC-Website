@@ -5,6 +5,7 @@
 				<select v-model="selectedYear">
 					<option value="2024">BSoC 2024</option>
 					<option value="2025">BSoC 2025</option>
+					<option value="2026">BSoC 2026</option>
 				</select>
 				<input
 					type="text"
@@ -104,7 +105,7 @@ export default {
 		const numofitems = ref(10)
 		const pagenum = ref(1)
 		const searchQuery = ref('')
-		const selectedYear = ref('2025')
+		const selectedYear = ref('2026')
 
 		var userData = new Map()
 		var userPRData = new Map()
