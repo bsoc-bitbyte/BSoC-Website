@@ -182,7 +182,7 @@ export default {
 		const fetchSubmittedPRs = async () => {
 			try {
 				const submittedPRsSnapshot = await projectFirestore
-					.collection('dashboard-2025')
+					.collection('dashboard-2026')
 					.get()
 				submittedPRs.value = submittedPRsSnapshot.docs.map(
 					(doc) => doc.data().link
@@ -224,8 +224,8 @@ export default {
 				uid: projectAuth.currentUser.uid,
 			}
 
-			await updateUserStats('userStats-2025', doc, projectAuth.currentUser.uid)
-			await addDoc('dashboard-2025', doc)
+			await updateUserStats('userStats-2026', doc, projectAuth.currentUser.uid)
+			await addDoc('dashboard-2026', doc)
 			loading.value = false
 			successToast('Success', 'PR submitted successfully!')
 			await router.push('/scoreboard')
