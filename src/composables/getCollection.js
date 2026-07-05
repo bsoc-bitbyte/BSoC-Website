@@ -46,8 +46,6 @@ const getAllUserStats = (collection) => {
 						...data,
 						id: doc.id,
 						time_sec: doc.time,
-						leaderboardName:
-							data.displayName?.trim() || data.githubUsername || 'Anonymous', // ← added
 					})
 				}
 			})
