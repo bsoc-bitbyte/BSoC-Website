@@ -181,7 +181,7 @@ export default {
 		const filteredDocuments = computed(() => {
 			if (formattedDocuments.value) {
 				return formattedDocuments.value.filter((doc) =>
-					doc.displayName
+					(doc.displayName || '')
 						.toLowerCase()
 						.includes(searchQuery.value.toLowerCase())
 				)

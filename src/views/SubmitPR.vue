@@ -223,7 +223,7 @@ export default {
 				message: selectedPR.value.title,
 				link: selectedPR.value.html_url,
 				difficulty: difficultyOptions[selectedDifficulty.value],
-				displayName: displayName,
+				displayName: displayName || githubUsername || 'Anonymous',
 				githubUsername: githubUsername,
 				time: timestamp(),
 				uid: projectAuth.currentUser.uid,
