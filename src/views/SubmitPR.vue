@@ -214,12 +214,17 @@ export default {
 			}
 
 			loading.value = true
-
+			const userDoc = await projectFirestore
+				.collection('Users')
+				.doc(projectAuth.currentUser.uid)
+				.get()
+			const githubUsername = userDoc.exists ? userDoc.data().githubUsername : ''
 			const doc = {
 				message: selectedPR.value.title,
 				link: selectedPR.value.html_url,
 				difficulty: difficultyOptions[selectedDifficulty.value],
 				displayName: displayName,
+				githubUsername: githubUsername,
 				time: timestamp(),
 				uid: projectAuth.currentUser.uid,
 			}

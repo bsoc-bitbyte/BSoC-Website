@@ -257,6 +257,7 @@ export default {
 					const data = {
 						uid: user.uid,
 						displayName: user.displayName || '',
+						githubUsername: user.githubUsername || '',
 						email: user.email || '',
 						photoURL: user.photoURL || '',
 						score: 0,

@@ -40,6 +40,7 @@ const updateUserStats = async (collection, doc, id) => {
 					uid: doc.uid,
 					score: updatedScore,
 					displayName: doc.displayName,
+					githubUsername: doc.githubUsername || null,
 					numberOfPRs: numberOfPRs,
 					time: doc.time,
 				},
@@ -62,6 +63,8 @@ const updateUserStats = async (collection, doc, id) => {
 				uid: doc.uid,
 				score: updatedScore,
 				displayName: doc.displayName,
+				githubUsername:
+					doc.githubUsername || existingDoc.data().githubUsername || null,
 				time: doc.time,
 				numberOfPRs: numberOfPRs,
 			},

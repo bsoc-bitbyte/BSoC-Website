@@ -39,8 +39,16 @@ const getAllUserStats = (collection) => {
 		(snap) => {
 			let results = []
 			snap.docs.forEach((doc) => {
-				if (doc.data().displayName != null && doc.data().uid != null) {
-					results.push({ ...doc.data(), id: doc.id, time_sec: doc.time })
+				const data = doc.data()
+				const hasName = data.displayName || data.githubUsername
+				if (hasName != null && hasName !== '' && data.uid != null) {
+					results.push({
+						...data,
+						id: doc.id,
+						time_sec: doc.time,
+						leaderboardName:
+							data.displayName?.trim() || data.githubUsername || 'Anonymous', // ← added
+					})
 				}
 			})
 			results.sort((a, b) => (a.score < b.score ? 1 : -1))
