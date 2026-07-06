@@ -265,31 +265,113 @@ export default {
 			}
 		}
 
-		const openModal = (pr) => {
-			selectedPR.value = pr
+		//Parses the pr body to find linked issue.
+		const parseLinkedIssueNumber = (bodyText) => {
+			if (!bodyText) return null
+			const patterns = [
+				/\b(?:close|closes|closed)\s*:?\s*#(\d+)\b/i,
+				/\b(?:fix|fixes|fixed)\s*:?\s*#(\d+)\b/i,
+				/\b(?:resolve|resolves|resolved)\s*:?\s*#(\d+)\b/i,
+				/\b(?:fix|fixes|fixed)\s+part\s+of\s+#(\d+)/i,
+			]
+
+			for (const pattern of patterns) {
+				const match = bodyText.match(pattern)
+				if (match) {
+					return Number(match[1])
+				}
+			}
+
+			return null
+		}
+
+		//Return the issue number
+		const getLinkedIssue = async (pr) => {
+			const issueNumber = parseLinkedIssueNumber(pr.body)
+			if (!issueNumber) {
+				console.log('No linked issue found in PR body.')
+				return null
+			}
+			console.log(`Found linked issue: #${issueNumber}.`)
+			return issueNumber
+		}
+
+		//Get issue labels
+		const getIssueLabels = async (issueNumber) => {
+			if (!issueNumber) return []
+			try {
+				const response = await axios.get(
+					`https://api.github.com/repos/${selectedRepo.value}/issues/${issueNumber}`
+				)
+				return response.data.labels || []
+			} catch (error) {
+				console.error(
+					`Failed to fetch labels for issue #${issueNumber}:`,
+					error
+				)
+				return []
+			}
+		}
+
+		//Return the pr labels if exist else trace the issue and return the issue labels
+		//Saving the work for maintainers to label pr everytime
+		const resolveLabels = async (pr) => {
+			if (pr.labels?.length) {
+				return pr.labels
+			}
+			const issueNumber = await getLinkedIssue(pr)
+			if (!issueNumber) {
+				return []
+			}
+
+			return await getIssueLabels(issueNumber)
+		}
+
+		//Assign difficulty on correct labels
+		const resolveDifficulty = (labels) => {
 			function containsName(arr, name) {
 				return arr.some((item) =>
 					item.name.toLowerCase().includes(name.toLowerCase())
 				)
 			}
 
-			if (containsName(pr.labels, "BSoC'26")) {
-				isBsoc24.value = true
-				console.log('BSOC24')
-			} else {
-				isBsoc24.value = false
-				console.log('not bsoc24')
-			}
-			if (containsName(pr.labels, 'easy')) {
-				selectedDifficulty.value = 'Easy'
-			} else if (containsName(pr.labels, 'medium')) {
-				selectedDifficulty.value = 'Medium'
-			} else if (containsName(pr.labels, 'hard')) {
-				selectedDifficulty.value = 'Hard'
-			} else {
-				selectedDifficulty.value = null
-			}
+			if (containsName(labels, 'easy')) return 'Easy'
+			if (containsName(labels, 'medium')) return 'Medium'
+			if (containsName(labels, 'hard')) return 'Hard'
 
+			return null
+		}
+
+		//Check for BSoC '26 label
+		const resolveBSoCLabel = (labels) => {
+			function containsName(arr, name) {
+				return arr.some((item) =>
+					item.name.toLowerCase().includes(name.toLowerCase())
+				)
+			}
+			if (containsName(labels, "BSoC'26")) {
+				return true
+			} else {
+				return false
+			}
+		}
+
+		//Return the prLabel object
+		const getPRMetadata = async (pr) => {
+			const labels = await resolveLabels(pr)
+
+			return {
+				labels,
+				difficulty: resolveDifficulty(labels),
+				isBsoc26: resolveBSoCLabel(labels),
+			}
+		}
+
+		const openModal = async (pr) => {
+			selectedPR.value = pr
+			const metadata = await getPRMetadata(pr)
+			selectedDifficulty.value = metadata.difficulty
+			isBsoc24.value = metadata.isBsoc26
 			showModal.value = true
 		}
 
