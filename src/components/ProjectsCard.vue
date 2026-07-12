@@ -170,4 +170,37 @@ a {
 	align-items: flex-start;
 	margin-left: 10px;
 }
+
+@media (max-width: 620px) {
+	.card-container {
+		width: 100%;
+		height: auto;
+	}
+	.project-card {
+		width: 100%;
+	}
+}
+
+@media (max-width: 400px) {
+	.card-container {
+		flex-direction: column;
+	}
+	.explore-part {
+		width: 100%;
+		border-radius: 30px 30px 0 0;
+	}
+	.explore-part span {
+		writing-mode: horizontal-tb;
+		transform: none;
+		font-size: 24px;
+	}
+	.header {
+		font-size: 24px;
+		flex-wrap: wrap;
+	}
+	.maintainers {
+		padding: 0 8px;
+		flex-wrap: wrap;
+	}
+}
 </style>
