@@ -265,7 +265,6 @@ export default {
 			}
 		}
 
-		//Parses the pr body to find linked issue.
 		const parseLinkedIssueNumber = (bodyText) => {
 			if (!bodyText) return null
 			const patterns = [
@@ -285,7 +284,6 @@ export default {
 			return null
 		}
 
-		//Return the issue number
 		const getLinkedIssue = async (pr) => {
 			const issueNumber = parseLinkedIssueNumber(pr.body)
 			if (!issueNumber) {
@@ -313,8 +311,6 @@ export default {
 			}
 		}
 
-		//Return the pr labels if exist else trace the issue and return the issue labels
-		//Saving the work for maintainers to label pr everytime
 		const resolveLabels = async (pr) => {
 			if (pr.labels?.length) {
 				return pr.labels
@@ -327,7 +323,6 @@ export default {
 			return await getIssueLabels(issueNumber)
 		}
 
-		//Assign difficulty on correct labels
 		const resolveDifficulty = (labels) => {
 			function containsName(arr, name) {
 				return arr.some((item) =>
@@ -342,7 +337,6 @@ export default {
 			return null
 		}
 
-		//Check for BSoC '26 label
 		const resolveBSoCLabel = (labels) => {
 			function containsName(arr, name) {
 				return arr.some((item) =>
@@ -356,7 +350,6 @@ export default {
 			}
 		}
 
-		//Return the prLabel object
 		const getPRMetadata = async (pr) => {
 			const labels = await resolveLabels(pr)
 
