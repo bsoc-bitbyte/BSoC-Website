@@ -294,7 +294,6 @@ export default {
 			return issueNumber
 		}
 
-		//Get issue labels
 		const getIssueLabels = async (issueNumber) => {
 			if (!issueNumber) return []
 			try {
