@@ -7,7 +7,7 @@
 			</div>
 			<div v-else>
 				<div v-if="formattedDocuments.length" class="table-heading">
-					<div class="heading1"><span>Name</span></div>
+					<div class="heading1"><span>Difficulty</span></div>
 					<div class="heading3"><span>Latest PR</span></div>
 					<div class="heading4"><span>Time Added</span></div>
 					<div class="heading5"><span>Delete</span></div>
@@ -17,7 +17,7 @@
 					<div v-for="user in formattedDocuments" :key="user.time">
 						<div class="table-content">
 							<div class="heading1 text-white">
-								<span>{{ user.displayName }}</span>
+								<span>{{ user.difficulty }}</span>
 							</div>
 							<div class="heading3 text-white">
 								<span>
@@ -228,6 +228,7 @@ export default {
 
 	.table-heading {
 		padding: 1rem 0;
+		grid-template-columns: 1fr;
 	}
 
 	.table-heading span {
@@ -241,6 +242,13 @@ export default {
 
 	.table-content {
 		font-size: 0.8rem;
+		grid-template-columns: 1fr;
+		text-align: center;
+	}
+
+	.table-content .heading3,
+	.table-content .heading4 {
+		text-align: center;
 	}
 }
 </style>
